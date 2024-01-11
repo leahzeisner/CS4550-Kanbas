@@ -1,0 +1,92 @@
+<html>
+
+<body>
+    <select>
+        <option id="SPEEDGRADER">SpeedGrader</option>
+    </select>
+    <hr />
+
+    <h2>Assignment Name</h2>
+
+    <!-- Name, Description, Points -->
+    <p><input type="text" placeholder="Assignment Name" /></p>
+    <p><input type="text" placeholder="Assignment description" /></p>
+
+    <p>
+        <label for="points">Points</label><br />
+        <input id="points" type="text" placeholder="100" />
+    </p>
+
+    <!-- Dropdowns -->
+    <p>
+        <label for="assignment-group">Assignment Group</label><br />
+        <select id="assignment-group">
+            <option id="ASSIGNMENTS">ASSIGNMENTS</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="display-grade">Display Grade as</label><br />
+        <select id="display=grade">
+            <option id="PERCENTAGE">Percentage</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="sub-type">Submission Type</label><br />
+        <select id="sub-type">
+            <option id="ONLINE">Online</option>
+        </select>
+    </p>
+
+    <!-- Online Entry Options Checkboxes -->
+    <p>
+        <label for="online-entry-options">Online Entry Options</label><br />
+        <input type="checkbox" value="TEXT-ENTRY" name="check-online-entry-options" id="chkbox-text-entry" />
+        <label for="chkbox-text-entry">Text Entry</label> <br />
+
+        <input type="checkbox" value="WEB-URL" name="check-online-entry-options" id="chkbox-web-url" checd />
+        <label for="chkbox-web-url">Website URL</label> <br />
+
+        <input type="checkbox" value="MEDIA-RECORDINGS" name="check-online-entry-options"
+            id="chkbox-media-recordings" />
+        <label for="chkbox-media-recordings">Media Recordings</label> <br />
+
+        <input type="checkbox" value="STUDENT-ANNOTATION" name="check-online-entry-options"
+            id="chkbox-student-annotation" />
+        <label for="chkbox-student-annotation">Student Annotation</label> <br />
+
+        <input type="checkbox" value="FILE-UPLOADS" name="check-online-entry-options" id="chkbox-file-uploads" />
+        <label for="chkbox-file-uploads">File Uploads</label> <br />
+    </p>
+
+    <!-- Assignees -->
+    <p>
+        <label for="assign-to">Assign to</label><br />
+        <input id="assign-to" type="text" placeholder="Everyone" />
+    </p>
+
+    <!-- Due Date / Availability -->
+    <p>
+        <label for="due-date">Due</label><br />
+        <input type="date" />
+    </p>
+
+    <p>
+        <label for="available-from">Available from</label><br />
+        <input id="available-from" type="date" />
+    </p>
+
+    <p>
+        <label for="available-to">Until</label><br />
+        <input id="available-to" type="date" />
+    </p>
+
+    <!-- Cancel/Save Buttons -->
+    <p>
+        <button type="button">Cancel</button>
+        <button type="button">Save</button>
+    </p>
+</body>
+
+</html>
