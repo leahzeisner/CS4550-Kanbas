@@ -49,96 +49,99 @@
 
                 <!-- EDIT ASSIGNMENTS -->
                 <td>
-                    <select>
-                        <option id="SPEEDGRADER">SpeedGrader</option>
-                    </select>
-                    <hr />
-
-                    <h2>Assignment Name</h2>
-
-                    <!-- Name, Description, Points -->
-                    <p>
-                        <input type="text" placeholder="Assignment Name" value="A1 - ENV + HTML" />
-                    </p>
-                    <textarea rows="5" cols="30">This is the assignment description.</textarea>
-
-                    <p>
-                        <label for="points">Points</label><br />
-                        <input id="points" type="text" value="100" />
-                    </p>
-
-                    <!-- Dropdowns -->
-                    <p>
-                        <label for="assignment-group">Assignment Group</label><br />
-                        <select id="assignment-group">
-                            <option id="ASSIGNMENTS">ASSIGNMENTS</option>
+                    <div>
+                        <select>
+                            <option id="SPEEDGRADER">SpeedGrader</option>
                         </select>
-                    </p>
+                        <hr />
 
-                    <p>
-                        <label for="display-grade">Display Grade as</label><br />
-                        <select id="display=grade">
-                            <option id="PERCENTAGE">Percentage</option>
-                        </select>
-                    </p>
+                        <h2>Assignment Name</h2>
 
-                    <p>
-                        <label for="sub-type">Submission Type</label><br />
-                        <select id="sub-type">
-                            <option id="ONLINE">Online</option>
-                        </select>
-                    </p>
+                        <!-- Name, Description, Points -->
+                        <p>
+                            <input type="text" placeholder="Assignment Name" value="A1 - ENV + HTML" />
+                        </p>
+                        <textarea rows="5" cols="30">This is the assignment description.</textarea>
 
-                    <!-- Online Entry Options Checkboxes -->
-                    <p>
-                        <label for="online-entry-options">Online Entry Options</label><br />
-                        <input type="checkbox" value="TEXT-ENTRY" name="check-online-entry-options"
-                            id="chkbox-text-entry" />
-                        <label for="chkbox-text-entry">Text Entry</label> <br />
+                        <p>
+                            <label for="points">Points</label><br />
+                            <input id="points" type="text" value="100" />
+                        </p>
 
-                        <input type="checkbox" value="WEB-URL" name="check-online-entry-options" id="chkbox-web-url" />
-                        <label for="chkbox-web-url">Website URL</label> <br />
+                        <!-- Dropdowns -->
+                        <p>
+                            <label for="assignment-group">Assignment Group</label><br />
+                            <select id="assignment-group">
+                                <option id="ASSIGNMENTS">ASSIGNMENTS</option>
+                            </select>
+                        </p>
 
-                        <input type="checkbox" value="MEDIA-RECORDINGS" name="check-online-entry-options"
-                            id="chkbox-media-recordings" />
-                        <label for="chkbox-media-recordings">Media Recordings</label> <br />
+                        <p>
+                            <label for="display-grade">Display Grade as</label><br />
+                            <select id="display=grade">
+                                <option id="PERCENTAGE">Percentage</option>
+                            </select>
+                        </p>
 
-                        <input type="checkbox" value="STUDENT-ANNOTATION" name="check-online-entry-options"
-                            id="chkbox-student-annotation" />
-                        <label for="chkbox-student-annotation">Student Annotation</label> <br />
+                        <p>
+                            <label for="sub-type">Submission Type</label><br />
+                            <select id="sub-type">
+                                <option id="ONLINE">Online</option>
+                            </select>
+                        </p>
 
-                        <input type="checkbox" value="FILE-UPLOADS" name="check-online-entry-options"
-                            id="chkbox-file-uploads" />
-                        <label for="chkbox-file-uploads">File Uploads</label> <br />
-                    </p>
+                        <!-- Online Entry Options Checkboxes -->
+                        <p>
+                            <label for="online-entry-options">Online Entry Options</label><br />
+                            <input type="checkbox" value="TEXT-ENTRY" name="check-online-entry-options"
+                                id="chkbox-text-entry" />
+                            <label for="chkbox-text-entry">Text Entry</label> <br />
 
-                    <!-- Assignees -->
-                    <p>
-                        <label for="assign-to">Assign to</label><br />
-                        <input id="assign-to" type="text" value="Everyone" />
-                    </p>
+                            <input type="checkbox" value="WEB-URL" name="check-online-entry-options"
+                                id="chkbox-web-url" />
+                            <label for="chkbox-web-url">Website URL</label> <br />
 
-                    <!-- Due Date / Availability -->
-                    <p>
-                        <label for="due-date">Due</label><br />
-                        <input type="date" value="2021-01-01" />
-                    </p>
+                            <input type="checkbox" value="MEDIA-RECORDINGS" name="check-online-entry-options"
+                                id="chkbox-media-recordings" />
+                            <label for="chkbox-media-recordings">Media Recordings</label> <br />
 
-                    <p>
-                        <label for="available-from">Available from</label><br />
-                        <input id="available-from" type="date" value="2021-01-01" />
-                    </p>
+                            <input type="checkbox" value="STUDENT-ANNOTATION" name="check-online-entry-options"
+                                id="chkbox-student-annotation" />
+                            <label for="chkbox-student-annotation">Student Annotation</label> <br />
 
-                    <p>
-                        <label for="available-to">Until</label><br />
-                        <input id="available-to" type="date" value="2021-01-01" />
-                    </p>
+                            <input type="checkbox" value="FILE-UPLOADS" name="check-online-entry-options"
+                                id="chkbox-file-uploads" />
+                            <label for="chkbox-file-uploads">File Uploads</label> <br />
+                        </p>
 
-                    <!-- Cancel/Save Buttons -->
-                    <p>
-                        <a href="../screen.html"><button type="button">Cancel</button></a>
-                        <a href="../screen.html"><button type="button">Save</button></a>
-                    </p>
+                        <!-- Assignees -->
+                        <p>
+                            <label for="assign-to">Assign to</label><br />
+                            <input id="assign-to" type="text" value="Everyone" />
+                        </p>
+
+                        <!-- Due Date / Availability -->
+                        <p>
+                            <label for="due-date">Due</label><br />
+                            <input type="date" value="2021-01-01" />
+                        </p>
+
+                        <p>
+                            <label for="available-from">Available from</label><br />
+                            <input id="available-from" type="date" value="2021-01-01" />
+                        </p>
+
+                        <p>
+                            <label for="available-to">Until</label><br />
+                            <input id="available-to" type="date" value="2021-01-01" />
+                        </p>
+
+                        <!-- Cancel/Save Buttons -->
+                        <p>
+                            <a href="../screen.html"><button type="button">Cancel</button></a>
+                            <a href="../screen.html"><button type="button">Save</button></a>
+                        </p>
+                    </div>
                 </td>
             </tr>
         </tbody>
