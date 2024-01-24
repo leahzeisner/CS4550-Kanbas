@@ -1,0 +1,19 @@
+.card {
+  margin-bottom: 30px;
+}
+
+.card-body {
+  height: 150px;
+  max-height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  max-height: 150px;
+}
+
+.btn {
+  position: absolute;
+  bottom: 10px;
+}
