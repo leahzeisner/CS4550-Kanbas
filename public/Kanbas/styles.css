@@ -20,3 +20,7 @@ body * {
 .kanbas-nav-container {
   background-color: black;
 }
+
+table {
+  border-spacing: 0px;
+}
