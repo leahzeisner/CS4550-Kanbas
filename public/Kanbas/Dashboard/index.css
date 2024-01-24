@@ -1,5 +1,6 @@
 .card {
   margin-bottom: 30px;
+  width: 270px;
 }
 
 .card-body {
@@ -16,4 +17,8 @@
 .btn {
   position: absolute;
   bottom: 10px;
+}
+
+.published-courses {
+  margin-left: 30px;
 }
