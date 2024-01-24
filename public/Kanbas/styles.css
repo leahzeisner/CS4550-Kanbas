@@ -19,6 +19,7 @@ body * {
 
 .kanbas-nav-container {
   background-color: black;
+  vertical-align: top;
 }
 
 table {
