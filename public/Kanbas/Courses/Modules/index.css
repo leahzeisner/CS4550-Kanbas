@@ -1,0 +1,74 @@
+.wd-modules,
+.wd-modules * {
+  border-radius: 0%;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.modules {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.wd-modules > li {
+  background-color: lightgray;
+  border: 1px solid gray !important;
+  border-left: none !important;
+}
+
+.wd-modules > li > div {
+  padding: 10px 10px 10px 13px;
+  border-left: 1px solid gray !important;
+}
+
+.wd-modules > li > ul > li {
+  padding: 10px;
+  border-top: 1px solid gray !important;
+  border-left: 4px solid green;
+}
+
+.wd-modules > li {
+  margin-bottom: 50px;
+}
+
+.list-group-item-text {
+  padding-left: 30px;
+}
+
+.fa-ellipsis-v {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.ellipse-left {
+  margin-right: 15px;
+}
+
+.fa-check-circle,
+.fa-plus {
+  margin-right: 5px;
+}
+
+.module-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  margin-bottom: 10px;
+}
+
+.module-buttons > button,
+select {
+  border: none;
+  margin-left: 10px;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+}
+
+.module-button {
+  background-color: red;
+  color: white;
+}
