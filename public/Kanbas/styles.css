@@ -17,3 +17,21 @@ body * {
   height: 100%;
   display: flex;
 }
+
+.sticky {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 19%;
+}
+
+.second-sticky {
+  position: fixed;
+  left: 80px;
+  top: 0;
+  height: 100vh;
+}
+
+.main-content {
+  width: 81%;
+}
