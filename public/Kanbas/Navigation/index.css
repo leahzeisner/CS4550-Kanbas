@@ -16,7 +16,7 @@
 }
 .wd-kanbas-navigation li {
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 0.8em;
   text-align: center;
 }
@@ -37,5 +37,10 @@
 }
 
 .wd-kanbas-navigation .account-icon {
-    color: white;
+  color: white;
+}
+
+.nu-logo {
+  width: 50px;
+  margin-top: 10px;
 }
