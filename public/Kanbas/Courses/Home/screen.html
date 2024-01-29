@@ -71,10 +71,10 @@
                 <div class="module-buttons">
                     <button type="button">Collapse All</button>
                     <button type="button">View Progress</button>
-                    <select style="background-color: #EFEFEF;">
+                    <select>
                         <option value="PUBLISH-ALL"> Publish All</option>
                     </select>
-                    <button type="button" class="module-button"><i class="fa fa-plus"></i>Module</button>
+                    <button type="button" id="module-button"><i class="fa fa-plus"></i>Module</button>
                     <button type="button"><i class="fa fa-ellipsis-v"></i></button>
                 </div>
 
@@ -86,7 +86,7 @@
                     <!-- Module -->
                     <li class="list-group-item">
                         <div>
-                            <i class="fa fa-ellipsis-v ellipse-left"></i> Week 1 - Intro
+                            <i class="fa fa-arrow-down arrow-down"></i> Week 1 - Intro
                             <span class="float-end">
                                 <i class="fa fa-check-circle text-success"></i>
                                 <i class="fa fa-plus ms-2"></i>
@@ -108,7 +108,7 @@
                             <!-- Group Items -->
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Introduction to the course</span>
+                                <a href="#" class="list-group-item-text">Introduction to the course</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -116,7 +116,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Learn what Web Development is</span>
+                                <a href="#" class="list-group-item-text">Learn what Web Development is</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -124,7 +124,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Creating a development environnment</span>
+                                <a href="#" class="list-group-item-text">Creating a development environnment</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -132,7 +132,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Creating a Web Application</span>
+                                <a href="#" class="list-group-item-text">Creating a Web Application</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -140,7 +140,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Getting started with Assignment 1</span>
+                                <a href="#" class="list-group-item-text">Getting started with Assignment 1</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -162,8 +162,8 @@
                             <!-- Group Items -->
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Full Stack Developer - Chapter 1 -
-                                    Introduction</span>
+                                <a href="#" class="list-group-item-text">Full Stack Developer - Chapter 1 -
+                                    Introduction</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -171,8 +171,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Full Stack Developer - Chapter 2 - Creating
-                                    User Interfaces With HTML</span>
+                                <a href="#" class="list-group-item-text">Full Stack Developer - Chapter 2 - Creating
+                                    User Interfaces With HTML</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -194,8 +194,8 @@
                             <!-- Group Items -->
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Introduction to Web
-                                        Development</a></span>
+                                <a href="#" class="list-group-item-link">Introduction to Web
+                                    Development</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -203,8 +203,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Creating an HTTP server with
-                                        Node.js</a></span>
+                                <a href="#" class="list-group-item-link">Creating an HTTP server with
+                                    Node.js</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -212,8 +212,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Creating a React
-                                        Application</a></span>
+                                <a href="#" class="list-group-item-link">Creating a React
+                                    Application</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -221,8 +221,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Commit your source to
-                                        Github</a></span>
+                                <a href="#" class="list-group-item-link">Commit your source to
+                                    Github</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -230,7 +230,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Deploying to Netlify</a></span>
+                                <a href="#" class="list-group-item-link">Deploying to Netlify</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -238,8 +238,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Deploying to multiple branches in
-                                        Netlify</a></span>
+                                <a href="#" class="list-group-item-link">Deploying to multiple branches in
+                                    Netlify</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -252,7 +252,7 @@
                     <!-- Module -->
                     <li class="list-group-item">
                         <div>
-                            <i class="fa fa-ellipsis-v ellipse-left"></i> Week 2 - Formatting User Interfaces
+                            <i class="fa fa-arrow-down arrow-down"></i> Week 2 - Formatting User Interfaces
                             with HTML
                             <span class="float-end">
                                 <i class="fa fa-check-circle text-success"></i>
@@ -275,8 +275,8 @@
                             <!-- Group Items -->
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Learn how to create user interfaces with
-                                    HTML</span>
+                                <a href="#" class="list-group-item-text">Learn how to create user interfaces with
+                                    HTML</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -284,7 +284,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Keep working on Assignment 1</span>
+                                <a href="#" class="list-group-item-text">Keep working on Assignment 1</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -292,7 +292,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Deploy Assignment 1 to Netlify</span>
+                                <a href="#" class="list-group-item-text">Deploy Assignment 1 to Netlify</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -314,8 +314,8 @@
                             <!-- Group Items -->
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Full Stack Developer - Chapter 1 -
-                                    Introduction</span>
+                                <a href="#" class="list-group-item-text">Full Stack Developer - Chapter 1 -
+                                    Introduction</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -323,8 +323,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text">Full Stack Developer - Chapter 2 - Creating
-                                    User Interfaces With HTML</span>
+                                <a href="#" class="list-group-item-text">Full Stack Developer - Chapter 2 - Creating
+                                    User Interfaces With HTML</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -346,8 +346,8 @@
                             <!-- Group Items -->
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Introduction to HTML and the
-                                        DOM</a></span>
+                                <a href="#" class="list-group-item-link">Introduction to HTML and the
+                                    DOM</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -355,9 +355,9 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Formatting Web content with
-                                        Headings and
-                                        Paragraphs</a></span>
+                                <a href="#" class="list-group-item-link">Formatting Web content with
+                                    Headings and
+                                    Paragraphs</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -365,9 +365,9 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Formatting Web content with Lists
-                                        and
-                                        Tables</a></span>
+                                <a href="#" class="list-group-item-link">Formatting Web content with Lists
+                                    and
+                                    Tables</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -375,7 +375,7 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Creating Web Forms</a></span>
+                                <a href="#" class="list-group-item-link">Creating Web Forms</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -383,8 +383,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Navigating with
-                                        Anchors</a></span>
+                                <a href="#" class="list-group-item-link">Navigating with
+                                    Anchors</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -392,8 +392,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Embedding content with
-                                        Iframes</a></span>
+                                <a href="#" class="list-group-item-link">Embedding content with
+                                    Iframes</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>
@@ -401,8 +401,8 @@
                             </li>
                             <li class="list-group-item">
                                 <i class="fa fa-ellipsis-v ellipse-left"></i>
-                                <span class="list-group-item-text"><a href="#">Drawing with Scalable Vector
-                                        Graphics</a></span>
+                                <a href="#" class="list-group-item-link">Drawing with Scalable Vector
+                                    Graphics</a>
                                 <span class="float-end">
                                     <i class="fa fa-check-circle text-success"></i>
                                     <i class="fa fa-ellipsis-v ms-2"></i>

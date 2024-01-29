@@ -43,6 +43,20 @@
 
 .list-group-item-text {
   padding-left: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+.list-group-item-text:hover {
+  text-decoration: underline;
+}
+
+.list-group-item-link {
+  padding-left: 30px;
+}
+
+.arrow-down {
+  margin-right: 8px;
 }
 
 .fa-ellipsis-v {
@@ -74,11 +88,20 @@ select {
   padding: 5px 10px 5px 10px;
   text-align: center;
   border-radius: 4px;
+  background-color: #EFEFEF;
 }
 
-.module-button {
+.module-buttons > button:hover {
+  background-color: lightgray;
+}
+
+#module-button {
   background-color: red;
   color: white;
+}
+
+#module-button:hover {
+  background-color: darkred;
 }
 
 
@@ -127,9 +150,17 @@ select {
   border-radius: 4px;
 }
 
+.publish-buttons > button:hover {
+  background-color: lightgray;
+}
+
 #publish {
   background-color: green;
   color: white;
+}
+
+#publish:hover {
+  background-color: darkgreen;
 }
 
 .publish-buttons > button > i {
@@ -150,6 +181,10 @@ select {
   width: 100%;
   text-align: left;
   border-radius: 4px;
+}
+
+.status-buttons > button:hover {
+  background-color: lightgray;
 }
 
 .status-buttons > button > i {
