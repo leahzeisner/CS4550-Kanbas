@@ -42,6 +42,10 @@
   margin-bottom: 5px;
 }
 
-.wd-kanbas-navigation .account-icon {
+#account-icon {
   color: white;
+}
+
+#account-icon-active {
+  color: gray;
 }
