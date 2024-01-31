@@ -6,8 +6,7 @@
   height: 100%;
 }
 .wd-navigation li {
-  padding: 5px 0px 5px 10px;
-  margin: 5px 0px 5px 0px;
+  padding: 8px 0px 8px 10px;
 }
 .wd-navigation li.wd-active {
   border-left: 2px solid black;
