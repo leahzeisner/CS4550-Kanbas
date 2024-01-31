@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  width: 75%;
+  width: 100%;
 }
 
 .wd-modules > li {
@@ -119,7 +119,7 @@ select {
 .course-info {
   display: flex;
   flex-direction: column;
-  padding-left: 50px;
+  margin-left: 40px;
   margin-right: 20px;
 }
 
@@ -300,4 +300,31 @@ select {
 .coming-up-item-title {
   font-size: 14px;
   color: red;
+}
+
+@media (max-width: 1300px) {
+  .modules {
+    padding-left: 30px;
+    padding-right: 0px;
+  }
+
+  .course-info {
+    width: 35%;
+  }
+
+  .list-group-item-text {
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .modules {
+    width: 100%;
+    margin: 0px 40px 0px 40px;
+    padding-left: 0px;
+  }
+
+  .list-group-item-text {
+    padding-left: 30px;
+  }
 }
