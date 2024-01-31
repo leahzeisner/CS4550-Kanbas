@@ -1,5 +1,6 @@
 .course-home {
   display: flex;
+  width: 100%;
 }
 
 
@@ -17,7 +18,8 @@
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  width: 100%;
+  margin-right: 40px;
+  width: 90%;
 }
 
 .wd-modules > li {
@@ -46,18 +48,29 @@
   color: #3d454c;
 }
 
+.list-group-title {
+  display: grid;
+  grid-template-columns: 28px 1fr 75px;
+}
+
+.list-group-section {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 28px 1fr 50px;
+}
+
+.list-group-item {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+}
+
 .list-group-item-text {
-  padding-left: 30px;
   text-decoration: none;
   color: #3d454c;
 }
 
 .list-group-item-text:hover {
   text-decoration: underline;
-}
-
-.list-group-item-link {
-  padding-left: 30px;
 }
 
 .arrow-down {
@@ -69,8 +82,8 @@
   margin-left: 5px;
 }
 
-.ellipse-left {
-  margin-right: 15px;
+.ellipsis-left {
+  padding-top: 5px;
 }
 
 .fa-check-circle,
@@ -114,12 +127,11 @@ select {
 
 
 
-/* Course Status */
+/* Course Info */
 
 .course-info {
   display: flex;
   flex-direction: column;
-  margin-left: 40px;
   margin-right: 20px;
 }
 
@@ -302,29 +314,8 @@ select {
   color: red;
 }
 
-@media (max-width: 1300px) {
-  .modules {
-    padding-left: 30px;
-    padding-right: 0px;
-  }
-
-  .course-info {
-    width: 35%;
-  }
-
-  .list-group-item-text {
-    padding-left: 15px;
-  }
-}
-
 @media (max-width: 1199px) {
   .modules {
     width: 100%;
-    margin: 0px 40px 0px 40px;
-    padding-left: 0px;
-  }
-
-  .list-group-item-text {
-    padding-left: 30px;
   }
 }

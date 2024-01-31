@@ -22,7 +22,6 @@ body * {
   position: relative;
   top: 0;
   left: 0;
-  width: 19%;
 }
 
 .second-sticky {
@@ -30,8 +29,16 @@ body * {
   left: 80px;
   top: 0;
   height: 100vh;
+  width: 200px;
 }
 
 .main-content {
-  width: 81%;
+  width: 100%;
+  margin-left: 280px;
+}
+
+@media (max-width: 991px) {
+  .main-content {
+    margin-left: 40px;
+  }
 }
