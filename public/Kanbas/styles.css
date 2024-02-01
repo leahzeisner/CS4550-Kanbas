@@ -16,6 +16,7 @@ body * {
   right: 0;
   height: 100%;
   display: flex;
+  overflow-x: hidden;
 }
 
 .sticky {
@@ -27,14 +28,75 @@ body * {
 .second-sticky {
   position: fixed;
   left: 80px;
-  top: 0;
+  top: 80px;
   height: 100vh;
   width: 200px;
+}
+
+.course-page-header {
+  position: absolute;
+  left: 80px;
+  top: 0;
+  width: 100vw;
+  color: red;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-page-header-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 10px 20px;
+}
+
+.course-page-header-left {
+  display: flex;
+  align-items: center;
+}
+
+#course-page-header-bars {
+  margin-right: 20px;
+  margin-left: 5px;
+}
+
+#course-page-header-class {
+  margin-right: 10px;
+}
+
+.course-page-header-subsec {
+  display: flex;
+  color: #3d454c;
+}
+
+.course-page-header-subsec > i {
+  margin-right: 10px;
+  padding-top: 3px;
+}
+
+.course-page-header-right {
+  margin-right: 100px;
+}
+
+#student-view-btn {
+  padding: 5px 15px 5px 15px;
+  border: none;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 15px 5px 15px;
+  margin-right: 5px;
+  text-align: center;
+  width: fit-content;
+  border-radius: 4px;
+}
+
+.course-page-header > hr {
+  color: #495057;
+  margin: 5px 120px 0px 20px;
 }
 
 .main-content {
   width: 100%;
   margin-left: 280px;
+  margin-top: 80px;
 }
 
 @media (max-width: 991px) {
@@ -47,5 +109,6 @@ body * {
     margin-left: 40px;
     margin-right: 0px;
     padding-right: 40px;
+    margin-top: 0px;
   }
 }
