@@ -8,8 +8,21 @@
   flex-direction: column;
 }
 
+.dash-icon-button {
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  align-self: flex-end;
+  margin-right: 3px;
+}
+
+.dash-icon-button:hover {
+  background-color: #EFEFEF;
+  border-radius: 5px;
+}
+
 .dash-icon {
-  padding-right: 3px;
+  padding: 10px;
   color: #212529;
 }
 
