@@ -315,8 +315,43 @@ select {
   color: red;
 }
 
+
+
+/* Top Navigation (smaller screens) */
+.top-nav {
+  width: 100%;
+  background-color: black;
+  color: white;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  padding: 10px 15px 10px 15px;
+  margin-bottom: 10px;
+}
+
+.top-nav-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.fa-bars {
+  margin-right: 35px;
+}
+
+
 @media (max-width: 1199px) {
   .modules {
     width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .module-buttons {
+    justify-content: space-between;
+  }
+
+  .module-buttons > button:first-child {
+    margin-left: 0px;
   }
 }
