@@ -5,6 +5,8 @@
   height: 100vh;
   width: 80px;
   background-color: black;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .wd-kanbas-navigation {
