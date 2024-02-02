@@ -56,6 +56,15 @@ body * {
   font-size: large;
 }
 
+.sticky-header-bars-btn {
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  color: red;
+  padding: 0px;
+  margin-right: 10px;
+}
+
 .sticky-header-bars {
   margin-right: 20px;
   margin-left: 5px;
@@ -66,7 +75,6 @@ body * {
 }
 
 .sticky-header-text {
-  margin-right: 10px;
   color: #3d454c;
 }
 
@@ -93,6 +101,10 @@ body * {
   text-align: center;
   width: fit-content;
   border-radius: 4px;
+}
+
+.student-view-btn:hover {
+  background-color: lightgray;
 }
 
 .sticky-header > hr {

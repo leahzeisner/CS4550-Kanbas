@@ -1,6 +1,5 @@
 .course-home {
   display: flex;
-  width: 100%;
 }
 
 
@@ -21,6 +20,11 @@
   justify-content: stretch;
   margin-right: 40px;
   width: 90%;
+}
+
+.modules-btn {
+  background-color: transparent;
+  border: none;
 }
 
 .wd-modules > li {
@@ -335,7 +339,7 @@ select {
   color: white;
 }
 
-.fa-bars {
+.top-nav-bars {
   margin-right: 35px;
 }
 
