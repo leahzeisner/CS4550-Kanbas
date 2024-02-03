@@ -87,7 +87,7 @@ a:first-child {
   margin-left: 30px;
 }
 
-@media (max-width: 605px) {
+@media (max-width: 768px) {
   .dashboard {
     padding: 0;
     width: 100%;
