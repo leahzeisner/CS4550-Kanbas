@@ -3,12 +3,18 @@
   width: 100%;
 }
 
+#dash-kanbas-nav,
+#dash-title {
+  display: block;
+}
+
 .dash-header {
   display: flex;
   flex-direction: column;
 }
 
 .dash-icon-button {
+  display: none;
   width: fit-content;
   background-color: transparent;
   border: none;
@@ -17,7 +23,7 @@
 }
 
 .dash-icon-button:hover {
-  background-color: #EFEFEF;
+  background-color: #efefef;
   border-radius: 5px;
 }
 
@@ -30,7 +36,9 @@
   margin-bottom: 30px;
   margin-right: 30px;
   width: 270px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-body {
@@ -40,7 +48,8 @@
   flex-direction: column;
 }
 
-.card-body > p, a:first-child {
+.card-body > p,
+a:first-child {
   width: 240px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -78,7 +87,7 @@
   margin-left: 30px;
 }
 
-@media (max-width: 575px) {
+@media (max-width: 605px) {
   .dashboard {
     padding: 0;
     width: 100%;
@@ -87,6 +96,15 @@
   .dash-header {
     text-align: end;
     padding: 20px 20px 0px 20px;
+  }
+
+  #dash-kanbas-nav,
+  #dash-title {
+    display: none;
+  }
+
+  .dash-icon-button {
+    display: block;
   }
 
   .published-courses {
@@ -100,7 +118,8 @@
     margin-right: 0px;
   }
 
-  .card-body > p, a:first-child {
+  .card-body > p,
+  a:first-child {
     width: 100%;
   }
 }
