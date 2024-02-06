@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/Kanbas/Courses/Navigation/index.css" />
     <link rel="stylesheet" href="/Kanbas/Courses/Modules/index.css" />
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -18,13 +19,12 @@
                     <li id="logo"><a href="/Kanbas/Dashboard/screen.html"><img class="nu-logo"
                                 src="/images/northeastern.png" alt="Northeastern logo" /></a></li>
                     <li><a href="/Kanbas/Account/Profile/screen.html"><i class="fa fa-user-circle-o"
-                                id="account-icon"></i>
+                                id="account-icon"></i><br />
                             Account</a></li>
-                    <li><a href="/Kanbas/Dashboard/screen.html"><i class="fa fa-tachometer"></i>
+                    <li class="wd-active"><a href="/Kanbas/Dashboard/screen.html"><i class="fa fa-tachometer"></i><br />
                             Dashboard</a>
                     </li>
-                    <li class="wd-active"><a href="/Kanbas/Courses/Home/screen.html"><i class="fa fa-book"></i><br />
-                            Courses</a>
+                    <li><a href="/Kanbas/Courses/Home/screen.html"><i class="fa fa-book"></i><br /> Courses</a>
                     </li>
                     <li><a href="/Kanbas/Calendar/index.html"><i class="fa fa-calendar"></i><br /> Calendar</a>
                     </li>
@@ -91,7 +91,8 @@
 
         <!-- Top Navigation (smaller screens) -->
         <div class="top-nav d-flex d-lg-none">
-            <button type="button" class="top-nav-button"><i class="fa fa-bars top-nav-bars"></i></button>
+            <button type="button" class="top-nav-button" data-bs-toggle="collapse" data-bs-target="#kanbas-nav"
+                aria-expanded="false" aria-controls="kanbas-nav"><i class="fa fa-bars top-nav-bars"></i></button>
 
             <div>
                 <span>CS4550.12631.202410</span><br />
@@ -100,7 +101,136 @@
 
             <div>
                 <button type="button" class="top-nav-button"><i class="fa fa-binoculars"></i></button>
-                <button type="button" class="top-nav-button"><i class="fa fa-arrow-down"></i></button>
+                <button type="button" class="top-nav-button" data-bs-toggle="collapse" data-bs-target="#course-nav"
+                    aria-expanded="false" aria-controls="course-nav"><i class="fa fa-arrow-down"></i></button>
+            </div>
+        </div>
+
+
+        <!-- Kanbas Navigation (smaller screens) -->
+        <div id="kanbas-nav" class="collapse d-lg-none">
+            <div class="kanbas-nav-small">
+                <ul class="kanbas-nav-list">
+                    <li id="kanbas-nav-close">
+                        <button type="button" class="btn-close" aria-label="Close"></button>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Account/Profile/screen.html">
+                            <div>
+                                <i class="fa fa-user-circle-o" id="account-icon-small"></i>
+                                <span>Account</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Dashboard/screen.html">
+                            <div>
+                                <i class="fa fa-tachometer"></i>
+                                <span>Dashboard</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Courses/Home/screen.html">
+                            <div>
+                                <i class="fa fa-book"></i>
+                                <span>Courses</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Calendar/index.html">
+                            <div>
+                                <i class="fa fa-calendar"></i>
+                                <span>Calendar</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Inbox/index.html">
+                            <div>
+                                <i class="fa fa-inbox"></i>
+                                <span>Inbox</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/History/screen.html">
+                            <div>
+                                <i class="fa fa-clock-o"></i>
+                                <span>History</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Studio/Home/screen.html">
+                            <div>
+                                <i class="fa fa-laptop"></i>
+                                <span>Studio</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Commons/index.html">
+                            <div>
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                <span>Commons</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Help/index.html">
+                            <div>
+                                <i class="fa fa-question-circle-o"></i>
+                                <span>Help</span>
+                            </div>
+
+                            <i class="fa fa-arrow-right" id="arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Course Navigation (smaller screens) -->
+        <div id="course-nav" class="collapse">
+            <div>
+                <ul>
+                    <li><a href="/Kanbas/Courses/Home/screen.html">Home</a></li>
+                    <li><a href="/Kanbas/Courses/Modules/screen.html">Modules</a></li>
+                    <li><a href="/Kanbas/Courses/Piazza/index.html">Piazza</a></li>
+                    <li><a href="/Kanbas/Courses/Zooms/screen.html">Zoom Meetings</a></li>
+                    <li><a href="/Kanbas/Courses/Assignments/screen.html">Assignments</a></li>
+                    <li><a href="/Kanbas/Courses/Quizzes/screen.html">Quizzes</a></li>
+                    <li><a href="/Kanbas/Courses/Grades/screen.html">Grades</a></li>
+                    <li><a href="/Kanbas/Courses/People/screen.html">People</a></li>
+                    <li><a href="/Kanbas/Courses/Panopto/screen.html">Panopto Video</a></li>
+                    <li><a href="/Kanbas/Courses/Discussions/screen.html">Discussions</a></li>
+                    <li><a href="/Kanbas/Courses/Announcements/screen.html">Announcements</a></li>
+                    <li><a href="/Kanbas/Courses/Pages/screen.html">Pages</a></li>
+                    <li><a href="/Kanbas/Courses/Files/screen.html">Files</a></li>
+                    <li><a href="/Kanbas/Courses/Rubrics/screen.html">Rubrics</a></li>
+                    <li><a href="/Kanbas/Courses/Outcomes/screen.html">Outcomes</a></li>
+                    <li><a href="/Kanbas/Courses/Collaborations/screen.html">Collaborations</a></li>
+                    <li><a href="/Kanbas/Courses/Syllabus/screen.html">Syllabus</a></li>
+                    <li><a href="/Kanbas/Courses/Settings/screen.html">Settings</a></li>
+                </ul>
             </div>
         </div>
 
@@ -140,9 +270,11 @@
 
                             <div>
                                 <span class="float-end">
-                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i
+                                            class="fa fa-check-circle text-success"></i></button>
                                     <button type="button" class="modules-btn"><i class="fa fa-plus ms-2"></i></button>
-                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                    <button type="button" class="modules-btn"><i
+                                            class="fa fa-ellipsis-v ms-2"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -161,8 +293,10 @@
 
                                 <div>
                                     <span class="float-end">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -179,8 +313,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -195,8 +331,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -211,8 +349,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -227,8 +367,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -243,8 +385,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -264,8 +408,10 @@
 
                                 <div>
                                     <span class="float-end">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -283,8 +429,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -300,8 +448,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -321,8 +471,10 @@
 
                                 <div>
                                     <span class="float-end">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -340,8 +492,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -357,8 +511,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -374,8 +530,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -391,8 +549,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -407,8 +567,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -424,8 +586,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -449,9 +613,11 @@
 
                             <div>
                                 <span class="float-end">
-                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i
+                                            class="fa fa-check-circle text-success"></i></button>
                                     <button type="button" class="modules-btn"><i class="fa fa-plus ms-2"></i></button>
-                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                    <button type="button" class="modules-btn"><i
+                                            class="fa fa-ellipsis-v ms-2"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -470,8 +636,10 @@
 
                                 <div>
                                     <span class="float-end">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -489,8 +657,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -505,8 +675,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -521,8 +693,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -542,8 +716,10 @@
 
                                 <div>
                                     <span class="float-end">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -561,8 +737,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -578,8 +756,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -599,8 +779,10 @@
 
                                 <div>
                                     <span class="float-end">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -618,8 +800,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -635,8 +819,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -652,8 +838,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -668,8 +856,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -684,8 +874,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -700,8 +892,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>
@@ -716,8 +910,10 @@
 
                                 <div>
                                     <span class="float-end list-group-item-right">
-                                        <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
-                                        <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-check-circle text-success"></i></button>
+                                        <button type="button" class="modules-btn"><i
+                                                class="fa fa-ellipsis-v ms-2"></i></button>
                                     </span>
                                 </div>
                             </li>

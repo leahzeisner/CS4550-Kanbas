@@ -49,6 +49,67 @@
   color: white;
 }
 
-#account-icon-active {
+#account-icon-active,
+#account-icon-small {
   color: gray;
+}
+
+.kanbas-nav-small {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid black;
+}
+
+.kanbas-nav-list {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
+
+#kanbas-nav-close {
+  padding: 3px 18px 3px 3px;
+  display: flex;
+  justify-content: end;
+  color: #3d454c;
+}
+
+.kanbas-nav-list li {
+  padding: 3px;
+  font-size: 0.8em;
+  text-align: center;
+  display: inline;
+  color: red;
+}
+
+.kanbas-nav-list a {
+  color: red;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.kanbas-nav-list span:hover {
+  text-decoration: underline;
+}
+
+.kanbas-nav-list a i {
+  color: red;
+  font-size: 2em;
+  width: 23px;
+  margin-right: 16px;
+}
+
+#arrow-right {
+  color: #3d454c;
+  padding: 5px;
+  font-size: 1em;
+}
+
+#arrow-right:hover {
+  background-color: lightgray;
+  border-radius: 4px;
 }
