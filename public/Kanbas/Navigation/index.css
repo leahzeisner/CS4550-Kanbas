@@ -55,9 +55,13 @@
 }
 
 .kanbas-nav-small {
+  position: fixed;
+  z-index: 20;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid black;
+  background-color: white;
 }
 
 .kanbas-nav-list {
@@ -68,7 +72,7 @@
 }
 
 #kanbas-nav-close {
-  padding: 3px 18px 3px 3px;
+  padding: 18px 18px 3px 3px;
   display: flex;
   justify-content: end;
   color: #3d454c;
@@ -79,7 +83,6 @@
   font-size: 0.8em;
   text-align: center;
   display: inline;
-  color: red;
 }
 
 .kanbas-nav-list a {
@@ -97,7 +100,6 @@
 }
 
 .kanbas-nav-list a i {
-  color: red;
   font-size: 2em;
   width: 23px;
   margin-right: 16px;
@@ -112,4 +114,46 @@
 #arrow-right:hover {
   background-color: lightgray;
   border-radius: 4px;
+}
+
+.course-nav-small {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 20px;
+}
+
+.course-nav-list {
+  list-style: none;
+  padding: 0px;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+}
+
+.course-nav-list li {
+  padding: 3px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.course-nav-list a {
+  color: red;
+  text-decoration: none;
+  display: flex;
+  justify-content: start;
+  margin-left: 16px;
+}
+
+.course-nav-list span {
+  font-size: 0.8em;
+}
+
+.course-nav-list span:hover {
+  text-decoration: underline;
+}
+
+.course-nav-list a i {
+  margin-right: 10px;
 }
