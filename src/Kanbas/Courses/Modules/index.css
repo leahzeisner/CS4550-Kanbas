@@ -1,0 +1,162 @@
+.course-home {
+  display: flex;
+}
+
+/* Modules */
+
+.wd-modules,
+.wd-modules * {
+  border-radius: 0%;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.modules {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: stretch; */
+  margin-right: 40px;
+  /* margin-right: 350px; */
+  width: 100%;
+}
+
+.modules-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.wd-modules > li {
+  background-color: lightgray;
+  border: 1px solid gray !important;
+  border-left: none !important;
+}
+
+.wd-modules > li > div {
+  padding: 10px 10px 10px 13px;
+  border-left: 1px solid gray !important;
+}
+
+.wd-modules > li > ul > li {
+  padding: 10px;
+  border-top: 1px solid gray !important;
+  border-left: 4px solid green;
+}
+
+.wd-modules > li {
+  margin-bottom: 50px;
+}
+
+.module-title {
+  font-weight: bold;
+  color: #3d454c;
+  /* padding-right: 10px; */
+}
+
+.list-group-title {
+  display: grid;
+  grid-template-columns: 40px 1fr 80px;
+}
+
+.list-group-section {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 40px 1fr 50px;
+}
+
+.list-group-item {
+  display: grid;
+  grid-template-columns: 60px 1fr 50px;
+}
+
+.list-group-item-text {
+  text-decoration: none;
+  color: #3d454c;
+}
+
+.list-group-item-text:hover {
+  text-decoration: underline;
+}
+
+.ellipsis-v {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.check-circle,
+.plus {
+  margin-right: 5px;
+}
+
+.module-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+.module-buttons-hr {
+  margin-bottom: 40px;
+}
+
+.module-buttons > button,
+select {
+  border: none;
+  margin-left: 10px;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #efefef;
+}
+
+.module-buttons > button:hover {
+  background-color: lightgray;
+}
+
+#module-button {
+  background-color: red;
+  color: white;
+}
+
+#module-button:hover {
+  background-color: darkred;
+}
+
+/* Top Navigation (smaller screens) */
+.top-nav {
+  width: 100%;
+  background-color: black;
+  color: white;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  padding: 10px 15px 10px 15px;
+}
+
+.top-nav-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.top-nav-bars {
+  margin-right: 35px;
+}
+
+@media (max-width: 1199px) {
+  .modules {
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .module-buttons {
+    justify-content: space-between;
+  }
+
+  .module-buttons > button:first-child {
+    margin-left: 0px;
+  }
+}

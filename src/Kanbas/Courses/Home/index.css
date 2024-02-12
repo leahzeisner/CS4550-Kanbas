@@ -1,0 +1,188 @@
+/* Course Info */
+
+.course-info {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.course-info > p {
+  font-size: 16px;
+}
+
+.course-info-section {
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #3d454c;
+}
+
+.course-status {
+  padding-top: 20px;
+}
+
+.course-status > p {
+  margin-bottom: 2px;
+}
+
+.publish-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.publish-buttons > button {
+  border: none;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+  width: 50%;
+  border-radius: 4px;
+}
+
+.publish-buttons > button:hover {
+  background-color: lightgray;
+}
+
+#publish {
+  background-color: green;
+  color: white;
+}
+
+#publish:hover {
+  background-color: darkgreen;
+}
+
+.publish-icon {
+  margin-right: 2px;
+}
+
+.status-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.status-buttons > button {
+  border: none;
+  box-shadow: 1px 1px lightgray;
+  margin-bottom: 5px;
+  padding: 5px 0px 5px 0px;
+  width: 100%;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.status-buttons > button:hover {
+  background-color: lightgray;
+}
+
+.status-icon {
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+/* To Do */
+
+.todo {
+  margin-bottom: 10px;
+}
+
+.hr-line {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px 0px 10px;
+  margin-bottom: 10px;
+}
+
+.todo-item-left {
+  display: flex;
+}
+
+.todo-item-num {
+  margin-right: 10px;
+  color: red;
+}
+
+.todo-item-info {
+  color: gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item-title {
+  color: red;
+  font-size: 14px;
+}
+
+.todo-item-due-date {
+  font-size: 12px;
+}
+
+.todo-item-delete {
+  border: none;
+  background-color: transparent;
+  color: gray;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+}
+
+.todo-item-delete:hover {
+  background-color: lightgray;
+  border-radius: 4px;
+}
+
+/* Coming Up */
+
+.coming-up-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#coming-up-header-link {
+  color: red;
+  font-size: 12px;
+  text-decoration: none;
+  align-self: center;
+}
+
+.view-calendar-icon {
+  color: gray;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.coming-up-item {
+  display: flex;
+  justify-content: start;
+  padding: 0px 10px 0px 10px;
+  margin-bottom: 10px;
+  color: gray;
+}
+
+.coming-up-icon {
+  margin-right: 10px;
+}
+
+.coming-up-item-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.coming-up-item-title {
+  font-size: 14px;
+  color: red;
+}
+
+.bottom-text {
+  color: red;
+  font-size: 12px;
+  margin-left: 10px;
+}

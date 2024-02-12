@@ -1,0 +1,146 @@
+[
+  {
+    "_id": "M1",
+    "title": "Week 1 - Intro",
+    "course": "12631",
+    "sections": [
+      {
+        "title": "Learning Objectives",
+        "lessons": [
+          {
+            "title": "Introduction to the course",
+            "url": "#"
+          },
+          {
+            "title": "Learn what Web Development is",
+            "url": "#"
+          },
+          {
+            "title": "Creating a development environnment",
+            "url": "#"
+          },
+          {
+            "title": "Creating a Web Application",
+            "url": "#"
+          },
+          {
+            "title": "Getting started with Assignment 1",
+            "url": "#"
+          }
+        ]
+      },
+      {
+        "title": "Reading",
+        "lessons": [
+          {
+            "title": "Full Stack Developer - Chapter 1 - Introduction",
+            "url": "#"
+          },
+          {
+            "title": "Full Stack Developer - Chapter 2 - Creating User Interfaces With HTML",
+            "url": "#"
+          }
+        ]
+      },
+      {
+        "title": "Slides",
+        "lessons": [
+          {
+            "title": "Introduction to Web Development",
+            "url": "#"
+          },
+          {
+            "title": "Creating an HTTP server with Node.js",
+            "url": "#"
+          },
+          {
+            "title": "Creating a React Application",
+            "url": "#"
+          },
+          {
+            "title": "Commit your source to Github",
+            "url": "#"
+          },
+          {
+            "title": "Deploying to Netlify",
+            "url": "#"
+          },
+          {
+            "title": "Deploying to mulitple branches in Netlify",
+            "url": "#"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "M2",
+    "title": "Week 2 - Formatting User Interfaces with HTML",
+    "course": "12631",
+    "sections": [
+      {
+        "title": "Learning Objectives",
+        "lessons": [
+          {
+            "title": "Learn how to create user interfaces with HTML",
+            "url": "#"
+          },
+          {
+            "title": "Keep working on Assignment 1",
+            "url": "#"
+          },
+          {
+            "title": "Deploy Assignment 1 to Netlify",
+            "url": "#"
+          }
+        ]
+      },
+      {
+        "title": "Reading",
+        "lessons": [
+          {
+            "title": "Full Stack Developer - Chapter 1 - Introduction",
+            "url": "#"
+          },
+          {
+            "title": "Full Stack Developer - Chapter 2 - Creating User Interfaces With HTML",
+            "url": "#"
+          }
+        ]
+      },
+      {
+        "title": "Slides",
+        "lessons": [
+          {
+            "title": "Introduction to HTML and the DOM",
+            "url": "#"
+          },
+          {
+            "title": "Formatting Web content with Headings and Paragraphs",
+            "url": "#"
+          },
+          {
+            "title": "Formatting Web content with Lists and Tables",
+            "url": "#"
+          },
+          {
+            "title": "Creating Web Forms",
+            "url": "#"
+          },
+          {
+            "title": "Navigating with Anchors",
+            "url": "#"
+          },
+          {
+            "title": "Embedding content with Iframes",
+            "url": "#"
+          },
+          {
+            "title": "Drawing with Scalable Vector Graphics",
+            "url": "#"
+          }
+        ]
+      }
+    ]
+  }
+]
