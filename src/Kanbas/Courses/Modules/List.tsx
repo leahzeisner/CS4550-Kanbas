@@ -54,13 +54,13 @@ function ModuleList() {
               </div>
 
               <div>
-                <button type="button" className="modules-btn">
+                <button type="button">
                   <FaCheckCircle className="text-success check-circle" />
                 </button>
-                <button type="button" className="modules-btn">
+                <button type="button">
                   <FaPlusCircle className="ms-2 plus" />
                 </button>
-                <button type="button" className="modules-btn">
+                <button type="button">
                   <FaEllipsisV className="ms-2 ellipsis-v" />
                 </button>
               </div>
@@ -81,10 +81,10 @@ function ModuleList() {
                     </div>
 
                     <div>
-                      <button type="button" className="modules-btn">
+                      <button type="button">
                         <FaCheckCircle className="text-success check-circle" />
                       </button>
-                      <button type="button" className="modules-btn">
+                      <button type="button">
                         <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
                       </button>
                     </div>
@@ -103,10 +103,10 @@ function ModuleList() {
                       </div>
 
                       <div>
-                        <button type="button" className="modules-btn">
+                        <button type="button">
                           <FaCheckCircle className="text-success check-circle" />
                         </button>
-                        <button type="button" className="modules-btn">
+                        <button type="button">
                           <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
                         </button>
                       </div>

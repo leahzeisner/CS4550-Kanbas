@@ -4,15 +4,6 @@
 
 /* Modules */
 
-.wd-modules,
-.wd-modules * {
-  border-radius: 0%;
-  border: none;
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-}
-
 .modules {
   display: flex;
   flex-direction: column;
@@ -21,9 +12,53 @@
   width: 100%;
 }
 
-.modules-btn {
+.module-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+.module-buttons-hr {
+  margin-bottom: 40px;
+}
+
+.module-buttons > button,
+select {
+  border: none;
+  margin-left: 10px;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #efefef;
+}
+
+.module-buttons > button:hover {
+  background-color: lightgray;
+}
+
+#module-button {
+  background-color: red;
+  color: white;
+}
+
+#module-button:hover {
+  background-color: darkred;
+}
+
+/* .modules-btn {
   background-color: transparent;
   border: none;
+} */
+
+.wd-modules,
+.wd-modules * {
+  border-radius: 0%;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
 }
 
 .wd-modules > li {
@@ -85,41 +120,6 @@
 .check-circle,
 .plus {
   margin-right: 5px;
-}
-
-.module-buttons {
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 20px;
-  margin: 10px 0px 10px 0px;
-}
-
-.module-buttons-hr {
-  margin-bottom: 40px;
-}
-
-.module-buttons > button,
-select {
-  border: none;
-  margin-left: 10px;
-  box-shadow: 1px 1px lightgray;
-  padding: 5px 10px 5px 10px;
-  text-align: center;
-  border-radius: 4px;
-  background-color: #efefef;
-}
-
-.module-buttons > button:hover {
-  background-color: lightgray;
-}
-
-#module-button {
-  background-color: red;
-  color: white;
-}
-
-#module-button:hover {
-  background-color: darkred;
 }
 
 /* Top Navigation (smaller screens) */

@@ -1,0 +1,134 @@
+.assignments {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  margin-right: 40px;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.assignments-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#assignment-search {
+  border: 1px solid lightgray;
+  box-shadow: 0 2px 2px -2px lightgray;
+  padding: 8px 50px 8px 15px;
+  border-radius: 4px;
+  height: fit-content;
+}
+
+.assignments-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+.assignments-buttons-hr {
+  margin-bottom: 40px;
+}
+
+.assignments-buttons > button {
+  border: none;
+  margin-left: 10px;
+  box-shadow: 1px 1px lightgray;
+  padding: 8px 15px 8px 15px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #efefef;
+}
+
+.assignments-buttons > button:last-child {
+  padding: 5px;
+}
+
+.assignments-buttons > button:hover {
+  background-color: lightgray;
+}
+
+#assignment-btn {
+  background-color: red;
+  color: white;
+}
+
+#assignment-btn:hover {
+  background-color: darkred;
+}
+
+.wd-assignments,
+.wd-assignments * {
+  border-radius: 0%;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.assignment-text {
+  margin-right: auto;
+  margin-left: 20px;
+}
+
+.wd-assignments > li {
+  border: 1px solid gray;
+  border-left: 4px solid green !important;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assignment-title {
+  background-color: lightgray;
+  font-weight: bold;
+  color: #3d454c;
+  padding: 10px 0px 10px 5px;
+}
+
+.assignment-item {
+  padding: 10px 0px 10px 5px;
+}
+
+.assignment-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.assignment-item-title {
+  text-decoration: none;
+  color: #3d454c;
+  font-weight: bold;
+}
+
+.assignment-item-due-date {
+  font-size: small;
+}
+
+.assignment-item-due-date > span {
+  color: #3d454c;
+}
+
+.assignment-item-due-date > span:first-child {
+  font-weight: bold;
+}
+
+.assignment-item-title:hover {
+  text-decoration: underline;
+}
+
+.ellipsis-v {
+  margin-right: 10px;
+}
+
+.assignment-item-buttons > button {
+  background-color: transparent;
+}
+
+@media (max-width: 991px) {
+  .assignments {
+    margin-right: 0px;
+  }
+}

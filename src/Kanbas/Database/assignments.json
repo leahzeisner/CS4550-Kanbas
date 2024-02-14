@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "A1",
+    "course": "12631",
+    "assignments": [
+      {
+        "title": "A1 - ENV + HTML",
+        "due_date": "Jan 23, 2024 at 11:59pm",
+        "points": "100",
+        "url": "#"
+      },
+      {
+        "title": "A2 - CSS + BOOTSTRAP",
+        "due_date": "Feb 6, 2024 at 11:59pm",
+        "points": "100",
+        "url": "#"
+      },
+      {
+        "title": "A3 - JAVASCRIPT + REACT",
+        "due_date": "Feb 20, 2024 at 11:59pm",
+        "points": "100",
+        "url": "#"
+      },
+      {
+        "title": "A4 - STATE + REDUX",
+        "due_date": "Mar 12, 2024 at 11:59pm",
+        "points": "100",
+        "url": "#"
+      },
+      {
+        "title": "A5 - NODE + SESSION",
+        "due_date": "Mar 26, 2024 at 11:59pm",
+        "points": "100",
+        "url": "#"
+      },
+      {
+        "title": "A6 - MONGO + MONGOOSE",
+        "due_date": "Apr 9, 2024 at 11:59pm",
+        "points": "100",
+        "url": "#"
+      }
+    ]
+  }
+]
