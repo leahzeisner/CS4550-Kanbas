@@ -17,6 +17,7 @@ function ModuleList() {
   const [selectedModule, setSelectedModule] = useState(modulesList[0]);
 
   return (
+    // BROKEN ON SMALL SCREEN
     <div className="modules">
       <div className="module-buttons">
         <button type="button">Collapse All</button>
@@ -43,21 +44,16 @@ function ModuleList() {
           >
             <div className="list-group-title">
               <div>
-                <button
-                  type="button"
-                  className="modules-btn"
-                  data-bs-toggle="collapse"
-                  data-bs-target={`#${module._id}`}
-                  aria-expanded="true"
-                  aria-controls={module._id}
-                >
+                <button type="button" className="modules-btn">
                   <FaArrowDown className="ms-2"></FaArrowDown>
                 </button>
               </div>
 
-              <span className="module-title">{module.title}</span>
+              <div>
+                <span className="module-title">{module.title}</span>
+              </div>
 
-              <div className="float-end">
+              <div>
                 <button type="button" className="modules-btn">
                   <FaCheckCircle className="text-success check-circle" />
                 </button>
@@ -72,17 +68,19 @@ function ModuleList() {
 
             {selectedModule._id === module._id &&
               module.sections?.map((section) => (
-                <ul className="list-group collapse show" id={module._id}>
+                <ul className="list-group" id={module._id}>
                   <li className="list-group-section">
                     <div>
                       <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
                     </div>
 
-                    <span className="module-title module-section">
-                      {section.title}
-                    </span>
+                    <div>
+                      <span className="module-title module-section">
+                        {section.title}
+                      </span>
+                    </div>
 
-                    <div className="float-end">
+                    <div>
                       <button type="button" className="modules-btn">
                         <FaCheckCircle className="text-success check-circle" />
                       </button>
@@ -104,7 +102,7 @@ function ModuleList() {
                         </Link>
                       </div>
 
-                      <div className="float-end list-group-item-right">
+                      <div>
                         <button type="button" className="modules-btn">
                           <FaCheckCircle className="text-success check-circle" />
                         </button>

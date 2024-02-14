@@ -16,9 +16,8 @@
 .modules {
   display: flex;
   flex-direction: column;
-  /* justify-content: stretch; */
+  justify-content: stretch;
   margin-right: 40px;
-  /* margin-right: 350px; */
   width: 100%;
 }
 
@@ -51,7 +50,6 @@
 .module-title {
   font-weight: bold;
   color: #3d454c;
-  /* padding-right: 10px; */
 }
 
 .list-group-title {
@@ -148,6 +146,12 @@ select {
 @media (max-width: 1199px) {
   .modules {
     width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .modules {
+    margin-right: 0px;
   }
 }
 

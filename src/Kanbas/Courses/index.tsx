@@ -6,14 +6,11 @@ import Header from "./Header";
 import Home from "./Home";
 
 function Courses() {
-  // const { courseId } = useParams();
-
   return (
     <div>
       <Header />
       <CourseNavigation />
       <div>
-        {/* <div> */}
         <Routes>
           <Route path="/" element={<Navigate to="Home" />} />
           <Route path="/:courseId/Home" element={<Home />} />
@@ -26,7 +23,6 @@ function Courses() {
           />
           <Route path="Grades" element={<h1>Grades</h1>} />
         </Routes>
-        {/* </div> */}
       </div>
     </div>
   );

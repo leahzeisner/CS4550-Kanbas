@@ -48,6 +48,11 @@
   margin-bottom: 5px;
 }
 
+.kanbas-nav-small-icon {
+  font-size: 2em;
+  margin-right: 20px;
+}
+
 #account-icon {
   color: white;
 }
@@ -72,6 +77,8 @@
   padding: 0px;
   margin: 0px;
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #kanbas-nav-close {
@@ -88,7 +95,7 @@
   display: inline;
 }
 
-.kanbas-nav-list a {
+.kanbas-nav-list-link {
   color: red;
   text-decoration: none;
   display: flex;
@@ -96,22 +103,18 @@
   text-align: center;
   align-items: center;
   margin-left: 16px;
+  width: 100% !important;
 }
 
 .kanbas-nav-list span:hover {
   text-decoration: underline;
 }
 
-.kanbas-nav-list a i {
-  font-size: 2em;
-  width: 23px;
-  margin-right: 16px;
-}
-
 #arrow-right {
   color: #3d454c;
   padding: 5px;
-  font-size: 1em;
+  font-size: 2em;
+  margin-right: 30px;
 }
 
 #arrow-right:hover {
@@ -120,6 +123,7 @@
 }
 
 .course-nav-small {
+  width: 100%;
   display: flex;
   flex-direction: column;
   box-shadow:
@@ -141,7 +145,7 @@
   text-align: center;
 }
 
-.course-nav-list a {
+.course-nav-list-link {
   color: red;
   text-decoration: none;
   display: flex;
@@ -151,12 +155,9 @@
 
 .course-nav-list span {
   font-size: 0.8em;
+  margin-left: 10px;
 }
 
 .course-nav-list span:hover {
   text-decoration: underline;
-}
-
-.course-nav-list a i {
-  margin-right: 10px;
 }

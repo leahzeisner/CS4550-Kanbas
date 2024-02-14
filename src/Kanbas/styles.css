@@ -126,9 +126,9 @@ body * {
   }
 
   .main-content {
-    margin-left: 40px;
+    margin-left: 40px !important;
     margin-right: 0px;
     padding-right: 40px;
-    margin-top: 0px;
+    margin-top: 0px !important;
   }
 }
