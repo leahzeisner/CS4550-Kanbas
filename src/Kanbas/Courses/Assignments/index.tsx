@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   FaCheckCircle,
   FaEllipsisV,
@@ -14,8 +14,11 @@ import "./index.css";
 
 function Assignments() {
   const { courseId } = useParams();
-  const assignmentsList = assignments.filter(
+  const courseAssignments = assignments.filter(
     (assignment) => assignment.course === courseId,
+  );
+  const [assignmentsList, setAssignmentsList] = useState(
+    courseAssignments.length !== 0 ? courseAssignments[0].assignments : [],
   );
 
   const [showAssignments, setShowAssignments] = useState(true);
@@ -28,6 +31,17 @@ function Assignments() {
     );
   };
 
+  const filterAssignments = (e: ChangeEvent<HTMLInputElement>) => {
+    if (courseAssignments.length === 0) {
+      return;
+    }
+
+    const filteredAssignments = courseAssignments[0].assignments.filter(
+      (assignment) => assignment.title.includes(e.target.value),
+    );
+    setAssignmentsList(filteredAssignments);
+  };
+
   return (
     <div className="main-content">
       <div className="assignments">
@@ -36,6 +50,7 @@ function Assignments() {
             type="text"
             placeholder="Search for Assignment"
             id="assignment-search"
+            onChange={(e) => filterAssignments(e)}
           ></input>
           <div className="assignments-buttons">
             <button type="button">
@@ -80,9 +95,9 @@ function Assignments() {
             </div>
           </li>
 
-          {assignmentsList.length !== 0 &&
+          {courseAssignments.length !== 0 &&
             showAssignments &&
-            assignmentsList[0].assignments.map((assignment) => (
+            assignmentsList.map((assignment) => (
               <li className="assignment-item">
                 <div className="assignment-item-buttons">
                   <button type="button">
