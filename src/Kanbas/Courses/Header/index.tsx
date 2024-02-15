@@ -77,7 +77,12 @@ function Header() {
                 onClick={toggleCourseNav}
               ></FaBars>
             </button>
-            <span className="sticky-header-class">{course?.number}</span>
+            <Link
+              to={`/Kanbas/Courses/${course._id}/Home`}
+              className="header-course-num header-course-num-large"
+            >
+              {course?.number}
+            </Link>
 
             <div className="sticky-header-subsec">
               <FaArrowRight
@@ -109,9 +114,15 @@ function Header() {
         </button>
 
         <div>
-          <span>{course.number}</span>
-          <br />
-          <span>{page}</span>
+          <button
+            type="button"
+            className="header-course-num-small"
+            onClick={onCourseNavArrowClicked}
+          >
+            {course?.number}
+            <br />
+            <span>{page}</span>
+          </button>
         </div>
 
         <div>
