@@ -32,10 +32,9 @@ function KanbasNavigation() {
               key={index}
               className={pathname.includes(link.label) ? "wd-active" : ""}
             >
-              {/* Always go to course 12631 for now, FIX LATER */}
+              {/* Always goes to course 12631 for now, FIX LATER */}
               <Link
                 to={`/Kanbas/${link.label}${link.label === "Courses" ? "/12631/Home" : ""}`}
-                className="kanbas-nav-link"
               >
                 {" "}
                 {link.icon}

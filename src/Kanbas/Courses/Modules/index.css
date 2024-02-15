@@ -133,27 +133,6 @@ select {
   padding-left: 5px;
 }
 
-/* Top Navigation (smaller screens) */
-.top-nav {
-  width: 100%;
-  background-color: black;
-  color: white;
-  justify-content: space-between;
-  text-align: center;
-  align-items: center;
-  padding: 10px 15px 10px 15px;
-}
-
-.top-nav-button {
-  background-color: transparent;
-  border: none;
-  color: white;
-}
-
-.top-nav-bars {
-  margin-right: 35px;
-}
-
 @media (max-width: 1199px) {
   .modules {
     width: 100%;

@@ -124,23 +124,6 @@ body * {
   margin-top: 80px;
 }
 
-.header-course-num {
-  text-decoration: none;
-  color: red;
-  margin-right: 10px;
-}
-
-.header-course-num-small {
-  background-color: transparent;
-  border: none;
-  color: white;
-}
-
-.header-course-num:hover,
-.header-course-num-small:hover {
-  text-decoration: underline;
-}
-
 @media (max-width: 991px) {
   .screen-div {
     flex-direction: column;

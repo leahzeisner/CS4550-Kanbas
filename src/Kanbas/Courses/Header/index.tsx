@@ -5,11 +5,13 @@ import {
   FaBars,
   FaBinoculars,
 } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { courseNavLinks, getKanbasLinks } from "../../constants";
 import { courses } from "../../Database";
 import "../../styles.css";
+import "./index.css";
 
 function Header() {
   const { pathname } = useLocation();
@@ -132,9 +134,14 @@ function Header() {
           <button
             type="button"
             className="top-nav-button"
+            id="top-nav-course-toggle"
             onClick={onCourseNavArrowClicked}
           >
-            <FaArrowDown></FaArrowDown>
+            {courseNavClass.includes("d-flex") ? (
+              <FaXmark></FaXmark>
+            ) : (
+              <FaArrowDown></FaArrowDown>
+            )}
           </button>
         </div>
       </div>
