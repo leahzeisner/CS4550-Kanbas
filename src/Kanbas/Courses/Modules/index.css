@@ -1,9 +1,3 @@
-.course-home {
-  display: flex;
-}
-
-/* Modules */
-
 .modules {
   display: flex;
   flex-direction: column;
@@ -12,15 +6,12 @@
   width: 100%;
 }
 
+/* Top Buttons */
 .module-buttons {
   display: flex;
   justify-content: flex-end;
   padding-top: 20px;
   margin: 10px 0px 10px 0px;
-}
-
-.module-buttons-hr {
-  margin-bottom: 40px;
 }
 
 .module-buttons > button,
@@ -47,79 +38,97 @@ select {
   background-color: darkred;
 }
 
-/* .modules-btn {
-  background-color: transparent;
-  border: none;
-} */
+#top-ellipsis-btn {
+  padding: 0px;
+}
 
-.wd-modules,
-.wd-modules * {
+#top-ellipsis-btn * {
+  margin: 0px 8px 0px 8px;
+}
+
+.plus {
+  margin-right: 5px;
+}
+
+.module-buttons-hr {
+  margin-bottom: 40px;
+}
+
+.modules-list,
+.module-list {
   border-radius: 0%;
   border: none;
-  margin: 0px;
   padding: 0px;
+  margin: 0px;
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
-.wd-modules > li {
-  background-color: lightgray;
-  border: 1px solid gray !important;
-  border-left: none !important;
-}
-
-.wd-modules > li > div {
-  padding: 10px 10px 10px 13px;
-  border-left: 1px solid gray !important;
-}
-
-.wd-modules > li > ul > li {
-  padding: 10px;
-  border-top: 1px solid gray !important;
-  border-left: 4px solid green;
-}
-
-.wd-modules > li {
+.module {
   margin-bottom: 50px;
+  box-sizing: content-box;
+}
+
+.module-list > li {
+  border: 1px solid gray;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px 10px 5px;
+}
+
+.module-list > li:not(:first-child) {
+  border-left: 4px solid green !important;
 }
 
 .module-title {
+  background-color: lightgray;
   font-weight: bold;
+  border-left: 1px solid gray !important;
+}
+
+.module-title-text {
+  margin-right: auto;
+  margin-left: 10px;
   color: #3d454c;
 }
 
-.list-group-title {
-  display: grid;
-  grid-template-columns: 40px 1fr 80px;
+.module-section {
+  background-color: transparent;
+  font-weight: bold;
+  white-space: normal !important;
 }
 
-.list-group-section {
-  background-color: white;
-  display: grid;
-  grid-template-columns: 40px 1fr 50px;
+.module-item-text {
+  margin-right: auto;
+  margin-left: 30px;
+  color: #3d454c;
 }
 
-.list-group-item {
-  display: grid;
-  grid-template-columns: 60px 1fr 50px;
-}
-
-.list-group-item-text {
+.module-lesson {
   text-decoration: none;
   color: #3d454c;
+  white-space: normal !important;
 }
 
-.list-group-item-text:hover {
+.module-lesson:hover {
   text-decoration: underline;
 }
 
-.ellipsis-v {
-  margin-right: 5px;
-  margin-left: 5px;
+.modules-buttons-right {
+  display: inline-flex;
+  margin-left: 10px;
 }
 
-.check-circle,
-.plus {
-  margin-right: 5px;
+.module-list-buttons > button {
+  background-color: transparent;
+  border: none;
+  color: #3d454c;
+}
+
+.ellipsis-left {
+  padding-left: 5px;
 }
 
 /* Top Navigation (smaller screens) */

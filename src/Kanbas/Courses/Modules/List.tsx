@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./index.css";
 import "../../styles.css";
 import { modules } from "../../Database";
@@ -7,6 +7,7 @@ import {
   FaCheckCircle,
   FaPlusCircle,
   FaArrowDown,
+  FaArrowRight,
 } from "react-icons/fa";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -14,10 +15,39 @@ import { Link } from "react-router-dom";
 function ModuleList() {
   const { courseId } = useParams();
   const modulesList = modules.filter((module) => module.course === courseId);
-  const [selectedModule, setSelectedModule] = useState(modulesList[0]);
+
+  const [moduleVisibilityMap, setModuleVisibilityMap]: [
+    Record<string, boolean>,
+    Dispatch<SetStateAction<Record<string, boolean>>>,
+  ] = useState({});
+
+  // Open all modules on load
+  useEffect(() => {
+    const map: Record<string, boolean> = {};
+    modulesList.forEach((mod) => (map[mod._id] = true));
+    setModuleVisibilityMap(map);
+  }, []);
+
+  // Toggle module with given id's visibility
+  const toggleModuleVisibility = (modId: string) => {
+    setModuleVisibilityMap((prevState) => ({
+      ...prevState,
+      [modId]: !prevState[modId],
+    }));
+  };
+
+  // Renders arrow icon based on module visibility
+  const getTitleArrow = (modId: string) => {
+    const moduleVisibile = moduleVisibilityMap[modId];
+
+    return moduleVisibile ? (
+      <FaArrowDown className="ms-2"></FaArrowDown>
+    ) : (
+      <FaArrowRight className="ms-2"></FaArrowRight>
+    );
+  };
 
   return (
-    // BROKEN ON SMALL SCREEN
     <div className="modules">
       <div className="module-buttons">
         <button type="button">Collapse All</button>
@@ -29,91 +59,92 @@ function ModuleList() {
           <FaPlusCircle className="plus" />
           Module
         </button>
-        <button type="button">
+        <button type="button" id="top-ellipsis-btn">
           <FaEllipsisV className="ms-2 ellipsis-v" />
         </button>
       </div>
 
       <hr className="module-buttons-hr" />
 
-      <ul className="list-group wd-modules">
+      <ul className="modules-list">
         {modulesList.map((module) => (
-          <li
-            className="list-group-item-module"
-            onClick={() => setSelectedModule(module)}
-          >
-            <div className="list-group-title">
-              <div>
-                <button type="button" className="modules-btn">
-                  <FaArrowDown className="ms-2"></FaArrowDown>
-                </button>
-              </div>
+          <li className="module">
+            <ul className="module-list">
+              {/* Module Title */}
+              <li className="module-title">
+                <div className="module-list-buttons">
+                  <button
+                    type="button"
+                    onClick={() => toggleModuleVisibility(module._id)}
+                  >
+                    {getTitleArrow(module._id)}
+                  </button>
+                </div>
 
-              <div>
-                <span className="module-title">{module.title}</span>
-              </div>
+                <div className="module-title-text">
+                  <span className="module-section">{module.title}</span>
+                </div>
 
-              <div>
-                <button type="button">
-                  <FaCheckCircle className="text-success check-circle" />
-                </button>
-                <button type="button">
-                  <FaPlusCircle className="ms-2 plus" />
-                </button>
-                <button type="button">
-                  <FaEllipsisV className="ms-2 ellipsis-v" />
-                </button>
-              </div>
-            </div>
+                <div className="module-list-buttons modules-buttons-right">
+                  <button type="button">
+                    <FaCheckCircle className="text-success" />
+                  </button>
+                  <button type="button">
+                    <FaPlusCircle className="ms-2" />
+                  </button>
+                  <button type="button">
+                    <FaEllipsisV className="ms-2 ellipsis-v" />
+                  </button>
+                </div>
+              </li>
 
-            {selectedModule._id === module._id &&
-              module.sections?.map((section) => (
-                <ul className="list-group" id={module._id}>
-                  <li className="list-group-section">
-                    <div>
-                      <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
-                    </div>
-
-                    <div>
-                      <span className="module-title module-section">
-                        {section.title}
-                      </span>
-                    </div>
-
-                    <div>
-                      <button type="button">
-                        <FaCheckCircle className="text-success check-circle" />
-                      </button>
-                      <button type="button">
-                        <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
-                      </button>
-                    </div>
-                  </li>
-
-                  {section.lessons?.map((lesson) => (
-                    <li className="list-group-item">
+              {/* Module Sections */}
+              {moduleVisibilityMap[module._id] &&
+                module.sections?.map((section) => (
+                  <>
+                    <li className="module-section-title">
                       <div>
-                        <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
+                        <FaEllipsisV className="ms-2 ellipsis-v ellipsis-left"></FaEllipsisV>
                       </div>
 
-                      <div>
-                        <Link to={lesson.url} className="list-group-item-text">
-                          {lesson.title}
-                        </Link>
+                      <div className="module-title-text">
+                        <span className="module-section">{section.title}</span>
                       </div>
 
-                      <div>
+                      <div className="module-list-buttons modules-buttons-right">
                         <button type="button">
-                          <FaCheckCircle className="text-success check-circle" />
+                          <FaCheckCircle className="text-success" />
                         </button>
                         <button type="button">
                           <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
                         </button>
                       </div>
                     </li>
-                  ))}
-                </ul>
-              ))}
+
+                    {/* Module Section Lessons */}
+                    {section.lessons?.map((lesson) => (
+                      <li className="module-section-lesson">
+                        <div>
+                          <FaEllipsisV className="ms-2 ellipsis-v ellipsis-left"></FaEllipsisV>
+                        </div>
+                        <div className="module-item-text">
+                          <Link to={lesson.url} className="module-lesson">
+                            {lesson.title}
+                          </Link>
+                        </div>
+                        <div className="module-list-buttons modules-buttons-right">
+                          <button type="button">
+                            <FaCheckCircle className="text-success" />
+                          </button>
+                          <button type="button">
+                            <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </>
+                ))}
+            </ul>
           </li>
         ))}
       </ul>

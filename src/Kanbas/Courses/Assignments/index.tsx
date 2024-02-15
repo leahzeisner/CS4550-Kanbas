@@ -1,6 +1,12 @@
 import { useState } from "react";
-import { FaCheckCircle, FaEllipsisV, FaPlus } from "react-icons/fa";
-import { FaArrowDown, FaArrowRight, FaFilePen } from "react-icons/fa6";
+import {
+  FaCheckCircle,
+  FaEllipsisV,
+  FaPlus,
+  FaArrowDown,
+  FaArrowRight,
+} from "react-icons/fa";
+import { FaFilePen } from "react-icons/fa6";
 import { Link, useParams } from "react-router-dom";
 import { assignments } from "../../Database";
 import "../../styles.css";
@@ -60,9 +66,11 @@ function Assignments() {
               </button>
             </div>
 
-            <span className="assignment-text">Assignments</span>
+            <div className="assignment-text-container">
+              <span className="assignment-text">Assignments</span>
+            </div>
 
-            <div className="assignment-item-buttons">
+            <div className="assignment-item-buttons assignment-buttons-right">
               <button type="button" className="modules-btn">
                 <FaPlus></FaPlus>
               </button>
@@ -85,7 +93,7 @@ function Assignments() {
                   </button>
                 </div>
 
-                <div className="assignment-info assignment-text">
+                <div className="assignment-info assignment-text-container">
                   <Link to={assignment.url} className="assignment-item-title">
                     {assignment.title}
                   </Link>
@@ -97,7 +105,7 @@ function Assignments() {
                   </div>
                 </div>
 
-                <div className="assignment-item-buttons">
+                <div className="assignment-item-buttons assignment-buttons-right">
                   <button type="button">
                     <FaCheckCircle className="text-success check-circle" />
                   </button>
