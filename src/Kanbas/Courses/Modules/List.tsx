@@ -16,6 +16,8 @@ function ModuleList() {
   const { courseId } = useParams();
   const modulesList = modules.filter((module) => module.course === courseId);
 
+  const collapseAll = "Collapse All";
+  const [collapseAllText, setCollapseAllText] = useState(collapseAll);
   const [moduleVisibilityMap, setModuleVisibilityMap]: [
     Record<string, boolean>,
     Dispatch<SetStateAction<Record<string, boolean>>>,
@@ -47,10 +49,21 @@ function ModuleList() {
     );
   };
 
+  // Collapse or expand all modules
+  const toggleModulesVisibility = () => {
+    const visible = collapseAllText != collapseAll;
+    const map: Record<string, boolean> = {};
+    modulesList.forEach((mod) => (map[mod._id] = visible));
+    setModuleVisibilityMap(map);
+    setCollapseAllText(visible ? collapseAll : "Expand All");
+  };
+
   return (
     <div className="modules">
       <div className="module-buttons">
-        <button type="button">Collapse All</button>
+        <button type="button" onClick={toggleModulesVisibility}>
+          {collapseAllText}
+        </button>
         <button type="button">View Progress</button>
         <select>
           <option value="PUBLISH-ALL"> Publish All</option>
