@@ -158,8 +158,8 @@ function Header() {
               ></button>
             </li>
 
-            {kanbasNavLinks.map((link) => (
-              <li>
+            {kanbasNavLinks.map((link, index) => (
+              <li key={`${link.label}-${index}`}>
                 <Link
                   to={`/Kanbas/${link.label}`}
                   className="kanbas-nav-list-link"
@@ -181,8 +181,8 @@ function Header() {
       <div className={courseNavClass}>
         <div className="course-nav-small">
           <ul className="course-nav-list">
-            {courseNavLinks.map((link) => (
-              <li>
+            {courseNavLinks.map((link, index) => (
+              <li key={`${link.label}-${index}`}>
                 <Link
                   to={`/Kanbas/Courses/${course._id}/${link.label}`}
                   className="course-nav-list-link"

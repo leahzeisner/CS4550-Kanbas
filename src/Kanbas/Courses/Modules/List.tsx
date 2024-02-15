@@ -81,7 +81,7 @@ function ModuleList() {
 
       <ul className="modules-list">
         {modulesList.map((module) => (
-          <li className="module">
+          <li className="module" key={module._id}>
             <ul className="module-list">
               {/* Module Title */}
               <li className="module-title">
@@ -113,8 +113,11 @@ function ModuleList() {
 
               {/* Module Sections */}
               {moduleVisibilityMap[module._id] &&
-                module.sections?.map((section) => (
-                  <>
+                module.sections?.map((section, index) => (
+                  <div
+                    key={`${module._id}-${section.title}-${index}`}
+                    className="module-section-div"
+                  >
                     <li className="module-section-title">
                       <div>
                         <FaEllipsisV className="ms-2 ellipsis-v ellipsis-left"></FaEllipsisV>
@@ -135,8 +138,11 @@ function ModuleList() {
                     </li>
 
                     {/* Module Section Lessons */}
-                    {section.lessons?.map((lesson) => (
-                      <li className="module-section-lesson">
+                    {section.lessons?.map((lesson, index) => (
+                      <li
+                        className="module-section-lesson"
+                        key={`${module._id}-${lesson.title}-${index}`}
+                      >
                         <div>
                           <FaEllipsisV className="ms-2 ellipsis-v ellipsis-left"></FaEllipsisV>
                         </div>
@@ -155,7 +161,7 @@ function ModuleList() {
                         </div>
                       </li>
                     ))}
-                  </>
+                  </div>
                 ))}
             </ul>
           </li>

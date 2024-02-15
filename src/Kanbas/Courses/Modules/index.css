@@ -72,7 +72,8 @@ select {
   box-sizing: content-box;
 }
 
-.module-list > li {
+.module-list > li,
+.module-list > div > li {
   border-bottom: 1px solid gray;
   border-right: 1px solid gray;
   display: inline-flex;
@@ -86,7 +87,7 @@ select {
   border-left: 1px solid gray !important;
 }
 
-.module-list > li:not(:first-child) {
+.module-list > div > li {
   border-left: 4px solid green !important;
 }
 
@@ -99,6 +100,11 @@ select {
   margin-right: auto;
   margin-left: 10px;
   color: #3d454c;
+}
+
+.module-section-div {
+  display: flex;
+  flex-direction: column;
 }
 
 .module-section {

@@ -74,7 +74,7 @@ function Status() {
         <div className="todo-items">
           {todoList.length !== 0 &&
             todoList[0].todos?.map((todo, index) => (
-              <div className="todo-item">
+              <div className="todo-item" key={`${todo.title}-${index}`}>
                 <div className="todo-item-left">
                   <span className="todo-item-num">{index + 1}</span>
                   <div className="todo-item-info">
@@ -108,8 +108,8 @@ function Status() {
 
         <div className="coming-up-items">
           {comingUpList.length !== 0 &&
-            comingUpList[0].items?.map((item) => (
-              <div className="coming-up-item">
+            comingUpList[0].items?.map((item, index) => (
+              <div className="coming-up-item" key={`${item.title}-${index}`}>
                 <FaCalendar className="coming-up-icon"></FaCalendar>
                 <div className="coming-up-item-info">
                   <Link to="#" className="coming-up-item-title">
