@@ -38,6 +38,10 @@ select {
   background-color: darkred;
 }
 
+#module-button-plus-icon {
+  margin-bottom: 3px;
+}
+
 #top-ellipsis-btn {
   padding: 0px;
 }

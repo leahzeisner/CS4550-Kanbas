@@ -108,6 +108,11 @@ body * {
   background-color: lightgray;
 }
 
+#student-view-icon {
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
 .sticky-header > hr {
   color: #495057;
   margin: 5px 120px 0px 20px;

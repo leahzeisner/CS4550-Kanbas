@@ -90,7 +90,7 @@ function Header() {
 
           <div className="sticky-header-right">
             <button type="button" className="student-view-btn">
-              <FaBinoculars></FaBinoculars> Student View
+              <FaBinoculars id="student-view-icon"></FaBinoculars> Student View
             </button>
           </div>
         </div>
