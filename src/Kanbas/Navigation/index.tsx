@@ -18,7 +18,7 @@ function KanbasNavigation() {
       <div className="sticky-kanbas-nav" id={navId}>
         <ul className="wd-kanbas-navigation">
           <li id="logo">
-            <Link to="/Kanbas/Dashboard/">
+            <Link to="/Kanbas/Dashboard">
               <img
                 className="nu-logo"
                 src="/images/northeastern.png"
