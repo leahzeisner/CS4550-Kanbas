@@ -39,12 +39,12 @@ function Assignments() {
           ></input>
           <div className="assignments-buttons">
             <button type="button">
-              <FaPlus></FaPlus> Group
+              <FaPlus className="assignments-buttons-icons"></FaPlus> Group
             </button>
             <button type="button" id="assignment-btn">
-              <FaPlus></FaPlus> Assignment
+              <FaPlus className="assignments-buttons-icons"></FaPlus> Assignment
             </button>
-            <button type="button">
+            <button type="button" id="assignments-button-ellipsis">
               <FaEllipsisV className="ms-2 ellipsis-v" />
             </button>
           </div>

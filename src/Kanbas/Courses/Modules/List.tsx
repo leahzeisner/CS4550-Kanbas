@@ -69,7 +69,7 @@ function ModuleList() {
           <option value="PUBLISH-ALL"> Publish All</option>
         </select>
         <button type="button" id="module-button">
-          <FaPlusCircle className="plus" id="module-button-plus-icon" />
+          <FaPlusCircle className="plus" />
           Module
         </button>
         <button type="button" id="top-ellipsis-btn">

@@ -99,9 +99,10 @@ body * {
   box-shadow: 1px 1px lightgray;
   padding: 5px 15px 5px 15px;
   margin-right: 5px;
-  text-align: center;
-  width: fit-content;
   border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .student-view-btn:hover {
@@ -109,8 +110,7 @@ body * {
 }
 
 #student-view-icon {
-  margin-right: 5px;
-  margin-bottom: 3px;
+  margin-right: 10px;
 }
 
 .sticky-header > hr {

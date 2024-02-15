@@ -16,7 +16,7 @@
 #assignment-search {
   border: 1px solid lightgray;
   box-shadow: 0 2px 2px -2px lightgray;
-  padding: 8px 50px 8px 15px;
+  padding: 5px 50px 5px 10px;
   border-radius: 4px;
   height: fit-content;
 }
@@ -32,10 +32,13 @@
   border: none;
   margin-left: 10px;
   box-shadow: 1px 1px lightgray;
-  padding: 8px 15px 8px 15px;
-  text-align: center;
+  padding: 5px 10px 5px 10px;
   border-radius: 4px;
   background-color: #efefef;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .assignments-buttons > button:last-child {
@@ -53,6 +56,18 @@
 
 #assignment-btn:hover {
   background-color: darkred;
+}
+
+#assignments-button-ellipsis {
+  padding: 0px;
+}
+
+#assignments-button-ellipsis * {
+  margin: 0px 8px 0px 8px;
+}
+
+.assignments-buttons-icons {
+  margin-right: 5px;
 }
 
 .assignments-buttons-hr {

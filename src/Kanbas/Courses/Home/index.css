@@ -34,9 +34,11 @@
   border: none;
   box-shadow: 1px 1px lightgray;
   padding: 5px 0px 5px 0px;
-  text-align: center;
   width: 50%;
   border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .publish-buttons > button:hover {
@@ -54,7 +56,6 @@
 
 .publish-icon {
   margin-right: 5px;
-  margin-bottom: 3px;
 }
 
 .status-buttons {
@@ -71,6 +72,8 @@
   width: 100%;
   text-align: left;
   border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .status-buttons > button:hover {
