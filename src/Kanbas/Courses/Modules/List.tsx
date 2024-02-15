@@ -51,7 +51,7 @@ function ModuleList() {
 
   // Collapse or expand all modules
   const toggleModulesVisibility = () => {
-    const visible = collapseAllText != collapseAll;
+    const visible = collapseAllText !== collapseAll;
     const map: Record<string, boolean> = {};
     modulesList.forEach((mod) => (map[mod._id] = visible));
     setModuleVisibilityMap(map);

@@ -80,7 +80,7 @@ function Assignments() {
             </div>
           </li>
 
-          {assignmentsList.length != 0 &&
+          {assignmentsList.length !== 0 &&
             showAssignments &&
             assignmentsList[0].assignments.map((assignment) => (
               <li className="assignment-item">

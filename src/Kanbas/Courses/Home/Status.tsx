@@ -72,7 +72,7 @@ function Status() {
         <hr className="hr-line" />
 
         <div className="todo-items">
-          {todoList.length != 0 &&
+          {todoList.length !== 0 &&
             todoList[0].todos?.map((todo, index) => (
               <div className="todo-item">
                 <div className="todo-item-left">
@@ -107,7 +107,7 @@ function Status() {
         <hr className="hr-line" />
 
         <div className="coming-up-items">
-          {comingUpList.length != 0 &&
+          {comingUpList.length !== 0 &&
             comingUpList[0].items?.map((item) => (
               <div className="coming-up-item">
                 <FaCalendar className="coming-up-icon"></FaCalendar>
@@ -122,7 +122,7 @@ function Status() {
             ))}
         </div>
 
-        {comingUpList.length != 0 && (
+        {comingUpList.length !== 0 && (
           <span className="bottom-text">12 more in the next week...</span>
         )}
       </div>
