@@ -84,12 +84,21 @@
 }
 
 .wd-assignments > li {
-  border: 1px solid gray;
-  border-left: 4px solid green !important;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px 10px 5px;
+}
+
+.wd-assignments > li:first-child {
+  border-top: 1px solid gray;
+  border-left: 1px solid gray !important;
+}
+
+.wd-assignments > li:not(:first-child) {
+  border-left: 4px solid green !important;
 }
 
 .assignment-title {

@@ -73,11 +73,17 @@ select {
 }
 
 .module-list > li {
-  border: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px 10px 5px;
+}
+
+.module-list > li:first-child {
+  border-top: 1px solid gray;
+  border-left: 1px solid gray !important;
 }
 
 .module-list > li:not(:first-child) {
@@ -87,7 +93,6 @@ select {
 .module-title {
   background-color: lightgray;
   font-weight: bold;
-  border-left: 1px solid gray !important;
 }
 
 .module-title-text {
