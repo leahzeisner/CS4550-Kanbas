@@ -68,7 +68,7 @@
 #kanbas-nav-close {
   padding: 18px 18px 3px 3px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   color: #3d454c;
 }
 
@@ -138,7 +138,6 @@
   color: red;
   text-decoration: none;
   display: flex;
-  justify-content: start;
   margin-left: 16px;
 }
 

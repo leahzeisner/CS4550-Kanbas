@@ -164,7 +164,6 @@
 
 .coming-up-item {
   display: flex;
-  justify-content: start;
   padding: 0px 10px 0px 10px;
   margin-bottom: 10px;
   color: gray;
