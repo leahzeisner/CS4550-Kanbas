@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaArrowDown,
   FaArrowRight,
@@ -11,13 +11,14 @@ import { Link } from "react-router-dom";
 import { courseNavLinks, getKanbasLinks } from "../../constants";
 import { courses } from "../../Database";
 import "../../styles.css";
+import { Course } from "../../types";
 import "./index.css";
 
 function Header() {
   const { pathname } = useLocation();
-  const course = courses.filter((course) => pathname.includes(course._id))[0];
-  const page = courseNavLinks.filter((link) => pathname.includes(link.label))[0]
-    .label;
+  const [course, setCourse] = useState<Course | undefined>(undefined);
+  const [page, setPage] = useState("");
+
   const kanbasNavLinks = getKanbasLinks(
     "kanbas-nav-small-icon",
     "account-icon-small",
@@ -26,6 +27,18 @@ function Header() {
   const hiddenClass = "d-none d-lg-none";
   const [kanbasNavClass, setKanbasNavClass] = useState(hiddenClass);
   const [courseNavClass, setCourseNavClass] = useState(hiddenClass);
+
+  useEffect(() => {
+    const coursesList = courses.filter((course) =>
+      pathname.includes(course._id),
+    );
+    setCourse(coursesList.length > 0 ? coursesList[0] : undefined);
+
+    const pagesList = courseNavLinks.filter((link) =>
+      pathname.includes(link.label.replace(/\s/g, "")),
+    );
+    setPage(pagesList.length > 0 ? pagesList[0].label : "");
+  }, [pathname]);
 
   const onKanbasSandwichClicked = () => {
     if (kanbasNavClass.includes("d-flex")) {
@@ -80,7 +93,7 @@ function Header() {
               ></FaBars>
             </button>
             <Link
-              to={`/Kanbas/Courses/${course._id}/Home`}
+              to={`/Kanbas/Courses/${course?._id}/Home`}
               className="header-course-num header-course-num-large"
             >
               {course?.number}
@@ -184,7 +197,7 @@ function Header() {
             {courseNavLinks.map((link, index) => (
               <li key={`${link.label}-${index}`}>
                 <Link
-                  to={`/Kanbas/Courses/${course._id}/${link.label}`}
+                  to={`/Kanbas/Courses/${course?._id}/${link.label}`}
                   className="course-nav-list-link"
                   onClick={onCourseNavArrowClicked}
                 >

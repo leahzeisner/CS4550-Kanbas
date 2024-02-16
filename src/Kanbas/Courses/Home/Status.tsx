@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   FaArrowCircleRight,
   FaBan,
@@ -12,12 +13,28 @@ import {
 } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { comingUpItems, todos } from "../../Database";
+import { ComingUpList, TodoList } from "../../types";
 import "./index.css";
 
 function Status() {
   const { courseId } = useParams();
-  const todoList = todos.filter((todo) => todo.course === courseId);
-  const comingUpList = comingUpItems.filter((item) => item.course === courseId);
+  const [todoList, setTodoList] = useState<TodoList | undefined>(undefined);
+  const [comingUpList, setComingUpList] = useState<ComingUpList | undefined>(
+    undefined,
+  );
+
+  useEffect(() => {
+    const courseTodoList = todos.filter((todo) => todo.course === courseId);
+    const courseComingUpList = comingUpItems.filter(
+      (item) => item.course === courseId,
+    );
+    setTodoList(
+      courseTodoList.length > 0 ? courseTodoList[0].todos : undefined,
+    );
+    setComingUpList(
+      courseComingUpList.length > 0 ? courseComingUpList[0].items : undefined,
+    );
+  }, [courseId]);
 
   return (
     <div className="course-info d-none d-xl-block">
@@ -72,26 +89,25 @@ function Status() {
         <hr className="hr-line" />
 
         <div className="todo-items">
-          {todoList.length !== 0 &&
-            todoList[0].todos?.map((todo, index) => (
-              <div className="todo-item" key={`${todo.title}-${index}`}>
-                <div className="todo-item-left">
-                  <span className="todo-item-num">{index + 1}</span>
-                  <div className="todo-item-info">
-                    <Link to={todo.url} className="todo-item-title">
-                      {todo.title}
-                    </Link>
-                    <span className="todo-item-due-date">
-                      {todo.points} points <span>&#x2022;</span> {todo.due_date}
-                    </span>
-                  </div>
+          {todoList?.map((todo, index) => (
+            <div className="todo-item" key={`${todo.title}-${index}`}>
+              <div className="todo-item-left">
+                <span className="todo-item-num">{index + 1}</span>
+                <div className="todo-item-info">
+                  <Link to={todo.url} className="todo-item-title">
+                    {todo.title}
+                  </Link>
+                  <span className="todo-item-due-date">
+                    {todo.points} points <span>&#x2022;</span> {todo.due_date}
+                  </span>
                 </div>
-
-                <button className="todo-item-delete" type="button">
-                  <FaTimes></FaTimes>
-                </button>
               </div>
-            ))}
+
+              <button className="todo-item-delete" type="button">
+                <FaTimes></FaTimes>
+              </button>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -107,22 +123,21 @@ function Status() {
         <hr className="hr-line" />
 
         <div className="coming-up-items">
-          {comingUpList.length !== 0 &&
-            comingUpList[0].items?.map((item, index) => (
-              <div className="coming-up-item" key={`${item.title}-${index}`}>
-                <FaCalendar className="coming-up-icon"></FaCalendar>
-                <div className="coming-up-item-info">
-                  <Link to="#" className="coming-up-item-title">
-                    {item.title}
-                  </Link>
-                  <span className="coming-up-item-section">{item.section}</span>
-                  <span className="coming-up-item-date">{item.date}</span>
-                </div>
+          {comingUpList?.map((item, index) => (
+            <div className="coming-up-item" key={`${item.title}-${index}`}>
+              <FaCalendar className="coming-up-icon"></FaCalendar>
+              <div className="coming-up-item-info">
+                <Link to="#" className="coming-up-item-title">
+                  {item.title}
+                </Link>
+                <span className="coming-up-item-section">{item.section}</span>
+                <span className="coming-up-item-date">{item.date}</span>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
 
-        {comingUpList.length !== 0 && (
+        {comingUpList && comingUpList.length !== 0 && (
           <span className="bottom-text">12 more in the next week...</span>
         )}
       </div>

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import "../../styles.css";
 import { modules } from "../../Database";
@@ -11,24 +11,31 @@ import {
 } from "react-icons/fa";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { Modules } from "../../types";
 
 function ModuleList() {
   const { courseId } = useParams();
-  const modulesList = modules.filter((module) => module.course === courseId);
 
+  const [modulesList, setModulesList] = useState<Modules | undefined>(
+    undefined,
+  );
   const collapseAll = "Collapse All";
   const [collapseAllText, setCollapseAllText] = useState(collapseAll);
-  const [moduleVisibilityMap, setModuleVisibilityMap]: [
-    Record<string, boolean>,
-    Dispatch<SetStateAction<Record<string, boolean>>>,
-  ] = useState({});
+  const [moduleVisibilityMap, setModuleVisibilityMap] = useState<
+    Record<string, boolean>
+  >({});
 
-  // Open all modules on load
+  // Initialize course modules and open all modules on load
   useEffect(() => {
+    const courseModules = modules.filter(
+      (module) => module.course === courseId,
+    );
+
     const map: Record<string, boolean> = {};
-    modulesList.forEach((mod) => (map[mod._id] = true));
+    courseModules.forEach((mod) => (map[mod._id] = true));
     setModuleVisibilityMap(map);
-  }, []);
+    setModulesList(courseModules);
+  }, [courseId]);
 
   // Toggle module with given id's visibility
   const toggleModuleVisibility = (modId: string) => {
@@ -51,6 +58,9 @@ function ModuleList() {
 
   // Collapse or expand all modules
   const toggleModulesVisibility = () => {
+    if (!modulesList || modulesList.length === 0) {
+      return;
+    }
     const visible = collapseAllText !== collapseAll;
     const map: Record<string, boolean> = {};
     modulesList.forEach((mod) => (map[mod._id] = visible));
@@ -80,7 +90,7 @@ function ModuleList() {
       <hr className="module-buttons-hr" />
 
       <ul className="modules-list">
-        {modulesList.map((module) => (
+        {modulesList?.map((module) => (
           <li className="module" key={module._id}>
             <ul className="module-list">
               {/* Module Title */}

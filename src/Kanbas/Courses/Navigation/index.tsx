@@ -14,9 +14,15 @@ function CourseNavigation() {
         {courseNavLinks.map((link, index) => (
           <li
             key={index}
-            className={pathname.includes(link.label) ? "wd-active" : ""}
+            className={
+              pathname.includes(link.label.replace(/\s/g, ""))
+                ? "wd-active"
+                : ""
+            }
           >
-            <Link to={`/Kanbas/Courses/${course._id}/${link.label}`}>
+            <Link
+              to={`/Kanbas/Courses/${course._id}/${link.label.replace(/\s/g, "")}`}
+            >
               {link.label}
             </Link>
           </li>

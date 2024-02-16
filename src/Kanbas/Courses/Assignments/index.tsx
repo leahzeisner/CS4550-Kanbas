@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import {
   FaCheckCircle,
   FaEllipsisV,
@@ -10,18 +10,35 @@ import { FaFilePen } from "react-icons/fa6";
 import { Link, useParams } from "react-router-dom";
 import { assignments } from "../../Database";
 import "../../styles.css";
+import { AssignmentsList, CourseAssignments } from "../../types";
 import "./index.css";
 
 function Assignments() {
   const { courseId } = useParams();
-  const courseAssignments = assignments.filter(
-    (assignment) => assignment.course === courseId,
-  );
-  const [assignmentsList, setAssignmentsList] = useState(
-    courseAssignments.length !== 0 ? courseAssignments[0].assignments : [],
-  );
+
+  const [courseAssignments, setCourseAssignments] = useState<
+    CourseAssignments | undefined
+  >(undefined);
+
+  const [assignmentsList, setAssignmentsList] = useState<
+    AssignmentsList | undefined
+  >(undefined);
 
   const [showAssignments, setShowAssignments] = useState(true);
+
+  useEffect(() => {
+    const courseAssignments = assignments.filter(
+      (assignment) => assignment.course === courseId,
+    );
+    setCourseAssignments(
+      courseAssignments.length > 0 ? courseAssignments[0] : undefined,
+    );
+    setAssignmentsList(
+      courseAssignments.length > 0
+        ? courseAssignments[0].assignments
+        : undefined,
+    );
+  }, []);
 
   const getTitleArrow = () => {
     return showAssignments ? (
@@ -32,11 +49,11 @@ function Assignments() {
   };
 
   const filterAssignments = (e: ChangeEvent<HTMLInputElement>) => {
-    if (courseAssignments.length === 0) {
+    if (!courseAssignments) {
       return;
     }
 
-    const filteredAssignments = courseAssignments[0].assignments.filter(
+    const filteredAssignments = courseAssignments.assignments.filter(
       (assignment) => assignment.title.includes(e.target.value),
     );
     setAssignmentsList(filteredAssignments);
@@ -95,9 +112,8 @@ function Assignments() {
             </div>
           </li>
 
-          {courseAssignments.length !== 0 &&
-            showAssignments &&
-            assignmentsList.map((assignment) => (
+          {showAssignments &&
+            assignmentsList?.map((assignment) => (
               <li className="assignment-item">
                 <div className="assignment-item-buttons">
                   <button type="button">
