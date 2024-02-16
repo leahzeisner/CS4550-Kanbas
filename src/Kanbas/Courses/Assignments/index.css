@@ -10,13 +10,15 @@
 .assignments-toolbar {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  padding-top: 20px;
+  margin: 10px 0px 10px 0px;
 }
 
 #assignment-search {
   border: 1px solid lightgray;
   box-shadow: 0 2px 2px -2px lightgray;
-  padding: 5px 50px 5px 10px;
+  padding: 5px 85px 5px 10px;
   border-radius: 4px;
   height: fit-content;
   color: #3d454c;
@@ -30,8 +32,6 @@
 .assignments-buttons {
   display: inline-flex;
   justify-content: flex-end;
-  padding-top: 20px;
-  margin: 10px 0px 10px 0px;
 }
 
 .assignments-buttons > button {
@@ -177,5 +177,20 @@
 @media (max-width: 991px) {
   .assignments {
     margin-right: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .assignments-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #assignment-search {
+    margin-bottom: 20px;
+  }
+
+  .assignments-buttons > button:first-child {
+    margin-left: 0px;
   }
 }
