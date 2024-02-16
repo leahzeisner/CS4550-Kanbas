@@ -173,8 +173,9 @@ function Header() {
 
             {kanbasNavLinks.map((link, index) => (
               <li key={`${link.label}-${index}`}>
+                {/* Courses link goes to Dashboard for now */}
                 <Link
-                  to={`/Kanbas/${link.label}`}
+                  to={`/Kanbas/${link.label === "Courses" ? "Dashboard" : link.label}`}
                   className="kanbas-nav-list-link"
                   onClick={onKanbasSandwichClicked}
                 >
