@@ -158,7 +158,12 @@ select {
 
 @media (max-width: 650px) {
   .module-buttons {
-    justify-content: space-between;
+    justify-content: space-evenly;
+  }
+
+  .module-buttons > button,
+  select {
+    padding: 5px;
   }
 
   .module-buttons > button:first-child {
