@@ -54,7 +54,8 @@ function Assignments() {
     }
 
     const filteredAssignments = courseAssignments.assignments.filter(
-      (assignment) => assignment.title.includes(e.target.value),
+      (assignment) =>
+        assignment.title.toLowerCase().includes(e.target.value.toLowerCase()),
     );
     setAssignmentsList(filteredAssignments);
   };
