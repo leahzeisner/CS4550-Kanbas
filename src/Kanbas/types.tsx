@@ -10,16 +10,18 @@ export type Course = {
 
 export type Courses = Course[];
 
-export type Lesson = {
+export type SectionItem = {
+  _id: string;
   title: string;
   url: string;
 };
 
-export type Lessons = Lesson[];
+export type SectionItems = SectionItem[];
 
 export type Section = {
+  _id: string;
   title: string;
-  lessons: Lessons;
+  lessons: SectionItems;
 };
 
 export type Sections = Section[];
@@ -54,6 +56,7 @@ export type ComingUpItem = {
 export type ComingUpList = ComingUpItem[];
 
 export type Assignment = {
+  _id: string;
   title: string;
   due_date: string;
   points: string;

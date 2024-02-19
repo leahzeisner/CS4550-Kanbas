@@ -119,13 +119,13 @@ select {
   color: #3d454c;
 }
 
-.module-lesson {
+.module-section-item-link {
   text-decoration: none;
   color: #3d454c;
   white-space: normal !important;
 }
 
-.module-lesson:hover {
+.module-section-item-link:hover {
   text-decoration: underline;
 }
 

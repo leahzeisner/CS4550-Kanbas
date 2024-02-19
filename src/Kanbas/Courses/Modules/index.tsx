@@ -1,4 +1,4 @@
-import ModuleList from "./List";
+import ModuleList from "./ModuleList";
 import "../../styles.css";
 
 function Modules() {
