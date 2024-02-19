@@ -8,7 +8,11 @@ interface CourseProps {
 const Course = ({ course }: CourseProps) => {
   return (
     <div key={course._id} className="card">
-      <img src={`/images/${course.image}`} className="card-img-top" />
+      <img
+        src={`/images/${course.image}`}
+        alt="Course"
+        className="card-img-top"
+      />
 
       <div className="card-body">
         <Link className="card-title" to={`/Kanbas/Courses/${course._id}/Home`}>

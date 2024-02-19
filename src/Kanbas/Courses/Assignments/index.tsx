@@ -33,7 +33,7 @@ function Assignments() {
         ? courseAssignments[0].assignments
         : undefined,
     );
-  }, []);
+  }, [courseId]);
 
   const getTitleArrow = () => {
     return showAssignments ? (
