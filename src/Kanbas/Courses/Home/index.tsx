@@ -1,5 +1,5 @@
 import ModuleList from "../Modules/List";
-import Status from "./Status";
+import Status from "./Status/Status";
 import "../../styles.css";
 
 function Home() {
