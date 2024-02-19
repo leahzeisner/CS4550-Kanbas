@@ -1,17 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import {
-  FaCheckCircle,
-  FaEllipsisV,
-  FaPlus,
-  FaArrowDown,
-  FaArrowRight,
-} from "react-icons/fa";
-import { FaFilePen } from "react-icons/fa6";
-import { Link, useParams } from "react-router-dom";
+import { FaEllipsisV, FaPlus, FaArrowDown, FaArrowRight } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import { assignments } from "../../Database";
 import "../../styles.css";
 import { AssignmentsList, CourseAssignments } from "../../types";
+import Assignment from "./Assignment";
 import "./index.css";
+import ToolBar from "./ToolBar";
 
 function Assignments() {
   const { courseId } = useParams();
@@ -63,27 +58,7 @@ function Assignments() {
   return (
     <div className="main-content">
       <div className="assignments">
-        <div className="assignments-toolbar">
-          <input
-            type="text"
-            placeholder="Search for Assignment"
-            id="assignment-search"
-            onChange={(e) => filterAssignments(e)}
-          ></input>
-          <div className="assignments-buttons">
-            <button type="button">
-              <FaPlus className="assignments-buttons-icons"></FaPlus> Group
-            </button>
-            <button type="button" id="assignment-btn">
-              <FaPlus className="assignments-buttons-icons"></FaPlus> Assignment
-            </button>
-            <button type="button" id="assignments-button-ellipsis">
-              <FaEllipsisV className="ms-2 ellipsis-v" />
-            </button>
-          </div>
-        </div>
-
-        <hr className="assignments-buttons-hr" />
+        <ToolBar filterAssignments={filterAssignments} />
 
         <ul className="list-group wd-assignments">
           <li className="assignment-title">
@@ -115,37 +90,7 @@ function Assignments() {
 
           {showAssignments &&
             assignmentsList?.map((assignment) => (
-              <li className="assignment-item">
-                <div className="assignment-item-buttons">
-                  <button type="button">
-                    <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
-                  </button>
-                  <button type="button">
-                    <FaFilePen></FaFilePen>
-                  </button>
-                </div>
-
-                <div className="assignment-info assignment-text-container">
-                  <Link to={assignment.url} className="assignment-item-title">
-                    {assignment.title}
-                  </Link>
-                  <div className="assignment-item-due-date">
-                    <span>Due </span>
-                    <span>
-                      {assignment.due_date} | {assignment.points} pts
-                    </span>
-                  </div>
-                </div>
-
-                <div className="assignment-item-buttons assignment-buttons-right">
-                  <button type="button">
-                    <FaCheckCircle className="text-success check-circle" />
-                  </button>
-                  <button type="button">
-                    <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
-                  </button>
-                </div>
-              </li>
+              <Assignment assignment={assignment} />
             ))}
         </ul>
       </div>
