@@ -12,9 +12,7 @@ const Todo = ({ todoList }: TodoProps) => {
       <hr className="hr-line" />
 
       <div className="todo-items">
-        {todoList?.map((todo, index) => (
-          <TodoListItem todo={todo} index={index} />
-        ))}
+        {todoList?.map((todo) => <TodoListItem todo={todo} />)}
       </div>
     </div>
   );

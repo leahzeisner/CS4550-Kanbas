@@ -34,15 +34,18 @@ export type Module = {
 export type Modules = Module[];
 
 export type TodoItem = {
+  _id: string;
   title: string;
   url: string;
   points: string;
+  number: number;
   due_date: string;
 };
 
 export type TodoList = TodoItem[];
 
 export type ComingUpItem = {
+  _id: string;
   title: string;
   section: string;
   date: string;

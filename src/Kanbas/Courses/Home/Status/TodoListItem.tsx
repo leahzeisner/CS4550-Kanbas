@@ -4,14 +4,13 @@ import { TodoItem } from "../../../types";
 
 interface TodoProps {
   todo: TodoItem;
-  index: number;
 }
 
-const TodoListItem = ({ todo, index }: TodoProps) => {
+const TodoListItem = ({ todo }: TodoProps) => {
   return (
-    <div className="todo-item" key={`${todo.title}-${index}`}>
+    <div className="todo-item" key={todo._id}>
       <div className="todo-item-left">
-        <span className="todo-item-num">{index + 1}</span>
+        <span className="todo-item-num">{todo.number}</span>
         <div className="todo-item-info">
           <Link to={todo.url} className="todo-item-title">
             {todo.title}

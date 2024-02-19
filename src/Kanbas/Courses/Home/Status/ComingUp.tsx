@@ -21,8 +21,8 @@ const ComingUp = ({ comingUpList }: ComingUpProps) => {
       <hr className="hr-line" />
 
       <div className="coming-up-items">
-        {comingUpList?.map((item, index) => (
-          <ComingUpListItem item={item} index={index}></ComingUpListItem>
+        {comingUpList?.map((item) => (
+          <ComingUpListItem item={item}></ComingUpListItem>
         ))}
       </div>
 

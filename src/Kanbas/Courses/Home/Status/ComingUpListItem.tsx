@@ -4,12 +4,11 @@ import { ComingUpItem } from "../../../types";
 
 interface ComingUpListItemProps {
   item: ComingUpItem;
-  index: number;
 }
 
-const ComingUpListItem = ({ item, index }: ComingUpListItemProps) => {
+const ComingUpListItem = ({ item }: ComingUpListItemProps) => {
   return (
-    <div className="coming-up-item" key={`${item.title}-${index}`}>
+    <div className="coming-up-item" key={item._id}>
       <FaCalendar className="coming-up-icon"></FaCalendar>
       <div className="coming-up-item-info">
         <Link to="#" className="coming-up-item-title">
