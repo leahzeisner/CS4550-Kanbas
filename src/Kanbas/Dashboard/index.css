@@ -74,6 +74,18 @@ a:first-child {
   color: #212529;
 }
 
+#goToCourseLink {
+  width: fit-content !important;
+}
+
+#deleteCourseBtn {
+  right: 16px;
+}
+
+#editCourseBtn {
+  left: 112px;
+}
+
 .card-img-top {
   max-height: 150px;
   height: 150px;
@@ -86,6 +98,35 @@ a:first-child {
 
 .published-courses {
   margin-left: 30px;
+}
+
+.add-edit-courses {
+  width: 50%;
+  margin-bottom: 40px;
+  color: #212529;
+}
+
+.add-edit-courses-input {
+  margin-bottom: 10px;
+}
+
+#addEditCourseBtn {
+  padding: 5px 15px 5px 15px;
+  border: none;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 15px 5px 15px;
+  margin-right: 5px;
+  border-radius: 4px;
+  align-items: center;
+}
+
+#addEditCourseBtn:hover:enabled {
+  background-color: lightgray;
+}
+
+#addEditCourseBtn:hover:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
 }
 
 @media (max-width: 768px) {
@@ -121,6 +162,10 @@ a:first-child {
 
   .card-body > p,
   a:first-child {
+    width: 100%;
+  }
+
+  .add-edit-courses {
     width: 100%;
   }
 }
