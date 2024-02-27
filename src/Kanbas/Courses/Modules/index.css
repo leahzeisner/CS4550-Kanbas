@@ -149,6 +149,48 @@ select {
   padding-left: 5px;
 }
 
+.add-module,
+.add-module-header,
+.add-module-section,
+.add-module-lesson {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px 10px 0px;
+}
+
+.add-module-btns {
+  border: none;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 10px 5px 10px;
+  border-radius: 4px;
+  background-color: #efefef;
+  width: fit-content;
+}
+
+.add-module-btns:hover:enabled {
+  background-color: lightgray;
+}
+
+.add-module-btns:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.add-section-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-section-input > input {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.add-module-footer-btns {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 1199px) {
   .modules {
     width: 100%;

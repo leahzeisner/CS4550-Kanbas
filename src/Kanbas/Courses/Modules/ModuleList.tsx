@@ -4,6 +4,7 @@ import "../../styles.css";
 import { FaEllipsisV, FaPlusCircle } from "react-icons/fa";
 import { Modules } from "../../types";
 import Module from "./Module";
+import AddModule from "./AddModules/AddModule";
 
 function ModuleList({
   modulesList,
@@ -17,11 +18,12 @@ function ModuleList({
   const [moduleVisibilityMap, setModuleVisibilityMap] = useState<
     Record<string, boolean>
   >({});
+  const [addingModule, setAddingModule] = useState(false);
 
   // Open all modules on load
   useEffect(() => {
     const map: Record<string, boolean> = {};
-    modulesList.forEach((mod) => (map[mod._id] = true));
+    modulesList.forEach((mod) => (map[mod._id] = mod.sections.length > 0));
     setModuleVisibilityMap(map);
   }, [modulesList]);
 
@@ -60,14 +62,32 @@ function ModuleList({
         <select>
           <option value="PUBLISH-ALL"> Publish All</option>
         </select>
-        <button type="button" id="module-button">
-          <FaPlusCircle className="plus" />
-          Module
+        <button
+          type="button"
+          id="module-button"
+          onClick={() => setAddingModule(!addingModule)}
+        >
+          {addingModule ? (
+            "Cancel"
+          ) : (
+            <>
+              <FaPlusCircle className="plus" />
+              Module
+            </>
+          )}
         </button>
         <button type="button" id="top-ellipsis-btn">
           <FaEllipsisV className="ms-2 ellipsis-v" />
         </button>
       </div>
+
+      {addingModule && (
+        <AddModule
+          modulesList={modulesList}
+          setModulesList={setModulesList}
+          setAddingModule={setAddingModule}
+        />
+      )}
 
       <hr className="module-buttons-hr" />
 
