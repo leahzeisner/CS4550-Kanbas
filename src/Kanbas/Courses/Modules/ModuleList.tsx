@@ -1,35 +1,29 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import "../../styles.css";
-import { modules } from "../../Database";
 import { FaEllipsisV, FaPlusCircle } from "react-icons/fa";
-import { useParams } from "react-router";
 import { Modules } from "../../types";
 import Module from "./Module";
 
-function ModuleList() {
-  const { courseId } = useParams();
-
-  const [modulesList, setModulesList] = useState<Modules | undefined>(
-    undefined,
-  );
+function ModuleList({
+  modulesList,
+  setModulesList,
+}: {
+  modulesList: Modules;
+  setModulesList: (modules: Modules) => void;
+}) {
   const collapseAll = "Collapse All";
   const [collapseAllText, setCollapseAllText] = useState(collapseAll);
   const [moduleVisibilityMap, setModuleVisibilityMap] = useState<
     Record<string, boolean>
   >({});
 
-  // Initialize course modules and open all modules on load
+  // Open all modules on load
   useEffect(() => {
-    const courseModules = modules.filter(
-      (module) => module.course === courseId,
-    );
-
     const map: Record<string, boolean> = {};
-    courseModules.forEach((mod) => (map[mod._id] = true));
+    modulesList.forEach((mod) => (map[mod._id] = true));
     setModuleVisibilityMap(map);
-    setModulesList(courseModules);
-  }, [courseId]);
+  }, [modulesList]);
 
   // Toggle module with given id's visibility
   const toggleModuleVisibility = (modId: string) => {
@@ -41,7 +35,7 @@ function ModuleList() {
 
   // Collapse or expand all modules
   const toggleModulesVisibility = () => {
-    if (!modulesList || modulesList.length === 0) {
+    if (modulesList.length === 0) {
       return;
     }
     const visible = collapseAllText !== collapseAll;
@@ -54,7 +48,12 @@ function ModuleList() {
   return (
     <div className="modules">
       <div className="module-buttons">
-        <button type="button" onClick={toggleModulesVisibility}>
+        <button
+          type="button"
+          onClick={toggleModulesVisibility}
+          disabled={modulesList.length === 0}
+          id="collapse-all-btn"
+        >
           {collapseAllText}
         </button>
         <button type="button">View Progress</button>
@@ -73,7 +72,7 @@ function ModuleList() {
       <hr className="module-buttons-hr" />
 
       <ul className="modules-list">
-        {modulesList?.map((module) => (
+        {modulesList.map((module) => (
           <Module
             module={module}
             moduleVisibilityMap={moduleVisibilityMap}

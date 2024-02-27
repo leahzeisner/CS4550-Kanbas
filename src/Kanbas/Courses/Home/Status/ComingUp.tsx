@@ -4,7 +4,7 @@ import { ComingUpList } from "../../../types";
 import ComingUpListItem from "./ComingUpListItem";
 
 interface ComingUpProps {
-  comingUpList: ComingUpList | undefined;
+  comingUpList: ComingUpList;
 }
 
 const ComingUp = ({ comingUpList }: ComingUpProps) => {
@@ -21,12 +21,12 @@ const ComingUp = ({ comingUpList }: ComingUpProps) => {
       <hr className="hr-line" />
 
       <div className="coming-up-items">
-        {comingUpList?.map((item) => (
+        {comingUpList.map((item) => (
           <ComingUpListItem item={item}></ComingUpListItem>
         ))}
       </div>
 
-      {comingUpList && comingUpList.length !== 0 && (
+      {comingUpList.length !== 0 && (
         <span className="bottom-text">12 more in the next week...</span>
       )}
     </div>

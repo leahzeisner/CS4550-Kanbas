@@ -25,8 +25,6 @@ function Kanbas() {
     setCourses(courses.filter((course) => course._id !== courseId));
   };
 
-  // useEffect(() => console.log(courses), [courses]);
-
   return (
     <div className="screen-div">
       <KanbasNavigation />

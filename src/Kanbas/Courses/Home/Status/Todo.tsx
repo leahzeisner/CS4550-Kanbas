@@ -2,7 +2,7 @@ import { TodoList } from "../../../types";
 import TodoListItem from "./TodoListItem";
 
 interface TodoProps {
-  todoList: TodoList | undefined;
+  todoList: TodoList;
 }
 
 const Todo = ({ todoList }: TodoProps) => {
@@ -12,7 +12,9 @@ const Todo = ({ todoList }: TodoProps) => {
       <hr className="hr-line" />
 
       <div className="todo-items">
-        {todoList?.map((todo) => <TodoListItem todo={todo} />)}
+        {todoList.map((todo) => (
+          <TodoListItem todo={todo} />
+        ))}
       </div>
     </div>
   );

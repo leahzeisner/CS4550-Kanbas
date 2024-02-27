@@ -29,7 +29,6 @@ export type Sections = Section[];
 export type Module = {
   _id: string;
   title: string;
-  course: string;
   sections: Sections;
 };
 

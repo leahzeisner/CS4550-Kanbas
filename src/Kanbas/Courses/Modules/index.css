@@ -27,8 +27,13 @@ select {
   justify-content: center;
 }
 
-.module-buttons > button:hover {
+.module-buttons > button:hover:enabled {
   background-color: lightgray;
+}
+
+#collapse-all-btn:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
 }
 
 #module-button {

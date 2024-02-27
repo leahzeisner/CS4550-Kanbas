@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   FaArrowCircleRight,
   FaBan,
@@ -9,33 +8,22 @@ import {
   FaFile,
   FaHome,
 } from "react-icons/fa";
-import { useParams } from "react-router-dom";
-import { comingUpItems, todos } from "../../../Database";
 import { ComingUpList, TodoList } from "../../../types";
 import "../index.css";
 import ComingUp from "./ComingUp";
 import Todo from "./Todo";
 
-function Status() {
-  const { courseId } = useParams();
-  const [todoList, setTodoList] = useState<TodoList | undefined>(undefined);
-  const [comingUpList, setComingUpList] = useState<ComingUpList | undefined>(
-    undefined,
-  );
-
-  useEffect(() => {
-    const courseTodoList = todos.filter((todo) => todo.course === courseId);
-    const courseComingUpList = comingUpItems.filter(
-      (item) => item.course === courseId,
-    );
-    setTodoList(
-      courseTodoList.length > 0 ? courseTodoList[0].todos : undefined,
-    );
-    setComingUpList(
-      courseComingUpList.length > 0 ? courseComingUpList[0].items : undefined,
-    );
-  }, [courseId]);
-
+function Status({
+  todoList,
+  setTodoList,
+  comingUpList,
+  setComingUpList,
+}: {
+  todoList: TodoList;
+  setTodoList: (todos: TodoList) => void;
+  comingUpList: ComingUpList;
+  setComingUpList: (items: ComingUpList) => void;
+}) {
   return (
     <div className="course-info d-none d-xl-block">
       <div className="course-status">
