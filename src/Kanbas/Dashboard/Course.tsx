@@ -1,3 +1,4 @@
+import { FaCircleXmark, FaX } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { Course as CourseType } from "../types";
 
@@ -10,11 +11,24 @@ interface CourseProps {
 const Course = ({ course, editCourse, deleteCourse }: CourseProps) => {
   return (
     <div key={course._id} className="card">
-      <img
-        src={`/images/${course.image}`}
-        alt="Course"
-        className="card-img-top"
-      />
+      <div className="card-img">
+        <img
+          src={`/images/${course.image}`}
+          alt="Course"
+          className="card-img-top"
+        />
+        <button
+          type="button"
+          className="btn btn-danger"
+          id="deleteCourseBtn"
+          onClick={(event) => {
+            event.preventDefault();
+            deleteCourse(course._id);
+          }}
+        >
+          <FaCircleXmark id="delete-course" size={25} />
+        </button>
+      </div>
 
       <div className="card-body">
         <Link className="card-title" to={`/Kanbas/Courses/${course._id}/Home`}>
@@ -42,18 +56,6 @@ const Course = ({ course, editCourse, deleteCourse }: CourseProps) => {
             }}
           >
             Edit
-          </button>
-
-          <button
-            type="button"
-            className="btn btn-danger"
-            id="deleteCourseBtn"
-            onClick={(event) => {
-              event.preventDefault();
-              deleteCourse(course._id);
-            }}
-          >
-            X
           </button>
         </div>
       </div>

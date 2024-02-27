@@ -34,6 +34,7 @@
 }
 
 .card {
+  position: relative;
   margin-bottom: 30px;
   margin-right: 30px;
   width: 270px;
@@ -78,17 +79,20 @@ a:first-child {
   width: fit-content !important;
 }
 
-#deleteCourseBtn {
+#editCourseBtn {
   right: 16px;
 }
 
-#editCourseBtn {
-  left: 112px;
+.card-img {
+  position: relative;
+  width: 100%;
+  max-width: 270px;
 }
 
 .card-img-top {
   max-height: 150px;
   height: 150px;
+  opacity: 0.8;
 }
 
 .btn {
@@ -129,6 +133,31 @@ a:first-child {
   pointer-events: all !important;
 }
 
+#deleteCourseBtn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: red;
+  border: none;
+  height: fit-content;
+  background-color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+
+#deleteCourseBtn:hover {
+  color: darkred;
+}
+
+#delete-course {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
 @media (max-width: 768px) {
   .dashboard {
     padding: 0;
@@ -167,5 +196,9 @@ a:first-child {
 
   .add-edit-courses {
     width: 100%;
+  }
+
+  .card-img {
+    max-width: 100%;
   }
 }
