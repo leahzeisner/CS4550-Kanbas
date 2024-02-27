@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react";
 import { emptyCourse, validateForm } from "./constants";
-import { Course, Courses } from "../types";
+import { Course } from "../types";
 
-function AddCourse({
-  courses,
-  setCourses,
-}: {
-  courses: Courses;
-  setCourses: (courses: Courses) => void;
-}) {
+function AddCourse({ addCourse }: { addCourse: (course: Course) => void }) {
   const [course, setCourse] = useState<Course>(emptyCourse);
   const [addCourseEnabled, setAddCourseEnabled] = useState(true);
 
@@ -23,8 +17,8 @@ function AddCourse({
         _id: new Date().getTime().toString(),
         image: "/webdev2.webp", // TEMPORARY
       };
-      setCourses([...courses, newCourse]);
       setCourse(emptyCourse);
+      addCourse(newCourse);
     }
   };
 

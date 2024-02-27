@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { courseNavLinks, getKanbasLinks } from "../../constants";
-import { courses } from "../../Database";
 import "../../styles.css";
-import { Course } from "../../types";
+import { Course, Courses } from "../../types";
 import HeaderMain from "./HeaderMain";
 import CourseNavSmall from "./HeaderSmall/CourseNavSmall";
 import HeaderSmall from "./HeaderSmall/HeaderSmall";
 import KanbasNavSmall from "./HeaderSmall/KanbasNavSmall";
 import "./index.css";
 
-function Header() {
+function Header({
+  course,
+  setCourse,
+  courses,
+}: {
+  course: Course | undefined;
+  setCourse: (course: Course | undefined) => void;
+  courses: Courses;
+}) {
   const { pathname } = useLocation();
-  const [course, setCourse] = useState<Course | undefined>(undefined);
   const [page, setPage] = useState("");
 
   const kanbasNavLinks = getKanbasLinks(

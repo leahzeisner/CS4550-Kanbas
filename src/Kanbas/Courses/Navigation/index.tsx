@@ -1,12 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import "./index.css";
 import "../../styles.css";
-import { courses } from "../../Database";
 import { courseNavLinks } from "../../constants";
+import { Course } from "../../types";
 
-function CourseNavigation() {
+function CourseNavigation({ course }: { course: Course | undefined }) {
   const { pathname } = useLocation();
-  const course = courses.filter((course) => pathname.includes(course._id))[0];
 
   return (
     <div className="sticky-second-nav d-none d-lg-block" id="sticky-course-nav">
@@ -21,7 +20,7 @@ function CourseNavigation() {
             }
           >
             <Link
-              to={`/Kanbas/Courses/${course._id}/${link.label.replace(/\s/g, "")}`}
+              to={`/Kanbas/Courses/${course ? course._id + "/" : ""}${link.label.replace(/\s/g, "")}`}
             >
               {link.label}
             </Link>

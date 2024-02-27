@@ -1,26 +1,31 @@
-import { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
-import { emptyCourse } from "./constants";
-import { courses as dbcourses } from "../Database";
 import AddCourse from "./AddCourse";
 import Course from "./Course";
 import EditCourse from "./EditCourse";
 import "./index.css";
+import { Courses, Course as CourseItem } from "../types";
 
-function Dashboard() {
-  const [courses, setCourses] = useState(dbcourses);
-  const [isAdding, setIsAdding] = useState(true);
-  const [editableCourse, setEditableCourse] = useState(emptyCourse);
-
-  const editCourse = (courseId: string) => {
-    setIsAdding(false);
-    setEditableCourse(courses.filter((course) => course._id === courseId)[0]);
-  };
-
-  const deleteCourse = (courseId: string) => {
-    setCourses(courses.filter((course) => course._id !== courseId));
-  };
-
+function Dashboard({
+  courses,
+  setCourses,
+  editableCourse,
+  setEditableCourse,
+  editCourse,
+  deleteCourse,
+  isAdding,
+  setIsAdding,
+  addCourse,
+}: {
+  courses: Courses;
+  setCourses: (courses: Courses) => void;
+  editableCourse: CourseItem;
+  setEditableCourse: (course: CourseItem) => void;
+  editCourse: (courseId: string) => void;
+  deleteCourse: (courseId: string) => void;
+  isAdding: boolean;
+  setIsAdding: (isAdding: boolean) => void;
+  addCourse: (newCourse: CourseItem) => void;
+}) {
   return (
     <div className="dashboard">
       <div className="dash-header">
@@ -36,7 +41,7 @@ function Dashboard() {
         <hr style={{ marginBottom: "30px" }} />
 
         {isAdding ? (
-          <AddCourse courses={courses} setCourses={setCourses} />
+          <AddCourse addCourse={addCourse} />
         ) : (
           <EditCourse
             editableCourse={editableCourse}
