@@ -22,8 +22,18 @@ function ModuleList({
 
   // Open all modules on load
   useEffect(() => {
+    if (modulesList.length === 0) {
+      setCollapseAllText(collapseAll);
+    }
+
     const map: Record<string, boolean> = {};
-    modulesList.forEach((mod) => (map[mod._id] = mod.sections.length > 0));
+    modulesList.forEach(
+      (mod) =>
+        (map[mod._id] =
+          moduleVisibilityMap[mod._id] != undefined
+            ? moduleVisibilityMap[mod._id]
+            : mod.sections.length > 0),
+    );
     setModuleVisibilityMap(map);
   }, [modulesList]);
 
@@ -95,6 +105,8 @@ function ModuleList({
         {modulesList.map((module) => (
           <Module
             module={module}
+            modulesList={modulesList}
+            setModulesList={setModulesList}
             moduleVisibilityMap={moduleVisibilityMap}
             toggleModuleVisibility={toggleModuleVisibility}
           />

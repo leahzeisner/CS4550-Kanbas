@@ -191,6 +191,11 @@ select {
   justify-content: space-between;
 }
 
+#delete-module-item-btn {
+  color: red;
+  margin-right: 10px;
+}
+
 @media (max-width: 1199px) {
   .modules {
     width: 100%;

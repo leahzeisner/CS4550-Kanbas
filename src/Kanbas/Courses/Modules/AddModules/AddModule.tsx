@@ -25,6 +25,7 @@ function AddModule({
       { ...newModule, _id: new Date().getTime().toString() },
     ]);
     setNewModule(emptyModule);
+    setAddingModule(false);
   };
 
   const onCancelModule = () => {

@@ -1,12 +1,36 @@
 import { FaCheckCircle, FaEllipsisV } from "react-icons/fa";
-import { Section as SectionType } from "../../types";
+import { FaX } from "react-icons/fa6";
+import { Module, Modules, Section as SectionType } from "../../types";
 import SectionItem from "./SectionItem";
 
 interface SectionProps {
+  module: Module;
   section: SectionType;
+  modulesList: Modules;
+  setModulesList: (modules: Modules) => void;
 }
 
-const Section = ({ section }: SectionProps) => {
+const Section = ({
+  module,
+  section,
+  modulesList,
+  setModulesList,
+}: SectionProps) => {
+  const onDeleteSection = () => {
+    const filteredSections = module.sections.filter(
+      (sec) => sec._id != section._id,
+    );
+
+    const updatedModules: Modules = [];
+    modulesList.map((mod) => {
+      updatedModules.push(
+        mod === module ? { ...mod, sections: [...filteredSections] } : mod,
+      );
+    });
+
+    setModulesList([...updatedModules]);
+  };
+
   return (
     <div key={section._id} className="module-section-div">
       <li className="module-section-title">
@@ -22,14 +46,26 @@ const Section = ({ section }: SectionProps) => {
           <button type="button">
             <FaCheckCircle className="text-success" />
           </button>
-          <button type="button">
-            <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
+          <button
+            type="button"
+            id="delete-module-item-btn"
+            onClick={onDeleteSection}
+          >
+            <FaX className="ms-2" />
           </button>
         </div>
       </li>
 
       {/* Module Section Lessons */}
-      {section.lessons?.map((lesson) => <SectionItem item={lesson} />)}
+      {section.lessons?.map((lesson) => (
+        <SectionItem
+          module={module}
+          section={section}
+          item={lesson}
+          modulesList={modulesList}
+          setModulesList={setModulesList}
+        />
+      ))}
     </div>
   );
 };

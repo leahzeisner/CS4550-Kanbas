@@ -2,20 +2,24 @@ import {
   FaArrowDown,
   FaArrowRight,
   FaCheckCircle,
-  FaEllipsisV,
   FaPlusCircle,
 } from "react-icons/fa";
-import { Module as ModuleType } from "../../types";
+import { FaX } from "react-icons/fa6";
+import { Module as ModuleType, Modules } from "../../types";
 import Section from "./Section";
 
 interface ModuleProps {
   module: ModuleType;
+  modulesList: Modules;
+  setModulesList: (modules: Modules) => void;
   moduleVisibilityMap: Record<string, boolean>;
   toggleModuleVisibility: (modId: string) => void;
 }
 
 const Module = ({
   module,
+  modulesList,
+  setModulesList,
   moduleVisibilityMap,
   toggleModuleVisibility,
 }: ModuleProps) => {
@@ -28,6 +32,10 @@ const Module = ({
     ) : (
       <FaArrowRight className="ms-2"></FaArrowRight>
     );
+  };
+
+  const onDeleteModule = () => {
+    setModulesList(modulesList.filter((mod) => mod._id != module._id));
   };
 
   return (
@@ -55,15 +63,27 @@ const Module = ({
             <button type="button">
               <FaPlusCircle className="ms-2" />
             </button>
-            <button type="button">
-              <FaEllipsisV className="ms-2 ellipsis-v" />
+
+            <button
+              type="button"
+              id="delete-module-item-btn"
+              onClick={onDeleteModule}
+            >
+              <FaX className="ms-2" />
             </button>
           </div>
         </li>
 
         {/* Module Sections */}
         {moduleVisibilityMap[module._id] &&
-          module.sections?.map((section) => <Section section={section} />)}
+          module.sections?.map((section) => (
+            <Section
+              module={module}
+              section={section}
+              modulesList={modulesList}
+              setModulesList={setModulesList}
+            />
+          ))}
       </ul>
     </li>
   );
