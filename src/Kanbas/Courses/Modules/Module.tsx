@@ -1,11 +1,7 @@
-import {
-  FaArrowDown,
-  FaArrowRight,
-  FaCheckCircle,
-  FaPlusCircle,
-} from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaArrowDown, FaArrowRight, FaCheck, FaEdit } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
-import { Module as ModuleType, Modules } from "../../types";
+import { Module as ModuleType, Modules, Sections } from "../../types";
 import Section from "./Section";
 
 interface ModuleProps {
@@ -23,6 +19,13 @@ const Module = ({
   moduleVisibilityMap,
   toggleModuleVisibility,
 }: ModuleProps) => {
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [editingTitleText, setEditingTitleText] = useState(module.title);
+
+  useEffect(() => {
+    setEditingTitleText(module.title);
+  }, [module]);
+
   // Renders arrow icon based on module visibility
   const getTitleArrow = (modId: string) => {
     const moduleVisibile = moduleVisibilityMap[modId];
@@ -32,6 +35,35 @@ const Module = ({
     ) : (
       <FaArrowRight className="ms-2"></FaArrowRight>
     );
+  };
+
+  const onEditToggle = () => {
+    if (editingTitle) {
+      saveEdit();
+      setEditingTitle(false);
+    } else {
+      setEditingTitle(true);
+    }
+  };
+
+  const saveEdit = () => {
+    const updatedModules: Modules = [];
+    modulesList.map((mod) => {
+      updatedModules.push(
+        mod === module ? { ...mod, title: editingTitleText } : mod,
+      );
+    });
+    setModulesList([...updatedModules]);
+  };
+
+  const updateModuleSections = (updatedSections: Sections) => {
+    const updatedModules: Modules = [];
+    modulesList.map((mod) => {
+      updatedModules.push(
+        mod === module ? { ...mod, sections: [...updatedSections] } : mod,
+      );
+    });
+    setModulesList([...updatedModules]);
   };
 
   const onDeleteModule = () => {
@@ -53,15 +85,31 @@ const Module = ({
           </div>
 
           <div className="module-title-text">
-            <span className="module-section">{module.title}</span>
+            {editingTitle ? (
+              <textarea
+                rows={1}
+                cols={25}
+                className="module-section module-section-textarea"
+                value={editingTitleText}
+                onChange={(e) => setEditingTitleText(e.target.value)}
+                disabled={!editingTitle}
+              ></textarea>
+            ) : (
+              <span className="module-section">{editingTitleText}</span>
+            )}
           </div>
 
           <div className="module-list-buttons modules-buttons-right">
-            <button type="button">
-              <FaCheckCircle className="text-success" />
-            </button>
-            <button type="button">
-              <FaPlusCircle className="ms-2" />
+            <button
+              type="button"
+              onClick={onEditToggle}
+              disabled={editingTitle && editingTitleText === ""}
+            >
+              {editingTitle ? (
+                <FaCheck className="text-success" />
+              ) : (
+                <FaEdit className="text-success" />
+              )}
             </button>
 
             <button
@@ -80,8 +128,7 @@ const Module = ({
             <Section
               module={module}
               section={section}
-              modulesList={modulesList}
-              setModulesList={setModulesList}
+              updateModuleSections={updateModuleSections}
             />
           ))}
       </ul>

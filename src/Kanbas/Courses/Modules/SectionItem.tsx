@@ -1,11 +1,12 @@
-import { FaCheckCircle, FaEllipsisV } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaCheck, FaEdit, FaEllipsisV } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import {
   Module,
-  Modules,
   Section,
   SectionItem as SectionItemType,
+  SectionItems,
   Sections,
 } from "../../types";
 
@@ -13,38 +14,62 @@ interface SectionItemProps {
   module: Module;
   section: Section;
   item: SectionItemType;
-  modulesList: Modules;
-  setModulesList: (modules: Modules) => void;
+  updateModuleSections: (sections: Sections) => void;
 }
 
 const SectionItem = ({
   module,
   section,
   item,
-  modulesList,
-  setModulesList,
+  updateModuleSections,
 }: SectionItemProps) => {
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [editingTitleText, setEditingTitleText] = useState(item.title);
+
+  useEffect(() => {
+    setEditingTitleText(item.title);
+  }, [item]);
+
+  const onEditToggle = () => {
+    if (editingTitle) {
+      saveEdit();
+      setEditingTitle(false);
+    } else {
+      setEditingTitle(true);
+    }
+  };
+
+  const updateSection = (updatedSectionItems: SectionItems) => {
+    const updatedSections: Sections = [];
+    module.sections.map((sec) => {
+      updatedSections.push(
+        sec === section
+          ? { ...section, lessons: [...updatedSectionItems] }
+          : sec,
+      );
+    });
+    return updatedSections;
+  };
+
+  const saveEdit = () => {
+    const updatedSectionItems: SectionItems = [];
+    section.lessons.map((itm) => {
+      updatedSectionItems.push(
+        itm === item ? { ...itm, title: editingTitleText } : itm,
+      );
+    });
+
+    const updatedSections = updateSection(updatedSectionItems);
+    updateModuleSections(updatedSections);
+  };
+
   const onDeleteSectionItem = () => {
     const filteredSectionItems = section.lessons.filter(
       (itm) => itm._id != item._id,
     );
 
-    const updatedSections: Sections = [];
-    module.sections.map((sec) => {
-      updatedSections.push(
-        sec === section
-          ? { ...section, lessons: [...filteredSectionItems] }
-          : sec,
-      );
-    });
-
-    const updatedModules: Modules = [];
-    modulesList.map((mod) => {
-      updatedModules.push(
-        mod === module ? { ...mod, sections: [...updatedSections] } : mod,
-      );
-    });
-    setModulesList([...updatedModules]);
+    const updatedSections = updateSection(filteredSectionItems);
+    updateModuleSections(updatedSections);
   };
 
   return (
@@ -53,13 +78,32 @@ const SectionItem = ({
         <FaEllipsisV className="ms-2 ellipsis-v ellipsis-left"></FaEllipsisV>
       </div>
       <div className="module-item-text">
-        <Link to={item.url} className="module-section-item-link">
-          {item.title}
-        </Link>
+        {editingTitle ? (
+          <textarea
+            rows={1}
+            cols={25}
+            className="module-section-item-link module-section-textarea"
+            value={editingTitleText}
+            onChange={(e) => setEditingTitleText(e.target.value)}
+            disabled={!editingTitle}
+          ></textarea>
+        ) : (
+          <Link to={item.url} className="module-section-item-link">
+            {item.title}
+          </Link>
+        )}
       </div>
       <div className="module-list-buttons modules-buttons-right">
-        <button type="button">
-          <FaCheckCircle className="text-success" />
+        <button
+          type="button"
+          onClick={onEditToggle}
+          disabled={editingTitle && editingTitleText === ""}
+        >
+          {editingTitle ? (
+            <FaCheck className="text-success" />
+          ) : (
+            <FaEdit className="text-success" />
+          )}
         </button>
         <button
           type="button"

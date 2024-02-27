@@ -116,6 +116,8 @@ select {
   background-color: transparent;
   font-weight: bold;
   white-space: normal !important;
+  word-break: break-all;
+  border: none;
 }
 
 .module-item-text {
@@ -125,9 +127,12 @@ select {
 }
 
 .module-section-item-link {
+  background-color: transparent;
   text-decoration: none;
   color: #3d454c;
   white-space: normal !important;
+  word-break: break-all;
+  border: none;
 }
 
 .module-section-item-link:hover {
@@ -194,6 +199,12 @@ select {
 #delete-module-item-btn {
   color: red;
   margin-right: 10px;
+}
+
+.module-section-textarea {
+  height: fit-content;
+  align-items: center;
+  padding: 5px;
 }
 
 @media (max-width: 1199px) {
