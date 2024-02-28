@@ -7,11 +7,13 @@ function AddLessons({
   setNewSection,
   newModule,
   setNewModule,
+  onSaveSection,
 }: {
   newSection: Section;
   setNewSection: (section: Section) => void;
   newModule: Module;
   setNewModule: (newMod: Module) => void;
+  onSaveSection: () => void;
 }) {
   const emptyLessons = [
     {
@@ -144,9 +146,16 @@ function AddLessons({
             <button
               type="button"
               className="add-module-btns"
+              onClick={onSaveSection}
+            >
+              Save Section
+            </button>
+            <button
+              type="button"
+              className="add-module-btns"
               onClick={onAddLessonInput}
             >
-              <FaPlus></FaPlus>
+              Add row
             </button>
           </div>
         </div>

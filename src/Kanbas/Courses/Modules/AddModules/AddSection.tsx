@@ -83,15 +83,8 @@ function AddSection({
               setNewSection={setNewSection}
               setNewModule={setNewModule}
               newSection={newSection}
+              onSaveSection={onSaveSection}
             />
-
-            <button
-              type="button"
-              className="add-module-btns"
-              onClick={onSaveSection}
-            >
-              Save Section
-            </button>
           </div>
         )}
 

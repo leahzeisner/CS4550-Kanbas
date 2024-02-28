@@ -206,8 +206,18 @@ select {
   margin-top: 20px;
 }
 
-.add-module-footer-btns > button:first-child {
-  margin-right: 5px;
+.add-module-footer-btns > button:first-child,
+.add-lesson-input > button:first-child {
+  margin-right: 10px;
+}
+
+.add-module-footer-btns > button:last-child {
+  background-color: green;
+  color: white;
+}
+
+.add-module-footer-btns > button:last-child:hover {
+  background-color: darkgreen;
 }
 
 #delete-module-item-btn {
