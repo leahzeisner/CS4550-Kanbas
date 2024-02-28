@@ -16,7 +16,6 @@ function AddModule({
   };
   const dispatch = useDispatch();
   const [newModule, setNewModule] = useState<Module>(emptyModule);
-  const [addingSection, setAddingSection] = useState(false);
 
   const onSaveModule = () => {
     dispatch(addModule({ ...newModule, _id: new Date().getTime().toString() }));
@@ -29,14 +28,10 @@ function AddModule({
     setAddingModule(false);
   };
 
-  const disableSave = () => {
-    return newModule.title === "";
-  };
-
   return (
     <div className="add-module">
       <div className="add-module-header">
-        <h5>Add Module</h5>
+        <h4>Create Module:</h4>
         <input
           type="text"
           value={newModule.title}
@@ -45,29 +40,11 @@ function AddModule({
             setNewModule({ ...newModule, title: e.target.value })
           }
         />
-        <button
-          type="button"
-          className="add-module-btns"
-          onClick={() => setAddingSection(!addingSection)}
-        >
-          {addingSection ? "Hide Sections" : "Add Sections"}
-        </button>
       </div>
 
-      {addingSection && (
-        <AddSection newModule={newModule} setNewModule={setNewModule} />
-      )}
+      <AddSection newModule={newModule} setNewModule={setNewModule} />
 
       <div className="add-module-footer-btns">
-        <button
-          type="button"
-          className="add-module-btns"
-          onClick={onSaveModule}
-          disabled={disableSave()}
-        >
-          Save
-        </button>
-
         <button
           type="button"
           className="add-module-btns"
@@ -75,6 +52,13 @@ function AddModule({
           onClick={onCancelModule}
         >
           Cancel
+        </button>
+        <button
+          type="button"
+          className="add-module-btns"
+          onClick={onSaveModule}
+        >
+          Save
         </button>
       </div>
     </div>

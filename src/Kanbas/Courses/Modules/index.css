@@ -163,6 +163,13 @@ select {
   margin: 10px 0px 10px 0px;
 }
 
+.add-lesson-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0px 5px 0px;
+}
+
 .add-module-btns {
   border: none;
   box-shadow: 1px 1px lightgray;
@@ -184,16 +191,23 @@ select {
 .add-section-input {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 
-.add-section-input > input {
+.add-section-input > input,
+.add-lesson-input > input {
   width: 100%;
   margin-right: 10px;
 }
 
 .add-module-footer-btns {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.add-module-footer-btns > button:first-child {
+  margin-right: 5px;
 }
 
 #delete-module-item-btn {
@@ -207,6 +221,33 @@ select {
   padding: 5px;
 }
 
+.add-module-section-header {
+  display: flex;
+  align-items: center;
+}
+
+.add-module-section-header > button,
+.add-module-lesson-header > button,
+.delete-lesson-btn,
+.save-section-btn {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin-bottom: 8px;
+  margin-left: 5px;
+}
+
+.add-module-lesson-header {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.add-lesson-input {
+  display: flex;
+  justify-content: flex-end;
+}
+
 @media (max-width: 1199px) {
   .modules {
     width: 100%;
@@ -216,6 +257,15 @@ select {
 @media (max-width: 991px) {
   .modules {
     margin-right: 0px;
+  }
+
+  .add-module-footer-btns {
+    justify-content: space-between;
+  }
+
+  .add-module-footer-btns > button {
+    margin-right: 0px;
+    width: 25%;
   }
 }
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { FaPlus, FaX } from "react-icons/fa6";
 import { Module, Section } from "../../../types";
-import AddLesson from "./AddLesson";
+import AddLesson from "./AddLessons";
 
 function AddSection({
   newModule,
@@ -14,96 +15,97 @@ function AddSection({
     title: "",
     lessons: [],
   };
-  const [newSection, setNewSection] = useState<Section>(emptySection);
-  const [addingLessonToSectionMap, setAddingLessonToSectionMap] = useState<
-    Record<string, boolean>
-  >({});
 
-  const initAddLessonVisibility = (sectionId: string) => {
-    const mapCopy = addingLessonToSectionMap;
-    mapCopy[sectionId] = false;
-    setAddingLessonToSectionMap(mapCopy);
-  };
+  const NEWID = new Date().getTime().toString();
+  const [id, setId] = useState(NEWID);
+  const [addingSection, setAddingSection] = useState(false);
+  const [newSection, setNewSection] = useState<Section>({
+    ...emptySection,
+    _id: NEWID,
+  });
 
-  const onAddSection = () => {
+  const onSaveSection = () => {
+    setNewModule({
+      ...newModule,
+      sections: [...newModule.sections, newSection],
+    });
+
+    setAddingSection(false);
     const newId = new Date().getTime().toString();
-    setNewModule({
-      ...newModule,
-      sections: [...newModule.sections, { ...newSection, _id: newId }],
-    });
-    setNewSection(emptySection);
-    initAddLessonVisibility(newId);
+    setId(newId);
+    setNewSection({ ...emptySection, _id: newId });
   };
 
-  const onDeleteSection = (sectionId: string) => {
-    setNewModule({
-      ...newModule,
-      sections: newModule.sections.filter((sec) => sec._id != sectionId),
-    });
-  };
+  const onSectionToggle = () => {
+    if (addingSection) {
+      // Remove section from newModule sections on close
+      setNewModule({
+        ...newModule,
+        sections: [...newModule.sections.filter((sec) => sec._id != id)],
+      });
+      setNewSection({ ...emptySection });
+      setId("");
+    }
 
-  const onAddLesson = (sectionId: string) => {
-    setAddingLessonToSectionMap((prevState: Record<string, boolean>) => ({
-      ...prevState,
-      [sectionId]: !prevState[sectionId],
-    }));
+    // Toggle addingSection
+    setAddingSection(!addingSection);
   };
 
   return (
     <div>
       <div className="add-module-section">
-        <h5>Add Sections</h5>
-
-        <div className="add-section-input">
-          <input
-            type="text"
-            value={newSection.title}
-            placeholder="Section Title"
-            onChange={(e) =>
-              setNewSection({ ...newSection, title: e.target.value })
-            }
-          />
-          <button
-            type="button"
-            className="add-module-btns"
-            onClick={onAddSection}
-            disabled={newSection.title === ""}
-          >
-            Add
+        <div className="add-module-section-header">
+          <h5>Add Section</h5>
+          <button type="button" onClick={onSectionToggle}>
+            {addingSection ? (
+              <FaX className="ms-2" size={16}></FaX>
+            ) : (
+              <FaPlus className="ms-2" size={18}></FaPlus>
+            )}
           </button>
         </div>
 
-        {newModule.sections.map((section) => (
+        {addingSection && (
           <div>
-            <div>
-              <span>{section.title}</span>
-              <button
-                type="button"
-                className="add-module-btns"
-                onClick={() => onAddLesson(section._id)}
-              >
-                {addingLessonToSectionMap[section._id]
-                  ? "Hide Lessons"
-                  : "Add Lessons"}
-              </button>
-              <button
-                type="button"
-                className="add-module-btns"
-                onClick={() => onDeleteSection(section._id)}
-              >
-                Delete
-              </button>
+            <div className="add-section-input">
+              <input
+                type="text"
+                value={newSection.title}
+                placeholder="Section Title"
+                onChange={(e) =>
+                  setNewSection({ ...newSection, title: e.target.value })
+                }
+              />
             </div>
 
-            {addingLessonToSectionMap[section._id] && (
-              <AddLesson
-                newModule={newModule}
-                setNewModule={setNewModule}
-                section={section}
-              />
-            )}
+            <AddLesson
+              newModule={newModule}
+              setNewSection={setNewSection}
+              setNewModule={setNewModule}
+              newSection={newSection}
+            />
+
+            <button
+              type="button"
+              className="add-module-btns"
+              onClick={onSaveSection}
+            >
+              Save Section
+            </button>
           </div>
-        ))}
+        )}
+
+        {!addingSection && (
+          <>
+            {newModule.sections.map((section) => (
+              <div className="add-module-section">
+                <div className="add-section-input">
+                  <span>{section.title}</span>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
