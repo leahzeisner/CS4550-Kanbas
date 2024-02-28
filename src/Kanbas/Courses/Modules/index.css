@@ -167,7 +167,7 @@ select {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 5px 0px 5px 0px;
+  margin-top: 10px;
 }
 
 .add-module-btns {
@@ -256,6 +256,16 @@ select {
 .add-lesson-input {
   display: flex;
   justify-content: flex-end;
+}
+
+.lesson-list,
+.section-list {
+  margin-left: 10px;
+}
+
+.lesson-list > button,
+.section-list > button {
+  color: red;
 }
 
 @media (max-width: 1199px) {

@@ -61,6 +61,8 @@ function AddModule({
           Save
         </button>
       </div>
+
+      <hr className="module-buttons-hr" />
     </div>
   );
 }

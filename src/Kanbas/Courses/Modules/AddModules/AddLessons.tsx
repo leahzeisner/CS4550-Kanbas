@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { FaPlus, FaX } from "react-icons/fa6";
+import { FaMinus, FaPlus, FaX } from "react-icons/fa6";
 import { Module, Section, SectionItem, SectionItems } from "../../../types";
 
 function AddLessons({
@@ -100,7 +100,7 @@ function AddLessons({
         <h5>Add Lessons</h5>
         <button type="button" onClick={onLessonToggle}>
           {addingLessons ? (
-            <FaX className="ms-2" size={16}></FaX>
+            <FaMinus className="ms-2" size={18}></FaMinus>
           ) : (
             <FaPlus className="ms-2" size={18}></FaPlus>
           )}
@@ -110,14 +110,14 @@ function AddLessons({
       {addingLessons && (
         <div>
           {newSection.lessons.map((les) => (
-            <div>
+            <div className="lesson-list">
               <span>{les.title}</span>
               <button
                 type="button"
                 className="delete-lesson-btn"
                 onClick={() => onDeleteLesson(les._id)}
               >
-                <FaX className="ms-2"></FaX>
+                <FaX className="ms-2" size={12}></FaX>
               </button>
             </div>
           ))}

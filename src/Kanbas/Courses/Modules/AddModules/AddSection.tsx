@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaPlus, FaX } from "react-icons/fa6";
+import { FaMinus, FaPlus, FaX } from "react-icons/fa6";
 import { Module, Section } from "../../../types";
 import AddLesson from "./AddLessons";
 
@@ -39,16 +39,20 @@ function AddSection({
   const onSectionToggle = () => {
     if (addingSection) {
       // Remove section from newModule sections on close
-      setNewModule({
-        ...newModule,
-        sections: [...newModule.sections.filter((sec) => sec._id != id)],
-      });
+      deleteSection(id);
       setNewSection({ ...emptySection });
       setId("");
     }
 
     // Toggle addingSection
     setAddingSection(!addingSection);
+  };
+
+  const deleteSection = (sectionId: string) => {
+    setNewModule({
+      ...newModule,
+      sections: [...newModule.sections.filter((sec) => sec._id != sectionId)],
+    });
   };
 
   return (
@@ -58,7 +62,7 @@ function AddSection({
           <h5>Add Section</h5>
           <button type="button" onClick={onSectionToggle}>
             {addingSection ? (
-              <FaX className="ms-2" size={16}></FaX>
+              <FaMinus className="ms-2" size={18}></FaMinus>
             ) : (
               <FaPlus className="ms-2" size={18}></FaPlus>
             )}
@@ -92,8 +96,15 @@ function AddSection({
           <>
             {newModule.sections.map((section) => (
               <div className="add-module-section">
-                <div className="add-section-input">
+                <div className="section-list">
                   <span>{section.title}</span>
+                  <button
+                    type="button"
+                    className="delete-lesson-btn"
+                    onClick={() => deleteSection(section._id)}
+                  >
+                    <FaX className="ms-2" size={12}></FaX>
+                  </button>
                 </div>
               </div>
             ))}
