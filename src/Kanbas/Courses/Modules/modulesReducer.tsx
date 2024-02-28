@@ -21,13 +21,9 @@ const modulesSlice = createSlice({
       );
     },
     updateModule: (state, action) => {
-      state.modulesList = state.modulesList.map((module) => {
-        if (module._id === action.payload._id) {
-          return action.payload;
-        } else {
-          return module;
-        }
-      });
+      state.modulesList = state.modulesList.map((module) =>
+        module._id === action.payload._id ? action.payload : module,
+      );
     },
     setModulesList: (state, action) => {
       state.modulesList = action.payload;

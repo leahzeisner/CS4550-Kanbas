@@ -8,22 +8,11 @@ import {
   FaFile,
   FaHome,
 } from "react-icons/fa";
-import { ComingUpList, TodoList } from "../../../types";
 import "../index.css";
 import ComingUp from "./ComingUp";
 import Todo from "./Todo";
 
-function Status({
-  todoList,
-  setTodoList,
-  comingUpList,
-  setComingUpList,
-}: {
-  todoList: TodoList;
-  setTodoList: (todos: TodoList) => void;
-  comingUpList: ComingUpList;
-  setComingUpList: (items: ComingUpList) => void;
-}) {
+function Status() {
   return (
     <div className="course-info d-none d-xl-block">
       <div className="course-status">
@@ -72,8 +61,8 @@ function Status({
         </div>
       </div>
 
-      <Todo todoList={todoList} />
-      <ComingUp comingUpList={comingUpList} />
+      <Todo />
+      <ComingUp />
     </div>
   );
 }

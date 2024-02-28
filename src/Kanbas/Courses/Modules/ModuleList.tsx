@@ -12,12 +12,11 @@ import { useParams } from "react-router";
 import { modules } from "../../Database";
 
 function ModuleList() {
+  const dispatch = useDispatch();
   const { courseId } = useParams();
   const modulesList: Modules = useSelector(
     (state: KanbasState) => state.modulesReducer.modulesList,
   );
-  const dispatch = useDispatch();
-
   const collapseAll = "Collapse All";
   const [collapseAllText, setCollapseAllText] = useState(collapseAll);
   const [moduleVisibilityMap, setModuleVisibilityMap] = useState<
@@ -30,7 +29,7 @@ function ModuleList() {
 
     var mods: Modules = [];
     if (classModules.length > 0) {
-      mods = [...classModules[0].modules];
+      mods = classModules[0].modules;
       dispatch(setModulesList(mods));
     }
 

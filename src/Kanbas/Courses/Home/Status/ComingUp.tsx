@@ -1,13 +1,29 @@
+import { useEffect } from "react";
 import { FaCalendar } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { comingUpItems } from "../../../Database";
+import { KanbasState } from "../../../store";
 import { ComingUpList } from "../../../types";
 import ComingUpListItem from "./ComingUpListItem";
+import { setComingUpList } from "./statusReducer";
 
-interface ComingUpProps {
-  comingUpList: ComingUpList;
-}
+const ComingUp = () => {
+  const dispatch = useDispatch();
+  const { courseId } = useParams();
+  const comingUpList: ComingUpList = useSelector(
+    (state: KanbasState) => state.statusReducer.comingUpList,
+  );
 
-const ComingUp = ({ comingUpList }: ComingUpProps) => {
+  useEffect(() => {
+    const classComingUpItems = comingUpItems.filter(
+      (item) => item._id === courseId,
+    );
+    if (comingUpItems.length > 0) {
+      dispatch(setComingUpList(classComingUpItems[0].items));
+    }
+  }, []);
+
   return (
     <div className="coming-up">
       <div className="coming-up-header">

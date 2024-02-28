@@ -1,11 +1,26 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { todos } from "../../../Database";
+import { KanbasState } from "../../../store";
 import { TodoList } from "../../../types";
+import { setTodoList } from "./statusReducer";
 import TodoListItem from "./TodoListItem";
 
-interface TodoProps {
-  todoList: TodoList;
-}
+const Todo = () => {
+  const dispatch = useDispatch();
+  const { courseId } = useParams();
+  const todoList: TodoList = useSelector(
+    (state: KanbasState) => state.statusReducer.todoList,
+  );
 
-const Todo = ({ todoList }: TodoProps) => {
+  useEffect(() => {
+    const classTodos = todos.filter((todo) => todo._id === courseId);
+    if (classTodos.length > 0) {
+      dispatch(setTodoList(classTodos[0].todos));
+    }
+  }, []);
+
   return (
     <div className="todo">
       <p className="course-info-section">To Do</p>
