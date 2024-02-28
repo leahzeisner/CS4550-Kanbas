@@ -105,21 +105,47 @@ a:first-child {
 }
 
 .add-edit-courses {
-  width: 50%;
+  width: 100%;
   margin-bottom: 40px;
   color: #212529;
+}
+
+.add-edit-courses-title {
+  display: flex;
+  align-items: center;
+}
+
+#addCoursesArrowBtn {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .add-edit-courses-input {
   margin-bottom: 10px;
 }
 
+.add-edit-courses-input:not(:last-child) {
+  margin-right: 10px;
+}
+
+.add-edit-courses-input:last-child {
+  margin-right: 70px;
+}
+
+.add-edit-courses-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 #addEditCourseBtn {
-  padding: 5px 15px 5px 15px;
   border: none;
   box-shadow: 1px 1px lightgray;
   padding: 5px 15px 5px 15px;
   margin-right: 5px;
+  margin-top: 5px;
   border-radius: 4px;
   align-items: center;
 }
@@ -156,6 +182,37 @@ a:first-child {
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+.edit-course-ftr-btns {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 70px;
+}
+
+.edit-course-cancel-btn {
+  background-color: red;
+  color: white;
+  margin-left: 5px;
+}
+
+.edit-course-cancel-btn:hover {
+  background-color: darkred !important;
+}
+
+@media (max-width: 1050px) {
+  .add-edit-courses-container {
+    flex-direction: column;
+  }
+
+  .edit-course-ftr-btns {
+    margin-right: 0px;
+    justify-content: space-between;
+  }
+
+  .edit-course-ftr-btns > button {
+    width: 25%;
+  }
 }
 
 @media (max-width: 768px) {
