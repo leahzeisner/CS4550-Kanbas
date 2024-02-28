@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { emptyCourse, validateForm } from "./constants";
 import { Course } from "../types";
 import { FaPlus, FaX } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
+import { addCourse } from "./coursesReducer";
 
-function AddCourse({ addCourse }: { addCourse: (course: Course) => void }) {
+function AddCourse() {
+  const dispatch = useDispatch();
   const [course, setCourse] = useState<Course>(emptyCourse);
   const [addCourseEnabled, setAddCourseEnabled] = useState(true);
   const [addingCourse, setAddingCourse] = useState(false);
@@ -20,7 +23,7 @@ function AddCourse({ addCourse }: { addCourse: (course: Course) => void }) {
         image: "/webdev2.webp", // TEMPORARY
       };
       setCourse(emptyCourse);
-      addCourse(newCourse);
+      dispatch(addCourse(newCourse));
       setAddingCourse(false);
     }
   };

@@ -67,9 +67,3 @@ export type Assignment = {
 };
 
 export type AssignmentsList = Assignment[];
-
-export type CourseAssignments = {
-  _id: string;
-  course: string;
-  assignments: AssignmentsList;
-};

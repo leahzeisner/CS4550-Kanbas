@@ -3,29 +3,24 @@ import AddCourse from "./AddCourse";
 import Course from "./Course";
 import EditCourse from "./EditCourse";
 import "./index.css";
-import { Courses, Course as CourseItem } from "../types";
+import { Courses } from "../types";
+import { useSelector } from "react-redux";
+import { KanbasState } from "../store";
+import { useState } from "react";
+import { emptyCourse } from "./constants";
 
-function Dashboard({
-  courses,
-  setCourses,
-  editableCourse,
-  setEditableCourse,
-  editCourse,
-  deleteCourse,
-  isAdding,
-  setIsAdding,
-  addCourse,
-}: {
-  courses: Courses;
-  setCourses: (courses: Courses) => void;
-  editableCourse: CourseItem;
-  setEditableCourse: (course: CourseItem) => void;
-  editCourse: (courseId: string) => void;
-  deleteCourse: (courseId: string) => void;
-  isAdding: boolean;
-  setIsAdding: (isAdding: boolean) => void;
-  addCourse: (newCourse: CourseItem) => void;
-}) {
+function Dashboard() {
+  const courses: Courses = useSelector(
+    (state: KanbasState) => state.coursesReducer.coursesList,
+  );
+  const [isAdding, setIsAdding] = useState(true);
+  const [editableCourse, setEditableCourse] = useState(emptyCourse);
+
+  const onEditCourse = (courseId: string) => {
+    setIsAdding(false);
+    setEditableCourse(courses.filter((course) => course._id === courseId)[0]);
+  };
+
   return (
     <div className="dashboard">
       <div className="dash-header">
@@ -41,24 +36,18 @@ function Dashboard({
         <hr style={{ marginBottom: "30px" }} />
 
         {isAdding ? (
-          <AddCourse addCourse={addCourse} />
+          <AddCourse />
         ) : (
           <EditCourse
             editableCourse={editableCourse}
             setEditableCourse={setEditableCourse}
-            courses={courses}
-            setCourses={setCourses}
             setIsAdding={setIsAdding}
           />
         )}
 
         <div className="d-flex flex-wrap">
           {courses.map((course) => (
-            <Course
-              course={course}
-              editCourse={editCourse}
-              deleteCourse={deleteCourse}
-            />
+            <Course course={course} onEditCourse={onEditCourse} />
           ))}
         </div>
       </div>

@@ -2,7 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import modulesReducer from "../Courses/Modules/modulesReducer";
 import statusReducer from "../Courses/Home/Status/statusReducer";
 import assignmentsReducer from "../Courses/Assignments/assignmentsReducer";
-import { AssignmentsList, ComingUpList, Modules, TodoList } from "../types";
+import coursesReducer from "../Dashboard/coursesReducer";
+import {
+  AssignmentsList,
+  ComingUpList,
+  Course,
+  Courses,
+  Modules,
+  TodoList,
+} from "../types";
 
 export interface KanbasState {
   modulesReducer: {
@@ -15,6 +23,11 @@ export interface KanbasState {
   assignmentsReducer: {
     assignmentsList: AssignmentsList;
   };
+  coursesReducer: {
+    coursesList: Courses;
+    course: Course;
+    page: string;
+  };
 }
 
 const store = configureStore({
@@ -22,6 +35,7 @@ const store = configureStore({
     modulesReducer,
     statusReducer,
     assignmentsReducer,
+    coursesReducer,
   },
 });
 

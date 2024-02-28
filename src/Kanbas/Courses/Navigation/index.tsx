@@ -3,9 +3,14 @@ import "./index.css";
 import "../../styles.css";
 import { courseNavLinks } from "../../constants";
 import { Course } from "../../types";
+import { useSelector } from "react-redux";
+import { KanbasState } from "../../store";
 
-function CourseNavigation({ course }: { course: Course | undefined }) {
+function CourseNavigation() {
   const { pathname } = useLocation();
+  const course: Course | undefined = useSelector(
+    (state: KanbasState) => state.coursesReducer.course,
+  );
 
   return (
     <div className="sticky-second-nav d-none d-lg-block" id="sticky-course-nav">

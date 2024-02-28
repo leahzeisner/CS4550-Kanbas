@@ -1,13 +1,17 @@
 import { FaBars, FaArrowRight, FaBinoculars } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { KanbasState } from "../../store";
 import { Course } from "../../types";
 
-interface HeaderMainProps {
-  course: Course | undefined;
-  page: string;
-}
+const HeaderMain = () => {
+  const course: Course = useSelector(
+    (state: KanbasState) => state.coursesReducer.course,
+  );
+  const page: string = useSelector(
+    (state: KanbasState) => state.coursesReducer.page,
+  );
 
-const HeaderMain = ({ course, page }: HeaderMainProps) => {
   const toggleCourseNav = () => {
     const courseNav = document.getElementById("sticky-course-nav");
     const mainContent = Array.from(

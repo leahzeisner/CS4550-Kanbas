@@ -5,19 +5,22 @@ import "../styles.css";
 import Header from "./Header";
 import Home from "./Home";
 import Assignments from "./Assignments";
-import { Courses as CourseList } from "../types";
-import { useState } from "react";
+import { useEffect } from "react";
+import { courses } from "../Database";
+import { useDispatch } from "react-redux";
+import { setCourse } from "../Dashboard/coursesReducer";
 
-function Courses({ courses }: { courses: CourseList }) {
+function Courses() {
   const { courseId } = useParams();
-  const [course, setCourse] = useState(
-    courses.find((course) => course._id === courseId),
-  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setCourse(courses.find((course) => course._id === courseId)));
+  }, []);
 
   return (
     <div>
-      <Header course={course} setCourse={setCourse} courses={courses} />
-      <CourseNavigation course={course} />
+      <Header />
+      <CourseNavigation />
       <div>
         <Routes>
           <Route path="/" element={<Navigate to="Home" />} />

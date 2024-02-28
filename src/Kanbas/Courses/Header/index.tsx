@@ -1,25 +1,18 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 import { courseNavLinks, getKanbasLinks } from "../../constants";
+import { setPage } from "../../Dashboard/coursesReducer";
 import "../../styles.css";
-import { Course, Courses } from "../../types";
 import HeaderMain from "./HeaderMain";
 import CourseNavSmall from "./HeaderSmall/CourseNavSmall";
 import HeaderSmall from "./HeaderSmall/HeaderSmall";
 import KanbasNavSmall from "./HeaderSmall/KanbasNavSmall";
 import "./index.css";
 
-function Header({
-  course,
-  setCourse,
-  courses,
-}: {
-  course: Course | undefined;
-  setCourse: (course: Course | undefined) => void;
-  courses: Courses;
-}) {
+function Header() {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const [page, setPage] = useState("");
 
   const kanbasNavLinks = getKanbasLinks(
     "kanbas-nav-small-icon",
@@ -31,15 +24,10 @@ function Header({
   const [courseNavClass, setCourseNavClass] = useState(hiddenClass);
 
   useEffect(() => {
-    const coursesList = courses.filter((course) =>
-      pathname.includes(course._id),
-    );
-    setCourse(coursesList.length > 0 ? coursesList[0] : undefined);
-
     const pagesList = courseNavLinks.filter((link) =>
       pathname.includes(link.label.replace(/\s/g, "")),
     );
-    setPage(pagesList.length > 0 ? pagesList[0].label : "");
+    dispatch(setPage(pagesList.length > 0 ? pagesList[0].label : ""));
   }, [pathname]);
 
   const onKanbasSandwichClicked = () => {
@@ -63,12 +51,10 @@ function Header({
   return (
     <div>
       {/* Course Page Header (wider screens) */}
-      <HeaderMain course={course} page={page} />
+      <HeaderMain />
 
       {/* Top Navigation (smaller screens) */}
       <HeaderSmall
-        course={course}
-        page={page}
         onKanbasSandwichClicked={onKanbasSandwichClicked}
         onCourseNavArrowClicked={onCourseNavArrowClicked}
         courseNavClass={courseNavClass}
@@ -83,7 +69,6 @@ function Header({
 
       {/* Course Navigation (smaller screens) */}
       <CourseNavSmall
-        courseId={course?._id}
         courseNavClass={courseNavClass}
         onCourseNavArrowClicked={onCourseNavArrowClicked}
         courseNavLinks={courseNavLinks}

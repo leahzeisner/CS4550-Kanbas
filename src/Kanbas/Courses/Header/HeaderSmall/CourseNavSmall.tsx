@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 interface CourseNavSmallProps {
-  courseId: string | undefined;
   courseNavClass: string;
   onCourseNavArrowClicked: () => void;
   courseNavLinks: {
@@ -11,11 +10,12 @@ interface CourseNavSmallProps {
 }
 
 const CourseNavSmall = ({
-  courseId,
   courseNavClass,
   onCourseNavArrowClicked,
   courseNavLinks,
 }: CourseNavSmallProps) => {
+  const { courseId } = useParams();
+
   return (
     <div className={courseNavClass}>
       <div className="course-nav-small">

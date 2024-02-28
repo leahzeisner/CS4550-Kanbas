@@ -1,22 +1,27 @@
 import { FaBars, FaBinoculars, FaArrowDown } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+import { KanbasState } from "../../../store";
 import { Course } from "../../../types";
 
 interface HeaderSmallProps {
-  course: Course | undefined;
-  page: string;
   onKanbasSandwichClicked: () => void;
   onCourseNavArrowClicked: () => void;
   courseNavClass: string;
 }
 
 const HeaderSmall = ({
-  course,
-  page,
   onKanbasSandwichClicked,
   onCourseNavArrowClicked,
   courseNavClass,
 }: HeaderSmallProps) => {
+  const course: Course = useSelector(
+    (state: KanbasState) => state.coursesReducer.course,
+  );
+  const page: string = useSelector(
+    (state: KanbasState) => state.coursesReducer.page,
+  );
+
   return (
     <div className="top-nav d-flex d-lg-none">
       <button

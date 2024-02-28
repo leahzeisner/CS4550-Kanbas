@@ -1,32 +1,28 @@
 import { useState, useEffect } from "react";
 import { emptyCourse, validateForm } from "./constants";
-import { Course, Courses } from "../types";
+import { Course } from "../types";
+import { useDispatch } from "react-redux";
+import { updateCourse } from "./coursesReducer";
 
 function EditCourse({
   editableCourse,
   setEditableCourse,
-  courses,
-  setCourses,
   setIsAdding,
 }: {
   editableCourse: Course;
   setEditableCourse: (course: Course) => void;
-  courses: Courses;
-  setCourses: (courses: Courses) => void;
   setIsAdding: (isAdding: boolean) => void;
 }) {
+  const dispatch = useDispatch();
   const [updateCourseEnabled, setUpdateCourseEnabled] = useState(true);
 
   useEffect(() => {
     setUpdateCourseEnabled(validateForm(editableCourse));
   }, [editableCourse]);
 
-  const updateCourse = () => {
+  const onUpdateCourse = () => {
     if (validateForm(editableCourse)) {
-      const updatedCourses = courses.map((courseObj) =>
-        courseObj._id === editableCourse._id ? editableCourse : courseObj,
-      ) as unknown as Courses;
-      setCourses(updatedCourses);
+      dispatch(updateCourse({ ...editableCourse }));
       setEditableCourse(emptyCourse);
       setIsAdding(true);
     }
@@ -104,7 +100,7 @@ function EditCourse({
         <button
           type="button"
           id="addEditCourseBtn"
-          onClick={updateCourse}
+          onClick={onUpdateCourse}
           disabled={!updateCourseEnabled}
         >
           Update
