@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { FaCheck, FaEdit, FaEllipsisV } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
 import { Module, Section as SectionType, Sections } from "../../types";
+import { updateModule } from "./modulesReducer";
 import SectionItem from "./SectionItem";
 
 interface SectionProps {
   module: Module;
   section: SectionType;
-  updateModuleSections: (sections: Sections) => void;
 }
 
-const Section = ({ module, section, updateModuleSections }: SectionProps) => {
+const Section = ({ module, section }: SectionProps) => {
+  const dispatch = useDispatch();
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingTitleText, setEditingTitleText] = useState(section.title);
 
@@ -34,14 +36,14 @@ const Section = ({ module, section, updateModuleSections }: SectionProps) => {
         sec === section ? { ...sec, title: editingTitleText } : sec,
       );
     });
-    updateModuleSections(updatedSections);
+    dispatch(updateModule({ ...module, sections: [...updatedSections] }));
   };
 
   const onDeleteSection = () => {
     const filteredSections = module.sections.filter(
       (sec) => sec._id != section._id,
     );
-    updateModuleSections(filteredSections);
+    dispatch(updateModule({ ...module, sections: [...filteredSections] }));
   };
 
   return (
@@ -90,12 +92,7 @@ const Section = ({ module, section, updateModuleSections }: SectionProps) => {
 
       {/* Module Section Lessons */}
       {section.lessons?.map((lesson) => (
-        <SectionItem
-          module={module}
-          section={section}
-          item={lesson}
-          updateModuleSections={updateModuleSections}
-        />
+        <SectionItem module={module} section={section} item={lesson} />
       ))}
     </div>
   );

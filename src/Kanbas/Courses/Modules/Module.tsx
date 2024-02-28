@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { FaArrowDown, FaArrowRight, FaCheck, FaEdit } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
-import { Module as ModuleType, Modules, Sections } from "../../types";
+import { useDispatch } from "react-redux";
+import { Module as ModuleType } from "../../types";
+import { deleteModule, updateModule } from "./modulesReducer";
 import Section from "./Section";
 
 interface ModuleProps {
   module: ModuleType;
-  modulesList: Modules;
-  setModulesList: (modules: Modules) => void;
   moduleVisibilityMap: Record<string, boolean>;
   toggleModuleVisibility: (modId: string) => void;
 }
 
 const Module = ({
   module,
-  modulesList,
-  setModulesList,
   moduleVisibilityMap,
   toggleModuleVisibility,
 }: ModuleProps) => {
+  const dispatch = useDispatch();
+
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingTitleText, setEditingTitleText] = useState(module.title);
 
@@ -47,27 +47,11 @@ const Module = ({
   };
 
   const saveEdit = () => {
-    const updatedModules: Modules = [];
-    modulesList.map((mod) => {
-      updatedModules.push(
-        mod === module ? { ...mod, title: editingTitleText } : mod,
-      );
-    });
-    setModulesList([...updatedModules]);
-  };
-
-  const updateModuleSections = (updatedSections: Sections) => {
-    const updatedModules: Modules = [];
-    modulesList.map((mod) => {
-      updatedModules.push(
-        mod === module ? { ...mod, sections: [...updatedSections] } : mod,
-      );
-    });
-    setModulesList([...updatedModules]);
+    dispatch(updateModule({ ...module, title: editingTitleText }));
   };
 
   const onDeleteModule = () => {
-    setModulesList(modulesList.filter((mod) => mod._id != module._id));
+    dispatch(deleteModule({ ...module }));
   };
 
   return (
@@ -125,11 +109,7 @@ const Module = ({
         {/* Module Sections */}
         {moduleVisibilityMap[module._id] &&
           module.sections?.map((section) => (
-            <Section
-              module={module}
-              section={section}
-              updateModuleSections={updateModuleSections}
-            />
+            <Section module={module} section={section} />
           ))}
       </ul>
     </li>

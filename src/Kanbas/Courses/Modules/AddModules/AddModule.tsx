@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Module, Modules } from "../../../types";
+import { useDispatch } from "react-redux";
+import { Module } from "../../../types";
+import { addModule } from "../modulesReducer";
 import AddSection from "./AddSection";
 
 function AddModule({
-  modulesList,
-  setModulesList,
   setAddingModule,
 }: {
-  modulesList: Modules;
-  setModulesList: (modules: Modules) => void;
   setAddingModule: (addingModule: boolean) => void;
 }) {
   const emptyModule = {
@@ -16,14 +14,12 @@ function AddModule({
     title: "",
     sections: [],
   };
+  const dispatch = useDispatch();
   const [newModule, setNewModule] = useState<Module>(emptyModule);
   const [addingSection, setAddingSection] = useState(false);
 
   const onSaveModule = () => {
-    setModulesList([
-      ...modulesList,
-      { ...newModule, _id: new Date().getTime().toString() },
-    ]);
+    dispatch(addModule({ ...newModule, _id: new Date().getTime().toString() }));
     setNewModule(emptyModule);
     setAddingModule(false);
   };

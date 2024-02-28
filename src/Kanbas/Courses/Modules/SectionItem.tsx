@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaCheck, FaEdit, FaEllipsisV } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Module,
@@ -9,20 +10,16 @@ import {
   SectionItems,
   Sections,
 } from "../../types";
+import { updateModule } from "./modulesReducer";
 
 interface SectionItemProps {
   module: Module;
   section: Section;
   item: SectionItemType;
-  updateModuleSections: (sections: Sections) => void;
 }
 
-const SectionItem = ({
-  module,
-  section,
-  item,
-  updateModuleSections,
-}: SectionItemProps) => {
+const SectionItem = ({ module, section, item }: SectionItemProps) => {
+  const dispatch = useDispatch();
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingTitleText, setEditingTitleText] = useState(item.title);
 
@@ -60,7 +57,7 @@ const SectionItem = ({
     });
 
     const updatedSections = updateSection(updatedSectionItems);
-    updateModuleSections(updatedSections);
+    dispatch(updateModule({ ...module, sections: [...updatedSections] }));
   };
 
   const onDeleteSectionItem = () => {
@@ -69,7 +66,7 @@ const SectionItem = ({
     );
 
     const updatedSections = updateSection(filteredSectionItems);
-    updateModuleSections(updatedSections);
+    dispatch(updateModule({ ...module, sections: [...updatedSections] }));
   };
 
   return (

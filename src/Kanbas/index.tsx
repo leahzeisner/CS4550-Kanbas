@@ -6,6 +6,8 @@ import { emptyCourse } from "./Dashboard/constants";
 import KanbasNavigation from "./Navigation";
 import { courses as dbcourses } from "./Database";
 import { Course } from "./types";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function Kanbas() {
   const [courses, setCourses] = useState(dbcourses);
@@ -26,35 +28,37 @@ function Kanbas() {
   };
 
   return (
-    <div className="screen-div">
-      <KanbasNavigation />
-      <div style={{ flexGrow: 1 }}>
-        <Routes>
-          <Route path="/" element={<Navigate to="Dashboard" />} />
-          <Route path="Account" element={<h1>Account</h1>} />
-          <Route
-            path="Dashboard"
-            element={
-              <Dashboard
-                courses={courses}
-                setCourses={setCourses}
-                editableCourse={editableCourse}
-                setEditableCourse={setEditableCourse}
-                addCourse={addCourse}
-                editCourse={editCourse}
-                deleteCourse={deleteCourse}
-                isAdding={isAdding}
-                setIsAdding={setIsAdding}
-              />
-            }
-          />
-          <Route
-            path="Courses/:courseId/*"
-            element={<Courses courses={courses} />}
-          />
-        </Routes>
+    <Provider store={store}>
+      <div className="screen-div">
+        <KanbasNavigation />
+        <div style={{ flexGrow: 1 }}>
+          <Routes>
+            <Route path="/" element={<Navigate to="Dashboard" />} />
+            <Route path="Account" element={<h1>Account</h1>} />
+            <Route
+              path="Dashboard"
+              element={
+                <Dashboard
+                  courses={courses}
+                  setCourses={setCourses}
+                  editableCourse={editableCourse}
+                  setEditableCourse={setEditableCourse}
+                  addCourse={addCourse}
+                  editCourse={editCourse}
+                  deleteCourse={deleteCourse}
+                  isAdding={isAdding}
+                  setIsAdding={setIsAdding}
+                />
+              }
+            />
+            <Route
+              path="Courses/:courseId/*"
+              element={<Courses courses={courses} />}
+            />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }
 export default Kanbas;
