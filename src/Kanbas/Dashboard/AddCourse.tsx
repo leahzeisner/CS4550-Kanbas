@@ -88,14 +88,16 @@ function AddCourse({ addCourse }: { addCourse: (course: Course) => void }) {
             />
           </div>
 
-          <button
-            type="button"
-            id="addEditCourseBtn"
-            onClick={addNewCourse}
-            disabled={!addCourseEnabled}
-          >
-            Add
-          </button>
+          <div className="add-course-add-btn">
+            <button
+              type="button"
+              id="addEditCourseBtn"
+              onClick={addNewCourse}
+              disabled={!addCourseEnabled}
+            >
+              Add
+            </button>
+          </div>
         </div>
       )}
     </div>

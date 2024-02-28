@@ -150,8 +150,19 @@ a:first-child {
   align-items: center;
 }
 
+#addEditCourseBtn:enabled {
+  background-color: green;
+  color: white;
+}
+
+.add-course-add-btn {
+  display: flex;
+  justify-content: flex-end !important;
+  margin-right: 70px;
+}
+
 #addEditCourseBtn:hover:enabled {
-  background-color: lightgray;
+  background-color: darkgreen;
 }
 
 #addEditCourseBtn:hover:disabled {
@@ -191,9 +202,8 @@ a:first-child {
 }
 
 .edit-course-cancel-btn {
-  background-color: red;
+  background-color: red !important;
   color: white;
-  margin-left: 5px;
 }
 
 .edit-course-cancel-btn:hover {
