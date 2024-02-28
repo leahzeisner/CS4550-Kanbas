@@ -95,17 +95,15 @@ function AddSection({
         {!addingSection && (
           <>
             {newModule.sections.map((section) => (
-              <div className="add-module-section">
-                <div className="section-list">
-                  <span>{section.title}</span>
-                  <button
-                    type="button"
-                    className="delete-lesson-btn"
-                    onClick={() => deleteSection(section._id)}
-                  >
-                    <FaX className="ms-2" size={12}></FaX>
-                  </button>
-                </div>
+              <div className="section-list">
+                <span>{section.title}</span>
+                <button
+                  type="button"
+                  className="delete-lesson-btn"
+                  onClick={() => deleteSection(section._id)}
+                >
+                  <FaX className="ms-2" size={12}></FaX>
+                </button>
               </div>
             ))}
           </>

@@ -29,40 +29,41 @@ function AddModule({
   };
 
   return (
-    <div className="add-module">
-      <div className="add-module-header">
-        <h4>Create Module:</h4>
-        <input
-          type="text"
-          value={newModule.title}
-          placeholder="Module Title"
-          onChange={(e) =>
-            setNewModule({ ...newModule, title: e.target.value })
-          }
-        />
+    <div>
+      <hr />
+      <div className="add-module">
+        <div className="add-module-header">
+          <h4>Create Module:</h4>
+          <input
+            type="text"
+            value={newModule.title}
+            placeholder="Module Title"
+            onChange={(e) =>
+              setNewModule({ ...newModule, title: e.target.value })
+            }
+          />
+        </div>
+
+        <AddSection newModule={newModule} setNewModule={setNewModule} />
+
+        <div className="add-module-footer-btns">
+          <button
+            type="button"
+            className="add-module-btns"
+            id="module-button"
+            onClick={onCancelModule}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="add-module-btns"
+            onClick={onSaveModule}
+          >
+            Save
+          </button>
+        </div>
       </div>
-
-      <AddSection newModule={newModule} setNewModule={setNewModule} />
-
-      <div className="add-module-footer-btns">
-        <button
-          type="button"
-          className="add-module-btns"
-          id="module-button"
-          onClick={onCancelModule}
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          className="add-module-btns"
-          onClick={onSaveModule}
-        >
-          Save
-        </button>
-      </div>
-
-      <hr className="module-buttons-hr" />
     </div>
   );
 }

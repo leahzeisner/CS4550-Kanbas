@@ -110,9 +110,9 @@ function ModuleList() {
         </button>
       </div>
 
-      <hr className="module-buttons-hr" />
-
       {addingModule && <AddModule setAddingModule={setAddingModule} />}
+
+      <hr className="module-buttons-hr" />
 
       <ul className="modules-list">
         {modulesList.map((module) => (

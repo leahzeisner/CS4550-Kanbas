@@ -161,6 +161,7 @@ select {
   display: flex;
   flex-direction: column;
   margin: 10px 0px 10px 0px;
+  color: #3d454c;
 }
 
 .add-lesson-input {
@@ -177,6 +178,7 @@ select {
   border-radius: 4px;
   background-color: #efefef;
   width: fit-content;
+  color: #3d454c;
 }
 
 .add-module-btns:hover:enabled {
@@ -245,6 +247,7 @@ select {
   padding: 0px;
   margin-bottom: 8px;
   margin-left: 5px;
+  color: #3d454c;
 }
 
 .add-module-lesson-header {
@@ -260,7 +263,7 @@ select {
 
 .lesson-list,
 .section-list {
-  margin-left: 10px;
+  margin: 0px 10px 0px 10px;
 }
 
 .lesson-list > button,
