@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Modules } from "../../types";
 import { setModulesList } from "./modulesReducer";
 import { useParams } from "react-router";
-import { modules } from "../../Database";
 
 function ModuleList() {
   const dispatch = useDispatch();
@@ -25,19 +24,16 @@ function ModuleList() {
   const [addingModule, setAddingModule] = useState(false);
 
   useEffect(() => {
-    const classModules = modules.filter((module) => module._id === courseId);
+    const classModules = modulesList.filter(
+      (module) => module.courseId === courseId,
+    );
 
-    var mods: Modules = [];
-    if (classModules.length > 0) {
-      mods = classModules[0].modules;
-      dispatch(setModulesList(mods));
-    }
+    dispatch(setModulesList(classModules));
+    createModuleVisibilityMap(classModules);
 
-    if (mods.length === 0) {
+    if (classModules.length === 0) {
       setCollapseAllText(collapseAll);
     }
-
-    createModuleVisibilityMap(mods);
   }, []);
 
   useEffect(() => {

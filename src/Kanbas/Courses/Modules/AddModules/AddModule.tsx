@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
 import { Module } from "../../../types";
 import { addModule } from "../modulesReducer";
 import AddSection from "./AddSection";
@@ -9,8 +10,10 @@ function AddModule({
 }: {
   setAddingModule: (addingModule: boolean) => void;
 }) {
-  const emptyModule = {
+  const { courseId } = useParams();
+  const emptyModule: Module = {
     _id: "",
+    courseId: courseId?.toString() || "",
     title: "",
     sections: [],
   };

@@ -28,6 +28,7 @@ export type Sections = Section[];
 
 export type Module = {
   _id: string;
+  courseId: string;
   title: string;
   sections: Sections;
 };
@@ -36,6 +37,7 @@ export type Modules = Module[];
 
 export type TodoItem = {
   _id: string;
+  courseId: string;
   title: string;
   url: string;
   points: string;
@@ -47,6 +49,7 @@ export type TodoList = TodoItem[];
 
 export type ComingUpItem = {
   _id: string;
+  courseId: string;
   title: string;
   section: string;
   date: string;

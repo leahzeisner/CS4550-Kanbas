@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { FaCalendar } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { comingUpItems } from "../../../Database";
 import { KanbasState } from "../../../store";
 import { ComingUpList } from "../../../types";
 import ComingUpListItem from "./ComingUpListItem";
@@ -16,12 +15,11 @@ const ComingUp = () => {
   );
 
   useEffect(() => {
-    const classComingUpItems = comingUpItems.filter(
-      (item) => item._id === courseId,
+    dispatch(
+      setComingUpList(
+        comingUpList.filter((item) => item.courseId === courseId),
+      ),
     );
-    if (comingUpItems.length > 0) {
-      dispatch(setComingUpList(classComingUpItems[0].items));
-    }
   }, []);
 
   return (
