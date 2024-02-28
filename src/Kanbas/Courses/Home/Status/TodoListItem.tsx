@@ -1,12 +1,19 @@
 import { FaTimes } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { TodoItem } from "../../../types";
+import { deleteTodoItem } from "./statusReducer";
 
 interface TodoProps {
   todo: TodoItem;
 }
 
 const TodoListItem = ({ todo }: TodoProps) => {
+  const dispatch = useDispatch();
+  const deleteTodo = () => {
+    dispatch(deleteTodoItem({ ...todo }));
+  };
+
   return (
     <div className="todo-item" key={todo._id}>
       <div className="todo-item-left">
@@ -21,7 +28,7 @@ const TodoListItem = ({ todo }: TodoProps) => {
         </div>
       </div>
 
-      <button className="todo-item-delete" type="button">
+      <button className="todo-item-delete" type="button" onClick={deleteTodo}>
         <FaTimes></FaTimes>
       </button>
     </div>

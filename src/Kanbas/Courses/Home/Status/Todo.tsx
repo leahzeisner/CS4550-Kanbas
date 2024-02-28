@@ -27,9 +27,11 @@ const Todo = () => {
       <hr className="hr-line" />
 
       <div className="todo-items">
-        {todoList.map((todo) => (
-          <TodoListItem todo={todo} />
-        ))}
+        {todoList.length > 0 ? (
+          todoList.map((todo) => <TodoListItem todo={todo} />)
+        ) : (
+          <span className="todo-item nothing-todo">Nothing todo!</span>
+        )}
       </div>
     </div>
   );
