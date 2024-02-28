@@ -1,39 +1,32 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEllipsisV, FaPlus, FaArrowDown, FaArrowRight } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { assignments } from "../../Database";
+import { KanbasState } from "../../store";
 import "../../styles.css";
-import { AssignmentsList, CourseAssignments } from "../../types";
 import Assignment from "./Assignment";
 import "./index.css";
 import ToolBar from "./ToolBar";
+import { setAssignmentsList } from "./assignmentsReducer";
+import { AssignmentsList } from "../../types";
 
 function Assignments() {
+  const dispatch = useDispatch();
   const { courseId } = useParams();
 
-  const [courseAssignments, setCourseAssignments] = useState<
-    CourseAssignments | undefined
-  >(undefined);
-
-  const [assignmentsList, setAssignmentsList] = useState<
-    AssignmentsList | undefined
-  >(undefined);
-
+  const assignments: AssignmentsList = useSelector(
+    (state: KanbasState) => state.assignmentsReducer.assignmentsList,
+  );
+  const [searchAssignmentValue, setSearchAssignmentValue] = useState("");
   const [showAssignments, setShowAssignments] = useState(true);
 
   useEffect(() => {
-    const courseAssignments = assignments.filter(
-      (assignment) => assignment.course === courseId,
+    dispatch(
+      setAssignmentsList(
+        assignments.filter((assignment) => assignment.courseId === courseId),
+      ),
     );
-    setCourseAssignments(
-      courseAssignments.length > 0 ? courseAssignments[0] : undefined,
-    );
-    setAssignmentsList(
-      courseAssignments.length > 0
-        ? courseAssignments[0].assignments
-        : undefined,
-    );
-  }, [courseId]);
+  }, []);
 
   const getTitleArrow = () => {
     return showAssignments ? (
@@ -43,22 +36,18 @@ function Assignments() {
     );
   };
 
-  const filterAssignments = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!courseAssignments) {
-      return;
-    }
-
-    const filteredAssignments = courseAssignments.assignments.filter(
-      (assignment) =>
-        assignment.title.toLowerCase().includes(e.target.value.toLowerCase()),
+  const getFilteredAssignments = () => {
+    return assignments.filter((assignment) =>
+      assignment.title
+        .toLowerCase()
+        .includes(searchAssignmentValue.toLowerCase()),
     );
-    setAssignmentsList(filteredAssignments);
   };
 
   return (
     <div className="main-content">
       <div className="assignments">
-        <ToolBar filterAssignments={filterAssignments} />
+        <ToolBar setSearchAssignmentValue={setSearchAssignmentValue} />
 
         <ul className="list-group wd-assignments">
           <li className="assignment-title">
@@ -89,7 +78,7 @@ function Assignments() {
           </li>
 
           {showAssignments &&
-            assignmentsList?.map((assignment) => (
+            getFilteredAssignments().map((assignment) => (
               <Assignment assignment={assignment} />
             ))}
         </ul>

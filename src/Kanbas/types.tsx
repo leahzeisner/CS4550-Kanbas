@@ -59,6 +59,7 @@ export type ComingUpList = ComingUpItem[];
 
 export type Assignment = {
   _id: string;
+  courseId: string;
   title: string;
   due_date: string;
   points: string;

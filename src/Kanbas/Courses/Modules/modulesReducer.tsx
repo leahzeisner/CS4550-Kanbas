@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const modulesSlice = createSlice({
-  name: "modulesList",
+  name: "modulesReducer",
   initialState,
   reducers: {
     addModule: (state, action) => {

@@ -10,14 +10,15 @@ function AddModule({
 }: {
   setAddingModule: (addingModule: boolean) => void;
 }) {
+  const dispatch = useDispatch();
   const { courseId } = useParams();
+
   const emptyModule: Module = {
     _id: "",
     courseId: courseId?.toString() || "",
     title: "",
     sections: [],
   };
-  const dispatch = useDispatch();
   const [newModule, setNewModule] = useState<Module>(emptyModule);
 
   const onSaveModule = () => {
