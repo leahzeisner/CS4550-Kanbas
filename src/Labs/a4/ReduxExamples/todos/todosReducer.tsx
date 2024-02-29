@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getFreshId } from "../../../../Kanbas/utils";
+
 const initialState = {
   todos: [
     { id: "1", title: "Learn React" },
@@ -7,15 +7,13 @@ const initialState = {
   ],
   todo: { title: "Learn Mongo" },
 };
+
 const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      const newTodos = [
-        ...state.todos,
-        { ...action.payload, id: getFreshId() },
-      ];
+      const newTodos = [...state.todos, action.payload];
       state.todos = newTodos;
       state.todo = { title: "" };
     },
@@ -35,5 +33,6 @@ const todosSlice = createSlice({
     },
   },
 });
+
 export const { addTodo, deleteTodo, updateTodo, setTodo } = todosSlice.actions;
 export default todosSlice.reducer;

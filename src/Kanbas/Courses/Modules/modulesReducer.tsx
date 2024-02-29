@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { modules } from "../../Database";
 import { Modules } from "../../types";
-import { getFreshId } from "../../utils";
 
 const initialState = {
   modulesList: modules as unknown as Modules,
@@ -12,10 +11,7 @@ const modulesSlice = createSlice({
   initialState,
   reducers: {
     addModule: (state, action) => {
-      state.modulesList = [
-        ...state.modulesList,
-        { ...action.payload, _id: getFreshId() },
-      ];
+      state.modulesList = [...state.modulesList, action.payload];
     },
     deleteModule: (state, action) => {
       state.modulesList = state.modulesList.filter(

@@ -1,13 +1,16 @@
 import { Course } from "../types";
+import { getFreshId } from "../utils";
 
-export const emptyCourse: Course = {
-  _id: "",
-  name: "",
-  number: "",
-  startDate: "",
-  endDate: "",
-  term: "",
-  image: "",
+export const getEmptyCourse = () => {
+  return {
+    _id: getFreshId(),
+    name: "",
+    number: "",
+    startDate: "",
+    endDate: "",
+    term: "",
+    image: "",
+  };
 };
 
 const isValidFormField = (key: string, value: string) => {

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { comingUpItems, todos } from "../../../Database";
-import { getFreshId } from "../../../utils";
 
 const initialState = {
   todoList: todos,
@@ -12,10 +11,7 @@ const statusSlice = createSlice({
   initialState,
   reducers: {
     addTodoItem: (state, action) => {
-      state.todoList = [
-        ...state.todoList,
-        { ...action.payload, _id: getFreshId() },
-      ];
+      state.todoList = [...state.todoList, action.payload];
     },
     deleteTodoItem: (state, action) => {
       state.todoList = state.todoList.filter(
@@ -31,10 +27,7 @@ const statusSlice = createSlice({
       state.todoList = action.payload;
     },
     addComingUpItem: (state, action) => {
-      state.comingUpList = [
-        ...state.comingUpList,
-        { ...action.payload, _id: getFreshId() },
-      ];
+      state.comingUpList = [...state.comingUpList, action.payload];
     },
     deleteComingUpItem: (state, action) => {
       state.comingUpList = state.comingUpList.filter(

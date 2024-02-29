@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { emptyCourse, validateForm } from "./utils";
+import { getEmptyCourse, validateForm } from "./utils";
 import { Course } from "../types";
 import { useDispatch } from "react-redux";
 import { updateCourse } from "./coursesReducer";
@@ -25,13 +25,13 @@ function EditCourse({
   const onUpdateCourse = () => {
     if (validateForm(editableCourse)) {
       dispatch(updateCourse({ ...editableCourse }));
-      setEditableCourse(emptyCourse);
+      setEditableCourse(getEmptyCourse());
       setIsAdding(true);
     }
   };
 
   const onCancelEdit = () => {
-    setEditableCourse(emptyCourse);
+    setEditableCourse(getEmptyCourse());
     setIsAdding(true);
   };
 

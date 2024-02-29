@@ -7,14 +7,14 @@ import { Courses } from "../types";
 import { useSelector } from "react-redux";
 import { KanbasState } from "../store";
 import { useState } from "react";
-import { emptyCourse } from "./utils";
+import { getEmptyCourse } from "./utils";
 
 function Dashboard() {
   const courses: Courses = useSelector(
     (state: KanbasState) => state.coursesReducer.coursesList,
   );
   const [isAdding, setIsAdding] = useState(true);
-  const [editableCourse, setEditableCourse] = useState(emptyCourse);
+  const [editableCourse, setEditableCourse] = useState(getEmptyCourse());
 
   const onEditCourse = (courseId: string) => {
     setIsAdding(false);

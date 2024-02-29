@@ -13,10 +13,7 @@ const coursesSlice = createSlice({
   initialState,
   reducers: {
     addCourse: (state, action) => {
-      state.coursesList = [
-        ...state.coursesList,
-        { ...action.payload, _id: getFreshId() },
-      ];
+      state.coursesList = [...state.coursesList, action.payload];
     },
     deleteCourse: (state, action) => {
       state.coursesList = state.coursesList.filter(

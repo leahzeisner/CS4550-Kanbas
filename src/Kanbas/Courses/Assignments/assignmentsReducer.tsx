@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { assignments } from "../../Database";
-import { getFreshId } from "../../utils";
 
 const initialState = {
   assignmentsList: assignments,
@@ -11,10 +10,7 @@ const assignmentsSlice = createSlice({
   initialState,
   reducers: {
     addAssignment: (state, action) => {
-      state.assignmentsList = [
-        ...state.assignmentsList,
-        { ...action.payload, _id: getFreshId() },
-      ];
+      state.assignmentsList = [...state.assignmentsList, action.payload];
     },
     deleteAssignment: (state, action) => {
       state.assignmentsList = state.assignmentsList.filter(
