@@ -10,18 +10,18 @@ export type Course = {
 
 export type Courses = Course[];
 
-export type SectionItem = {
+export type Lesson = {
   _id: string;
   title: string;
   url: string;
 };
 
-export type SectionItems = SectionItem[];
+export type Lessons = Lesson[];
 
 export type Section = {
   _id: string;
   title: string;
-  lessons: SectionItems;
+  lessons: Lessons;
 };
 
 export type Sections = Section[];

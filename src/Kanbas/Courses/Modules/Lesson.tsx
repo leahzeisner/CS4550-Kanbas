@@ -3,24 +3,24 @@ import { FaCheck, FaEdit, FaEllipsisV } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Module, Section, SectionItem as SectionItemType } from "../../types";
+import { Module, Section, Lesson as LessonType } from "../../types";
 import { deleteLesson, updateLesson } from "./modulesReducer";
 
-interface SectionItemProps {
+interface LessonProps {
   module: Module;
   section: Section;
-  item: SectionItemType;
+  lesson: LessonType;
 }
 
-const SectionItem = ({ module, section, item }: SectionItemProps) => {
+const Lesson = ({ module, section, lesson }: LessonProps) => {
   const dispatch = useDispatch();
-  const [editingTitle, setEditingTitle] = useState(item.title === "");
-  const [editingTitleText, setEditingTitleText] = useState(item.title);
+  const [editingTitle, setEditingTitle] = useState(lesson.title === "");
+  const [editingTitleText, setEditingTitleText] = useState(lesson.title);
 
   useEffect(() => {
-    setEditingTitle(item.title === "");
-    setEditingTitleText(item.title);
-  }, [item.title]);
+    setEditingTitle(lesson.title === "");
+    setEditingTitleText(lesson.title);
+  }, [lesson.title]);
 
   const onEditToggle = () => {
     if (editingTitle) {
@@ -28,7 +28,7 @@ const SectionItem = ({ module, section, item }: SectionItemProps) => {
         updateLesson({
           moduleId: module._id,
           sectionId: section._id,
-          lesson: { ...item, title: editingTitleText },
+          lesson: { ...lesson, title: editingTitleText },
         }),
       );
       setEditingTitle(false);
@@ -37,18 +37,18 @@ const SectionItem = ({ module, section, item }: SectionItemProps) => {
     }
   };
 
-  const onDeleteSectionItem = () => {
+  const onDeleteLesson = () => {
     dispatch(
       deleteLesson({
         moduleId: module._id,
         sectionId: section._id,
-        lesson: item,
+        lesson: lesson,
       }),
     );
   };
 
   return (
-    <li className="module-section-item" key={item._id}>
+    <li className="module-section-item" key={lesson._id}>
       <div>
         <FaEllipsisV className="ms-2 ellipsis-v ellipsis-left"></FaEllipsisV>
       </div>
@@ -64,8 +64,8 @@ const SectionItem = ({ module, section, item }: SectionItemProps) => {
             disabled={!editingTitle}
           ></textarea>
         ) : (
-          <Link to={item.url} className="module-section-item-link">
-            {item.title}
+          <Link to={lesson.url} className="module-section-item-link">
+            {lesson.title}
           </Link>
         )}
       </div>
@@ -84,7 +84,7 @@ const SectionItem = ({ module, section, item }: SectionItemProps) => {
         <button
           type="button"
           id="delete-module-item-btn"
-          onClick={onDeleteSectionItem}
+          onClick={onDeleteLesson}
         >
           <FaX className="ms-2" />
         </button>
@@ -93,4 +93,4 @@ const SectionItem = ({ module, section, item }: SectionItemProps) => {
   );
 };
 
-export default SectionItem;
+export default Lesson;

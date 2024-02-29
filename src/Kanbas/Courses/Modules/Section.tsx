@@ -5,11 +5,11 @@ import { useDispatch } from "react-redux";
 import {
   Module,
   Section as SectionType,
-  SectionItem as Lesson,
+  Lesson as LessonType,
 } from "../../types";
 import { getFreshId } from "../../utils";
 import { deleteSection, updateSection } from "./modulesReducer";
-import SectionItem from "./SectionItem";
+import Lesson from "./Lesson";
 
 interface SectionProps {
   module: Module;
@@ -50,7 +50,7 @@ const Section = ({ module, section }: SectionProps) => {
   };
 
   const onAddLesson = () => {
-    const emptyLesson: Lesson = { _id: getFreshId(), title: "", url: "" };
+    const emptyLesson: LessonType = { _id: getFreshId(), title: "", url: "" };
     dispatch(
       updateSection({
         moduleId: module._id,
@@ -111,7 +111,7 @@ const Section = ({ module, section }: SectionProps) => {
 
       {/* Module Section Lessons */}
       {section.lessons?.map((lesson) => (
-        <SectionItem module={module} section={section} item={lesson} />
+        <Lesson module={module} section={section} lesson={lesson} />
       ))}
     </div>
   );
