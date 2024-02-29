@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaCalendar } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
@@ -11,9 +10,10 @@ const ComingUp = () => {
   const comingUpList: ComingUpList = useSelector(
     (state: KanbasState) => state.statusReducer.comingUpList,
   );
-  const [courseComingUpItems] = useState<ComingUpList>(
-    comingUpList.filter((item) => item.courseId === courseId),
-  );
+
+  const getFilteredComingUpItems = () => {
+    return comingUpList.filter((item) => item.courseId === courseId);
+  };
 
   return (
     <div className="coming-up">
@@ -27,14 +27,17 @@ const ComingUp = () => {
 
       <hr className="hr-line" />
 
-      <div className="coming-up-items">
-        {courseComingUpItems.map((item) => (
-          <ComingUpListItem item={item}></ComingUpListItem>
-        ))}
-      </div>
-
-      {courseComingUpItems.length !== 0 && (
-        <span className="bottom-text">12 more in the next week...</span>
+      {getFilteredComingUpItems().length === 0 ? (
+        <span className="todo-item nothing-coming-up">Nothing coming up!</span>
+      ) : (
+        <>
+          <div className="coming-up-items">
+            {getFilteredComingUpItems().map((item) => (
+              <ComingUpListItem item={item}></ComingUpListItem>
+            ))}
+          </div>
+          <span className="bottom-text">12 more in the next week...</span>
+        </>
       )}
     </div>
   );

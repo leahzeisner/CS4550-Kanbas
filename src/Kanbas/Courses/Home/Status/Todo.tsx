@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { KanbasState } from "../../../store";
@@ -10,9 +9,10 @@ const Todo = () => {
   const todoList: TodoList = useSelector(
     (state: KanbasState) => state.statusReducer.todoList,
   );
-  const [courseTodos] = useState<TodoList>(
-    todoList.filter((todo) => todo.courseId === courseId),
-  );
+
+  const getCourseTodos = () => {
+    return todoList.filter((todo) => todo.courseId === courseId);
+  };
 
   return (
     <div className="todo">
@@ -20,8 +20,8 @@ const Todo = () => {
       <hr className="hr-line" />
 
       <div className="todo-items">
-        {courseTodos.length > 0 ? (
-          courseTodos.map((todo) => <TodoListItem todo={todo} />)
+        {getCourseTodos().length > 0 ? (
+          getCourseTodos().map((todo) => <TodoListItem todo={todo} />)
         ) : (
           <span className="todo-item nothing-todo">Nothing todo!</span>
         )}

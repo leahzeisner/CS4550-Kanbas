@@ -11,7 +11,7 @@ interface TodoProps {
 const TodoListItem = ({ todo }: TodoProps) => {
   const dispatch = useDispatch();
   const deleteTodo = () => {
-    dispatch(deleteTodoItem({ ...todo }));
+    dispatch(deleteTodoItem(todo));
   };
 
   return (
