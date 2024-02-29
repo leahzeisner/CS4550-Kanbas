@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { emptyCourse, validateForm } from "./constants";
+import { emptyCourse, validateForm } from "./utils";
 import { Course } from "../types";
 import { FaPlus, FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";

@@ -4,13 +4,12 @@ import { Link } from "react-router-dom";
 import { Course as CourseType } from "../types";
 import { deleteCourse } from "./coursesReducer";
 
-const Course = ({
-  course,
-  onEditCourse,
-}: {
+interface CourseProps {
   course: CourseType;
   onEditCourse: (courseId: string) => void;
-}) => {
+}
+
+const Course = ({ course, onEditCourse }: CourseProps) => {
   const dispatch = useDispatch();
 
   return (

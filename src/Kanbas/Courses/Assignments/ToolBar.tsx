@@ -1,10 +1,10 @@
 import { FaEllipsisV, FaPlus } from "react-icons/fa";
 
-const ToolBar = ({
-  setSearchAssignmentValue,
-}: {
+interface ToolBarProps {
   setSearchAssignmentValue: (value: string) => void;
-}) => {
+}
+
+const ToolBar = ({ setSearchAssignmentValue }: ToolBarProps) => {
   return (
     <>
       <div className="assignments-toolbar">

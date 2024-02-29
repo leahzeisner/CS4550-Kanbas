@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
-import { emptyCourse, validateForm } from "./constants";
+import { emptyCourse, validateForm } from "./utils";
 import { Course } from "../types";
 import { useDispatch } from "react-redux";
 import { updateCourse } from "./coursesReducer";
+
+interface EditCourseProps {
+  editableCourse: Course;
+  setEditableCourse: (course: Course) => void;
+  setIsAdding: (isAdding: boolean) => void;
+}
 
 function EditCourse({
   editableCourse,
   setEditableCourse,
   setIsAdding,
-}: {
-  editableCourse: Course;
-  setEditableCourse: (course: Course) => void;
-  setIsAdding: (isAdding: boolean) => void;
-}) {
+}: EditCourseProps) {
   const dispatch = useDispatch();
   const [updateCourseEnabled, setUpdateCourseEnabled] = useState(true);
 

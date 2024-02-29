@@ -7,7 +7,7 @@ import { Courses } from "../types";
 import { useSelector } from "react-redux";
 import { KanbasState } from "../store";
 import { useState } from "react";
-import { emptyCourse } from "./constants";
+import { emptyCourse } from "./utils";
 
 function Dashboard() {
   const courses: Courses = useSelector(

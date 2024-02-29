@@ -1,6 +1,6 @@
 import { Course } from "../types";
 
-export const emptyCourse = {
+export const emptyCourse: Course = {
   _id: "",
   name: "",
   number: "",
