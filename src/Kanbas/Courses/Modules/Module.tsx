@@ -93,7 +93,7 @@ const Module = ({
                 disabled={!editingTitle}
               ></textarea>
             ) : (
-              <span className="module-section">{module._id}</span>
+              <span className="module-section">{module.title}</span>
             )}
           </div>
 

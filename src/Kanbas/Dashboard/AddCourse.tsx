@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { emptyCourse, validateForm } from "./utils";
 import { Course } from "../types";
-import { FaPlus, FaX } from "react-icons/fa6";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { addCourse } from "./coursesReducer";
 
@@ -38,7 +38,7 @@ function AddCourse() {
           onClick={() => setAddingCourse(!addingCourse)}
         >
           {addingCourse ? (
-            <FaX className="ms-2" size={18}></FaX>
+            <FaMinus className="ms-2" size={20}></FaMinus>
           ) : (
             <FaPlus className="ms-2" size={20}></FaPlus>
           )}
