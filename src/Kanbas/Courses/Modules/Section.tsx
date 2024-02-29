@@ -76,6 +76,7 @@ const Section = ({ module, section }: SectionProps) => {
               className="module-section module-section-textarea"
               value={editingTitleText}
               onChange={(e) => setEditingTitleText(e.target.value)}
+              onBlur={() => onEditToggle()}
               placeholder="Enter Section Title"
               disabled={!editingTitle}
             ></textarea>

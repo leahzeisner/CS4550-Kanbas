@@ -89,6 +89,7 @@ const Module = ({
                 className="module-section module-section-textarea"
                 value={editingTitleText}
                 onChange={(e) => setEditingTitleText(e.target.value)}
+                onBlur={() => onEditToggle()}
                 placeholder="Enter Module Title"
                 disabled={!editingTitle}
               ></textarea>

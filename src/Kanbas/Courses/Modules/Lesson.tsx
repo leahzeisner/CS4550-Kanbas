@@ -63,6 +63,7 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
             className="module-section-item-link module-section-textarea"
             value={editingTitleText}
             onChange={(e) => setEditingTitleText(e.target.value)}
+            onBlur={() => onEditToggle()}
             placeholder="Enter Lesson Title"
             disabled={!editingTitle}
           ></textarea>
