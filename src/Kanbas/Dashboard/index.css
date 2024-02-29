@@ -223,6 +223,10 @@ a:first-child {
   .edit-course-ftr-btns > button {
     width: 25%;
   }
+
+  .add-course-add-btn {
+    margin-right: 0px;
+  }
 }
 
 @media (max-width: 768px) {
