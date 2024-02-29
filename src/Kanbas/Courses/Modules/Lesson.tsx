@@ -35,10 +35,8 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
           lesson: { ...lesson, title: editingTitleText },
         }),
       );
-      setEditingTitle(false);
-    } else {
-      setEditingTitle(true);
     }
+    setEditingTitle(!editingTitle);
   };
 
   const onDeleteLesson = () => {

@@ -37,10 +37,8 @@ const Section = ({ module, section }: SectionProps) => {
           section: { ...section, title: editingTitleText },
         }),
       );
-      setEditingTitle(false);
-    } else {
-      setEditingTitle(true);
     }
+    setEditingTitle(!editingTitle);
   };
 
   const onDeleteSection = () => {

@@ -49,10 +49,8 @@ const Module = ({
   const onEditToggle = () => {
     if (editingTitle) {
       dispatch(updateModule({ ...module, title: editingTitleText }));
-      setEditingTitle(false);
-    } else {
-      setEditingTitle(true);
     }
+    setEditingTitle(!editingTitle);
   };
 
   const onDeleteModule = () => {
@@ -95,7 +93,7 @@ const Module = ({
                 disabled={!editingTitle}
               ></textarea>
             ) : (
-              <span className="module-section">{editingTitleText}</span>
+              <span className="module-section">{module._id}</span>
             )}
           </div>
 

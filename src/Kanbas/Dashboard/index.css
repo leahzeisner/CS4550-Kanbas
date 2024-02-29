@@ -44,8 +44,8 @@
 }
 
 .card-body {
-  height: 150px;
-  max-height: 150px;
+  height: 160px;
+  max-height: 160px;
   display: flex;
   flex-direction: column;
 }
