@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { Module as ModuleType, Section as SectionType } from "../../types";
+import { Module as ModuleType } from "../../types";
 import { getFreshId } from "../../utils";
 import { addSection, deleteModule, updateModule } from "./modulesReducer";
 import Section from "./Section";
@@ -31,6 +31,13 @@ const Module = ({
   useEffect(() => {
     setEditingTitle(module.title === "");
     setEditingTitleText(module.title);
+    if (module.title === "") {
+      document.getElementById(module._id)?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+      });
+    }
   }, [module.title]);
 
   const getTitleArrow = (modId: string) => {
@@ -82,6 +89,7 @@ const Module = ({
           <div className="module-title-text">
             {editingTitle ? (
               <textarea
+                id={module._id}
                 rows={1}
                 cols={25}
                 className="module-section module-section-textarea"

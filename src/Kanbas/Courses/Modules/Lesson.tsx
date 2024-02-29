@@ -20,6 +20,13 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
   useEffect(() => {
     setEditingTitle(lesson.title === "");
     setEditingTitleText(lesson.title);
+    if (lesson.title === "") {
+      document.getElementById(lesson._id)?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+      });
+    }
   }, [lesson.title]);
 
   const onEditToggle = () => {
@@ -55,6 +62,7 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
       <div className="module-item-text">
         {editingTitle ? (
           <textarea
+            id={lesson._id}
             rows={1}
             cols={25}
             className="module-section-item-link module-section-textarea"

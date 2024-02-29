@@ -24,6 +24,13 @@ const Section = ({ module, section }: SectionProps) => {
   useEffect(() => {
     setEditingTitle(section.title === "");
     setEditingTitleText(section.title);
+    if (section.title === "") {
+      document.getElementById(section._id)?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+      });
+    }
   }, [section.title]);
 
   const onEditToggle = () => {
@@ -69,6 +76,7 @@ const Section = ({ module, section }: SectionProps) => {
         <div className="module-title-text">
           {editingTitle ? (
             <textarea
+              id={section._id}
               rows={1}
               cols={25}
               className="module-section module-section-textarea"

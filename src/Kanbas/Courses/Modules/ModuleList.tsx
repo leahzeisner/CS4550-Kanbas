@@ -45,7 +45,7 @@ function ModuleList() {
         (map[mod._id] =
           moduleVisibilityMap[mod._id] != undefined
             ? moduleVisibilityMap[mod._id]
-            : mod.sections?.length > 0 && collapseAllText === "Collapse All"),
+            : true),
     );
     setModuleVisibilityMap(map);
   };
@@ -59,11 +59,11 @@ function ModuleList() {
   };
 
   // Collapse or expand all modules
-  const toggleModulesVisibility = () => {
+  const toggleModulesVisibility = (visible: boolean) => {
     if (courseModules.length === 0) {
       return;
     }
-    const visible = collapseAllText !== collapseAll;
+
     const map: Record<string, boolean> = {};
     courseModules.forEach((mod) => (map[mod._id] = visible));
     setModuleVisibilityMap(map);
@@ -71,6 +71,7 @@ function ModuleList() {
   };
 
   const onAddModule = () => {
+    toggleModulesVisibility(false);
     const emptyModule = {
       _id: getFreshId(),
       courseId: courseId,
@@ -85,7 +86,9 @@ function ModuleList() {
       <div className="module-buttons">
         <button
           type="button"
-          onClick={toggleModulesVisibility}
+          onClick={() =>
+            toggleModulesVisibility(collapseAllText !== collapseAll)
+          }
           disabled={courseModules.length === 0}
           id="collapse-all-btn"
         >
