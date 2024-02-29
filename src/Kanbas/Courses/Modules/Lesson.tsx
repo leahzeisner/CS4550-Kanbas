@@ -4,6 +4,7 @@ import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Module, Section, Lesson as LessonType } from "../../types";
+import { scrollToElementWithId } from "../../utils";
 import { deleteLesson, updateLesson } from "./modulesReducer";
 
 interface LessonProps {
@@ -21,11 +22,7 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
     setEditingTitle(lesson.title === "");
     setEditingTitleText(lesson.title);
     if (lesson.title === "") {
-      document.getElementById(lesson._id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "nearest",
-      });
+      scrollToElementWithId(lesson._id);
     }
   }, [lesson.title]);
 

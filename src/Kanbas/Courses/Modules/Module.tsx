@@ -9,7 +9,7 @@ import {
 import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Module as ModuleType } from "../../types";
-import { getFreshId } from "../../utils";
+import { getFreshId, scrollToElementWithId } from "../../utils";
 import { addSection, deleteModule, updateModule } from "./modulesReducer";
 import Section from "./Section";
 
@@ -32,11 +32,7 @@ const Module = ({
     setEditingTitle(module.title === "");
     setEditingTitleText(module.title);
     if (module.title === "") {
-      document.getElementById(module._id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "nearest",
-      });
+      scrollToElementWithId(module._id);
     }
   }, [module.title]);
 

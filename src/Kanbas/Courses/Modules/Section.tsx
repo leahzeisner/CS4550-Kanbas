@@ -7,7 +7,7 @@ import {
   Section as SectionType,
   Lesson as LessonType,
 } from "../../types";
-import { getFreshId } from "../../utils";
+import { getFreshId, scrollToElementWithId } from "../../utils";
 import { deleteSection, updateSection } from "./modulesReducer";
 import Lesson from "./Lesson";
 
@@ -25,11 +25,7 @@ const Section = ({ module, section }: SectionProps) => {
     setEditingTitle(section.title === "");
     setEditingTitleText(section.title);
     if (section.title === "") {
-      document.getElementById(section._id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "nearest",
-      });
+      scrollToElementWithId(section._id);
     }
   }, [section.title]);
 
