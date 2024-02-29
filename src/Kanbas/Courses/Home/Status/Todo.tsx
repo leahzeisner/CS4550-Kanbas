@@ -1,23 +1,18 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { KanbasState } from "../../../store";
 import { TodoList } from "../../../types";
-import { setTodoList } from "./statusReducer";
 import TodoListItem from "./TodoListItem";
 
 const Todo = () => {
-  const dispatch = useDispatch();
   const { courseId } = useParams();
   const todoList: TodoList = useSelector(
     (state: KanbasState) => state.statusReducer.todoList,
   );
-
-  useEffect(() => {
-    dispatch(
-      setTodoList(todoList.filter((todo) => todo.courseId === courseId)),
-    );
-  }, []);
+  const [courseTodos] = useState<TodoList>(
+    todoList.filter((todo) => todo.courseId === courseId),
+  );
 
   return (
     <div className="todo">
@@ -25,8 +20,8 @@ const Todo = () => {
       <hr className="hr-line" />
 
       <div className="todo-items">
-        {todoList.length > 0 ? (
-          todoList.map((todo) => <TodoListItem todo={todo} />)
+        {courseTodos.length > 0 ? (
+          courseTodos.map((todo) => <TodoListItem todo={todo} />)
         ) : (
           <span className="todo-item nothing-todo">Nothing todo!</span>
         )}

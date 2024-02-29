@@ -1,26 +1,19 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { FaCalendar } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { KanbasState } from "../../../store";
 import { ComingUpList } from "../../../types";
 import ComingUpListItem from "./ComingUpListItem";
-import { setComingUpList } from "./statusReducer";
 
 const ComingUp = () => {
-  const dispatch = useDispatch();
   const { courseId } = useParams();
   const comingUpList: ComingUpList = useSelector(
     (state: KanbasState) => state.statusReducer.comingUpList,
   );
-
-  useEffect(() => {
-    dispatch(
-      setComingUpList(
-        comingUpList.filter((item) => item.courseId === courseId),
-      ),
-    );
-  }, []);
+  const [courseComingUpItems] = useState<ComingUpList>(
+    comingUpList.filter((item) => item.courseId === courseId),
+  );
 
   return (
     <div className="coming-up">
@@ -35,12 +28,12 @@ const ComingUp = () => {
       <hr className="hr-line" />
 
       <div className="coming-up-items">
-        {comingUpList.map((item) => (
+        {courseComingUpItems.map((item) => (
           <ComingUpListItem item={item}></ComingUpListItem>
         ))}
       </div>
 
-      {comingUpList.length !== 0 && (
+      {courseComingUpItems.length !== 0 && (
         <span className="bottom-text">12 more in the next week...</span>
       )}
     </div>

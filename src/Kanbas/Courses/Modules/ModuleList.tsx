@@ -5,16 +5,17 @@ import { FaEllipsisV, FaPlusCircle } from "react-icons/fa";
 import Module from "./Module";
 import AddModule from "./AddModules/AddModule";
 import { KanbasState } from "../../store";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Modules } from "../../types";
-import { setModulesList } from "./modulesReducer";
 import { useParams } from "react-router";
 
 function ModuleList() {
-  const dispatch = useDispatch();
   const { courseId } = useParams();
   const modulesList: Modules = useSelector(
     (state: KanbasState) => state.modulesReducer.modulesList,
+  );
+  const [courseModules, setCourseModules] = useState<Modules>(
+    modulesList.filter((mod) => mod.courseId === courseId),
   );
   const collapseAll = "Collapse All";
   const [collapseAllText, setCollapseAllText] = useState(collapseAll);
@@ -24,20 +25,17 @@ function ModuleList() {
   const [addingModule, setAddingModule] = useState(false);
 
   useEffect(() => {
-    const classModules = modulesList.filter(
-      (module) => module.courseId === courseId,
-    );
+    createModuleVisibilityMap(courseModules);
 
-    dispatch(setModulesList(classModules));
-    createModuleVisibilityMap(classModules);
-
-    if (classModules.length === 0) {
+    if (courseModules.length === 0) {
       setCollapseAllText(collapseAll);
     }
   }, []);
 
   useEffect(() => {
-    createModuleVisibilityMap(modulesList);
+    const mods = modulesList.filter((mod) => mod.courseId === courseId);
+    setCourseModules(mods);
+    createModuleVisibilityMap(mods);
   }, [modulesList]);
 
   const createModuleVisibilityMap = (mods: Modules) => {
@@ -62,12 +60,12 @@ function ModuleList() {
 
   // Collapse or expand all modules
   const toggleModulesVisibility = () => {
-    if (modulesList.length === 0) {
+    if (courseModules.length === 0) {
       return;
     }
     const visible = collapseAllText !== collapseAll;
     const map: Record<string, boolean> = {};
-    modulesList.forEach((mod) => (map[mod._id] = visible));
+    courseModules.forEach((mod) => (map[mod._id] = visible));
     setModuleVisibilityMap(map);
     setCollapseAllText(visible ? collapseAll : "Expand All");
   };
@@ -78,7 +76,7 @@ function ModuleList() {
         <button
           type="button"
           onClick={toggleModulesVisibility}
-          disabled={modulesList.length === 0}
+          disabled={courseModules.length === 0}
           id="collapse-all-btn"
         >
           {collapseAllText}
@@ -111,7 +109,7 @@ function ModuleList() {
       <hr className="module-buttons-hr" />
 
       <ul className="modules-list">
-        {modulesList.map((module) => (
+        {courseModules.map((module) => (
           <Module
             module={module}
             moduleVisibilityMap={moduleVisibilityMap}

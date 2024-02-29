@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaEllipsisV, FaPlus, FaArrowDown, FaArrowRight } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { KanbasState } from "../../store";
 import "../../styles.css";
 import Assignment from "./Assignment";
 import "./index.css";
 import ToolBar from "./ToolBar";
-import { setAssignmentsList } from "./assignmentsReducer";
 import { AssignmentsList } from "../../types";
 
 function Assignments() {
-  const dispatch = useDispatch();
   const { courseId } = useParams();
 
   const assignments: AssignmentsList = useSelector(
@@ -19,14 +17,6 @@ function Assignments() {
   );
   const [searchAssignmentValue, setSearchAssignmentValue] = useState("");
   const [showAssignments, setShowAssignments] = useState(true);
-
-  useEffect(() => {
-    dispatch(
-      setAssignmentsList(
-        assignments.filter((assignment) => assignment.courseId === courseId),
-      ),
-    );
-  }, []);
 
   const getTitleArrow = () => {
     return showAssignments ? (
@@ -37,10 +27,12 @@ function Assignments() {
   };
 
   const getFilteredAssignments = () => {
-    return assignments.filter((assignment) =>
-      assignment.title
-        .toLowerCase()
-        .includes(searchAssignmentValue.toLowerCase()),
+    return assignments.filter(
+      (assignment) =>
+        assignment.courseId === courseId &&
+        assignment.title
+          .toLowerCase()
+          .includes(searchAssignmentValue.toLowerCase()),
     );
   };
 

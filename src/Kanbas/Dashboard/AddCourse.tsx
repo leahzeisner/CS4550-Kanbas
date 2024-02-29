@@ -19,7 +19,6 @@ function AddCourse() {
     if (validateForm(course)) {
       const newCourse = {
         ...course,
-        _id: new Date().getTime().toString(),
         image: "/webdev2.webp", // TEMPORARY
       };
       setCourse(emptyCourse);
