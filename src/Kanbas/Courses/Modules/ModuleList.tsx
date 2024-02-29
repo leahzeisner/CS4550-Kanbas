@@ -3,13 +3,15 @@ import "./index.css";
 import "../../styles.css";
 import { FaEllipsisV, FaPlusCircle } from "react-icons/fa";
 import Module from "./Module";
-import AddModule from "./AddModules/AddModule";
 import { KanbasState } from "../../store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modules } from "../../types";
 import { useParams } from "react-router";
+import { addModule } from "./modulesReducer";
+import { getFreshId } from "../../utils";
 
 function ModuleList() {
+  const dispatch = useDispatch();
   const { courseId } = useParams();
   const modulesList: Modules = useSelector(
     (state: KanbasState) => state.modulesReducer.modulesList,
@@ -22,8 +24,6 @@ function ModuleList() {
   const [moduleVisibilityMap, setModuleVisibilityMap] = useState<
     Record<string, boolean>
   >({});
-  const [addingModule, setAddingModule] = useState(false);
-
   useEffect(() => {
     createModuleVisibilityMap(courseModules);
 
@@ -70,6 +70,16 @@ function ModuleList() {
     setCollapseAllText(visible ? collapseAll : "Expand All");
   };
 
+  const onAddModule = () => {
+    const emptyModule = {
+      _id: getFreshId(),
+      courseId: courseId,
+      title: "",
+      sections: [],
+    };
+    dispatch(addModule(emptyModule));
+  };
+
   return (
     <div className="modules">
       <div className="module-buttons">
@@ -85,26 +95,14 @@ function ModuleList() {
         <select>
           <option value="PUBLISH-ALL"> Publish All</option>
         </select>
-        <button
-          type="button"
-          id="module-button"
-          onClick={() => setAddingModule(!addingModule)}
-        >
-          {addingModule ? (
-            "Cancel"
-          ) : (
-            <>
-              <FaPlusCircle className="plus" />
-              Module
-            </>
-          )}
+        <button type="button" id="module-button" onClick={onAddModule}>
+          <FaPlusCircle className="plus" />
+          Module
         </button>
         <button type="button" id="top-ellipsis-btn">
           <FaEllipsisV className="ms-2 ellipsis-v" />
         </button>
       </div>
-
-      {addingModule && <AddModule setAddingModule={setAddingModule} />}
 
       <hr className="module-buttons-hr" />
 

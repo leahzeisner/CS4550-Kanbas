@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getFreshId } from "../../../../Kanbas/utils";
 const initialState = {
   todos: [
     { id: "1", title: "Learn React" },
@@ -13,7 +14,7 @@ const todosSlice = createSlice({
     addTodo: (state, action) => {
       const newTodos = [
         ...state.todos,
-        { ...action.payload, id: new Date().getTime().toString() },
+        { ...action.payload, id: getFreshId() },
       ];
       state.todos = newTodos;
       state.todo = { title: "" };

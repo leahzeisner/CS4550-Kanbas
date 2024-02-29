@@ -3,14 +3,8 @@ import { FaCheck, FaEdit, FaEllipsisV } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  Module,
-  Section,
-  SectionItem as SectionItemType,
-  SectionItems,
-  Sections,
-} from "../../types";
-import { updateModule } from "./modulesReducer";
+import { Module, Section, SectionItem as SectionItemType } from "../../types";
+import { deleteLesson, updateLesson } from "./modulesReducer";
 
 interface SectionItemProps {
   module: Module;
@@ -20,53 +14,37 @@ interface SectionItemProps {
 
 const SectionItem = ({ module, section, item }: SectionItemProps) => {
   const dispatch = useDispatch();
-  const [editingTitle, setEditingTitle] = useState(false);
+  const [editingTitle, setEditingTitle] = useState(item.title === "");
   const [editingTitleText, setEditingTitleText] = useState(item.title);
 
   useEffect(() => {
+    setEditingTitle(item.title === "");
     setEditingTitleText(item.title);
-  }, [item]);
+  }, [item.title]);
 
   const onEditToggle = () => {
     if (editingTitle) {
-      saveEdit();
+      dispatch(
+        updateLesson({
+          moduleId: module._id,
+          sectionId: section._id,
+          lesson: { ...item, title: editingTitleText },
+        }),
+      );
       setEditingTitle(false);
     } else {
       setEditingTitle(true);
     }
   };
 
-  const updateSection = (updatedSectionItems: SectionItems) => {
-    const updatedSections: Sections = [];
-    module.sections.map((sec) => {
-      updatedSections.push(
-        sec === section
-          ? { ...section, lessons: [...updatedSectionItems] }
-          : sec,
-      );
-    });
-    return updatedSections;
-  };
-
-  const saveEdit = () => {
-    const updatedSectionItems: SectionItems = [];
-    section.lessons.map((itm) => {
-      updatedSectionItems.push(
-        itm === item ? { ...itm, title: editingTitleText } : itm,
-      );
-    });
-
-    const updatedSections = updateSection(updatedSectionItems);
-    dispatch(updateModule({ ...module, sections: [...updatedSections] }));
-  };
-
   const onDeleteSectionItem = () => {
-    const filteredSectionItems = section.lessons.filter(
-      (itm) => itm._id != item._id,
+    dispatch(
+      deleteLesson({
+        moduleId: module._id,
+        sectionId: section._id,
+        lesson: item,
+      }),
     );
-
-    const updatedSections = updateSection(filteredSectionItems);
-    dispatch(updateModule({ ...module, sections: [...updatedSections] }));
   };
 
   return (
@@ -82,6 +60,7 @@ const SectionItem = ({ module, section, item }: SectionItemProps) => {
             className="module-section-item-link module-section-textarea"
             value={editingTitleText}
             onChange={(e) => setEditingTitleText(e.target.value)}
+            placeholder="Enter Lesson Title"
             disabled={!editingTitle}
           ></textarea>
         ) : (

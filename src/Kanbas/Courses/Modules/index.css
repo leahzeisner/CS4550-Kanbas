@@ -227,6 +227,14 @@ select {
   margin-right: 10px;
 }
 
+#add-module-item-btn {
+  color: #3d454c;
+}
+
+#add-module-item-btn:hover {
+  color: blue;
+}
+
 .module-section-textarea {
   height: fit-content;
   align-items: center;

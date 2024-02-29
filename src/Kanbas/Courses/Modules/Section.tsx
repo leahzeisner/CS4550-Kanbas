@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
-import { FaCheck, FaEdit, FaEllipsisV } from "react-icons/fa";
+import { FaCheck, FaEdit, FaEllipsisV, FaPlusCircle } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { Module, Section as SectionType, Sections } from "../../types";
-import { updateModule } from "./modulesReducer";
+import {
+  Module,
+  Section as SectionType,
+  SectionItem as Lesson,
+} from "../../types";
+import { getFreshId } from "../../utils";
+import { deleteSection, updateSection } from "./modulesReducer";
 import SectionItem from "./SectionItem";
 
 interface SectionProps {
@@ -13,37 +18,45 @@ interface SectionProps {
 
 const Section = ({ module, section }: SectionProps) => {
   const dispatch = useDispatch();
-  const [editingTitle, setEditingTitle] = useState(false);
+  const [editingTitle, setEditingTitle] = useState(section.title === "");
   const [editingTitleText, setEditingTitleText] = useState(section.title);
 
   useEffect(() => {
+    setEditingTitle(section.title === "");
     setEditingTitleText(section.title);
-  }, [section]);
+  }, [section.title]);
 
   const onEditToggle = () => {
     if (editingTitle) {
-      saveEdit();
+      dispatch(
+        updateSection({
+          moduleId: module._id,
+          section: { ...section, title: editingTitleText },
+        }),
+      );
       setEditingTitle(false);
     } else {
       setEditingTitle(true);
     }
   };
 
-  const saveEdit = () => {
-    const updatedSections: Sections = [];
-    module.sections.map((sec) => {
-      updatedSections.push(
-        sec === section ? { ...sec, title: editingTitleText } : sec,
-      );
-    });
-    dispatch(updateModule({ ...module, sections: [...updatedSections] }));
+  const onDeleteSection = () => {
+    dispatch(
+      deleteSection({
+        moduleId: module._id,
+        section,
+      }),
+    );
   };
 
-  const onDeleteSection = () => {
-    const filteredSections = module.sections.filter(
-      (sec) => sec._id != section._id,
+  const onAddLesson = () => {
+    const emptyLesson: Lesson = { _id: getFreshId(), title: "", url: "" };
+    dispatch(
+      updateSection({
+        moduleId: module._id,
+        section: { ...section, lessons: [...section.lessons, emptyLesson] },
+      }),
     );
-    dispatch(updateModule({ ...module, sections: [...filteredSections] }));
   };
 
   return (
@@ -61,6 +74,7 @@ const Section = ({ module, section }: SectionProps) => {
               className="module-section module-section-textarea"
               value={editingTitleText}
               onChange={(e) => setEditingTitleText(e.target.value)}
+              placeholder="Enter Section Title"
               disabled={!editingTitle}
             ></textarea>
           ) : (
@@ -69,17 +83,22 @@ const Section = ({ module, section }: SectionProps) => {
         </div>
 
         <div className="module-list-buttons modules-buttons-right">
+          <button type="button" id="add-module-item-btn" onClick={onAddLesson}>
+            <FaPlusCircle className="ms-2"></FaPlusCircle>
+          </button>
+
           <button
             type="button"
             onClick={onEditToggle}
             disabled={editingTitle && editingTitleText === ""}
           >
             {editingTitle ? (
-              <FaCheck className="text-success" />
+              <FaCheck className="ms-2 text-success" />
             ) : (
-              <FaEdit className="text-success" />
+              <FaEdit className="ms-2 text-success" />
             )}
           </button>
+
           <button
             type="button"
             id="delete-module-item-btn"

@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
-import { FaArrowDown, FaArrowRight, FaCheck, FaEdit } from "react-icons/fa";
+import {
+  FaArrowDown,
+  FaArrowRight,
+  FaCheck,
+  FaEdit,
+  FaPlusCircle,
+} from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { Module as ModuleType } from "../../types";
-import { deleteModule, updateModule } from "./modulesReducer";
+import { Module as ModuleType, Section as SectionType } from "../../types";
+import { getFreshId } from "../../utils";
+import { addSection, deleteModule, updateModule } from "./modulesReducer";
 import Section from "./Section";
 
 interface ModuleProps {
@@ -18,15 +25,14 @@ const Module = ({
   toggleModuleVisibility,
 }: ModuleProps) => {
   const dispatch = useDispatch();
-
-  const [editingTitle, setEditingTitle] = useState(false);
+  const [editingTitle, setEditingTitle] = useState(module.title === "");
   const [editingTitleText, setEditingTitleText] = useState(module.title);
 
   useEffect(() => {
+    setEditingTitle(module.title === "");
     setEditingTitleText(module.title);
-  }, [module]);
+  }, [module.title]);
 
-  // Renders arrow icon based on module visibility
   const getTitleArrow = (modId: string) => {
     const moduleVisibile = moduleVisibilityMap[modId];
 
@@ -39,19 +45,24 @@ const Module = ({
 
   const onEditToggle = () => {
     if (editingTitle) {
-      saveEdit();
+      dispatch(updateModule({ ...module, title: editingTitleText }));
       setEditingTitle(false);
     } else {
       setEditingTitle(true);
     }
   };
 
-  const saveEdit = () => {
-    dispatch(updateModule({ ...module, title: editingTitleText }));
+  const onDeleteModule = () => {
+    dispatch(deleteModule(module));
   };
 
-  const onDeleteModule = () => {
-    dispatch(deleteModule({ ...module }));
+  const onAddSection = () => {
+    dispatch(
+      addSection({
+        moduleId: module._id,
+        section: { _id: getFreshId(), title: "", lessons: [] },
+      }),
+    );
   };
 
   return (
@@ -76,6 +87,7 @@ const Module = ({
                 className="module-section module-section-textarea"
                 value={editingTitleText}
                 onChange={(e) => setEditingTitleText(e.target.value)}
+                placeholder="Enter Module Title"
                 disabled={!editingTitle}
               ></textarea>
             ) : (
@@ -86,13 +98,21 @@ const Module = ({
           <div className="module-list-buttons modules-buttons-right">
             <button
               type="button"
+              id="add-module-item-btn"
+              onClick={onAddSection}
+            >
+              <FaPlusCircle className="ms-2"></FaPlusCircle>
+            </button>
+
+            <button
+              type="button"
               onClick={onEditToggle}
               disabled={editingTitle && editingTitleText === ""}
             >
               {editingTitle ? (
-                <FaCheck className="text-success" />
+                <FaCheck className="ms-2 text-success" />
               ) : (
-                <FaEdit className="text-success" />
+                <FaEdit className="ms-2 text-success" />
               )}
             </button>
 

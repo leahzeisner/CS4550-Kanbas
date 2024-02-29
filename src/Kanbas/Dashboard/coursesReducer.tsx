@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { courses } from "../Database";
+import { getFreshId } from "../utils";
 
 const initialState = {
   coursesList: courses,
@@ -14,7 +15,7 @@ const coursesSlice = createSlice({
     addCourse: (state, action) => {
       state.coursesList = [
         ...state.coursesList,
-        { ...action.payload, _id: new Date().getTime().toString() },
+        { ...action.payload, _id: getFreshId() },
       ];
     },
     deleteCourse: (state, action) => {
