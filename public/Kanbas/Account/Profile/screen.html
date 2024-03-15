@@ -1,67 +1,98 @@
 <html>
 
+<head>
+    <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Kanbas/styles.css" />
+    <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
+    <link rel="stylesheet" href="/Kanbas/Account/Profile/index.css" />
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css" />
+</head>
+
 <body>
-    <table>
-        <tbody>
-            <tr>
-                <!-- KANBAS NAVIGATION -->
-                <td valign="top">
-                    <div>
-                        <ul>
-                            <li><a href="/Kanbas/Account/Profile/screen.html">Account</a></li>
-                            <li><a href="/Kanbas/Dashboard/screen.html">Dashboard</a></li>
-                            <li><a href="/Kanbas/Courses/Home/screen.html">Courses</a></li>
-                            <li><a href="/Kanbas/Calendar/index.html">Calendar</a></li>
-                            <li><a href="/Kanbas/Inbox/index.html">Inbox</a></li>
-                            <li><a href="/Kanbas/History/screen.html">History</a></li>
-                            <li><a href="/Kanbas/Studio/Home/screen.html">Studio</a></li>
-                            <li><a href="/Kanbas/Commons/index.html">Commons</a></li>
-                            <li><a href="/Kanbas/Help/index.html">Help</a></li>
-                        </ul>
+    <div class="screen-div">
+        <div class="sticky d-none d-lg-block">
+            <!-- KANBAS NAVIGATION -->
+            <div class="sticky-kanbas-nav">
+                <ul class="wd-kanbas-navigation">
+                    <li id="logo"><a href="/Kanbas/Dashboard/screen.html"><img class="nu-logo"
+                                src="/images/northeastern.png" alt="Northeastern logo" /></a></li>
+                    <li class="wd-active"><a href="/Kanbas/Account/Profile/screen.html"><i class="fa fa-user-circle-o"
+                                id="account-icon-active"></i>
+                            Account</a></li>
+                    <li><a href="/Kanbas/Dashboard/screen.html"><i class="fa fa-tachometer"></i>
+                            Dashboard</a>
+                    </li>
+                    <li><a href="/Kanbas/Courses/Home/screen.html"><i class="fa fa-book"></i><br /> Courses</a>
+                    </li>
+                    <li><a href="/Kanbas/Calendar/index.html"><i class="fa fa-calendar"></i><br /> Calendar</a>
+                    </li>
+                    <li><a href="/Kanbas/Inbox/index.html"><i class="fa fa-inbox"></i><br /> Inbox</a></li>
+                    <li><a href="/Kanbas/History/screen.html"><i class="fa fa-clock-o"></i><br /> History</a>
+                    </li>
+                    <li><a href="/Kanbas/Studio/Home/screen.html"><i class="fa fa-laptop"></i><br /> Studio</a>
+                    </li>
+                    <li><a href="/Kanbas/Commons/index.html"><i class="fa fa-arrow-circle-o-right"></i><br />
+                            Commons</a></li>
+                    <li><a href="/Kanbas/Help/index.html"><i class="fa fa-question-circle-o"></i><br /> Help</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sticky (Profile Page) Header -->
+            <div class="sticky-header">
+                <div class="sticky-header-content">
+                    <div class="sticky-header-left">
+                        <button type="button" class="sticky-header-bars-btn">
+                            <i class="fa fa-bars sticky-header-bars"></i>
+                        </button>
+                        <span class="sticky-header-text">Jose Annunziato's Profile</span>
                     </div>
-                </td>
 
-                <!-- ACCOUNT NAVIGATION -->
-                <td valign="top">
-                    <div>
-                        <ul>
-                            <li><a href="#">Notifications</a></li>
-                            <li><a href="/Kanbas/Account/Profile/screen.html">Profile</a></li>
-                            <li><a href="#">Files</a></li>
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">ePortfolios</a></li>
-                            <li><a href="#">Shared Content</a></li>
-                            <li><a href="#">The Hub</a></li>
-                            <li><a href="#">Qwickly Course Tools</a></li>
-                            <li><a href="#">Global Announcements</a></li>
-                        </ul>
+                    <div class="sticky-header-right">
+                        <button type="button" class="student-view-btn"><i class="fa fa-binoculars"></i> Student
+                            View</button>
                     </div>
-                </td>
+                </div>
 
-                <!-- PROFILE -->
-                <td>
-                    <div>
-                        <p>Jose Annunziato's Profile</p>
-                        <hr />
+                <hr />
+            </div>
 
-                        <div style="display: flex;justify-content: space-between;align-items: center;">
-                            <h2>Jose Annunziato</h2>
-                            <a href="Edit/screen.html"><button type="button">Edit Profile</button></a>
-                        </div>
+            <!-- ACCOUNT NAVIGATION -->
+            <div class="sticky-second-nav">
+                <ul>
+                    <li><a href="#">Notifications</a></li>
+                    <li><a href="/Kanbas/Account/Profile/screen.html">Profile</a></li>
+                    <li><a href="#">Files</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">ePortfolios</a></li>
+                    <li><a href="#">Shared Content</a></li>
+                    <li><a href="#">The Hub</a></li>
+                    <li><a href="#">Qwickly Course Tools</a></li>
+                    <li><a href="#">Global Announcements</a></li>
+                </ul>
+            </div>
+        </div>
 
-                        <h3>Contact</h3>
-                        <p>No registered services, you can add some on the <a href="#">settings</a> page.</p>
+        <!-- PROFILE -->
+        <div class="main-content">
+            <p>Jose Annunziato's Profile</p>
+            <hr />
 
-                        <h3>Biography</h3>
-                        <p>Faculty, Software Engineer, AI, Space, and renewables enthusiast.</p>
+            <div style="display: flex;justify-content: space-between;align-items: center;">
+                <h2>Jose Annunziato</h2>
+                <a href="Edit/screen.html"><button type="button">Edit Profile</button></a>
+            </div>
 
-                        <h3>Links</h3>
-                        <a href="#">Youtube</a>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <h3>Contact</h3>
+            <p>No registered services, you can add some on the <a href="#">settings</a> page.</p>
+
+            <h3>Biography</h3>
+            <p>Faculty, Software Engineer, AI, Space, and renewables enthusiast.</p>
+
+            <h3>Links</h3>
+            <a href="#">Youtube</a>
+        </div>
+    </div>
 </body>
 
 </html>

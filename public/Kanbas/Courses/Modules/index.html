@@ -1,0 +1,735 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/Kanbas/Courses/Modules/index.css" />
+</head>
+
+<body>
+    <!-- HOME -->
+    <div class="course-home main-content">
+        <!-- Modules -->
+        <div class="modules">
+            <div class="module-buttons">
+                <button type="button">Collapse All</button>
+                <button type="button">View Progress</button>
+                <select>
+                    <option value="PUBLISH-ALL"> Publish All</option>
+                </select>
+                <button type="button" id="module-button"><i class="fa fa-plus"></i>Module</button>
+                <button type="button"><i class="fa fa-ellipsis-v"></i></button>
+            </div>
+
+            <hr style="margin-bottom: 40px;" />
+
+
+            <!-- Implement buttons Collapse All, View Progress, etc. here -->
+            <ul class="list-group wd-modules">
+                <!-- Module -->
+                <li class="list-group-item-module">
+                    <div class="list-group-title">
+                        <div>
+                            <button type="button" class="modules-btn">
+                                <i class="fa fa-arrow-down arrow-down ellipsis-left"></i>
+                            </button>
+                        </div>
+
+                        <div>
+                            <span class="module-title">Week 1 - Intro</span>
+                        </div>
+
+                        <div>
+                            <span class="float-end">
+                                <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                <button type="button" class="modules-btn"><i class="fa fa-plus ms-2"></i></button>
+                                <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Learning Objectives -->
+                    <ul class="list-group">
+                        <!-- Main Group -->
+                        <li class="list-group-section">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <span class="module-title module-section">Learning Objectives</span>
+                            </div>
+
+                            <div>
+                                <span class="float-end">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+
+                        <!-- Group Items -->
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Introduction to the course</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Learn what Web Development is</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Creating a development environnment</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Creating a Web Application</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Getting started with Assignment 1</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Reading -->
+                    <ul class="list-group">
+                        <!-- Main Group -->
+                        <li class="list-group-section">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <span class="module-title module-section">Reading</span>
+                            </div>
+
+                            <div>
+                                <span class="float-end">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+
+                        <!-- Group Items -->
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Full Stack Developer - Chapter 1 -
+                                    Introduction</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Full Stack Developer - Chapter 2 - Creating
+                                    User Interfaces With HTML</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!--  Slides -->
+                    <ul class="list-group">
+                        <!-- Main Group -->
+                        <li class="list-group-section">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <span class="module-title module-section">Slides</span>
+                            </div>
+
+                            <div>
+                                <span class="float-end">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+
+                        <!-- Group Items -->
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Introduction to Web
+                                    Development</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Creating an HTTP server with
+                                    Node.js</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Creating a React
+                                    Application</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Commit your source to
+                                    Github</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Deploying to Netlify</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Deploying to multiple branches in
+                                    Netlify</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <!-- Module -->
+                <li class="list-group-item-module">
+                    <div class="list-group-title">
+                        <div>
+                            <button type="button" class="modules-btn">
+                                <i class="fa fa-arrow-down arrow-down ellipsis-left"></i>
+                            </button>
+                        </div>
+
+                        <div>
+                            <span class="module-title">Week 2 - Formatting User Interfaces
+                                with HTML</span>
+                        </div>
+
+                        <div>
+                            <span class="float-end">
+                                <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                <button type="button" class="modules-btn"><i class="fa fa-plus ms-2"></i></button>
+                                <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Learning Objectives -->
+                    <ul class="list-group">
+                        <!-- Main Group -->
+                        <li class="list-group-section">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <span class="module-title module-section">Learning Objectives</span>
+                            </div>
+
+                            <div>
+                                <span class="float-end">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+
+                        <!-- Group Items -->
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Learn how to create user interfaces with
+                                    HTML</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Keep working on Assignment 1</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Deploy Assignment 1 to Netlify</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Reading -->
+                    <ul class="list-group">
+                        <!-- Main Group -->
+                        <li class="list-group-section">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <span class="module-title module-section">Reading</span>
+                            </div>
+
+                            <div>
+                                <span class="float-end">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+
+                        <!-- Group Items -->
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Full Stack Developer - Chapter 1 -
+                                    Introduction</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-text">Full Stack Developer - Chapter 2 - Creating
+                                    User Interfaces With HTML</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!--  Slides -->
+                    <ul class="list-group">
+                        <!-- Main Group -->
+                        <li class="list-group-section">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <span class="module-title module-section">Slides</span>
+                            </div>
+
+                            <div>
+                                <span class="float-end">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+
+                        <!-- Group Items -->
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Introduction to HTML and the
+                                    DOM</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Formatting Web content with
+                                    Headings and Paragraphs</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Formatting Web content with Lists
+                                    and Tables</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Creating Web Forms</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Navigating with Anchors</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Embedding content with Iframes</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <i class="fa fa-ellipsis-v ellipsis-left"></i>
+                            </div>
+
+                            <div>
+                                <a href="#" class="list-group-item-link">Drawing with Scalable Vector Graphics</a>
+                            </div>
+
+                            <div>
+                                <span class="float-end list-group-item-right">
+                                    <button type="button" class="modules-btn"><i class="fa fa-check-circle text-success"></i></button>
+                                    <button type="button" class="modules-btn"><i class="fa fa-ellipsis-v ms-2"></i></button>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Course Info Sidebar -->
+        <div class="course-info d-none d-xl-block">
+            <!-- Course Status -->
+            <div class="course-status">
+                <p class="course-info-section">Course Status</p>
+
+                <div class="publish-buttons">
+                    <button type="button"><i class="fa fa-ban"></i>Unpublish</button>
+                    <button type="button" id="publish"><i class="fa fa-check-circle"></i>Published</button>
+                </div>
+
+                <div class="status-buttons">
+                    <button type="button"><i class="fa fa-files-o"></i> Import Existing Content</button>
+                    <button type="button"><i class="fa fa-arrow-circle-o-right"></i> Import from
+                        Commons</button>
+                    <button type="button"><i class="fa fa-home"></i> Choose Home Page</button>
+                    <button type="button"><i class="fa fa-bar-chart"></i> View Course Stream</button>
+                    <button type="button"><i class="fa fa-bullhorn"></i> New Announcement</button>
+                    <button type="button"><i class="fa fa-bar-chart"></i> New Analytics</button>
+                    <button type="button"><i class="fa fa-bell-o"></i> View Course Notifications</button>
+                </div>
+            </div>
+
+            <!-- To Do -->
+            <div class="todo">
+                <p class="course-info-section">To Do</p>
+                <hr class="hr-line" />
+
+                <div class="todo-items">
+                    <div class="todo-item">
+                        <div class="todo-item-left">
+                            <span class="todo-item-num">1</span>
+
+                            <div class="todo-item-info">
+                                <a href="#" class="todo-item-title">Grade A1 - ENV + HTML</a>
+                                <span class="todo-item-due-date">100 points <span>&#x2022;</span> Jan 23 at
+                                    11:59pm</span>
+                            </div>
+                        </div>
+
+                        <button class="todo-item-delete" type="button"><i class="fa fa-times"></i></button>
+                    </div>
+
+                    <div class="todo-item">
+                        <div class="todo-item-left">
+                            <span class="todo-item-num">2</span>
+
+                            <div class="todo-item-info">
+                                <a href="#" class="todo-item-title">Grade A2 - CSS + BOOTSTRAP</a>
+                                <span class="todo-item-due-date">100 points <span>&#x2022;</span> Feb 6 at
+                                    11:59pm</span>
+                            </div>
+                        </div>
+
+                        <button class="todo-item-delete" type="button"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coming Up -->
+            <div class="coming-up">
+                <div class="coming-up-header">
+                    <p class="course-info-section">Coming Up</p>
+                    <a href="#"><i class="fa fa-calendar view-calendar-icon"></i>View Calendar</a>
+                </div>
+
+                <hr class="hr-line" />
+
+                <div class="coming-up-items">
+                    <div class="coming-up-item">
+                        <i class="fa fa-calendar"></i>
+                        <div class="coming-up-item-info">
+                            <a href="#" class="coming-up-item-title">Lecture</a>
+                            <span class="coming-up-item-section">CS4550.12631.202410</span>
+                            <span class="coming-up-item-date">Jan 30 at 3:25pm</span>
+                        </div>
+                    </div>
+
+                    <div class="coming-up-item">
+                        <i class="fa fa-calendar"></i>
+                        <div class="coming-up-item-info">
+                            <a href="#" class="coming-up-item-title">CS5610 Web Development Lecture</a>
+                            <span class="coming-up-item-section">CS5610.12345.67890</span>
+                            <span class="coming-up-item-date">Feb 2 at 11:45am</span>
+                        </div>
+                    </div>
+
+                    <div class="coming-up-item">
+                        <i class="fa fa-calendar"></i>
+                        <div class="coming-up-item-info">
+                            <a href="#" class="coming-up-item-title">CS1234.5678.111111 Programming
+                                Languages SP24 Lecture</a>
+                            <span class="coming-up-item-section">CS1234.5678.111111</span>
+                            <span class="coming-up-item-date">Feb 2 at 2:50pm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <span style="color: red;font-size: 12px;margin-left: 10px;">12 more in the next
+                    week...</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

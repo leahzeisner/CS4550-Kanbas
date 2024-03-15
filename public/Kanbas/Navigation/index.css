@@ -1,0 +1,159 @@
+.sticky-kanbas-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 80px;
+  background-color: black;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.wd-kanbas-navigation {
+  background-color: black;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 80px;
+  height: 100%;
+}
+.wd-kanbas-navigation li {
+  padding: 5px;
+  margin-bottom: 5px;
+  font-size: 0.8em;
+  text-align: center;
+}
+.nu-logo {
+  width: 80px;
+}
+#logo {
+  padding: 0px;
+}
+.wd-kanbas-navigation li.wd-active {
+  background-color: white;
+}
+.wd-kanbas-navigation li.wd-active a {
+  color: red;
+}
+.wd-kanbas-navigation a {
+  color: white;
+  text-decoration: none;
+}
+.wd-kanbas-navigation a i {
+  color: red;
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+#account-icon {
+  color: white;
+}
+
+#account-icon-active,
+#account-icon-small {
+  color: gray;
+}
+
+.kanbas-nav-small {
+  position: fixed;
+  z-index: 20;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.kanbas-nav-list {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
+
+#kanbas-nav-close {
+  padding: 18px 18px 3px 3px;
+  display: flex;
+  justify-content: end;
+  color: #3d454c;
+}
+
+.kanbas-nav-list li {
+  padding: 3px;
+  font-size: 0.8em;
+  text-align: center;
+  display: inline;
+}
+
+.kanbas-nav-list a {
+  color: red;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.kanbas-nav-list span:hover {
+  text-decoration: underline;
+}
+
+.kanbas-nav-list a i {
+  font-size: 2em;
+  width: 23px;
+  margin-right: 16px;
+}
+
+#arrow-right {
+  color: #3d454c;
+  padding: 5px;
+  font-size: 1em;
+}
+
+#arrow-right:hover {
+  background-color: lightgray;
+  border-radius: 4px;
+}
+
+.course-nav-small {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 20px;
+}
+
+.course-nav-list {
+  list-style: none;
+  padding: 0px;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+}
+
+.course-nav-list li {
+  padding: 3px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.course-nav-list a {
+  color: red;
+  text-decoration: none;
+  display: flex;
+  justify-content: start;
+  margin-left: 16px;
+}
+
+.course-nav-list span {
+  font-size: 0.8em;
+}
+
+.course-nav-list span:hover {
+  text-decoration: underline;
+}
+
+.course-nav-list a i {
+  margin-right: 10px;
+}
