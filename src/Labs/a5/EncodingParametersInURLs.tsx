@@ -16,6 +16,7 @@ function EncodingParametersInURLs() {
         onChange={(e) => setB(parseInt(e.target.value))}
         value={b}
       />
+
       <h3>Path Parameters</h3>
       <a href={`http://localhost:4000/a5/add/${a}/${b}`}>
         Add {a} + {b}
@@ -23,6 +24,39 @@ function EncodingParametersInURLs() {
       <br />
       <a href={`http://localhost:4000/a5/subtract/${a}/${b}`}>
         Substract {a} - {b}
+      </a>
+      <br />
+      <a href={`http://localhost:4000/a5/multiply/${a}/${b}`}>
+        Multiply {a} * {b}
+      </a>
+      <br />
+      <a href={`http://localhost:4000/a5/divide/${a}/${b}`}>
+        Divide {a} / {b}
+      </a>
+
+      <h3>Query Parameters</h3>
+      <a
+        href={`http://localhost:4000/a5/calculator?operation=add&a=${a}&b=${b}`}
+      >
+        Add {a} + {b}
+      </a>
+      <br />
+      <a
+        href={`http://localhost:4000/a5/calculator?operation=subtract&a=${a}&b=${b}`}
+      >
+        Substract {a} - {b}
+      </a>
+      <br />
+      <a
+        href={`http://localhost:4000/a5/calculator?operation=multiply&a=${a}&b=${b}`}
+      >
+        Multiply {a} * {b}
+      </a>
+      <br />
+      <a
+        href={`http://localhost:4000/a5/calculator?operation=divide&a=${a}&b=${b}`}
+      >
+        Divide {a} / {b}
       </a>
     </div>
   );
