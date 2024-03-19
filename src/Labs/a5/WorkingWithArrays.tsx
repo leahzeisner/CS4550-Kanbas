@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 function WorkingWithArrays() {
   const API = "http://localhost:4000/a5/todos";
+  const [errorMessage, setErrorMessage] = useState(null);
   const [todo, setTodo] = useState({
     id: 1,
     title: "NodeJS Assignment",
@@ -10,15 +11,33 @@ function WorkingWithArrays() {
     due: "2021-09-09",
     completed: false,
   });
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<
+    {
+      id: number;
+      title: string;
+      description: string;
+      due: string;
+      completed: boolean;
+    }[]
+  >([]);
   const fetchTodos = async () => {
     const response = await axios.get(API);
     setTodos(response.data);
   };
-  const removeTodo = async (todo: any) => {
-    const response = await axios.get(`${API}/${todo.id}/delete`);
-    setTodos(response.data);
+  // const removeTodo = async (todo: any) => {
+  //   const response = await axios.get(`${API}/${todo.id}/delete`);
+  //   setTodos(response.data);
+  // };
+  const deleteTodo = async (todo: any) => {
+    try {
+      const response = await axios.delete(`${API}/${todo.id}`);
+      setTodos(todos.filter((t) => t.id !== todo.id));
+    } catch (error: any) {
+      console.log(error);
+      setErrorMessage(error.response.data.message);
+    }
   };
+
   const createTodo = async () => {
     const response = await axios.get(`${API}/create`);
     setTodos(response.data);
@@ -32,6 +51,30 @@ function WorkingWithArrays() {
   const updateTitle = async () => {
     const response = await axios.get(`${API}/${todo.id}/title/${todo.title}`);
     setTodos(response.data);
+  };
+
+  const postTodo = async () => {
+    const response = await axios.post(API, todo);
+    setTodos(response.data);
+  };
+
+  const updateTodo = async () => {
+    try {
+      const response = await axios.put(`${API}/${todo.id}`, todo);
+      const newTodos = todos.map(
+        (t: {
+          id: number;
+          title: string;
+          description: string;
+          due: string;
+          completed: boolean;
+        }) => (t.id === todo.id ? todo : t),
+      );
+      setTodos(newTodos);
+    } catch (error: any) {
+      console.log(error);
+      setErrorMessage(error.response.data.message);
+    }
   };
 
   useEffect(() => {
@@ -105,18 +148,53 @@ function WorkingWithArrays() {
         checked={!todo.completed}
       />
 
+      <textarea
+        value={todo.description}
+        onChange={(e) => setTodo({ ...todo, description: e.target.value })}
+      />
+      <input
+        value={todo.due}
+        type="date"
+        onChange={(e) =>
+          setTodo({
+            ...todo,
+            due: e.target.value,
+          })
+        }
+      />
+      <label>
+        <input
+          checked={todo.completed}
+          type="checkbox"
+          onChange={(e) =>
+            setTodo({
+              ...todo,
+              completed: e.target.checked,
+            })
+          }
+        />
+        Completed
+      </label>
+      <button onClick={postTodo}> Post Todo </button>
+
       <ul>
         {todos.map((todo: any) => (
           <li key={todo.id}>
             <button onClick={() => fetchTodoById(todo.id)}>Edit</button>
-            <button onClick={() => removeTodo(todo)}>Remove</button>
+            {/* <button onClick={() => removeTodo(todo)}>Remove</button> */}
+            <button onClick={() => deleteTodo(todo)}>Delete</button>
+
             {todo.title}
           </li>
         ))}
       </ul>
 
       <button onClick={createTodo}>Create Todo</button>
-      <button onClick={updateTitle}>Update Title</button>
+      <button onClick={updateTodo}>Update Todo</button>
+
+      {errorMessage && (
+        <div className="alert alert-danger mb-2 mt-2">{errorMessage}</div>
+      )}
     </div>
   );
 }
