@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Module, Section, Lesson as LessonType } from "../../types";
 import { scrollToElementWithId } from "../../utils";
 import { deleteLesson, updateLesson } from "./modulesReducer";
+import * as client from "./client";
 
 interface LessonProps {
   module: Module;
@@ -28,24 +29,29 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
 
   const onEditToggle = () => {
     if (editingTitle) {
-      dispatch(
-        updateLesson({
-          moduleId: module._id,
-          sectionId: section._id,
-          lesson: { ...lesson, title: editingTitleText },
-        }),
+      const newLesson = { ...lesson, title: editingTitleText };
+      client.updateLesson(module._id, section._id, newLesson).then(() =>
+        dispatch(
+          updateLesson({
+            moduleId: module._id,
+            sectionId: section._id,
+            lesson: { ...lesson, title: editingTitleText },
+          }),
+        ),
       );
     }
     setEditingTitle(!editingTitle);
   };
 
   const onDeleteLesson = () => {
-    dispatch(
-      deleteLesson({
-        moduleId: module._id,
-        sectionId: section._id,
-        lesson: lesson,
-      }),
+    client.deleteLesson(module._id, section._id, lesson).then(() =>
+      dispatch(
+        deleteLesson({
+          moduleId: module._id,
+          sectionId: section._id,
+          lesson: lesson,
+        }),
+      ),
     );
   };
 

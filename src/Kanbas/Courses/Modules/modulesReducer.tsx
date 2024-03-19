@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { modules } from "../../Database";
 import { Modules } from "../../types";
 
 const initialState = {
-  modulesList: modules as unknown as Modules,
+  modulesList: [] as Modules,
 };
 
 const modulesSlice = createSlice({
@@ -26,23 +25,13 @@ const modulesSlice = createSlice({
     setModulesList: (state, action) => {
       state.modulesList = action.payload;
     },
-    addSection: (state, action) => {
-      state.modulesList = state.modulesList.map((module) =>
-        module._id === action.payload.moduleId
-          ? {
-              ...module,
-              sections: [...module.sections, action.payload.section],
-            }
-          : module,
-      );
-    },
     deleteSection: (state, action) => {
       state.modulesList = state.modulesList.map((module) =>
         module._id === action.payload.moduleId
           ? {
               ...module,
               sections: module.sections.filter(
-                (sec) => sec._id != action.payload.section._id,
+                (sec) => sec._id !== action.payload.section._id,
               ),
             }
           : module,
@@ -72,7 +61,7 @@ const modulesSlice = createSlice({
                   ? {
                       ...sec,
                       lessons: sec.lessons.filter(
-                        (les) => les._id != action.payload.lesson._id,
+                        (les) => les._id !== action.payload.lesson._id,
                       ),
                     }
                   : sec,
@@ -110,7 +99,6 @@ export const {
   deleteModule,
   updateModule,
   setModulesList,
-  addSection,
   deleteSection,
   updateSection,
   deleteLesson,

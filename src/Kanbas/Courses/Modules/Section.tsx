@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import { FaCheck, FaEdit, FaEllipsisV, FaPlusCircle } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import {
-  Module,
-  Section as SectionType,
-  Lesson as LessonType,
-} from "../../types";
+import { Module, Section as SectionType } from "../../types";
 import { getFreshId, scrollToElementWithId } from "../../utils";
-import { deleteSection, updateSection } from "./modulesReducer";
+import { deleteSection, updateModule, updateSection } from "./modulesReducer";
 import Lesson from "./Lesson";
+import * as client from "./client";
 
 interface SectionProps {
   module: Module;
@@ -31,33 +28,44 @@ const Section = ({ module, section }: SectionProps) => {
 
   const onEditToggle = () => {
     if (editingTitle) {
-      dispatch(
-        updateSection({
-          moduleId: module._id,
-          section: { ...section, title: editingTitleText },
-        }),
+      const newSection = { ...section, title: editingTitleText };
+      client.updateSection(module._id, newSection).then(() =>
+        dispatch(
+          updateSection({
+            moduleId: module._id,
+            section: newSection,
+          }),
+        ),
       );
     }
     setEditingTitle(!editingTitle);
   };
 
   const onDeleteSection = () => {
-    dispatch(
-      deleteSection({
-        moduleId: module._id,
-        section,
-      }),
+    client.deleteSection(module._id, section).then(() =>
+      dispatch(
+        deleteSection({
+          moduleId: module._id,
+          section,
+        }),
+      ),
     );
   };
 
   const onAddLesson = () => {
-    const emptyLesson: LessonType = { _id: getFreshId(), title: "", url: "" };
-    dispatch(
-      updateSection({
-        moduleId: module._id,
-        section: { ...section, lessons: [...section.lessons, emptyLesson] },
-      }),
-    );
+    const emptyLesson = { _id: getFreshId(), title: "", url: "" };
+
+    const newModule: Module = {
+      ...module,
+      sections: module.sections.map((s) =>
+        s._id === section._id
+          ? { ...s, lessons: [...s.lessons, emptyLesson] }
+          : s,
+      ),
+    };
+    client
+      .updateModule(newModule)
+      .then(() => dispatch(updateModule(newModule)));
   };
 
   return (

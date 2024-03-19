@@ -1,12 +1,29 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import "../styles.css";
 import Header from "./Header";
 import Home from "./Home";
 import Assignments from "./Assignments";
+import { useEffect } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setCourse } from "../Dashboard/coursesReducer";
+import { COURSES_API } from "./Modules/client";
 
 function Courses() {
+  const { courseId } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    findCourse();
+  }, [courseId]);
+
+  const findCourse = async () => {
+    const response = await axios.get(`${COURSES_API}/${courseId}`);
+    dispatch(setCourse(response.data));
+  };
+
   return (
     <div>
       <Header />

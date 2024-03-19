@@ -10,7 +10,8 @@ import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Module as ModuleType } from "../../types";
 import { getFreshId, scrollToElementWithId } from "../../utils";
-import { addSection, deleteModule, updateModule } from "./modulesReducer";
+import { deleteModule, updateModule } from "./modulesReducer";
+import * as client from "./client";
 import Section from "./Section";
 
 interface ModuleProps {
@@ -48,22 +49,29 @@ const Module = ({
 
   const onEditToggle = () => {
     if (editingTitle) {
-      dispatch(updateModule({ ...module, title: editingTitleText }));
+      const newModule = { ...module, title: editingTitleText };
+      client
+        .updateModule(newModule)
+        .then(() => dispatch(updateModule(newModule)));
     }
     setEditingTitle(!editingTitle);
   };
 
   const onDeleteModule = () => {
-    dispatch(deleteModule(module));
+    client.deleteModule(module._id).then(() => {
+      dispatch(deleteModule(module));
+    });
   };
 
   const onAddSection = () => {
-    dispatch(
-      addSection({
-        moduleId: module._id,
-        section: { _id: getFreshId(), title: "", lessons: [] },
-      }),
-    );
+    const emptySection = { _id: getFreshId(), title: "", lessons: [] };
+    const newModule: ModuleType = {
+      ...module,
+      sections: [...module.sections, emptySection],
+    };
+    client
+      .updateModule(newModule)
+      .then(() => dispatch(updateModule(newModule)));
   };
 
   return (

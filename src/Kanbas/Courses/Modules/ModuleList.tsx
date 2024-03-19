@@ -7,43 +7,40 @@ import { KanbasState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { Modules } from "../../types";
 import { useParams } from "react-router";
-import { addModule } from "./modulesReducer";
+import { addModule, setModulesList } from "./modulesReducer";
 import { getFreshId } from "../../utils";
+import { createModule, findCourseModules } from "./client";
 
 function ModuleList() {
   const dispatch = useDispatch();
   const { courseId } = useParams();
-  const modulesList: Modules = useSelector(
+
+  const courseModules: Modules = useSelector(
     (state: KanbasState) => state.modulesReducer.modulesList,
   );
-  const [courseModules, setCourseModules] = useState<Modules>(
-    modulesList.filter((mod) => mod.courseId === courseId),
-  );
+
   const collapseAll = "Collapse All";
   const [collapseAllText, setCollapseAllText] = useState(collapseAll);
   const [moduleVisibilityMap, setModuleVisibilityMap] = useState<
     Record<string, boolean>
   >({});
-  useEffect(() => {
-    createModuleVisibilityMap(courseModules);
 
+  useEffect(() => {
+    findCourseModules(courseId).then((modules) =>
+      dispatch(setModulesList(modules)),
+    );
+    createModuleVisibilityMap(courseModules);
     if (courseModules.length === 0) {
       setCollapseAllText(collapseAll);
     }
-  }, []);
-
-  useEffect(() => {
-    const mods = modulesList.filter((mod) => mod.courseId === courseId);
-    setCourseModules(mods);
-    createModuleVisibilityMap(mods);
-  }, [modulesList]);
+  }, [courseModules]);
 
   const createModuleVisibilityMap = (mods: Modules) => {
     const map: Record<string, boolean> = {};
     mods.forEach(
       (mod) =>
         (map[mod._id] =
-          moduleVisibilityMap[mod._id] != undefined
+          moduleVisibilityMap[mod._id] !== undefined
             ? moduleVisibilityMap[mod._id]
             : true),
     );
@@ -78,7 +75,9 @@ function ModuleList() {
       title: "",
       sections: [],
     };
-    dispatch(addModule(emptyModule));
+    createModule(courseId, emptyModule).then((module) => {
+      dispatch(addModule(module));
+    });
   };
 
   return (
