@@ -1,27 +1,12 @@
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import "../styles.css";
 import Header from "./Header";
 import Home from "./Home";
 import Assignments from "./Assignments";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCourse } from "../Dashboard/coursesReducer";
-import { Courses as CoursesType } from "../types";
-import { KanbasState } from "../store";
 
 function Courses() {
-  const { courseId } = useParams();
-  const dispatch = useDispatch();
-  const coursesList: CoursesType = useSelector(
-    (state: KanbasState) => state.coursesReducer.coursesList,
-  );
-
-  useEffect(() => {
-    dispatch(setCourse(coursesList.find((course) => course._id === courseId)));
-  }, []);
-
   return (
     <div>
       <Header />

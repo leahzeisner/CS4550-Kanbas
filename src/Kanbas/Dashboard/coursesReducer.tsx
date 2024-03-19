@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { courses } from "../Database";
-import { getFreshId } from "../utils";
 
 const initialState = {
   coursesList: courses,

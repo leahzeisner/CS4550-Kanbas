@@ -1,17 +1,14 @@
 import { FaCircleXmark } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Course as CourseType } from "../types";
-import { deleteCourse } from "./coursesReducer";
 
 interface CourseProps {
   course: CourseType;
   onEditCourse: (courseId: string) => void;
+  deleteCourse: (courseId: string) => void;
 }
 
-const Course = ({ course, onEditCourse }: CourseProps) => {
-  const dispatch = useDispatch();
-
+const Course = ({ course, onEditCourse, deleteCourse }: CourseProps) => {
   return (
     <div key={course._id} className="card">
       <div className="card-img">
@@ -24,7 +21,7 @@ const Course = ({ course, onEditCourse }: CourseProps) => {
           type="button"
           className="btn btn-danger"
           id="deleteCourseBtn"
-          onClick={() => dispatch(deleteCourse(course))}
+          onClick={() => deleteCourse(course._id)}
         >
           <FaCircleXmark id="delete-course" size={25} />
         </button>

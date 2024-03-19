@@ -3,22 +3,52 @@ import AddCourse from "./AddCourse";
 import Course from "./Course";
 import EditCourse from "./EditCourse";
 import "./index.css";
-import { Courses } from "../types";
-import { useSelector } from "react-redux";
-import { KanbasState } from "../store";
-import { useState } from "react";
+import { Course as CourseType, Courses } from "../types";
+import { useEffect, useState } from "react";
 import { getEmptyCourse } from "./utils";
+import axios from "axios";
 
 function Dashboard() {
-  const courses: Courses = useSelector(
-    (state: KanbasState) => state.coursesReducer.coursesList,
-  );
+  const COURSES_API = "http://localhost:4000/api/courses";
+  const [courses, setCourses] = useState<Courses>([]);
   const [isAdding, setIsAdding] = useState(true);
   const [editableCourse, setEditableCourse] = useState(getEmptyCourse());
 
-  const onEditCourse = (courseId: string) => {
+  useEffect(() => {
+    findAllCourses();
+  }, []);
+
+  const findAllCourses = async () => {
+    const response = await axios.get(COURSES_API);
+    setCourses(response.data);
+  };
+
+  const addCourse = async (course: CourseType) => {
+    const response = await axios.post(COURSES_API, course);
+    setCourses([...courses, response.data]);
+  };
+
+  const deleteCourse = async (courseId: string) => {
+    await axios.delete(`${COURSES_API}/${courseId}`);
+    setCourses(courses.filter((c) => c._id !== courseId));
+  };
+
+  const updateCourse = async (course: CourseType) => {
+    await axios.put(`${COURSES_API}/${course._id}`, course);
+    setCourses(
+      courses.map((c) => {
+        if (c._id === course._id) {
+          return course;
+        }
+        return c;
+      }),
+    );
+  };
+
+  const onEditCourse = async (courseId: string) => {
     setIsAdding(false);
-    setEditableCourse(courses.filter((course) => course._id === courseId)[0]);
+    const response = await axios.get(`${COURSES_API}/${courseId}`);
+    setEditableCourse(response.data);
   };
 
   return (
@@ -36,18 +66,23 @@ function Dashboard() {
         <hr style={{ marginBottom: "30px" }} />
 
         {isAdding ? (
-          <AddCourse />
+          <AddCourse addCourse={addCourse} />
         ) : (
           <EditCourse
             editableCourse={editableCourse}
             setEditableCourse={setEditableCourse}
             setIsAdding={setIsAdding}
+            updateCourse={updateCourse}
           />
         )}
 
         <div className="d-flex flex-wrap">
           {courses.map((course) => (
-            <Course course={course} onEditCourse={onEditCourse} />
+            <Course
+              course={course}
+              onEditCourse={onEditCourse}
+              deleteCourse={deleteCourse}
+            />
           ))}
         </div>
       </div>
