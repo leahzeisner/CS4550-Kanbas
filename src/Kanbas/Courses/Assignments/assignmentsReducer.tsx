@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { assignments } from "../../Database";
+import { AssignmentsList } from "../../types";
 
 const initialState = {
-  assignmentsList: assignments,
+  assignmentsList: [] as AssignmentsList,
 };
 
 const assignmentsSlice = createSlice({

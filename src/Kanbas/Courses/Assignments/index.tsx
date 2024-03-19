@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEllipsisV, FaPlus, FaArrowDown, FaArrowRight } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { KanbasState } from "../../store";
 import "../../styles.css";
@@ -8,8 +8,11 @@ import Assignment from "./Assignment";
 import "./index.css";
 import ToolBar from "./ToolBar";
 import { AssignmentsList } from "../../types";
+import * as client from "./client";
+import { setAssignmentsList } from "./assignmentsReducer";
 
 function Assignments() {
+  const dispatch = useDispatch();
   const { courseId } = useParams();
 
   const assignments: AssignmentsList = useSelector(
@@ -17,6 +20,12 @@ function Assignments() {
   );
   const [searchAssignmentValue, setSearchAssignmentValue] = useState("");
   const [showAssignments, setShowAssignments] = useState(true);
+
+  useEffect(() => {
+    client
+      .findCourseAssignments(courseId)
+      .then((assignments) => dispatch(setAssignmentsList(assignments)));
+  }, [courseId]);
 
   const getTitleArrow = () => {
     return showAssignments ? (
