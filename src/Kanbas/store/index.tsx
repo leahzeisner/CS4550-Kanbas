@@ -7,7 +7,6 @@ import {
   AssignmentsList,
   ComingUpList,
   Course,
-  Courses,
   Modules,
   TodoList,
 } from "../types";
@@ -24,7 +23,6 @@ export interface KanbasState {
     assignmentsList: AssignmentsList;
   };
   coursesReducer: {
-    coursesList: Courses;
     course: Course;
     page: string;
   };
