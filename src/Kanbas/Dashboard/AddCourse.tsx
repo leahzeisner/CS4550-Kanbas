@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 import { getEmptyCourse, validateForm } from "./utils";
-import { Course } from "../types";
+import { Course, Courses } from "../types";
 import { FaMinus, FaPlus } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState } from "../store";
+import { setCourses } from "./coursesReducer";
+import { addCourse } from "./client";
 
-function AddCourse({ addCourse }: { addCourse: (course: Course) => void }) {
+function AddCourse() {
+  const dispatch = useDispatch();
+  const courses: Courses = useSelector(
+    (state: KanbasState) => state.coursesReducer.courses,
+  );
   const [course, setCourse] = useState<Course>(getEmptyCourse());
   const [addCourseEnabled, setAddCourseEnabled] = useState(true);
   const [addingCourse, setAddingCourse] = useState(false);
@@ -12,14 +20,14 @@ function AddCourse({ addCourse }: { addCourse: (course: Course) => void }) {
     setAddCourseEnabled(validateForm(course));
   }, [course]);
 
-  const addNewCourse = () => {
+  const addNewCourse = async () => {
     if (validateForm(course)) {
       const newCourse = {
         ...course,
         image: "/webdev2.webp", // TEMPORARY
       };
       setCourse(getEmptyCourse());
-      addCourse(newCourse);
+      addCourse(newCourse).then((c) => dispatch(setCourses([...courses, c])));
       setAddingCourse(false);
     }
   };

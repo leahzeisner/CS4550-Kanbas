@@ -6,23 +6,17 @@ import Header from "./Header";
 import Home from "./Home";
 import Assignments from "./Assignments";
 import { useEffect } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setCourse } from "../Dashboard/coursesReducer";
-import { COURSES_API } from "./Modules/client";
+import { getCourse } from "../Dashboard/client";
 
 function Courses() {
   const { courseId } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    findCourse();
+    getCourse(courseId).then((c) => dispatch(setCourse(c)));
   }, [courseId]);
-
-  const findCourse = async () => {
-    const response = await axios.get(`${COURSES_API}/${courseId}`);
-    dispatch(setCourse(response.data));
-  };
 
   return (
     <div>

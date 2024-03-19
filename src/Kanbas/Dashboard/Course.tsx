@@ -1,14 +1,24 @@
 import { FaCircleXmark } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Course as CourseType } from "../types";
+import { deleteCourse as deleteCourseAction } from "./coursesReducer";
+import * as client from "./client";
 
 interface CourseProps {
   course: CourseType;
   onEditCourse: (courseId: string) => void;
-  deleteCourse: (courseId: string) => void;
 }
 
-const Course = ({ course, onEditCourse, deleteCourse }: CourseProps) => {
+const Course = ({ course, onEditCourse }: CourseProps) => {
+  const dispatch = useDispatch();
+
+  const deleteCourse = async (courseId: string) => {
+    client
+      .deleteCourse(courseId)
+      .then(() => dispatch(deleteCourseAction(courseId)));
+  };
+
   return (
     <div key={course._id} className="card">
       <div className="card-img">

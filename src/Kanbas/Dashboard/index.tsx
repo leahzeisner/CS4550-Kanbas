@@ -6,49 +6,39 @@ import "./index.css";
 import { Course as CourseType, Courses } from "../types";
 import { useEffect, useState } from "react";
 import { getEmptyCourse } from "./utils";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState } from "../store";
+import {
+  setCourses,
+  updateCourse as updateCourseAction,
+} from "./coursesReducer";
+import * as client from "./client";
 
 function Dashboard() {
-  const COURSES_API = "http://localhost:4000/api/courses";
-  const [courses, setCourses] = useState<Courses>([]);
+  const dispatch = useDispatch();
+
+  const courses: Courses = useSelector(
+    (state: KanbasState) => state.coursesReducer.courses,
+  );
+
   const [isAdding, setIsAdding] = useState(true);
   const [editableCourse, setEditableCourse] = useState(getEmptyCourse());
 
   useEffect(() => {
-    findAllCourses();
+    client.getCourses().then((courses) => {
+      dispatch(setCourses(courses));
+    });
   }, []);
 
-  const findAllCourses = async () => {
-    const response = await axios.get(COURSES_API);
-    setCourses(response.data);
-  };
-
-  const addCourse = async (course: CourseType) => {
-    const response = await axios.post(COURSES_API, course);
-    setCourses([...courses, response.data]);
-  };
-
-  const deleteCourse = async (courseId: string) => {
-    await axios.delete(`${COURSES_API}/${courseId}`);
-    setCourses(courses.filter((c) => c._id !== courseId));
-  };
-
   const updateCourse = async (course: CourseType) => {
-    await axios.put(`${COURSES_API}/${course._id}`, course);
-    setCourses(
-      courses.map((c) => {
-        if (c._id === course._id) {
-          return course;
-        }
-        return c;
-      }),
-    );
+    client
+      .updateCourse(course)
+      .then(() => dispatch(updateCourseAction(course)));
   };
 
   const onEditCourse = async (courseId: string) => {
     setIsAdding(false);
-    const response = await axios.get(`${COURSES_API}/${courseId}`);
-    setEditableCourse(response.data);
+    client.getCourse(courseId).then((course) => setEditableCourse(course));
   };
 
   return (
@@ -66,7 +56,7 @@ function Dashboard() {
         <hr style={{ marginBottom: "30px" }} />
 
         {isAdding ? (
-          <AddCourse addCourse={addCourse} />
+          <AddCourse />
         ) : (
           <EditCourse
             editableCourse={editableCourse}
@@ -78,11 +68,7 @@ function Dashboard() {
 
         <div className="d-flex flex-wrap">
           {courses.map((course) => (
-            <Course
-              course={course}
-              onEditCourse={onEditCourse}
-              deleteCourse={deleteCourse}
-            />
+            <Course course={course} onEditCourse={onEditCourse} />
           ))}
         </div>
       </div>

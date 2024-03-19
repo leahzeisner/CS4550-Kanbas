@@ -25,6 +25,9 @@ import {
 } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 
+export const COURSES_API = "http://localhost:4000/api/courses";
+export const MODULES_API = "http://localhost:4000/api/modules";
+
 export const courseNavLinks = [
   {
     label: "Home",

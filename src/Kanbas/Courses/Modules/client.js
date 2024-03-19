@@ -1,6 +1,5 @@
 import axios from "axios";
-export const COURSES_API = "http://localhost:4000/api/courses";
-export const MODULES_API = "http://localhost:4000/api/modules";
+import { COURSES_API, MODULES_API } from "../../constants";
 
 export const findCourseModules = async (courseId) => {
   const response = await axios.get(`${COURSES_API}/${courseId}/modules`);
