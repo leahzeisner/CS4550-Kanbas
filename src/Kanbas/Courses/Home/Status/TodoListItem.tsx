@@ -1,8 +1,9 @@
 import { FaTimes } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { TodoItem } from "../../../types";
 import { deleteTodoItem } from "./statusReducer";
+import * as client from "./client";
 
 interface TodoProps {
   todo: TodoItem;
@@ -10,8 +11,12 @@ interface TodoProps {
 
 const TodoListItem = ({ todo }: TodoProps) => {
   const dispatch = useDispatch();
+  const { courseId } = useParams();
+
   const deleteTodo = () => {
-    dispatch(deleteTodoItem(todo));
+    client
+      .deleteTodo(courseId, todo._id)
+      .then(() => dispatch(deleteTodoItem(todo)));
   };
 
   return (

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { comingUpItems, todos } from "../../../Database";
+import { ComingUpList, TodoList } from "../../../types";
 
 const initialState = {
-  todoList: todos,
-  comingUpList: comingUpItems,
+  todoList: [] as TodoList,
+  comingUpList: [] as ComingUpList,
 };
 
 const statusSlice = createSlice({
