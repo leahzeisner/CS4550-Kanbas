@@ -25,10 +25,9 @@ import {
 } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 
-export const COURSES_API =
-  "https://cs4550-kanbas-node-server-app.onrender.com/api/courses";
-export const MODULES_API =
-  "https://cs4550-kanbas-node-server-app.onrender.com/api/modules";
+const API_BASE = process.env.REACT_APP_API_BASE;
+export const COURSES_API = `${API_BASE}/api/courses`;
+export const MODULES_API = `${API_BASE}/api/modules`;
 
 export const courseNavLinks = [
   {
