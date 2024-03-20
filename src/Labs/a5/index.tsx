@@ -1,12 +1,14 @@
+import { API_BASE } from "../../Kanbas/constants";
 import EncodingParametersInURLs from "./EncodingParametersInURLs";
 import WorkingWithArrays from "./WorkingWithArrays";
 import WorkingWithObjects from "./WorkingWithObjects";
 
 function Assignment5() {
+  const welcome_url = `${API_BASE}/a5/welcome`;
   return (
     <div className="container mb-4">
       <h1>Assignment 5</h1>
-      <a href="http://localhost:4000/a5/welcome">Welcome</a>
+      <a href={welcome_url}>Welcome</a>
 
       <EncodingParametersInURLs />
       <WorkingWithObjects />

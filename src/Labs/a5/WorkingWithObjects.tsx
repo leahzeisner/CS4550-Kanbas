@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { API_BASE } from "../../Kanbas/constants";
 function WorkingWithObjects() {
   const [assignment, setAssignment] = useState({
     id: 1,
@@ -15,8 +16,8 @@ function WorkingWithObjects() {
     description: "Create a NodeJS server with ExpressJS",
     course: "CS4550",
   });
-  const ASSIGNMENT_URL = "http://localhost:4000/a5/assignment";
-  const MODULE_URL = "http://localhost:4000/a5/module";
+  const ASSIGNMENT_URL = `${API_BASE}/a5/assignment`;
+  const MODULE_URL = `${API_BASE}/a5/module`;
 
   const fetchAssignment = async () => {
     const response = await axios.get(`${ASSIGNMENT_URL}`);
@@ -52,9 +53,9 @@ function WorkingWithObjects() {
 
       {/* Assignment */}
       <h4>Retrieving Objects</h4>
-      <a href="http://localhost:4000/a5/assignment">Get Assignment</a>
+      <a href={`${API_BASE}/a5/assignment`}>Get Assignment</a>
       <h4>Retrieving Properties</h4>
-      <a href="http://localhost:4000/a5/assignment/title">Get Title</a>
+      <a href={`${API_BASE}/a5/assignment/title`}>Get Title</a>
       <h4>Modifying Properties</h4>
       <a href={`${ASSIGNMENT_URL}/title/${assignment.title}`}>Update Title</a>
       <input
@@ -65,7 +66,7 @@ function WorkingWithObjects() {
         value={assignment.title}
       />
       <br />
-      <a href="http://localhost:4000/a5/assignment/score">Get Score</a>
+      <a href={`${API_BASE}/a5/assignment/score`}>Get Score</a>
       <br />
       <a href={`${ASSIGNMENT_URL}/score/${assignment.score}`}>Update Score</a>
       <input
@@ -76,7 +77,7 @@ function WorkingWithObjects() {
         value={assignment.score}
       />
       <br />
-      <a href="http://localhost:4000/a5/assignment/completed">Get Completed</a>
+      <a href={`${API_BASE}/a5/assignment/completed`}>Get Completed</a>
       <br />
       <a href={`${ASSIGNMENT_URL}/completed/${assignment.completed}`}>
         Update Completed
@@ -103,9 +104,9 @@ function WorkingWithObjects() {
 
       {/* Module */}
       <h4>Module</h4>
-      <a href="http://localhost:4000/a5/module">Get Module</a>
+      <a href={`${API_BASE}/a5/module`}>Get Module</a>
       <br />
-      <a href="http://localhost:4000/a5/module/name">Get Module Name</a>
+      <a href={`${API_BASE}/a5/module/name`}>Get Module Name</a>
       <br />
       <a href={`${MODULE_URL}/name/${module.name}`}>Update Module Name</a>
       <input
@@ -114,9 +115,7 @@ function WorkingWithObjects() {
         value={module.name}
       />
       <br />
-      <a href="http://localhost:4000/a5/module/description">
-        Get Module Description
-      </a>
+      <a href={`${API_BASE}/a5/module/description`}>Get Module Description</a>
       <br />
       <a href={`${MODULE_URL}/description/${module.description}`}>
         Update Module Description

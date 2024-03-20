@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { API_BASE } from "../../Kanbas/constants";
 
 function WorkingWithArrays() {
-  const API = "http://localhost:4000/a5/todos";
+  const API = `${API_BASE}/a5/todos`;
   const [errorMessage, setErrorMessage] = useState(null);
   const [todo, setTodo] = useState({
     id: 1,
