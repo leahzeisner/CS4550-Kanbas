@@ -26,6 +26,11 @@ export default function Profile() {
     await client.updateUser(profile);
   };
 
+  const signout = async () => {
+    await client.signout();
+    navigate("/Kanbas/Account/Signin");
+  };
+
   return (
     <div className="main-content">
       <h1>Profile</h1>
@@ -78,6 +83,7 @@ export default function Profile() {
           </select>
 
           <button onClick={save}>Save</button>
+          <button onClick={signout}>Signout</button>
         </div>
       )}
     </div>
