@@ -1,6 +1,6 @@
 import * as client from "./client";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Profile() {
   const [profile, setProfile] = useState({
     username: "",
@@ -12,16 +12,26 @@ export default function Profile() {
     role: "USER",
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
   const fetchProfile = async () => {
     const account = await client.profile();
     setProfile(account);
   };
-  useEffect(() => {
-    fetchProfile();
-  }, []);
+
+  const save = async () => {
+    await client.updateUser(profile);
+  };
+
   return (
     <div className="main-content">
       <h1>Profile</h1>
+      <Link to="/Kanbas/Account/Admin/Users" className="btn btn-warning w-100">
+        Users
+      </Link>
       {profile && (
         <div>
           <input
@@ -66,6 +76,8 @@ export default function Profile() {
             <option value="FACULTY">Faculty</option>
             <option value="STUDENT">Student</option>
           </select>
+
+          <button onClick={save}>Save</button>
         </div>
       )}
     </div>

@@ -14,7 +14,6 @@ export default function Signin() {
   const navigate = useNavigate();
   const signin = async () => {
     const currentUser = await client.signin(credentials);
-    console.log(currentUser);
     if (currentUser !== null) {
       navigate("/Kanbas/Account/Profile");
     }
