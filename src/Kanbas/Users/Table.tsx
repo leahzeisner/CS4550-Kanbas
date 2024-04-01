@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FaPlusCircle, FaTrash } from "react-icons/fa";
+import { FaCheckCircle, FaPlusCircle, FaTrash } from "react-icons/fa";
+import { FaPencil } from "react-icons/fa6";
 import * as client from "./client";
 import { User } from "./client";
 export default function UserTable() {
@@ -12,6 +13,7 @@ export default function UserTable() {
     lastName: "",
     role: "USER",
   });
+  const [role, setRole] = useState("ALL");
 
   useEffect(() => {
     fetchUsers();
@@ -22,10 +24,23 @@ export default function UserTable() {
     setUsers(users);
   };
 
+  const fetchUsersByRole = async (role: string) => {
+    let users;
+    if (role !== "ALL") {
+      users = await client.findUsersByRole(role);
+    } else {
+      users = await client.findAllUsers();
+    }
+
+    setRole(role);
+    setUsers(users);
+  };
+
   const createUser = async () => {
     try {
       const newUser = await client.createUser(user);
-      setUsers([newUser, ...users]);
+      setUsers([...users, newUser]);
+      clearForm();
     } catch (err) {
       console.log(err);
     }
@@ -40,8 +55,50 @@ export default function UserTable() {
     }
   };
 
+  const selectUser = async (user: User) => {
+    try {
+      const u = await client.findUserById(user._id);
+      setUser(u);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const updateUser = async () => {
+    try {
+      const status = await client.updateUser(user);
+      setUsers(users.map((u) => (u._id === user._id ? user : u)));
+      clearForm();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const clearForm = () => {
+    setUser({
+      _id: "",
+      username: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      role: "USER",
+    });
+  };
+
   return (
     <div className="main-content">
+      <select
+        onChange={(e) => fetchUsersByRole(e.target.value)}
+        value={role || "ALL"}
+        className="form-control w-25 float-end"
+      >
+        <option value="ALL">All</option>
+        <option value="USER">User</option>
+        <option value="ADMIN">Admin</option>
+        <option value="FACULTY">Faculty</option>
+        <option value="STUDENT">Student</option>
+      </select>
+
       <h1>User Table</h1>
       <table className="table">
         <thead>
@@ -90,6 +147,12 @@ export default function UserTable() {
               </select>
             </td>
             <td>
+              <FaCheckCircle
+                onClick={updateUser}
+                className="me-2 text-success fs-1 text"
+              />
+            </td>
+            <td>
               <button onClick={createUser}>
                 <FaPlusCircle />
               </button>
@@ -105,6 +168,11 @@ export default function UserTable() {
               <td>
                 <button onClick={() => deleteUser(user)}>
                   <FaTrash />
+                </button>
+              </td>
+              <td>
+                <button onClick={() => selectUser(user)}>
+                  <FaPencil />
                 </button>
               </td>
             </tr>

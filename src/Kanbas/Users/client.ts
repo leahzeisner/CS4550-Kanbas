@@ -29,6 +29,16 @@ export const findAllUsers = async () => {
   return response.data;
 };
 
+export const findUserById = async (id: string) => {
+  const response = await axios.get(`${USERS_API}/${id}`);
+  return response.data;
+};
+
+export const findUsersByRole = async (role: string) => {
+  const response = await axios.get(`${USERS_API}?role=${role}`);
+  return response.data;
+};
+
 export const createUser = async (user: any) => {
   const response = await axios.post(`${USERS_API}`, user);
   return response.data;
