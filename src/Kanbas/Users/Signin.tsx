@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { User } from "./client";
 import * as client from "./client";
 export default function Signin() {
+  const [error, setError] = useState("");
   const [credentials, setCredentials] = useState<User>({
     _id: "",
     username: "",
@@ -12,15 +13,27 @@ export default function Signin() {
     role: "USER",
   });
   const navigate = useNavigate();
+
+  const clearForm = () => {
+    setCredentials({ ...credentials, username: "", password: "" });
+  };
+
   const signin = async () => {
-    const currentUser = await client.signin(credentials);
-    if (currentUser !== null) {
-      navigate("/Kanbas/Account/Profile");
+    try {
+      const currentUser = await client.signin(credentials);
+      if (currentUser !== null) {
+        navigate("/Kanbas/Account/Profile");
+      }
+    } catch (err: any) {
+      clearForm();
+      setError(err.response?.data.message);
     }
   };
+
   return (
     <div className="main-content">
       <h1>Signin</h1>
+      {error && <div>{error}</div>}
       <input
         value={credentials.username}
         onChange={(e) =>
