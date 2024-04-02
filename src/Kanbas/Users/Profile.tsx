@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "./userReducer";
+import "./index.css";
+
 export default function Profile() {
   const [profile, setProfile] = useState({
     username: "",
@@ -40,58 +42,93 @@ export default function Profile() {
   };
 
   return (
-    <div className="main-content">
-      <h1>Profile</h1>
-      <Link to="/Kanbas/Account/Admin/Users" className="btn btn-warning w-100">
-        Users
-      </Link>
-      {profile && (
-        <div>
-          <input
-            value={profile.username}
-            onChange={(e) =>
-              setProfile({ ...profile, username: e.target.value })
-            }
-          />
-          <input
-            value={profile.password}
-            onChange={(e) =>
-              setProfile({ ...profile, password: e.target.value })
-            }
-          />
-          <input
-            value={profile.firstName}
-            onChange={(e) =>
-              setProfile({ ...profile, firstName: e.target.value })
-            }
-          />
-          <input
-            value={profile.lastName}
-            onChange={(e) =>
-              setProfile({ ...profile, lastName: e.target.value })
-            }
-          />
-          <input
-            value={profile.dob}
-            type="date"
-            onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
-          />
-          <input
-            value={profile.email}
-            onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-          />
-          <select
-            value={profile.role}
-            onChange={(e) => setProfile({ ...profile, role: e.target.value })}
-          >
-            <option value="USER">User</option>
-            <option value="ADMIN">Admin</option>
-            <option value="FACULTY">Faculty</option>
-            <option value="STUDENT">Student</option>
-          </select>
+    <div className="main-content user-auth profile">
+      <div className="user-auth-header">
+        <h1>Profile</h1>
+        <button onClick={signout}>Signout</button>
+      </div>
 
-          <button onClick={save}>Save</button>
-          <button onClick={signout}>Signout</button>
+      {profile && (
+        <div className="profile-info">
+          <div className="profile-item">
+            <label>Username:</label>
+            <input
+              value={profile.username}
+              placeholder="Username"
+              onChange={(e) =>
+                setProfile({ ...profile, username: e.target.value })
+              }
+            />
+          </div>
+          <div className="profile-item">
+            <label>Password:</label>
+            <input
+              value={profile.password}
+              placeholder="Password"
+              onChange={(e) =>
+                setProfile({ ...profile, password: e.target.value })
+              }
+            />
+          </div>
+          <div className="profile-item">
+            <label>First Name:</label>
+            <input
+              value={profile.firstName}
+              placeholder="First Name"
+              onChange={(e) =>
+                setProfile({ ...profile, firstName: e.target.value })
+              }
+            />
+          </div>
+          <div className="profile-item">
+            <label>Last Name:</label>
+            <input
+              value={profile.lastName}
+              placeholder="Last Name"
+              onChange={(e) =>
+                setProfile({ ...profile, lastName: e.target.value })
+              }
+            />
+          </div>
+          <div className="profile-item">
+            <label>Date of Birth:</label>
+            <input
+              value={profile.dob}
+              type="date"
+              onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
+            />
+          </div>
+          <div className="profile-item">
+            <label>Email:</label>
+            <input
+              value={profile.email}
+              placeholder="Email"
+              onChange={(e) =>
+                setProfile({ ...profile, email: e.target.value })
+              }
+            />
+          </div>
+          <div className="profile-item">
+            <label>Role:</label>
+            <select
+              value={profile.role}
+              onChange={(e) => setProfile({ ...profile, role: e.target.value })}
+            >
+              <option value="USER">User</option>
+              <option value="ADMIN">Admin</option>
+              <option value="FACULTY">Faculty</option>
+              <option value="STUDENT">Student</option>
+            </select>
+          </div>
+
+          <div className="profile-footer">
+            <Link to="/Kanbas/Account/Admin/Users" className="users-link">
+              Go to Users
+            </Link>
+            <button onClick={save} className="user-auth-btn">
+              Save
+            </button>
+          </div>
         </div>
       )}
     </div>

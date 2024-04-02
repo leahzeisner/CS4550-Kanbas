@@ -47,3 +47,51 @@
 .user-auth-btn:hover {
   background-color: darkgreen;
 }
+
+.profile {
+  width: 500px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-item > label {
+  font-weight: bold;
+}
+
+.profile-item > input,
+select {
+  width: 60%;
+}
+
+.profile-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-footer * {
+  width: 30% !important;
+  text-align: center;
+}
+
+.users-link {
+  color: black;
+  border: none;
+  height: fit-content;
+  background-color: #ffc107;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 0px 5px 0px;
+  text-decoration: none;
+}
+
+.users-link:hover {
+  background-color: #ffa407;
+}
