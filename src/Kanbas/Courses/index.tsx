@@ -15,7 +15,9 @@ function Courses() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCourse(courseId).then((c) => dispatch(setCourse(c)));
+    if (courseId) {
+      getCourse(courseId).then((c) => dispatch(setCourse(c)));
+    }
   }, [courseId]);
 
   return (
