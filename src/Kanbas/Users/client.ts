@@ -6,9 +6,9 @@ const axiosWithCredentials = axios.create({
   withCredentials: true,
 });
 
-export const signin = async (credentials: User) => {
+export const login = async (credentials: User) => {
   const response = await axiosWithCredentials.post(
-    `${USERS_API}/signin`,
+    `${USERS_API}/login`,
     credentials,
   );
   return response.data;

@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import "./index.css";
 import { getKanbasLinks } from "../constants";
+import { useDispatch } from "react-redux";
+import { getUser } from "../Users/userReducer";
 
 function KanbasNavigation() {
   const { pathname } = useLocation();
@@ -12,6 +14,23 @@ function KanbasNavigation() {
   const responsiveNavClass = isDash ? "" : "d-none d-lg-block";
 
   const kanbasNavLinks = getKanbasLinks("fs-3 kanbas-nav-icon", accountIconId);
+  const dispatch = useDispatch();
+
+  const getAccountPath = () => {
+    const user = dispatch(getUser());
+    return user ? "/Profile" : "/Login";
+  };
+
+  const getPath = (label: string) => {
+    let path = "/Kanbas/";
+    if (label === "Courses") {
+      return path + "Dashboard";
+    } else if (label === "Account") {
+      return path + label + getAccountPath();
+    } else {
+      return path + label;
+    }
+  };
 
   return (
     <div className={responsiveNavClass}>
@@ -33,9 +52,7 @@ function KanbasNavigation() {
               className={pathname.includes(link.label) ? "wd-active" : ""}
             >
               {/* Courses link goes to Dashboard for now */}
-              <Link
-                to={`/Kanbas/${link.label === "Courses" ? "Dashboard" : link.label}`}
-              >
+              <Link to={getPath(link.label)}>
                 {" "}
                 {link.icon}
                 <br />

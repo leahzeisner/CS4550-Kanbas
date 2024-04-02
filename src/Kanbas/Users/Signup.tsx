@@ -1,53 +1,69 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as client from "./client";
+import "./index.css";
+import { setUser } from "./userReducer";
+
 export default function Signup() {
   const [error, setError] = useState("");
-  const [user, setUser] = useState({ username: "", password: "" });
+  const [newUser, setNewUser] = useState({ username: "", password: "" });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const clearForm = () => {
-    setUser({ username: "", password: "" });
+    setNewUser({ username: "", password: "" });
   };
 
   const signup = async () => {
     try {
-      await client.signup(user);
-      navigate("/Kanbas/Account/Profile");
+      const currentUser = await client.signup(newUser);
+      if (currentUser !== null) {
+        dispatch(setUser(currentUser));
+        navigate("/Kanbas/Account/Profile");
+      }
     } catch (err: any) {
       clearForm();
       setError(err.response?.data.message);
     }
   };
 
-  const goToSignin = () => {
-    navigate("/Kanbas/Account/Signin");
+  const goToLogin = () => {
+    navigate("/Kanbas/Account/Login");
   };
 
   return (
-    <div className="main-content">
-      <h1>Signup</h1>
-      {error && <div>{error}</div>}
+    <div className="main-content user-auth">
+      <div className="user-auth-header">
+        <h1>Signup</h1>
+        <button onClick={goToLogin}> Go to Login </button>
+      </div>
+
+      {error && <div className="user-auth-error">{error}</div>}
       <input
-        value={user.username}
+        value={newUser.username}
+        placeholder="Username"
         onChange={(e) =>
-          setUser({
-            ...user,
+          setNewUser({
+            ...newUser,
             username: e.target.value,
           })
         }
       />
       <input
-        value={user.password}
+        value={newUser.password}
+        placeholder="Password"
         onChange={(e) =>
-          setUser({
-            ...user,
+          setNewUser({
+            ...newUser,
             password: e.target.value,
           })
         }
       />
-      <button onClick={signup}> Signup </button>
-      <button onClick={goToSignin}> Signin </button>
+
+      <button onClick={signup} className="user-auth-btn">
+        Signup
+      </button>
     </div>
   );
 }

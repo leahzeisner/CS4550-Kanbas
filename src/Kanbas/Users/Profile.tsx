@@ -1,6 +1,8 @@
 import * as client from "./client";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "./userReducer";
 export default function Profile() {
   const [profile, setProfile] = useState({
     username: "",
@@ -12,14 +14,19 @@ export default function Profile() {
     role: "USER",
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchProfile();
   }, []);
 
   const fetchProfile = async () => {
-    const account = await client.profile();
-    setProfile(account);
+    try {
+      const account = await client.profile();
+      setProfile(account);
+    } catch (err: any) {
+      console.error("Failed to fetch profile: ", err);
+    }
   };
 
   const save = async () => {
@@ -28,7 +35,8 @@ export default function Profile() {
 
   const signout = async () => {
     await client.signout();
-    navigate("/Kanbas/Account/Signin");
+    dispatch(setUser(undefined));
+    navigate("/Kanbas/Account/Login");
   };
 
   return (

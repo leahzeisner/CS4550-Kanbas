@@ -1,0 +1,49 @@
+.user-auth {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.user-auth * {
+  margin-bottom: 10px;
+}
+
+.user-auth-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-auth-header * {
+  margin: 0px !important;
+}
+
+.user-auth-header > button {
+  border: none;
+  height: fit-content;
+  background-color: #efefef;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 10px 5px 10px;
+}
+
+.user-auth-header > button:hover {
+  background-color: lightgray;
+}
+
+.user-auth-error {
+  color: red;
+}
+
+.user-auth-btn {
+  color: white;
+  border: none;
+  height: fit-content;
+  background-color: green;
+  box-shadow: 1px 1px darkgreen;
+  padding: 5px 0px 5px 0px;
+}
+
+.user-auth-btn:hover {
+  background-color: darkgreen;
+}
