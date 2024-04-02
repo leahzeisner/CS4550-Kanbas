@@ -16,10 +16,6 @@ export default function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
   const fetchProfile = async () => {
     try {
       const account = await client.profile();
@@ -28,6 +24,10 @@ export default function Profile() {
       console.error("Failed to fetch profile: ", err);
     }
   };
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
   const save = async () => {
     await client.updateUser(profile);
