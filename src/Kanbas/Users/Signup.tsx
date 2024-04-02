@@ -20,6 +20,10 @@ export default function Signup() {
     }
   };
 
+  const goToSignin = () => {
+    navigate("/Kanbas/Account/Signin");
+  };
+
   return (
     <div className="main-content">
       <h1>Signup</h1>
@@ -43,6 +47,7 @@ export default function Signup() {
         }
       />
       <button onClick={signup}> Signup </button>
+      <button onClick={goToSignin}> Signin </button>
     </div>
   );
 }
