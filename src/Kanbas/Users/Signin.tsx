@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User } from "./client";
+import { User } from "../types";
 import * as client from "./client";
 export default function Signin() {
   const [error, setError] = useState("");

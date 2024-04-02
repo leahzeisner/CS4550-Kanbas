@@ -1,3 +1,12 @@
+export interface User {
+  _id: string;
+  username: string;
+  password: string;
+  role: string;
+  firstName: string;
+  lastName: string;
+}
+
 export type Course = {
   _id: string;
   name: string;

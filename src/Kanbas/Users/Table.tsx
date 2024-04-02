@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaCheckCircle, FaPlusCircle, FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
+import { User } from "../types";
 import * as client from "./client";
-import { User } from "./client";
 export default function UserTable() {
   const [users, setUsers] = useState<User[]>([]);
   const [user, setUser] = useState<User>({

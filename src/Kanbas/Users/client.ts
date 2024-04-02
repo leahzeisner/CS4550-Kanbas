@@ -1,17 +1,11 @@
 import axios from "axios";
+import { USERS_API } from "../constants";
+import { User } from "../types";
+
 const axiosWithCredentials = axios.create({
   withCredentials: true,
 });
-export const BASE_API = process.env.REACT_APP_API_BASE;
-export const USERS_API = `${BASE_API}/api/users`;
-export interface User {
-  _id: string;
-  username: string;
-  password: string;
-  role: string;
-  firstName: string;
-  lastName: string;
-}
+
 export const signin = async (credentials: User) => {
   const response = await axiosWithCredentials.post(
     `${USERS_API}/signin`,
