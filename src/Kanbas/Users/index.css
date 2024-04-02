@@ -1,3 +1,4 @@
+/* Common */
 .user-auth {
   display: flex;
   flex-direction: column;
@@ -48,6 +49,7 @@
   background-color: darkgreen;
 }
 
+/* Profile */
 .profile {
   width: 500px;
 }
@@ -94,4 +96,47 @@ select {
 
 .users-link:hover {
   background-color: #ffa407;
+}
+
+/* Users Table */
+.user-table {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.user-table > div:first-child {
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.user-table-dropdown {
+  width: 150px;
+  margin-right: 10px !important;
+}
+
+.goto-profile {
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+}
+
+.add-user-role {
+  margin-left: 0px !important;
+}
+
+.user-table-btns {
+  border: none;
+  background-color: transparent;
+}
+
+.user-table-btns:hover {
+  color: darkblue;
+}
+
+.update-user-btn:hover {
+  color: darkgreen !important;
+}
+
+.delete-user-btn:hover {
+  color: darkred !important;
 }

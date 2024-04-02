@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { FaCheckCircle, FaPlusCircle, FaTrash } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
+import { FaCheckCircle, FaPlusCircle } from "react-icons/fa";
+import { FaPencil, FaTrashCan } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 import { User } from "../types";
 import * as client from "./client";
+
 export default function UserTable() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState<User[]>([]);
   const [user, setUser] = useState<User>({
     _id: "",
@@ -85,28 +88,42 @@ export default function UserTable() {
     });
   };
 
-  return (
-    <div className="main-content">
-      <select
-        onChange={(e) => fetchUsersByRole(e.target.value)}
-        value={role || "ALL"}
-        className="form-control w-25 float-end"
-      >
-        <option value="ALL">All</option>
-        <option value="USER">User</option>
-        <option value="ADMIN">Admin</option>
-        <option value="FACULTY">Faculty</option>
-        <option value="STUDENT">Student</option>
-      </select>
+  const goToProfile = () => {
+    navigate("/Kanbas/Account/Profile");
+  };
 
-      <h1>User Table</h1>
+  return (
+    <div className="main-content user-table">
+      <div className="user-auth-header">
+        <h1>User Table</h1>
+        <div>
+          <select
+            onChange={(e) => fetchUsersByRole(e.target.value)}
+            value={role || "ALL"}
+            className="user-table-dropdown"
+          >
+            <option value="ALL">All Users</option>
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+            <option value="FACULTY">Faculty</option>
+            <option value="STUDENT">Student</option>
+          </select>
+          <button onClick={goToProfile} className="users-link goto-profile">
+            Go to Profile
+          </button>
+        </div>
+      </div>
+
       <table className="table">
         <thead>
           <tr>
             <th>Username</th>
+            <th>Password</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Role</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -114,16 +131,21 @@ export default function UserTable() {
             <td>
               <input
                 value={user.username}
+                placeholder="Username"
                 onChange={(e) => setUser({ ...user, username: e.target.value })}
               />
+            </td>
+            <td>
               <input
                 value={user.password}
+                placeholder="Password"
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </td>
             <td>
               <input
                 value={user.firstName}
+                placeholder="First Name"
                 onChange={(e) =>
                   setUser({ ...user, firstName: e.target.value })
                 }
@@ -132,6 +154,7 @@ export default function UserTable() {
             <td>
               <input
                 value={user.lastName}
+                placeholder="Last Name"
                 onChange={(e) => setUser({ ...user, lastName: e.target.value })}
               />
             </td>
@@ -139,6 +162,7 @@ export default function UserTable() {
               <select
                 value={user.role}
                 onChange={(e) => setUser({ ...user, role: e.target.value })}
+                className="add-user-role"
               >
                 <option value="USER">User</option>
                 <option value="ADMIN">Admin</option>
@@ -147,14 +171,16 @@ export default function UserTable() {
               </select>
             </td>
             <td>
-              <FaCheckCircle
-                onClick={updateUser}
-                className="me-2 text-success fs-1 text"
-              />
+              <button className="user-table-btns">
+                <FaCheckCircle
+                  onClick={updateUser}
+                  className="text-success fs-4 update-user-btn"
+                />
+              </button>
             </td>
             <td>
-              <button onClick={createUser}>
-                <FaPlusCircle />
+              <button onClick={createUser} className="user-table-btns">
+                <FaPlusCircle className="fs-4" />
               </button>
             </td>
           </tr>
@@ -162,17 +188,24 @@ export default function UserTable() {
           {users.map((user: any) => (
             <tr key={user._id}>
               <td>{user.username}</td>
+              <td>********</td>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.role}</td>
               <td>
-                <button onClick={() => deleteUser(user)}>
-                  <FaTrash />
+                <button
+                  onClick={() => deleteUser(user)}
+                  className="user-table-btns"
+                >
+                  <FaTrashCan className="fs-5 text-danger delete-user-btn" />
                 </button>
               </td>
               <td>
-                <button onClick={() => selectUser(user)}>
-                  <FaPencil />
+                <button
+                  onClick={() => selectUser(user)}
+                  className="user-table-btns"
+                >
+                  <FaPencil className="fs-5" />
                 </button>
               </td>
             </tr>
