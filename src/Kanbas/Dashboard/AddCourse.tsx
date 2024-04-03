@@ -20,11 +20,24 @@ function AddCourse() {
     setAddCourseEnabled(validateForm(course));
   }, [course]);
 
+  const getRandomImage = () => {
+    const images = [
+      "soft-dev.jpg",
+      "webdev.png",
+      "webdev2.webp",
+      "webdev3.jpg",
+      "webdev4.jpg",
+      "webdev4.webp",
+    ];
+    const random = Math.floor(Math.random() * images.length);
+    return "/" + images[random];
+  };
+
   const addNewCourse = async () => {
     if (validateForm(course)) {
       const newCourse = {
         ...course,
-        image: "/webdev2.webp", // TEMPORARY
+        image: getRandomImage(),
       };
       setCourse(getEmptyCourse());
       addCourse(newCourse).then((c) => dispatch(setCourses([...courses, c])));
