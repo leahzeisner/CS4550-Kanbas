@@ -4,9 +4,10 @@ import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Module, Section as SectionType } from "../../types";
 import { getFreshId, scrollToElementWithId } from "../../utils";
-import { deleteSection, updateModule, updateSection } from "./modulesReducer";
+import { deleteSection, setModulesList, updateSection } from "./modulesReducer";
 import Lesson from "./Lesson";
 import * as client from "./client";
+import { useParams } from "react-router";
 
 interface SectionProps {
   module: Module;
@@ -15,6 +16,7 @@ interface SectionProps {
 
 const Section = ({ module, section }: SectionProps) => {
   const dispatch = useDispatch();
+  const { courseId } = useParams();
   const [editingTitle, setEditingTitle] = useState(section.title === "");
   const [editingTitleText, setEditingTitleText] = useState(section.title);
 
@@ -56,8 +58,8 @@ const Section = ({ module, section }: SectionProps) => {
     const emptyLesson = { _id: getFreshId(), title: "", url: "" };
     try {
       await client.createLesson(module, section, emptyLesson);
-      const updatedModule = await client.findModuleById(module._id);
-      dispatch(updateModule(updatedModule));
+      const newModules = await client.findCourseModules(courseId);
+      dispatch(setModulesList(newModules));
     } catch (err: any) {
       console.error(err);
     }

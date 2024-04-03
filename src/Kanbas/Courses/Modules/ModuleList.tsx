@@ -29,6 +29,9 @@ function ModuleList() {
     findCourseModules(courseId).then((modules) =>
       dispatch(setModulesList(modules)),
     );
+  }, []);
+
+  useEffect(() => {
     createModuleVisibilityMap(courseModules);
     if (courseModules.length === 0) {
       setCollapseAllText(collapseAll);
