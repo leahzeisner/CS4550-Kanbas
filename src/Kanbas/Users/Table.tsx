@@ -96,7 +96,7 @@ export default function UserTable() {
     <div className="main-content user-table">
       <div className="user-auth-header">
         <h1>User Table</h1>
-        <div>
+        <div className="user-table-hdr">
           <select
             onChange={(e) => fetchUsersByRole(e.target.value)}
             value={role || "ALL"}

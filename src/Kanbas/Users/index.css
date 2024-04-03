@@ -102,7 +102,9 @@ select {
 .user-table {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 85%;
+  margin-left: 120px !important;
+  overflow-x: scroll;
 }
 
 .user-table > div:first-child {
@@ -118,10 +120,12 @@ select {
 .goto-profile {
   padding: 5px 10px 5px 10px;
   text-align: center;
+  margin-right: 20px !important;
 }
 
 .add-user-role {
   margin-left: 0px !important;
+  width: fit-content;
 }
 
 .user-table-btns {
@@ -139,4 +143,33 @@ select {
 
 .delete-user-btn:hover {
   color: darkred !important;
+}
+
+@media (max-width: 1075px) {
+  .user-table {
+    width: 75%;
+  }
+}
+
+@media (max-width: 991px) {
+  .user-auth {
+    margin-top: 40px !important;
+    margin-left: 100px !important;
+  }
+
+  .profile {
+    margin-left: 60px !important;
+    width: 400px;
+  }
+
+  .user-table {
+    width: 90%;
+    margin-top: 40px !important;
+    margin-left: 20px !important;
+    padding-right: 0px !important;
+  }
+
+  .goto-profile {
+    margin-right: 0px !important;
+  }
 }
