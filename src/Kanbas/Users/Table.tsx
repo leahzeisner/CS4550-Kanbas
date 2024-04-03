@@ -50,7 +50,7 @@ export default function UserTable() {
       setUsers([...users, newUser]);
       clearForm();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -59,7 +59,7 @@ export default function UserTable() {
       await client.deleteUser(user);
       setUsers(users.filter((u) => u._id !== user._id));
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -68,19 +68,18 @@ export default function UserTable() {
       const u = await client.findUserById(user._id);
       setUser(u);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   const updateUser = async () => {
     try {
       const updatingCurrentUser = currentUser && currentUser._id === user._id;
-      console.log(currentUser, updatingCurrentUser);
       await client.updateUser(user, updatingCurrentUser);
       setUsers(users.map((u) => (u._id === user._id ? user : u)));
       clearForm();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

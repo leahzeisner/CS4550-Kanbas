@@ -25,7 +25,6 @@ export const signout = async () => {
 };
 
 export const profile = async () => {
-  console.log(USERS_API);
   const response = await axiosWithCredentials.post(`${USERS_API}/profile`);
   return response.data;
 };
