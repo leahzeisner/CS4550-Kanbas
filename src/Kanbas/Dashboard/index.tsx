@@ -29,6 +29,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (!user) {
+      alert("Please login/signup first");
       navigate("/Kanbas/Account/Login");
     }
     client.getCourses().then((courses) => {
