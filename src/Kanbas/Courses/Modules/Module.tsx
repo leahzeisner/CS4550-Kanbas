@@ -63,15 +63,15 @@ const Module = ({
     });
   };
 
-  const onAddSection = () => {
+  const onAddSection = async () => {
     const emptySection = { _id: getFreshId(), title: "", lessons: [] };
-    const newModule: ModuleType = {
-      ...module,
-      sections: [...module.sections, emptySection],
-    };
-    client
-      .updateModule(newModule)
-      .then(() => dispatch(updateModule(newModule)));
+    try {
+      await client.createSection(module, emptySection);
+      const updatedModule = await client.findModuleById(module._id);
+      dispatch(updateModule(updatedModule));
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   return (

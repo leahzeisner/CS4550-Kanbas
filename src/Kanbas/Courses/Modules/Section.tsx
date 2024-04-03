@@ -52,20 +52,15 @@ const Section = ({ module, section }: SectionProps) => {
     );
   };
 
-  const onAddLesson = () => {
+  const onAddLesson = async () => {
     const emptyLesson = { _id: getFreshId(), title: "", url: "" };
-
-    const newModule: Module = {
-      ...module,
-      sections: module.sections.map((s) =>
-        s._id === section._id
-          ? { ...s, lessons: [...s.lessons, emptyLesson] }
-          : s,
-      ),
-    };
-    client
-      .updateModule(newModule)
-      .then(() => dispatch(updateModule(newModule)));
+    try {
+      await client.createLesson(module, section, emptyLesson);
+      const updatedModule = await client.findModuleById(module._id);
+      dispatch(updateModule(updatedModule));
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   return (
