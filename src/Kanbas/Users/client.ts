@@ -30,10 +30,14 @@ export const profile = async () => {
   return response.data;
 };
 
-export const updateUser = async (user: any) => {
+export const updateUser = async (user: any, isCurrentUser: boolean) => {
+  const data = {
+    user,
+    isCurrentUser,
+  };
   const response = await axiosWithCredentials.put(
     `${USERS_API}/${user._id}`,
-    user,
+    data,
   );
   return response.data;
 };

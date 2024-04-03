@@ -6,6 +6,8 @@ import { setUser } from "./userReducer";
 import "./index.css";
 
 export default function Profile() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [profile, setProfile] = useState({
     username: "",
     password: "",
@@ -15,13 +17,14 @@ export default function Profile() {
     email: "",
     role: "USER",
   });
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [lastSavedUser, setLastSavedUser] = useState(undefined);
+  const [error, setError] = useState("");
 
   const fetchProfile = async () => {
     try {
       const account = await client.profile();
       setProfile(account);
+      setLastSavedUser(account);
     } catch (err: any) {
       console.error("Failed to fetch profile: ", err);
     }
@@ -32,13 +35,26 @@ export default function Profile() {
   }, []);
 
   const save = async () => {
-    await client.updateUser(profile);
+    const oldProfile = profile;
+    try {
+      await client.updateUser(profile, true);
+      const user = await client.profile();
+      setLastSavedUser(user);
+      setError("");
+    } catch (err: any) {
+      setError("Failed to update profile");
+      setProfile(oldProfile);
+    }
   };
 
   const signout = async () => {
     await client.signout();
     dispatch(setUser(undefined));
     navigate("/Kanbas/Account/Login");
+  };
+
+  const profileSaved = () => {
+    return JSON.stringify(profile) === JSON.stringify(lastSavedUser);
   };
 
   return (
@@ -121,12 +137,18 @@ export default function Profile() {
             </select>
           </div>
 
+          {error && <div className="user-auth-error">{error}</div>}
+
           <div className="profile-footer">
             <Link to="/Kanbas/Account/Admin/Users" className="users-link">
               Go to Users
             </Link>
-            <button onClick={save} className="user-auth-btn">
-              Save
+            <button
+              onClick={save}
+              className="user-auth-btn"
+              disabled={profileSaved()}
+            >
+              {profileSaved() ? "Saved" : "Save"}
             </button>
           </div>
         </div>

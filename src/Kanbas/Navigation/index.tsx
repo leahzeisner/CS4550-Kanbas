@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import "./index.css";
 import { getKanbasLinks } from "../constants";
-import { useDispatch } from "react-redux";
-import { getUser } from "../Users/userReducer";
+import { useSelector } from "react-redux";
+import { KanbasState } from "../store";
 
 function KanbasNavigation() {
   const { pathname } = useLocation();
+  const user = useSelector((state: KanbasState) => state.userReducer.user);
   const accountIconId = pathname.includes("Account")
     ? "account-icon-active"
     : "account-icon";
@@ -14,19 +15,13 @@ function KanbasNavigation() {
   const responsiveNavClass = isDash ? "" : "d-none d-lg-block";
 
   const kanbasNavLinks = getKanbasLinks("fs-3 kanbas-nav-icon", accountIconId);
-  const dispatch = useDispatch();
-
-  const getAccountPath = () => {
-    const user = dispatch(getUser());
-    return user ? "/Profile" : "/Login";
-  };
 
   const getPath = (label: string) => {
     let path = "/Kanbas/";
     if (label === "Courses") {
       return path + "Dashboard";
     } else if (label === "Account") {
-      return path + label + getAccountPath();
+      return path + label + (user ? "/Profile" : "/Login");
     } else {
       return path + label;
     }

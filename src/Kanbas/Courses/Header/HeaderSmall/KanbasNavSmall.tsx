@@ -1,7 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUser } from "../../../Users/userReducer";
+import { KanbasState } from "../../../store";
 
 interface KanbasNavSmallProps {
   kanbasNavClass: string;
@@ -17,19 +17,14 @@ const KanbasNavSmall = ({
   onKanbasSandwichClicked,
   kanbasNavLinks,
 }: KanbasNavSmallProps) => {
-  const dispatch = useDispatch();
-
-  const getAccountPath = () => {
-    const user = dispatch(getUser());
-    return user ? "/Profile" : "/Login";
-  };
+  const user = useSelector((state: KanbasState) => state.userReducer.user);
 
   const getPath = (label: string) => {
     let path = "/Kanbas/";
     if (label === "Courses") {
       return path + "Dashboard";
     } else if (label === "Account") {
-      return path + label + getAccountPath();
+      return path + label + (user ? "/Profile" : "/Login");
     } else {
       return path + label;
     }

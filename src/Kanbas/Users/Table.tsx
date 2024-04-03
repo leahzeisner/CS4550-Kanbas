@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { FaCheckCircle, FaPlusCircle } from "react-icons/fa";
 import { FaPencil, FaTrashCan } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { KanbasState } from "../store";
 import { User } from "../types";
 import * as client from "./client";
 
 export default function UserTable() {
   const navigate = useNavigate();
+  const currentUser = useSelector(
+    (state: KanbasState) => state.userReducer.user,
+  );
   const [users, setUsers] = useState<User[]>([]);
   const [user, setUser] = useState<User>({
     _id: "",
@@ -69,7 +74,9 @@ export default function UserTable() {
 
   const updateUser = async () => {
     try {
-      const status = await client.updateUser(user);
+      const updatingCurrentUser = currentUser && currentUser._id === user._id;
+      console.log(currentUser, updatingCurrentUser);
+      await client.updateUser(user, updatingCurrentUser);
       setUsers(users.map((u) => (u._id === user._id ? user : u)));
       clearForm();
     } catch (err) {
