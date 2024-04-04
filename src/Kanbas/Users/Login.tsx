@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { KanbasState } from "../store";
 import { User } from "../types";
 import * as client from "./client";
 import "./index.css";
 import { setUser } from "./userReducer";
 
 export default function Login() {
-  const user = useSelector((state: KanbasState) => state.userReducer.user);
   const [error, setError] = useState("");
   const [credentials, setCredentials] = useState<User>({
     _id: "",
@@ -20,12 +18,6 @@ export default function Login() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (user) {
-      navigate("/Kanbas/Dashboard");
-    }
-  }, [user]);
 
   const clearForm = () => {
     setCredentials({ ...credentials, username: "", password: "" });
