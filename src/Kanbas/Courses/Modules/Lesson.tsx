@@ -69,9 +69,12 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
             className="module-section-item-link module-section-textarea"
             value={editingTitleText}
             onChange={(e) => setEditingTitleText(e.target.value)}
-            onBlur={() => onEditToggle()}
             placeholder="Enter Lesson Title"
             disabled={!editingTitle}
+            onBlur={() => onEditToggle()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") onEditToggle();
+            }}
           ></textarea>
         ) : (
           <Link to={lesson.url} className="module-section-item-link">

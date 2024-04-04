@@ -81,9 +81,12 @@ const Section = ({ module, section }: SectionProps) => {
               className="module-section module-section-textarea"
               value={editingTitleText}
               onChange={(e) => setEditingTitleText(e.target.value)}
-              onBlur={() => onEditToggle()}
               placeholder="Enter Section Title"
               disabled={!editingTitle}
+              onBlur={() => onEditToggle()}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") onEditToggle();
+              }}
             ></textarea>
           ) : (
             <span className="module-section">{section.title}</span>
