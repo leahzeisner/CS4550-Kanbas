@@ -16,6 +16,11 @@ export default function Signup() {
   };
 
   const signup = async () => {
+    if (!newUser.username || !newUser.password) {
+      setError("Username and password required");
+      return;
+    }
+
     try {
       const currentUser = await client.signup(newUser);
       if (currentUser !== null) {
