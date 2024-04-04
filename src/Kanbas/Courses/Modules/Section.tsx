@@ -31,7 +31,7 @@ const Section = ({ module, section }: SectionProps) => {
   const onEditToggle = () => {
     if (editingTitle) {
       const newSection = { ...section, title: editingTitleText };
-      client.updateSection(module._id, newSection).then(() =>
+      client.updateSection(module, newSection).then(() =>
         dispatch(
           updateSection({
             moduleId: module._id,
@@ -44,11 +44,11 @@ const Section = ({ module, section }: SectionProps) => {
   };
 
   const onDeleteSection = () => {
-    client.deleteSection(module._id, section).then(() =>
+    client.deleteSection(module, section._id).then(() =>
       dispatch(
         deleteSection({
           moduleId: module._id,
-          section,
+          sectionId: section._id,
         }),
       ),
     );

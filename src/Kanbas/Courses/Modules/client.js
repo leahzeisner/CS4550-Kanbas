@@ -48,20 +48,22 @@ export const createSection = async (module, section) => {
   return response.data;
 };
 
-export const updateSection = async (moduleId, section) => {
-  const response = await axiosWithCredentials.put(
-    `${MODULES_API}/${moduleId}/section/${section._id}`,
-    section,
-  );
-  return response.data;
+export const updateSection = async (module, section) => {
+  const updatedModule = {
+    ...module,
+    sections: module.sections.map((s) =>
+      s._id === section._id ? { ...s, ...section } : s,
+    ),
+  };
+  return updateModule(updatedModule);
 };
 
-export const deleteSection = async (moduleId, section) => {
-  const response = await axiosWithCredentials.delete(
-    `${MODULES_API}/${moduleId}/section/${section._id}`,
-    section,
-  );
-  return response.data;
+export const deleteSection = async (module, sectionId) => {
+  const updatedModule = {
+    ...module,
+    sections: module.sections.filter((s) => s._id !== sectionId),
+  };
+  return updateModule(updatedModule);
 };
 
 export const createLesson = async (module, section, lesson) => {
@@ -72,18 +74,34 @@ export const createLesson = async (module, section, lesson) => {
   return response.data;
 };
 
-export const updateLesson = async (moduleId, sectionId, lesson) => {
-  const response = await axiosWithCredentials.put(
-    `${MODULES_API}/${moduleId}/section/${sectionId}/lesson/${lesson._id}`,
-    lesson,
-  );
-  return response.data;
+export const updateLesson = async (module, sectionId, lesson) => {
+  const updatedModule = {
+    ...module,
+    sections: module.sections.map((s) =>
+      s._id === sectionId
+        ? {
+            ...s,
+            lessons: s.lessons.map((l) =>
+              l._id === lesson._id ? { ...l, ...lesson } : l,
+            ),
+          }
+        : s,
+    ),
+  };
+  return updateModule(updatedModule);
 };
 
-export const deleteLesson = async (moduleId, sectionId, lesson) => {
-  const response = await axiosWithCredentials.delete(
-    `${MODULES_API}/${moduleId}/section/${sectionId}/lesson/${lesson._id}`,
-    lesson,
-  );
-  return response.data;
+export const deleteLesson = async (module, sectionId, lessonId) => {
+  const updatedModule = {
+    ...module,
+    sections: module.sections.map((s) =>
+      s._id === sectionId
+        ? {
+            ...s,
+            lessons: s.lessons.filter((l) => l._id !== lessonId),
+          }
+        : s,
+    ),
+  };
+  return updateModule(updatedModule);
 };
