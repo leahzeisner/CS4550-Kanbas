@@ -8,6 +8,7 @@ import * as client from "./client";
 interface AssignmentProps {
   assignment: AssignmentType;
   onAssignmentEditToggle: (assignment: AssignmentType) => void;
+  checkEditableAssignment: (assignment: AssignmentType) => void;
 }
 
 export const getEmptyAssignment = (courseId: string | undefined) => {
@@ -23,6 +24,7 @@ export const getEmptyAssignment = (courseId: string | undefined) => {
 const Assignment = ({
   assignment,
   onAssignmentEditToggle,
+  checkEditableAssignment,
 }: AssignmentProps) => {
   const dispatch = useDispatch();
 
@@ -38,7 +40,7 @@ const Assignment = ({
       "Aug",
       "Sept",
       "Oct",
-      "Novr",
+      "Nov",
       "Dec",
     ];
     return months[month];
@@ -47,18 +49,24 @@ const Assignment = ({
   const formatDueDate = () => {
     const dueDate = new Date(assignment.dueDate);
     // Format date
-    const month = getMonthString(dueDate.getMonth());
-    const date = dueDate.getDate();
-    const year = dueDate.getFullYear();
+    const month = getMonthString(dueDate.getUTCMonth());
+    const date = dueDate.getUTCDate();
+    const year = dueDate.getUTCFullYear();
     const fullDate = `${month} ${date}, ${year} `;
 
-    // Format time
-    const hour24Format = dueDate.getHours();
-    const minutes = dueDate.getMinutes();
-    const amOrPm = hour24Format < 12 ? "am" : "pm";
-    const hour12Format = hour24Format < 13 ? hour24Format : hour24Format - 12;
-    const time = `${hour12Format}:${minutes}${amOrPm}`;
+    // Format minutes
+    const minutes = ("0" + dueDate.getMinutes()).slice(-2);
 
+    // Format hours
+    const hour24Format = dueDate.getHours();
+    const hour12Format =
+      hour24Format > 0 && hour24Format < 13
+        ? hour24Format
+        : Math.abs(hour24Format - 12);
+    const amOrPm = hour24Format < 12 ? "am" : "pm";
+
+    // Format datetime
+    const time = `${hour12Format}:${minutes}${amOrPm}`;
     const formattedDueDate = `${fullDate} at ${time}`;
     return formattedDueDate;
   };
@@ -66,6 +74,7 @@ const Assignment = ({
   const onDeleteAssignment = () => {
     client.deleteAssignment(assignment._id).then(() => {
       dispatch(deleteAssignment(assignment));
+      checkEditableAssignment(assignment);
     });
   };
 

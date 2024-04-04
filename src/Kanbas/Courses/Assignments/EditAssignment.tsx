@@ -24,6 +24,21 @@ function EditAssignment({
   const [updateAssignmentEnabled, setUpdateAssignmentEnabled] = useState(true);
 
   useEffect(() => {
+    if (time === "" && editableAssignment.dueDate !== "") {
+      const dueDate = new Date(editableAssignment.dueDate);
+
+      const hours = ("0" + dueDate.getHours()).slice(-2);
+      const minutes = ("0" + dueDate.getMinutes()).slice(-2);
+
+      // Format time
+      const formattedTime = `${hours}:${minutes}`;
+      setTime(formattedTime);
+
+      setEditableAssignment({
+        ...editableAssignment,
+        dueDate: editableAssignment.dueDate.substring(0, 10),
+      });
+    }
     setUpdateAssignmentEnabled(
       validateAssignmentForm(editableAssignment, time),
     );
@@ -31,9 +46,17 @@ function EditAssignment({
 
   const onUpdateAssignment = () => {
     if (validateAssignmentForm(editableAssignment, time)) {
+      const dueDate = new Date(
+        editableAssignment.dueDate + "T" + time,
+      ).toISOString();
+
+      const updatedAssignment = {
+        ...editableAssignment,
+        dueDate,
+      };
       client
-        .updateAssignment(editableAssignment)
-        .then(() => dispatch(updateAssignment(editableAssignment)));
+        .updateAssignment(updatedAssignment)
+        .then(() => dispatch(updateAssignment(updatedAssignment)));
       setEditableAssignment(getEmptyAssignment(courseId));
       setRenderAddAssignment(true);
     }
@@ -63,7 +86,7 @@ function EditAssignment({
           value={editableAssignment.points}
           placeholder="Assignment Points"
           className="form-control add-edit-courses-input"
-          type="text"
+          type="number"
           onChange={(e) =>
             setEditableAssignment({
               ...editableAssignment,

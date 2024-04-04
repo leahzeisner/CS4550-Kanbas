@@ -81,6 +81,13 @@ function Assignments() {
     setAddingAssignment(value);
   };
 
+  const checkEditableAssignment = (assignment: AssignmentType) => {
+    if (assignment._id === editableAssignment._id) {
+      setEditableAssignment(getEmptyAssignment(courseId));
+      setRenderAddAssignment(true);
+    }
+  };
+
   return (
     <div className="main-content">
       <div className="assignments">
@@ -136,6 +143,7 @@ function Assignments() {
               <Assignment
                 assignment={assignment}
                 onAssignmentEditToggle={onAssignmentEditToggle}
+                checkEditableAssignment={checkEditableAssignment}
               />
             ))}
         </ul>

@@ -27,10 +27,11 @@ function AddAssignment({
   }, [assignment, time]);
 
   const addNewAssignment = async () => {
+    const dueDate = new Date(assignment.dueDate + "T" + time).toISOString();
     client
       .createAssignment(courseId, {
         ...assignment,
-        dueDate: new Date(assignment.dueDate + ":" + time),
+        dueDate,
       })
       .then((a) => dispatch(addAssignment(a)));
     reset();
@@ -60,7 +61,7 @@ function AddAssignment({
               value={assignment.points}
               placeholder="Assignment Points"
               className="form-control add-edit-courses-input"
-              type="text"
+              type="number"
               onChange={(e) =>
                 setAssignment({ ...assignment, points: e.target.value })
               }
