@@ -75,7 +75,7 @@
 
 .profile-item > input,
 select {
-  width: 60%;
+  width: 70%;
 }
 
 .profile-footer {
@@ -83,9 +83,14 @@ select {
   justify-content: space-between;
 }
 
+.profile-footer > div {
+  padding-right: 0px !important;
+}
+
 .profile-footer * {
-  width: 30% !important;
+  width: fit-content !important;
   text-align: center;
+  padding: 5px 10px !important;
 }
 
 .users-link {
@@ -100,6 +105,16 @@ select {
 
 .users-link:hover {
   background-color: #ffa407;
+}
+
+#discard-profile-changes-btn {
+  background-color: red;
+  margin-right: 0px !important;
+  margin-left: 5px !important;
+}
+
+#discard-profile-changes-btn:enabled:hover {
+  background-color: darkred;
 }
 
 /* Users Table */
@@ -152,6 +167,11 @@ select {
 @media (max-width: 1075px) {
   .user-table {
     width: 75%;
+  }
+
+  .profile-item > input,
+  select {
+    width: 60%;
   }
 }
 

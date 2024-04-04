@@ -150,13 +150,23 @@ export default function Profile() {
             <Link to="/Kanbas/Account/Admin/Users" className="users-link">
               Go to Users
             </Link>
-            <button
-              onClick={save}
-              className="user-auth-btn"
-              disabled={profileSaved()}
-            >
-              {profileSaved() ? "Saved" : "Save"}
-            </button>
+            <div>
+              <button
+                onClick={save}
+                className="user-auth-btn"
+                disabled={profileSaved()}
+              >
+                {profileSaved() ? "Saved" : "Save"}
+              </button>
+              <button
+                onClick={() => fetchProfile()}
+                className="user-auth-btn"
+                id="discard-profile-changes-btn"
+                disabled={profileSaved()}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
