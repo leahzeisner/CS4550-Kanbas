@@ -1,4 +1,4 @@
-import { Course } from "../types";
+import { Course, Courses } from "../types";
 import { getFreshId } from "../utils";
 
 export const getEmptyCourse = () => {
@@ -22,4 +22,17 @@ export const validateForm = (course: Course) => {
     ([key, value]) => !isValidFormField(key, value),
   );
   return invalidFields.length === 0;
+};
+
+export const fixCoursesDob = (courses: Courses) => {
+  const updatedCourses = courses.map((c: Course) => fixCourseDob(c));
+  return updatedCourses;
+};
+
+export const fixCourseDob = (course: Course) => {
+  return {
+    ...course,
+    startDate: course.startDate.substring(0, 10),
+    endDate: course.endDate.substring(0, 10),
+  };
 };

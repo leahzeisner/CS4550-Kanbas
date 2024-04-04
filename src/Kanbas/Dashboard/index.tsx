@@ -5,7 +5,7 @@ import EditCourse from "./EditCourse";
 import "./index.css";
 import { Course as CourseType, Courses } from "../types";
 import { useEffect, useState } from "react";
-import { getEmptyCourse } from "./utils";
+import { fixCourseDob, fixCoursesDob, getEmptyCourse } from "./utils";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../store";
 import {
@@ -25,7 +25,7 @@ function Dashboard() {
 
   useEffect(() => {
     client.getCourses().then((courses) => {
-      dispatch(setCourses(courses));
+      dispatch(setCourses(fixCoursesDob(courses)));
     });
   }, []);
 
@@ -37,7 +37,9 @@ function Dashboard() {
 
   const onEditCourse = async (courseId: string) => {
     setIsAdding(false);
-    client.getCourse(courseId).then((course) => setEditableCourse(course));
+    client
+      .getCourse(courseId)
+      .then((course) => setEditableCourse(fixCourseDob(course)));
   };
 
   return (
