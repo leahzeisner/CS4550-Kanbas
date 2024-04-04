@@ -4,8 +4,8 @@ import { Course, Courses } from "../types";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../store";
-import { setCourses } from "./coursesReducer";
-import { addCourse } from "./client";
+import { addCourse } from "./coursesReducer";
+import * as client from "./client";
 
 function AddCourse() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function AddCourse() {
         image: getRandomImage(),
       };
       setCourse(getEmptyCourse());
-      addCourse(newCourse).then((c) => dispatch(setCourses([...courses, c])));
+      client.addCourse(newCourse).then((c) => dispatch(addCourse(c)));
       setAddingCourse(false);
     }
   };

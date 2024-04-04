@@ -9,7 +9,7 @@ import { Modules } from "../../types";
 import { useParams } from "react-router";
 import { addModule, setModulesList } from "./modulesReducer";
 import { getFreshId } from "../../utils";
-import { createModule, findCourseModules } from "./client";
+import * as client from "./client";
 
 function ModuleList() {
   const dispatch = useDispatch();
@@ -26,9 +26,9 @@ function ModuleList() {
   >({});
 
   useEffect(() => {
-    findCourseModules(courseId).then((modules) =>
-      dispatch(setModulesList(modules)),
-    );
+    client
+      .findCourseModules(courseId)
+      .then((modules) => dispatch(setModulesList(modules)));
   }, []);
 
   useEffect(() => {
@@ -78,7 +78,7 @@ function ModuleList() {
       title: "",
       sections: [],
     };
-    createModule(courseId, emptyModule).then((module) => {
+    client.createModule(courseId, emptyModule).then((module) => {
       dispatch(addModule(module));
     });
   };
