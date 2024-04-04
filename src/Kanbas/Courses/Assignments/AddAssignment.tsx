@@ -43,6 +43,12 @@ function AddAssignment({
     setAddingAssignment(false);
   };
 
+  const handlePointsChange = (e: any) => {
+    let value = e.target.value;
+    value = Math.max(0, Math.min(200, value));
+    setAssignment({ ...assignment, points: value });
+  };
+
   return (
     <div>
       {addingAssignment && (
@@ -62,9 +68,9 @@ function AddAssignment({
               placeholder="Assignment Points"
               className="form-control add-edit-courses-input"
               type="number"
-              onChange={(e) =>
-                setAssignment({ ...assignment, points: e.target.value })
-              }
+              min={0}
+              max={200}
+              onChange={(e) => handlePointsChange(e)}
             />
 
             <input
