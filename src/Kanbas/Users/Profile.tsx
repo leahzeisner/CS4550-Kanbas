@@ -20,10 +20,14 @@ export default function Profile() {
   const [lastSavedUser, setLastSavedUser] = useState(undefined);
   const [error, setError] = useState("");
 
+  const fixDob = (profile: any) => {
+    return { ...profile, dob: profile.dob.substring(0, 10) };
+  };
+
   const fetchProfile = async () => {
     try {
       const account = await client.profile();
-      setProfile(account);
+      setProfile(fixDob(account));
       setLastSavedUser(account);
     } catch (err: any) {
       console.error("Failed to fetch profile: ", err);
@@ -39,7 +43,7 @@ export default function Profile() {
     try {
       await client.updateUser(profile, true);
       const user = await client.profile();
-      setLastSavedUser(user);
+      setLastSavedUser(fixDob(user));
       setError("");
     } catch (err: any) {
       setError("Failed to update profile");
