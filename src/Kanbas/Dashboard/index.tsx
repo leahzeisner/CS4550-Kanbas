@@ -13,13 +13,9 @@ import {
   updateCourse as updateCourseAction,
 } from "./coursesReducer";
 import * as client from "./client";
-import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const user = useSelector((state: KanbasState) => state.userReducer.user);
   const courses: Courses = useSelector(
     (state: KanbasState) => state.coursesReducer.courses,
   );
