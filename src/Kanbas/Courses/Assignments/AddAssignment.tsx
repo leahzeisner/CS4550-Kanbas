@@ -27,7 +27,7 @@ function AddAssignment({
   }, [assignment, time]);
 
   const addNewAssignment = async () => {
-    const dueDate = new Date(assignment.dueDate + "T" + time).toISOString();
+    const dueDate = new Date(assignment.dueDate + "T" + time).toString();
     client
       .createAssignment(courseId, {
         ...assignment,

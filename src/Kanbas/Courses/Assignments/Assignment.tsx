@@ -49,9 +49,9 @@ const Assignment = ({
   const formatDueDate = () => {
     const dueDate = new Date(assignment.dueDate);
     // Format date
-    const month = getMonthString(dueDate.getUTCMonth());
-    const date = dueDate.getUTCDate();
-    const year = dueDate.getUTCFullYear();
+    const month = getMonthString(dueDate.getMonth());
+    const date = dueDate.getDate();
+    const year = dueDate.getFullYear();
     const fullDate = `${month} ${date}, ${year} `;
 
     // Format minutes
