@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FaCheckCircle, FaPlusCircle } from "react-icons/fa";
 import { FaPencil, FaTrashCan } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { KanbasState } from "../store";
 import { User } from "../types";
+import { setUser as setUserAction } from "./userReducer";
 import * as client from "./client";
 
 export default function UserTable() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const currentUser = useSelector(
     (state: KanbasState) => state.userReducer.user,
   );
@@ -58,6 +60,11 @@ export default function UserTable() {
     try {
       await client.deleteUser(user);
       setUsers(users.filter((u) => u._id !== user._id));
+      if (user._id === currentUser._id) {
+        await client.signout();
+        dispatch(setUserAction(undefined));
+        navigate("/Kanbas/Account/Signup");
+      }
     } catch (err) {
       console.error(err);
     }
