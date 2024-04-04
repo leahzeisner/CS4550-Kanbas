@@ -61,8 +61,12 @@
   color: white;
 }
 
-#assignment-btn:hover {
+#assignment-btn:enabled:hover {
   background-color: darkred;
+}
+
+#assignment-btn:disabled {
+  opacity: 0.5;
 }
 
 #assignments-button-ellipsis {
@@ -158,10 +162,6 @@
   font-weight: bold;
 }
 
-.assignment-item-title:hover {
-  text-decoration: underline;
-}
-
 .ellipsis-v {
   margin-right: 10px;
 }
@@ -172,6 +172,14 @@
 
 .assignment-buttons-right > button:last-child {
   margin-left: 10px;
+}
+
+.cancel-add-assignment {
+  background-color: red !important;
+}
+
+.cancel-add-assignment:hover {
+  background-color: darkred !important;
 }
 
 @media (max-width: 991px) {

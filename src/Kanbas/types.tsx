@@ -70,9 +70,8 @@ export type Assignment = {
   _id: string;
   courseId: string;
   title: string;
-  due_date: string;
+  dueDate: string;
   points: string;
-  url: string;
 };
 
 export type AssignmentsList = Assignment[];

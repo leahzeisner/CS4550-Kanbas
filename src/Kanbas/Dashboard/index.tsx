@@ -3,15 +3,12 @@ import AddCourse from "./AddCourse";
 import Course from "./Course";
 import EditCourse from "./EditCourse";
 import "./index.css";
-import { Course as CourseType, Courses } from "../types";
+import { Courses } from "../types";
 import { useEffect, useState } from "react";
 import { fixCourseDob, fixCoursesDob, getEmptyCourse } from "./utils";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../store";
-import {
-  setCourses,
-  updateCourse as updateCourseAction,
-} from "./coursesReducer";
+import { setCourses } from "./coursesReducer";
 import * as client from "./client";
 
 function Dashboard() {
@@ -28,12 +25,6 @@ function Dashboard() {
       dispatch(setCourses(fixCoursesDob(courses)));
     });
   }, []);
-
-  const updateCourse = async (course: CourseType) => {
-    client
-      .updateCourse(course)
-      .then(() => dispatch(updateCourseAction(course)));
-  };
 
   const onEditCourse = async (courseId: string) => {
     setIsAdding(false);
@@ -63,7 +54,6 @@ function Dashboard() {
             editableCourse={editableCourse}
             setEditableCourse={setEditableCourse}
             setIsAdding={setIsAdding}
-            updateCourse={updateCourse}
           />
         )}
 

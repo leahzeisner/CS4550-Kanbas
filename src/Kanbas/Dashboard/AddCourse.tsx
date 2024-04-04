@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getEmptyCourse, validateForm } from "./utils";
+import { getEmptyCourse, validateCourseForm } from "./utils";
 import { Course, Courses } from "../types";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,7 @@ function AddCourse() {
   const [addingCourse, setAddingCourse] = useState(false);
 
   useEffect(() => {
-    setAddCourseEnabled(validateForm(course));
+    setAddCourseEnabled(validateCourseForm(course));
   }, [course]);
 
   const getRandomImage = () => {
@@ -34,7 +34,7 @@ function AddCourse() {
   };
 
   const addNewCourse = async () => {
-    if (validateForm(course)) {
+    if (validateCourseForm(course)) {
       const newCourse = {
         ...course,
         image: getRandomImage(),

@@ -4,12 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { KanbasState } from "../../store";
 import "../../styles.css";
-import Assignment from "./Assignment";
+import Assignment, { getEmptyAssignment } from "./Assignment";
 import "./index.css";
 import ToolBar from "./ToolBar";
-import { AssignmentsList } from "../../types";
+import { Assignment as AssignmentType, AssignmentsList } from "../../types";
 import * as client from "./client";
 import { setAssignmentsList } from "./assignmentsReducer";
+import AddAssignment from "./AddAssignment";
+import EditAssignment from "./EditAssignment";
+
+export const validateAssignmentForm = (
+  assignment: AssignmentType,
+  time: string,
+) => {
+  return (
+    assignment.title !== "" &&
+    assignment.dueDate !== "" &&
+    assignment.points !== "" &&
+    time !== ""
+  );
+};
 
 function Assignments() {
   const dispatch = useDispatch();
@@ -20,6 +34,13 @@ function Assignments() {
   );
   const [searchAssignmentValue, setSearchAssignmentValue] = useState("");
   const [showAssignments, setShowAssignments] = useState(true);
+
+  const [renderAddAssignment, setRenderAddAssignment] = useState(true);
+  const [addingAssignment, setAddingAssignment] = useState(false);
+
+  const [editableAssignment, setEditableAssignment] = useState(
+    getEmptyAssignment(courseId),
+  );
 
   useEffect(() => {
     client
@@ -45,10 +66,42 @@ function Assignments() {
     );
   };
 
+  const onToolbarAddAssignment = () => {
+    toggleAddAssignment(true);
+    setEditableAssignment(getEmptyAssignment(courseId));
+  };
+
+  const onAssignmentEditToggle = (assignment: AssignmentType) => {
+    setEditableAssignment(assignment);
+    toggleAddAssignment(false);
+  };
+
+  const toggleAddAssignment = (value: boolean) => {
+    setRenderAddAssignment(value);
+    setAddingAssignment(value);
+  };
+
   return (
     <div className="main-content">
       <div className="assignments">
-        <ToolBar setSearchAssignmentValue={setSearchAssignmentValue} />
+        <ToolBar
+          addingAssignment={addingAssignment}
+          onToolbarAddAssignment={onToolbarAddAssignment}
+          setSearchAssignmentValue={setSearchAssignmentValue}
+        />
+
+        {renderAddAssignment ? (
+          <AddAssignment
+            addingAssignment={addingAssignment}
+            setAddingAssignment={setAddingAssignment}
+          />
+        ) : (
+          <EditAssignment
+            editableAssignment={editableAssignment}
+            setEditableAssignment={setEditableAssignment}
+            setRenderAddAssignment={setRenderAddAssignment}
+          />
+        )}
 
         <ul className="list-group wd-assignments">
           <li className="assignment-title">
@@ -80,7 +133,10 @@ function Assignments() {
 
           {showAssignments &&
             getFilteredAssignments().map((assignment) => (
-              <Assignment assignment={assignment} />
+              <Assignment
+                assignment={assignment}
+                onAssignmentEditToggle={onAssignmentEditToggle}
+              />
             ))}
         </ul>
       </div>
