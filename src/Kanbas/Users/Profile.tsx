@@ -1,4 +1,5 @@
 import * as client from "./client";
+import _ from "lodash";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -21,7 +22,9 @@ export default function Profile() {
   const [error, setError] = useState("");
 
   const fixDob = (profile: any) => {
-    return { ...profile, dob: profile.dob.substring(0, 10) };
+    return !profile.dob
+      ? profile
+      : { ...profile, dob: profile.dob.substring(0, 10) };
   };
 
   const fetchProfile = async () => {
@@ -58,7 +61,7 @@ export default function Profile() {
   };
 
   const profileSaved = () => {
-    return JSON.stringify(profile) === JSON.stringify(lastSavedUser);
+    return _.isEqual(profile, lastSavedUser);
   };
 
   return (
