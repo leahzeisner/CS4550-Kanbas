@@ -98,18 +98,18 @@ function EditAssignment({
         <button
           type="button"
           id="addEditCourseBtn"
-          onClick={onUpdateAssignment}
-          disabled={!updateAssignmentEnabled}
-        >
-          Update
-        </button>
-        <button
-          type="button"
-          id="addEditCourseBtn"
           className="cancel-add-assignment"
           onClick={onCancelEdit}
         >
           Cancel
+        </button>
+        <button
+          type="button"
+          id="addEditCourseBtn"
+          onClick={onUpdateAssignment}
+          disabled={!updateAssignmentEnabled}
+        >
+          Update
         </button>
       </div>
     </div>

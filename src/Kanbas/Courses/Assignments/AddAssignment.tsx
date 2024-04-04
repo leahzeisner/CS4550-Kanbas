@@ -89,18 +89,18 @@ function AddAssignment({
             <button
               type="button"
               id="addEditCourseBtn"
-              onClick={addNewAssignment}
-              disabled={!addAssignmentEnabled}
-            >
-              Add
-            </button>
-            <button
-              type="button"
-              id="addEditCourseBtn"
               className="cancel-add-assignment"
               onClick={reset}
             >
               Cancel
+            </button>
+            <button
+              type="button"
+              id="addEditCourseBtn"
+              onClick={addNewAssignment}
+              disabled={!addAssignmentEnabled}
+            >
+              Add
             </button>
           </div>
         </div>
