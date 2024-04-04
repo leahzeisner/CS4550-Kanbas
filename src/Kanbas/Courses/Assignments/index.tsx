@@ -129,7 +129,11 @@ function Assignments() {
             </div>
 
             <div className="assignment-item-buttons assignment-buttons-right">
-              <button type="button" className="modules-btn">
+              <button
+                type="button"
+                className="modules-btn"
+                onClick={onToolbarAddAssignment}
+              >
                 <FaPlus></FaPlus>
               </button>
               <button type="button" className="modules-btn">

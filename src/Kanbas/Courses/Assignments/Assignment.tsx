@@ -84,7 +84,10 @@ const Assignment = ({
         <button type="button">
           <FaEllipsisV className="ms-2 ellipsis-v"></FaEllipsisV>
         </button>
-        <button type="button">
+        <button
+          type="button"
+          onClick={() => onAssignmentEditToggle(assignment)}
+        >
           <FaFilePen></FaFilePen>
         </button>
       </div>

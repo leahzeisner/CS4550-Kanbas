@@ -24,8 +24,18 @@ function EditAssignment({
   const [updateAssignmentEnabled, setUpdateAssignmentEnabled] = useState(true);
 
   useEffect(() => {
-    if (time === "" && editableAssignment.dueDate !== "") {
-      const dueDate = new Date(editableAssignment.dueDate);
+    // Trim due date if necesary
+    const assignmentDueDate = editableAssignment.dueDate;
+    if (assignmentDueDate.length > 10) {
+      setEditableAssignment({
+        ...editableAssignment,
+        dueDate: assignmentDueDate.substring(0, 10),
+      });
+    }
+
+    // Set time if necesary
+    if (time === "" && assignmentDueDate !== "") {
+      const dueDate = new Date(assignmentDueDate);
 
       const hours = ("0" + dueDate.getHours()).slice(-2);
       const minutes = ("0" + dueDate.getMinutes()).slice(-2);
@@ -33,11 +43,6 @@ function EditAssignment({
       // Format time
       const formattedTime = `${hours}:${minutes}`;
       setTime(formattedTime);
-
-      setEditableAssignment({
-        ...editableAssignment,
-        dueDate: editableAssignment.dueDate.substring(0, 10),
-      });
     }
     setUpdateAssignmentEnabled(
       validateAssignmentForm(editableAssignment, time),
