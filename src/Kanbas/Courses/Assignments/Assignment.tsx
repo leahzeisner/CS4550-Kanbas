@@ -2,7 +2,7 @@ import { FaCheckCircle, FaEdit, FaEllipsisV } from "react-icons/fa";
 import { FaFilePen, FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Assignment as AssignmentType } from "../../types";
-import { getFreshId } from "../../utils";
+import { formatDateTime, getFreshId } from "../../utils";
 import { deleteAssignment } from "./assignmentsReducer";
 import * as client from "./client";
 interface AssignmentProps {
@@ -27,49 +27,6 @@ const Assignment = ({
   checkEditableAssignment,
 }: AssignmentProps) => {
   const dispatch = useDispatch();
-
-  const getMonthString = (month: number) => {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    return months[month];
-  };
-
-  const formatDueDate = () => {
-    const dueDate = new Date(assignment.dueDate);
-    // Format date
-    const month = getMonthString(dueDate.getMonth());
-    const date = dueDate.getDate();
-    const year = dueDate.getFullYear();
-    const fullDate = `${month} ${date}, ${year} `;
-
-    // Format minutes
-    const minutes = ("0" + dueDate.getMinutes()).slice(-2);
-
-    // Format hours
-    const hour24Format = dueDate.getHours();
-    const hour12Format =
-      hour24Format > 0 && hour24Format < 13
-        ? hour24Format
-        : Math.abs(hour24Format - 12);
-    const amOrPm = hour24Format < 12 ? "am" : "pm";
-
-    // Format datetime
-    const time = `${hour12Format}:${minutes}${amOrPm}`;
-    const formattedDueDate = `${fullDate} at ${time}`;
-    return formattedDueDate;
-  };
 
   const onDeleteAssignment = () => {
     client.deleteAssignment(assignment._id).then(() => {
@@ -97,7 +54,7 @@ const Assignment = ({
         <div className="assignment-item-due-date">
           <span>Due </span>
           <span>
-            {formatDueDate()} | {assignment.points} pts
+            {formatDateTime(assignment.dueDate)} | {assignment.points} pts
           </span>
         </div>
       </div>

@@ -9,3 +9,49 @@ export const scrollToElementWithId = (id: string) => {
     inline: "nearest",
   });
 };
+
+const getMonthString = (month: number) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return months[month];
+};
+
+export const formatDateTime = (dueDateStr: string) => {
+  if (!dueDateStr) {
+    return "<no date>";
+  }
+  const dueDate = new Date(dueDateStr);
+  // Format date
+  const month = getMonthString(dueDate.getMonth());
+  const date = dueDate.getDate();
+  const year = dueDate.getFullYear();
+  const fullDate = `${month} ${date}, ${year} `;
+
+  // Format minutes
+  const minutes = ("0" + dueDate.getMinutes()).slice(-2);
+
+  // Format hours
+  const hour24Format = dueDate.getHours();
+  const hour12Format =
+    hour24Format > 0 && hour24Format < 13
+      ? hour24Format
+      : Math.abs(hour24Format - 12);
+  const amOrPm = hour24Format < 12 ? "am" : "pm";
+
+  // Format datetime
+  const time = `${hour12Format}:${minutes}${amOrPm}`;
+  const formattedDueDate = `${fullDate} at ${time}`;
+  return formattedDueDate;
+};

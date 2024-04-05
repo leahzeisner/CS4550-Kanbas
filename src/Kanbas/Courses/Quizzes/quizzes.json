@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "1",
+    "courseId": "660dcc0416624014b35136b1",
+    "title": "Test Quiz 1",
+    "dueDate": "2024-01-25T23:59:00.000Z",
+    "availableDate": "2024-01-12T00:00:00.000Z",
+    "availableUntilDate": "2024-01-25T23:59:00.000Z",
+    "points": "100",
+    "published": true,
+    "questions": []
+  },
+  {
+    "_id": "2",
+    "courseId": "660dcc0416624014b35136b1",
+    "title": "Test Quiz 2",
+    "dueDate": "2024-05-25T04:59:00.000Z",
+    "availableDate": "2024-05-12T00:00:00.000Z",
+    "availableUntilDate": "2024-05-25T23:59:00.000Z",
+    "points": "20",
+    "published": false,
+    "questions": []
+  },
+  {
+    "_id": "3",
+    "courseId": "660dcc0416624014b35136b1",
+    "title": "Test Quiz 3",
+    "dueDate": "2024-04-21T04:59:00.000Z",
+    "availableDate": "2024-04-02T00:00:00.000Z",
+    "availableUntilDate": "2024-04-21T23:59:00.000Z",
+    "points": "50",
+    "published": false,
+    "questions": []
+  }
+]

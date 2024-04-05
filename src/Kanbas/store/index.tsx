@@ -3,12 +3,14 @@ import modulesReducer from "../Courses/Modules/modulesReducer";
 import statusReducer from "../Courses/Home/Status/statusReducer";
 import assignmentsReducer from "../Courses/Assignments/assignmentsReducer";
 import coursesReducer from "../Dashboard/coursesReducer";
+import quizzesReducer from "../Courses/Quizzes/quizzesReducer";
 import {
   AssignmentsList,
   ComingUpList,
   Course,
   Courses,
   Modules,
+  Quizzes,
   TodoList,
 } from "../types";
 import userReducer from "../Users/userReducer";
@@ -32,6 +34,9 @@ export interface KanbasState {
     course: Course;
     page: string;
   };
+  quizzesReducer: {
+    quizzes: Quizzes;
+  };
 }
 
 const store = configureStore({
@@ -41,6 +46,7 @@ const store = configureStore({
     statusReducer,
     assignmentsReducer,
     coursesReducer,
+    quizzesReducer,
   },
 });
 

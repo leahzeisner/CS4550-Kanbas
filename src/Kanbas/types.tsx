@@ -75,3 +75,24 @@ export type Assignment = {
 };
 
 export type AssignmentsList = Assignment[];
+
+// TEMP - UPDATE LATER
+export type Question = {
+  title: string;
+};
+
+export type Questions = Question[];
+
+export type Quiz = {
+  _id: string;
+  courseId: string;
+  title: string;
+  dueDate: string;
+  availableDate: string;
+  availableUntilDate: string;
+  points: string;
+  published: boolean;
+  questions: Questions;
+};
+
+export type Quizzes = Quiz[];

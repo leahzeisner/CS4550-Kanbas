@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCourse } from "../Dashboard/coursesReducer";
 import { getCourse } from "../Dashboard/client";
+import Quizzes from "./Quizzes";
+import QuizDetails from "./Quizzes/QuizDetails";
 
 function Courses() {
   const { courseId } = useParams();
@@ -31,10 +33,8 @@ function Courses() {
           <Route path="/Modules" element={<Modules />} />
           <Route path="/Piazza" element={<h1>Piazza</h1>} />
           <Route path="/Assignments" element={<Assignments />} />
-          <Route
-            path="/Assignments/:assignmentId"
-            element={<h1>Assignment Editor</h1>}
-          />
+          <Route path="/Quizzes" element={<Quizzes />} />
+          <Route path="/Quizzes/:quizId" element={<QuizDetails />} />
           <Route path="/Grades" element={<h1>Grades</h1>} />
         </Routes>
       </div>
