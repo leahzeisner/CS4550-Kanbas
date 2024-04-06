@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { FaArrowLeft } from "react-icons/fa6";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getEmptyQuiz } from "..";
 import { KanbasState } from "../../../store";
 import { Quiz } from "../../../types";
@@ -9,7 +10,8 @@ import EditQuizDetails from "./EditQuizDetails";
 import ToolBar from "./ToolBar";
 
 function QuizDetails() {
-  const { quizId } = useParams();
+  const { courseId, quizId } = useParams();
+  const navigate = useNavigate();
   const quizzes = useSelector(
     (state: KanbasState) => state.quizzesReducer.quizzes,
   );
@@ -49,6 +51,13 @@ function QuizDetails() {
         <EditQuizDetails quiz={quiz} setQuiz={setQuiz} />
       ) : (
         <>
+          <button
+            type="button"
+            id="backBtn"
+            onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes`)}
+          >
+            <FaArrowLeft />
+          </button>
           <h1 id="quizDetailsTitle">{quiz.title}</h1>
 
           <div className="quiz-details-info">

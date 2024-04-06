@@ -124,7 +124,7 @@
 }
 
 #quizDetailsTitle {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .quiz-details-info {
@@ -212,7 +212,8 @@
   justify-content: flex-end;
 }
 
-.toolbar-buttons > button {
+.toolbar-buttons > button,
+#backBtn {
   border: none;
   margin-left: 10px;
   box-shadow: 1px 1px lightgray;
@@ -230,8 +231,16 @@
   padding: 5px;
 }
 
-.toolbar-buttons > button:hover {
+.toolbar-buttons > button:hover,
+#backBtn:hover {
   background-color: lightgray;
+}
+
+#backBtn {
+  width: fit-content;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  padding: 8px;
 }
 
 #add-quiz-btn,
