@@ -35,7 +35,7 @@ export const updateQuiz = async (quiz) => {
 
 export const deleteQuiz = async (quizId) => {
   const response = await axiosWithCredentials.delete(
-    `${ASSIGNMENTS_API}/${quizId}`,
+    `${QUIZZES_API}/${quizId}`,
   );
   return response.data;
 };
