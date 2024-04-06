@@ -40,7 +40,16 @@ function ToolBar({
             )}
             {quiz.published ? "Unpublish" : "Publish"}
           </button>
-          <button type="button">Preview</button>
+          <button
+            type="button"
+            onClick={() =>
+              navigate(
+                `/Kanbas/Courses/${courseId}/Quizzes/Preview/${quiz._id}`,
+              )
+            }
+          >
+            Preview
+          </button>
           <button type="button" onClick={toggleIsEditing}>
             <FaPencil id="edit-quiz-btn-icon" /> Edit
           </button>

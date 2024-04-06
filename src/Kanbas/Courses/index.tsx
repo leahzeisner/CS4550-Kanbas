@@ -11,6 +11,7 @@ import { setCourse } from "../Dashboard/coursesReducer";
 import { getCourse } from "../Dashboard/client";
 import Quizzes from "./Quizzes";
 import QuizDetails from "./Quizzes/QuizDetails/QuizDetails";
+import QuizPreview from "./Quizzes/QuizPreview";
 
 function Courses() {
   const { courseId } = useParams();
@@ -35,6 +36,7 @@ function Courses() {
           <Route path="/Assignments" element={<Assignments />} />
           <Route path="/Quizzes" element={<Quizzes />} />
           <Route path="/Quizzes/:quizId" element={<QuizDetails />} />
+          <Route path="/Quizzes/Preview/:quizId" element={<QuizPreview />} />
           <Route path="/Grades" element={<h1>Grades</h1>} />
         </Routes>
       </div>
