@@ -25,15 +25,10 @@
   padding: 10px 0px 10px 5px;
 }
 
-.wd-quizzes > li:not(:first-child) {
-  border-left: 4px solid green !important;
-}
-
 .wd-quizzes-title {
   background-color: lightgray;
   font-weight: bold;
   color: #3d454c;
-
   border-top: 1px solid gray !important;
   border-left: 1px solid gray !important;
 }

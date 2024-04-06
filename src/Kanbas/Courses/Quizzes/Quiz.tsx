@@ -87,7 +87,13 @@ function Quiz({ quiz }: QuizProps) {
   };
 
   return (
-    <li className="quiz-item" key={quiz._id}>
+    <li
+      className="quiz-item"
+      style={{
+        borderLeft: quiz.published ? "4px solid green" : "1px solid gray",
+      }}
+      key={quiz._id}
+    >
       <button type="button" className="quiz-btn">
         <FaRocket
           className={
