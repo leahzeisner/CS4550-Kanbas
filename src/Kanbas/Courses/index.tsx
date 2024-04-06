@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { setCourse } from "../Dashboard/coursesReducer";
 import { getCourse } from "../Dashboard/client";
 import Quizzes from "./Quizzes";
-import QuizDetails from "./Quizzes/QuizDetails";
+import QuizDetails from "./Quizzes/QuizDetails/QuizDetails";
 
 function Courses() {
   const { courseId } = useParams();

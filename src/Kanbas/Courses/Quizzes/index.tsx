@@ -15,12 +15,23 @@ export const getEmptyQuiz = (courseId: string) => {
     _id: getFreshId(),
     courseId,
     title: "New Quiz",
+    description: "",
     dueDate: "",
     availableDate: "",
     availableUntilDate: "",
     points: "",
     published: false,
     questions: [],
+    quizType: "Graded Quiz",
+    assignmentGroup: "Quizzes",
+    shuffleAnswers: true,
+    timeLimit: "20",
+    multipleAttempts: false,
+    accessCode: "",
+    oneQuestionAtATime: true,
+    webcamRequired: false,
+    lockQuestionsAfterAnswering: false,
+    showCorrectAnswers: "Immediately",
   };
 };
 

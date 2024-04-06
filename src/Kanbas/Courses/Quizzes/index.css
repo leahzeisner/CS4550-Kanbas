@@ -117,13 +117,80 @@
   color: #3d454c;
 }
 
-/* ToolBar */
+/* Quiz Details */
+.quiz-details {
+  flex-direction: column;
+  margin-right: 100px;
+}
+
+#quizDetailsTitle {
+  margin-bottom: 50px;
+}
+
+.quiz-details-info {
+  display: flex;
+}
+
+.quiz-details-info * {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.quiz-details-info * > span {
+  margin-bottom: 8px;
+}
+
+.quiz-details-left {
+  text-align: end;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.quiz-details-right {
+  text-align: start;
+}
+
+.quiz-details-footer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.quiz-details-footer * {
+  display: flex;
+  flex-direction: row;
+}
+
+.quiz-details-footer * > span {
+  margin-right: 20px;
+  width: 20%;
+}
+
+.quiz-details-footer * > span {
+  margin-right: 20px;
+  width: 20%;
+}
+
+#quizFor {
+  width: 15%;
+}
+
+.quiz-details-footer-headers {
+  font-weight: bold;
+}
+
+/* ToolBars */
 .quizzes-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
   margin: 10px 0px 10px 0px;
+}
+
+.quiz-details-toolbar {
+  justify-content: flex-end;
 }
 
 #quiz-search {
@@ -167,16 +234,29 @@
   background-color: lightgray;
 }
 
-#add-quiz-btn {
+#add-quiz-btn,
+#unpublish-quiz-btn {
   background-color: red;
   color: white;
 }
 
-#add-quiz-btn:hover {
+#add-quiz-btn:hover,
+#unpublish-quiz-btn:hover {
   background-color: darkred;
 }
 
-#add-quiz-btn-icon {
+#publish-quiz-btn {
+  background-color: green;
+  color: white;
+}
+
+#publish-quiz-btn:hover {
+  background-color: darkgreen;
+}
+
+#add-quiz-btn-icon,
+#edit-quiz-btn-icon,
+#publish-quiz-btn-icon {
   margin-right: 5px;
 }
 

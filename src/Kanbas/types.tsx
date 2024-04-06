@@ -87,12 +87,23 @@ export type Quiz = {
   _id: string;
   courseId: string;
   title: string;
+  description: string;
   dueDate: string;
   availableDate: string;
   availableUntilDate: string;
   points: string;
   published: boolean;
   questions: Questions;
+  quizType: string;
+  assignmentGroup: string;
+  shuffleAnswers: boolean;
+  timeLimit: string;
+  multipleAttempts: boolean;
+  accessCode: string;
+  oneQuestionAtATime: boolean;
+  webcamRequired: boolean;
+  lockQuestionsAfterAnswering: boolean;
+  showCorrectAnswers?: string;
 };
 
 export type Quizzes = Quiz[];
