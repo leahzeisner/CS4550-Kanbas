@@ -5,7 +5,7 @@ import { getEmptyQuiz } from "..";
 import { KanbasState } from "../../../store";
 import { Quiz } from "../../../types";
 import { formatDateTime } from "../../../utils";
-import EditQuizDetails from "./EditQuiz/EditQuizDetails";
+import EditQuiz from "./EditQuiz/EditQuiz";
 import ToolBar from "./ToolBar";
 
 function QuizDetails() {
@@ -38,7 +38,7 @@ function QuizDetails() {
   return (
     <div className="main-content quiz-details">
       {isEditing ? (
-        <EditQuizDetails quiz={quiz} setIsEditing={setIsEditing} />
+        <EditQuiz quiz={quiz} setIsEditing={setIsEditing} />
       ) : (
         <>
           <ToolBar quiz={quiz} setQuiz={setQuiz} setIsEditing={setIsEditing} />
@@ -66,7 +66,7 @@ function QuizDetails() {
               <span>{quiz.points}</span>
               <span>{quiz.assignmentGroup.toUpperCase()}</span>
               <span>{getYesOrNo(quiz.shuffleAnswers)}</span>
-              <span>{quiz.timeLimit} Minutes</span>
+              <span>{quiz.timeLimit ? quiz.timeLimit + " Minutes" : "No"}</span>
               <span>{getYesOrNo(quiz.multipleAttempts)}</span>
               <span>Always</span>
               <span>{getShowCorrectAnswers()}</span>

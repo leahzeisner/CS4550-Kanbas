@@ -232,7 +232,7 @@
 .quiz-type > div,
 .assignment-group > div,
 .assign-to > div {
-  width: 135px;
+  width: 175px;
   display: flex;
   text-align: right;
 }
@@ -252,21 +252,27 @@
 }
 
 .edit-quiz-options {
-  margin-left: 155px;
+  margin-left: 195px;
 }
 
 .edit-quiz-options > span {
   font-weight: bold;
 }
 
-.time-limit {
+.time-limit,
+.access-code {
   display: inline-block;
   margin-top: 0px;
 }
 
 .shuffle-answers,
+.access-code-label,
 .time-limit-label,
-.time-limit-input {
+.time-limit-input,
+.multiple-attempts,
+.webcam-required,
+.one-q-at-a-time,
+.lock-questions {
   display: flex;
   flex-direction: row;
   margin-top: 0px;
@@ -274,15 +280,22 @@
 }
 
 #shuffleAnswers,
+#accessCode,
 #timeLimit,
-#multipleAttempts {
+#multipleAttempts,
+#webcamRequired,
+#numQuestionAtATime,
+#lockQuestions {
   margin-right: 10px;
 }
 
 .time-limit-input {
-  margin-left: 30px;
+  margin-left: 50px;
 }
 
+#accessCode,
+#accessCodeInput,
+#accessCodeLabel,
 #timeLimit,
 #timeLimitLabel,
 #timeLimitMinutesLabel {
@@ -303,22 +316,23 @@
   line-height: 2;
 }
 
-.multiple-attempts {
-  display: flex;
-  flex-direction: row;
+#accessCodeInput {
   margin-top: 0px;
+  margin-left: 30px;
+  width: 125px;
+  height: fit-content;
+  line-height: 1;
 }
 
 .shuffle-answers * {
   margin-top: 0px;
 }
 
-.multiple-attempts * {
+.multiple-attempts *,
+.webcam-required *,
+.one-q-at-a-time *,
+.lock-questions * {
   margin-top: 10px;
-}
-
-.due-dates {
-  margin-bottom: 40px;
 }
 
 .due-date,
@@ -335,7 +349,7 @@
 .available-until-date > label {
   font-weight: bold;
   margin-right: 20px;
-  width: 135px;
+  width: 175px;
   display: flex;
   text-align: right;
 }
@@ -383,6 +397,26 @@
 
 #notifyUsersLabel {
   line-height: 2;
+}
+
+.show-correct-answers {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0px;
+  margin-bottom: 40px;
+}
+
+.show-correct-answers > label {
+  margin-right: 20px;
+  line-height: 2;
+}
+
+.show-correct-answers > label:first-child {
+  font-weight: bold;
+}
+
+.show-correct-answers > input {
+  margin-right: 5px;
 }
 
 /* ToolBars */

@@ -79,6 +79,7 @@ export type AssignmentsList = Assignment[];
 // TEMP - UPDATE LATER
 export type Question = {
   title: string;
+  points: string;
 };
 
 export type Questions = Question[];
