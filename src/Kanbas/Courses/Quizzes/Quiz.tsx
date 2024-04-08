@@ -130,7 +130,9 @@ function Quiz({ quiz }: QuizProps) {
             Edit
           </MenuItem>
           <MenuItem onClick={onDeleteQuiz}>Delete</MenuItem>
-          <MenuItem onClick={onPublishToggle}>Publish</MenuItem>
+          <MenuItem onClick={onPublishToggle}>
+            {quiz.published ? "Unpublish" : "Publish"}
+          </MenuItem>
           {/* Optional */}
           {/* <MenuItem onClick={popupState.close}>Copy</MenuItem>
           <MenuItem onClick={popupState.close}>Sort</MenuItem> */}

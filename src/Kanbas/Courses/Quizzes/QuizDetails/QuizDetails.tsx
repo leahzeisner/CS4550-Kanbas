@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
-import { FaArrowLeft } from "react-icons/fa6";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { getEmptyQuiz } from "..";
 import { KanbasState } from "../../../store";
 import { Quiz } from "../../../types";
 import { formatDateTime } from "../../../utils";
-import EditQuizDetails from "./EditQuizDetails";
+import EditQuizDetails from "./EditQuiz/EditQuizDetails";
 import ToolBar from "./ToolBar";
 
 function QuizDetails() {
-  const { courseId, quizId } = useParams();
-  const navigate = useNavigate();
+  const { quizId } = useParams();
   const quizzes = useSelector(
     (state: KanbasState) => state.quizzesReducer.quizzes,
   );
@@ -37,27 +35,14 @@ function QuizDetails() {
     return "On " + dateTime;
   };
 
-  const toggleIsEditing = () => setIsEditing(!isEditing);
-
   return (
     <div className="main-content quiz-details">
-      <ToolBar
-        quiz={quiz}
-        setQuiz={setQuiz}
-        toggleIsEditing={toggleIsEditing}
-      />
-
       {isEditing ? (
-        <EditQuizDetails quiz={quiz} setQuiz={setQuiz} />
+        <EditQuizDetails quiz={quiz} setIsEditing={setIsEditing} />
       ) : (
         <>
-          <button
-            type="button"
-            id="backBtn"
-            onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes`)}
-          >
-            <FaArrowLeft />
-          </button>
+          <ToolBar quiz={quiz} setQuiz={setQuiz} setIsEditing={setIsEditing} />
+
           <h1 id="quizDetailsTitle">{quiz.title}</h1>
 
           <div className="quiz-details-info">

@@ -1,5 +1,5 @@
 import { FaBan, FaCheckCircle, FaEllipsisV } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
+import { FaArrowLeft, FaPencil } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { Quiz } from "../../../types";
@@ -8,11 +8,11 @@ import { updateQuiz } from "../quizzesReducer";
 function ToolBar({
   quiz,
   setQuiz,
-  toggleIsEditing,
+  setIsEditing,
 }: {
   quiz: Quiz;
   setQuiz: (quiz: Quiz) => void;
-  toggleIsEditing: () => void;
+  setIsEditing: (b: boolean) => void;
 }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,6 +27,16 @@ function ToolBar({
   return (
     <>
       <div className="quizzes-toolbar quiz-details-toolbar">
+        <div className="toolbar-buttons">
+          <button
+            type="button"
+            id="backBtn"
+            onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes`)}
+          >
+            <FaArrowLeft />
+          </button>
+        </div>
+
         <div className="toolbar-buttons">
           <button
             type="button"
@@ -50,7 +60,7 @@ function ToolBar({
           >
             Preview
           </button>
-          <button type="button" onClick={toggleIsEditing}>
+          <button type="button" onClick={() => setIsEditing(true)}>
             <FaPencil id="edit-quiz-btn-icon" /> Edit
           </button>
           <button type="button" id="quiz-ellipsis-btn">

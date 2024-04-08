@@ -149,7 +149,7 @@
 .quiz-details-footer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 150px;
 }
 
 .quiz-details-footer * {
@@ -175,6 +175,216 @@
   font-weight: bold;
 }
 
+/* Edit Quiz Details */
+.details-questions-toggle {
+  margin-top: 20px;
+  display: flex;
+}
+
+.details-questions-toggle > button {
+  background-color: transparent;
+  padding: 5px 10px;
+}
+
+.details-questions-toggle > button:disabled {
+  border-left: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-bottom: none;
+  color: black;
+}
+
+.details-questions-toggle > button:enabled {
+  border: none;
+  border-bottom: 1px solid lightgray;
+  color: red;
+}
+
+.details-questions-toggle > span {
+  width: stretch;
+  border-bottom: 1px solid lightgray;
+}
+
+.edit-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-details * {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+#editQuizDetailTitle {
+  width: 60%;
+}
+
+.quiz-type,
+.assignment-group,
+.assign-to {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-top: 0px;
+}
+
+.quiz-type > div,
+.assignment-group > div,
+.assign-to > div {
+  width: 135px;
+  display: flex;
+  text-align: right;
+}
+
+.quiz-type > div *,
+.assignment-group > div *,
+.assign-to > div * {
+  margin-top: 0px;
+}
+
+#quizType,
+#assignmentGroup,
+#assignTo {
+  width: 165px;
+  height: fit-content;
+  margin-left: 20px;
+}
+
+.edit-quiz-options {
+  margin-left: 155px;
+}
+
+.edit-quiz-options > span {
+  font-weight: bold;
+}
+
+.time-limit {
+  display: inline-block;
+  margin-top: 0px;
+}
+
+.shuffle-answers,
+.time-limit-label,
+.time-limit-input {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0px;
+  width: fit-content;
+}
+
+#shuffleAnswers,
+#timeLimit,
+#multipleAttempts {
+  margin-right: 10px;
+}
+
+.time-limit-input {
+  margin-left: 30px;
+}
+
+#timeLimit,
+#timeLimitLabel,
+#timeLimitMinutesLabel {
+  padding: 10px 0px;
+  margin-top: 0px;
+}
+
+#timeLimitLabel,
+#timeLimitMinutesLabel {
+  line-height: 2;
+}
+
+#timeLimitMinutes {
+  width: 60px;
+  height: 50%;
+  margin-right: 10px;
+  margin-top: 12px;
+  line-height: 2;
+}
+
+.multiple-attempts {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0px;
+}
+
+.shuffle-answers * {
+  margin-top: 0px;
+}
+
+.multiple-attempts * {
+  margin-top: 10px;
+}
+
+.due-dates {
+  margin-bottom: 40px;
+}
+
+.due-date,
+.available-date,
+.available-until-date {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-top: 0px;
+}
+
+.due-date > label,
+.available-date > label,
+.available-until-date > label {
+  font-weight: bold;
+  margin-right: 20px;
+  width: 135px;
+  display: flex;
+  text-align: right;
+}
+
+#footerLine1 {
+  margin-top: 50px;
+}
+
+#footerLine2 {
+  margin-bottom: 100px;
+}
+
+.edit-details-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0px;
+}
+
+.edit-details-footer-left,
+.edit-details-footer-right {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0px;
+}
+
+.edit-details-footer-left *,
+.edit-details-footer-right * {
+  margin-top: 0px;
+}
+
+.edit-details-footer-right > button:last-child {
+  margin-right: 20px;
+  background-color: red;
+  color: white;
+}
+
+.edit-details-footer-right > button:last-child:hover {
+  background-color: darkred;
+}
+
+#notifyUsers {
+  margin: 0px 10px 0px 20px;
+}
+
+#notifyUsersLabel {
+  line-height: 2;
+}
+
 /* ToolBars */
 .quizzes-toolbar {
   display: flex;
@@ -185,7 +395,8 @@
 }
 
 .quiz-details-toolbar {
-  justify-content: flex-end;
+  width: 100%;
+  justify-content: space-between;
 }
 
 #quiz-search {
@@ -205,6 +416,7 @@
 .toolbar-buttons {
   display: inline-flex;
   justify-content: flex-end;
+  height: 34px;
 }
 
 .toolbar-buttons > button,
@@ -223,7 +435,7 @@
 }
 
 .toolbar-buttons > button:last-child {
-  padding: 5px;
+  padding: 5px !important;
 }
 
 .toolbar-buttons > button:hover,
@@ -235,7 +447,8 @@
   width: fit-content;
   margin-bottom: 20px;
   margin-left: 0px;
-  padding: 8px;
+  padding: 8px !important;
+  margin-bottom: 0px !important;
 }
 
 #add-quiz-btn,
@@ -265,7 +478,7 @@
 }
 
 #quiz-ellipsis-btn {
-  padding: 0px;
+  padding: 0px !important;
 }
 
 #quiz-ellipsis-btn-icon {
@@ -274,4 +487,15 @@
 
 #toolbar-footer-hr {
   margin-bottom: 40px;
+}
+
+.toolbar-buttons-text {
+  display: flex;
+  margin: 0px 10px 0px 10px;
+  text-align: center;
+  align-items: center;
+}
+
+.toolbar-buttons-text:first-child {
+  margin-bottom: 1px;
 }

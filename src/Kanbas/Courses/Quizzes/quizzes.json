@@ -56,7 +56,7 @@
     "quizType": "Graded Survey",
     "assignmentGroup": "Projects",
     "shuffleAnswers": false,
-    "timeLimit": "30",
+    "timeLimit": "",
     "multipleAttempts": false,
     "accessCode": "",
     "oneQuestionAtATime": true,
