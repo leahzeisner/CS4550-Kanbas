@@ -419,6 +419,66 @@
   margin-right: 5px;
 }
 
+/* Edit Quiz Questions */
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0px 40px 58px;
+}
+
+.new-question {
+  justify-content: flex-start !important;
+}
+
+.quiz-questions {
+  padding-left: 0px;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  border: 2px solid lightgray;
+  list-style: none;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #3d454c;
+}
+
+.question-left {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.question-top {
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.question-title {
+  font-weight: bold;
+  font-size: large;
+}
+
+.question-points {
+  font-weight: normal;
+  font-size: medium;
+}
+
+.question-right {
+  align-content: center;
+  margin-left: 20px;
+}
+
+.edit-question-button {
+  border: none;
+  background-color: transparent;
+  color: #3d454c;
+}
+
 /* ToolBars */
 .quizzes-toolbar {
   display: flex;
@@ -532,4 +592,10 @@
 
 .toolbar-buttons-text:first-child {
   margin-bottom: 1px;
+}
+
+@media (max-width: 1200px) {
+  .question {
+    width: 100%;
+  }
 }

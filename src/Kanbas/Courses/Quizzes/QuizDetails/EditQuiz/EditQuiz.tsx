@@ -89,7 +89,10 @@ function EditQuiz({
           setEditableQuiz={setEditableQuiz}
         />
       ) : (
-        <EditQuizQuestions />
+        <EditQuizQuestions
+          editableQuiz={editableQuiz}
+          setEditableQuiz={setEditableQuiz}
+        />
       )}
 
       {/* Footer */}

@@ -41,13 +41,12 @@ function EditQuizDetails({
       <textarea
         cols={50}
         rows={5}
+        value={editableQuiz.description}
         placeholder="Quiz Description"
         onChange={(e) =>
           setEditableQuiz({ ...editableQuiz, description: e.target.value })
         }
-      >
-        {editableQuiz.description}
-      </textarea>
+      ></textarea>
 
       {/* Assignment */}
       <div>
