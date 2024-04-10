@@ -574,8 +574,12 @@
   color: white;
 }
 
-#updateQuestion:hover {
+#updateQuestion:enabled:hover {
   background-color: darkred;
+}
+
+#updateQuestion:disabled {
+  opacity: 0.5;
 }
 
 #cancelUpdateQuestion {

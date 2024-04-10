@@ -36,15 +36,47 @@ function EditQuestion({
   const onChangeQuestionType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     Object.entries(questionTypeMap).forEach(([key, value]) => {
       if (key === e.target.value) {
-        const answers = question.type === value ? question.answers : [];
+        updateEditableAnswers(value);
         setEditableQuestion({
           ...editableQuestion,
           type: value,
-          answers,
         });
         return;
       }
     });
+  };
+
+  const shouldSaveEditableAnswers = (newQuestionType: QuestionType) => {
+    // Should save answers if switching between multiple choice and fill in the blanks
+    return (
+      (question.type === QuestionType.FILL_IN_BLANKS &&
+        newQuestionType === QuestionType.MULTIPLE_CHOICE) ||
+      (question.type === QuestionType.MULTIPLE_CHOICE &&
+        newQuestionType === QuestionType.FILL_IN_BLANKS)
+    );
+  };
+
+  const updateEditableAnswers = (newQuestionType: QuestionType) => {
+    // If switching to saved question type, load question.answers
+    if (question.type === newQuestionType) {
+      setEditableAnswers(question.answers);
+    }
+    // If switching from T/F back to Mult Choice or Fill in Blanks, load question.answers
+    else if (
+      editableQuestion.type === QuestionType.TRUE_FALSE &&
+      question.type !== QuestionType.TRUE_FALSE
+    ) {
+      setEditableAnswers(question.answers);
+    }
+    // If switching to True/False question, pre-load both answers
+    else if (newQuestionType === QuestionType.TRUE_FALSE) {
+      setEditableAnswers([
+        { _id: getFreshId(), answer: TRUE, isCorrect: false },
+        { _id: getFreshId(), answer: FALSE, isCorrect: false },
+      ]);
+    } else if (!shouldSaveEditableAnswers(newQuestionType)) {
+      setEditableAnswers([]);
+    }
   };
 
   const getQuestionType = () => {
@@ -85,12 +117,60 @@ function EditQuestion({
           }
         : q,
     );
-    setEditableQuiz({ ...editableQuiz, questions: updatedQuestions });
+    let points = 0;
+    updatedQuestions.map((q) => (points += parseInt(q.points)));
+    setEditableQuiz({
+      ...editableQuiz,
+      questions: updatedQuestions,
+      points: points.toString(),
+    });
     setIsEditing(false);
   };
 
   const onCancel = () => {
     setIsEditing(false);
+  };
+
+  const isQuestionValid = () => {
+    switch (editableQuestion.type) {
+      case QuestionType.MULTIPLE_CHOICE:
+        // only one correct answer
+        let numMultChoiceCorrect = 0;
+        editableAnswers.map((a) => {
+          if (a.isCorrect) {
+            numMultChoiceCorrect += 1;
+          }
+        });
+        return numMultChoiceCorrect === 1;
+      case QuestionType.TRUE_FALSE:
+        // either true or false is correct
+        console.log(editableAnswers);
+        const numAnswers = editableAnswers.length;
+        if (numAnswers !== 2) {
+          return false;
+        }
+        const answer1 = editableAnswers[0];
+        const answer2 = editableAnswers[1];
+        return (
+          (answer1.isCorrect && !answer2.isCorrect) ||
+          (!answer1.isCorrect && answer2.isCorrect)
+        );
+      case QuestionType.FILL_IN_BLANKS:
+        // 1+ correct answers
+        let numFillInBlankCorrect = 0;
+        editableAnswers.map((a) => {
+          if (a.isCorrect) {
+            numFillInBlankCorrect += 1;
+          }
+        });
+        return numFillInBlankCorrect >= 1;
+    }
+  };
+
+  const getTrueFalseChecked = (val: string) => {
+    const valAnswer = editableAnswers.find((a) => a.answer === val);
+    if (!valAnswer) return false;
+    return valAnswer.isCorrect;
   };
 
   return (
@@ -189,19 +269,16 @@ function EditQuestion({
                 name="truefalse"
                 id={TRUE}
                 value={TRUE}
-                checked={
-                  editableAnswers.length > 0 &&
-                  editableAnswers[0].answer === TRUE
+                checked={getTrueFalseChecked(TRUE)}
+                onChange={(e) =>
+                  setEditableAnswers(
+                    editableAnswers.map((a) =>
+                      a.answer === TRUE
+                        ? { ...a, isCorrect: e.target.checked }
+                        : { ...a, isCorrect: !e.target.checked },
+                    ),
+                  )
                 }
-                onChange={(e) => {
-                  setEditableAnswers([
-                    {
-                      _id: getFreshId(),
-                      answer: e.target.checked ? TRUE : FALSE,
-                      isCorrect: true,
-                    },
-                  ]);
-                }}
               ></input>
               <label htmlFor={FALSE}>False</label>
               <input
@@ -209,18 +286,15 @@ function EditQuestion({
                 name="truefalse"
                 id={FALSE}
                 value={FALSE}
-                checked={
-                  editableAnswers.length > 0 &&
-                  editableAnswers[0].answer === FALSE
-                }
+                checked={getTrueFalseChecked(FALSE)}
                 onChange={(e) =>
-                  setEditableAnswers([
-                    {
-                      _id: getFreshId(),
-                      answer: e.target.checked ? FALSE : TRUE,
-                      isCorrect: true,
-                    },
-                  ])
+                  setEditableAnswers(
+                    editableAnswers.map((a) =>
+                      a.answer === FALSE
+                        ? { ...a, isCorrect: e.target.checked }
+                        : { ...a, isCorrect: !e.target.checked },
+                    ),
+                  )
                 }
               ></input>
             </div>
@@ -234,6 +308,7 @@ function EditQuestion({
               id="updateQuestion"
               type="button"
               onClick={onUpdateQuestion}
+              disabled={!isQuestionValid()}
             >
               Update Question
             </button>

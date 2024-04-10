@@ -63,7 +63,7 @@ function EditQuiz({
 
   return (
     <>
-      <ToolBar quiz={quiz} setIsEditing={setIsEditing} />
+      <ToolBar quiz={editableQuiz} setIsEditing={setIsEditing} />
 
       <div className="details-questions-toggle">
         <button
