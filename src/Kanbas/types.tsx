@@ -77,12 +77,26 @@ export type Assignment = {
 export type AssignmentsList = Assignment[];
 
 // TEMP - UPDATE LATER
+export enum QuestionType {
+  MULTIPLE_CHOICE,
+  TRUE_FALSE,
+  FILL_IN_BLANKS,
+}
+
+export type Answer = {
+  _id: string;
+  answer: string;
+  isCorrect: boolean;
+};
+
+export type Answers = Answer[];
+
 export type Question = {
   _id: string;
-  type: string;
+  type: QuestionType;
   title: string;
   question: string;
-  choices: string[];
+  answers: Answers;
   points: string;
 };
 

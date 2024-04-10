@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
-import { Question, Quiz } from "../../../../types";
+import {
+  Question as Question_Type,
+  QuestionType,
+  Quiz,
+} from "../../../../types";
 import { getFreshId } from "../../../../utils";
-import FillInBlank from "./Questions/FillInBlank";
-import MultipleChoice from "./Questions/MultipleChoice";
-import TrueFalse from "./Questions/TrueFalse";
+import Question from "./Questions/Question";
 
 function EditQuizQuestions({
   editableQuiz,
@@ -13,18 +15,17 @@ function EditQuizQuestions({
   editableQuiz: Quiz;
   setEditableQuiz: (quiz: Quiz) => void;
 }) {
-  const [newQuestion, setNewQuestion] = useState<Question | undefined>(
+  const [newQuestion, setNewQuestion] = useState<Question_Type | undefined>(
     undefined,
   );
 
   const onNewQuestion = () => {
-    const emptyQuestion = {
+    const emptyQuestion: Question_Type = {
       _id: getFreshId(),
-      type: "MULTIPLE-CHOICE",
+      type: QuestionType.MULTIPLE_CHOICE,
       title: "Unnamed Quiz Question",
-      question:
-        "Quiz DescriptionQuiz DescriptionQuiz DescriptionQuiz DescriptionQuiz DescriptionQuiz DescriptionQuiz DescriptionQuiz DescriptionQuiz DescriptionQuiz Description",
-      choices: [],
+      question: "",
+      answers: [],
       points: "",
     };
     setNewQuestion(emptyQuestion);
@@ -43,15 +44,15 @@ function EditQuizQuestions({
       </div>
 
       <ul className="quiz-questions">
-        {editableQuiz.questions.map((q: Question) => {
-          switch (q.type) {
-            case "MULTIPLE-CHOICE":
-              return <MultipleChoice question={q} newQuestion={newQuestion} />;
-            case "TRUE-FALSE":
-              return <TrueFalse question={q} />;
-            case "FILL-IN-BLANKS":
-              return <FillInBlank question={q} />;
-          }
+        {editableQuiz.questions.map((q: Question_Type) => {
+          return (
+            <Question
+              editableQuiz={editableQuiz}
+              setEditableQuiz={setEditableQuiz}
+              question={q}
+              newQuestion={newQuestion}
+            />
+          );
         })}
       </ul>
     </div>

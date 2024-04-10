@@ -52,12 +52,12 @@ function EditQuiz({
     }
   }, [editableQuiz]);
 
-  const onSave = (quiz: Quiz) => {
+  const onSave = () => {
     let points = 0;
-    quiz.questions.map(
+    editableQuiz.questions.map(
       (question) => (points += parseInt(question.points) || 0),
     );
-    dispatch(updateQuiz({ ...quiz, points }));
+    dispatch(updateQuiz({ ...editableQuiz, points }));
     navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
   };
 
@@ -119,11 +119,14 @@ function EditQuiz({
           </button>
           <button
             type="button"
-            onClick={() => onSave({ ...editableQuiz, published: true })}
+            onClick={() => {
+              setEditableQuiz({ ...editableQuiz, published: true });
+              onSave();
+            }}
           >
             Save {"&"} Publish
           </button>
-          <button type="button" onClick={() => onSave(editableQuiz)}>
+          <button type="button" onClick={onSave}>
             Save
           </button>
         </div>

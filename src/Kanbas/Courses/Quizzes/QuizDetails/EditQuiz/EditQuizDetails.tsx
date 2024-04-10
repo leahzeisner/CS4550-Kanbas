@@ -364,7 +364,6 @@ function EditQuizDetails({
               });
             }
           }}
-          onClick={() => console.log("onClick")}
         />
         <label htmlFor="by">By: </label>
 
