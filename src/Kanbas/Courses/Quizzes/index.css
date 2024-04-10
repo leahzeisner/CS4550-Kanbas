@@ -613,6 +613,11 @@ input {
   background-color: transparent;
 }
 
+#editAnswerBtn *,
+#deleteAnswerBtn * {
+  margin-bottom: 4px;
+}
+
 #answerLabel {
   display: inline-block;
   width: 125px;
@@ -622,7 +627,10 @@ input {
   color: red;
   border: none;
   background-color: transparent;
-  margin-right: 80px;
+}
+
+#isCorrect {
+  margin-right: 40px;
 }
 
 /* ToolBars */

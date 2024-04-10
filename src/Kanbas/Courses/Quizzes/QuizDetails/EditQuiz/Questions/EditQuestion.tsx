@@ -74,7 +74,16 @@ function EditQuestion({
         { _id: getFreshId(), answer: TRUE, isCorrect: false },
         { _id: getFreshId(), answer: FALSE, isCorrect: false },
       ]);
-    } else if (!shouldSaveEditableAnswers(newQuestionType)) {
+    } else if (shouldSaveEditableAnswers(newQuestionType)) {
+      // all fill in the blank answers are correct
+      if (newQuestionType === QuestionType.FILL_IN_BLANKS) {
+        setEditableAnswers(
+          editableAnswers.map((a) => {
+            return { ...a, isCorrect: true };
+          }),
+        );
+      }
+    } else {
       setEditableAnswers([]);
     }
   };
@@ -104,7 +113,11 @@ function EditQuestion({
   const onAddAnswer = () => {
     setEditableAnswers([
       ...editableAnswers,
-      { _id: getFreshId(), answer: "", isCorrect: false },
+      {
+        _id: getFreshId(),
+        answer: "",
+        isCorrect: editableQuestion.type === QuestionType.FILL_IN_BLANKS, // all fill in blank answers are correct
+      },
     ]);
   };
 
@@ -156,14 +169,7 @@ function EditQuestion({
           (!answer1.isCorrect && answer2.isCorrect)
         );
       case QuestionType.FILL_IN_BLANKS:
-        // 1+ correct answers
-        let numFillInBlankCorrect = 0;
-        editableAnswers.map((a) => {
-          if (a.isCorrect) {
-            numFillInBlankCorrect += 1;
-          }
-        });
-        return numFillInBlankCorrect >= 1;
+        return editableAnswers.length > 0;
     }
   };
 
@@ -246,7 +252,6 @@ function EditQuestion({
                 {editableAnswers.map((a, index) => (
                   <Answer
                     answer={a}
-                    index={index}
                     editableQuestion={editableQuestion}
                     editableAnswers={editableAnswers}
                     setEditableAnswers={setEditableAnswers}
@@ -263,7 +268,14 @@ function EditQuestion({
           {editableQuestion.type === QuestionType.TRUE_FALSE && (
             <div className="true-false-answer">
               <span>Choose the correct answer:</span>
-              <label htmlFor={TRUE}>True</label>
+              <label
+                htmlFor={TRUE}
+                style={{
+                  color: getTrueFalseChecked(TRUE) ? "darkgreen" : "#3d454c",
+                }}
+              >
+                True
+              </label>
               <input
                 type="checkbox"
                 name="truefalse"
@@ -280,7 +292,14 @@ function EditQuestion({
                   )
                 }
               ></input>
-              <label htmlFor={FALSE}>False</label>
+              <label
+                htmlFor={FALSE}
+                style={{
+                  color: getTrueFalseChecked(FALSE) ? "darkgreen" : "#3d454c",
+                }}
+              >
+                False
+              </label>
               <input
                 type="checkbox"
                 name="truefalse"

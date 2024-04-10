@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaCheck, FaX } from "react-icons/fa6";
-import { Answer as AnswerType, Answers, Question } from "../../../../../types";
+import {
+  Answer as AnswerType,
+  Answers,
+  Question,
+  QuestionType,
+} from "../../../../../types";
 
 function Answer({
   answer,
+  editableQuestion,
   editableAnswers,
   setEditableAnswers,
 }: {
   answer: AnswerType;
-  index: number;
   editableQuestion: Question;
   editableAnswers: Answers;
   setEditableAnswers: (choices: Answers) => void;
@@ -69,6 +74,21 @@ function Answer({
         }
         disabled={!isEditingTitle}
       />
+
+      {editableQuestion.type === QuestionType.MULTIPLE_CHOICE && (
+        <>
+          <label htmlFor="isCorrect" style={getCorrectStyle()}>
+            Is Correct?
+          </label>
+          <input
+            type="checkbox"
+            id="isCorrect"
+            checked={editableAnswer.isCorrect}
+            onChange={onChangeIsCorrect}
+          />
+        </>
+      )}
+
       <button
         type="button"
         id="editAnswerBtn"
@@ -88,16 +108,6 @@ function Answer({
       <button type="button" id="deleteAnswerBtn" onClick={onDeleteAnswer}>
         <FaX />
       </button>
-
-      <label htmlFor="isCorrect" style={getCorrectStyle()}>
-        Is Correct?
-      </label>
-      <input
-        type="checkbox"
-        id="isCorrect"
-        checked={editableAnswer.isCorrect}
-        onChange={onChangeIsCorrect}
-      />
     </li>
   );
 }
