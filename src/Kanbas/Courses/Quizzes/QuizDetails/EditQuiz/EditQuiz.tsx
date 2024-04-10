@@ -57,7 +57,7 @@ function EditQuiz({
     editableQuiz.questions.map(
       (question) => (points += parseInt(question.points) || 0),
     );
-    dispatch(updateQuiz({ ...editableQuiz, points }));
+    dispatch(updateQuiz({ ...editableQuiz, points: points.toString() }));
     navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
   };
 

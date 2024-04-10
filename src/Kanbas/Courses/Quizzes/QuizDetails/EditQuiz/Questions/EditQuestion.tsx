@@ -71,8 +71,8 @@ function EditQuestion({
     // If switching to True/False question, pre-load both answers
     else if (newQuestionType === QuestionType.TRUE_FALSE) {
       setEditableAnswers([
-        { _id: getFreshId(), answer: TRUE, isCorrect: false },
-        { _id: getFreshId(), answer: FALSE, isCorrect: false },
+        { _id: getFreshId() + "true", answer: TRUE, isCorrect: false },
+        { _id: getFreshId() + "false", answer: FALSE, isCorrect: false },
       ]);
     } else if (shouldSaveEditableAnswers(newQuestionType)) {
       // all fill in the blank answers are correct
@@ -131,7 +131,7 @@ function EditQuestion({
         : q,
     );
     let points = 0;
-    updatedQuestions.map((q) => (points += parseInt(q.points)));
+    updatedQuestions.map((q) => (points += parseInt(q.points) || 0));
     setEditableQuiz({
       ...editableQuiz,
       questions: updatedQuestions,
@@ -157,7 +157,6 @@ function EditQuestion({
         return numMultChoiceCorrect === 1;
       case QuestionType.TRUE_FALSE:
         // either true or false is correct
-        console.log(editableAnswers);
         const numAnswers = editableAnswers.length;
         if (numAnswers !== 2) {
           return false;

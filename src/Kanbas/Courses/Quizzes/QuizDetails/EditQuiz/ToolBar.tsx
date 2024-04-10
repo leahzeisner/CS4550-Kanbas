@@ -23,7 +23,7 @@ function ToolBar({
         </div>
 
         <div className="toolbar-buttons">
-          <h5 className="toolbar-buttons-text">Points {quiz.points}</h5>
+          <h5 className="toolbar-buttons-text">Points {quiz.points || "0"}</h5>
           <div className="toolbar-buttons-text">
             {quiz.published ? (
               <FaCheckCircle
