@@ -19,7 +19,7 @@ function Question({
 
   useEffect(() => {
     setIsEditing(newQuestion?._id === question._id);
-  }, []);
+  }, [newQuestion]);
 
   const onDeleteQuestion = () => {
     setEditableQuiz({
