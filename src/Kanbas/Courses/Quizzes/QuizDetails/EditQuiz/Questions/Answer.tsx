@@ -60,6 +60,17 @@ function Answer({
     setEditableAnswers(updatedAnswers);
   };
 
+  const isSaveDisabled = () => {
+    return (
+      isEditingTitle &&
+      (editableAnswer.answer === "" ||
+        editableAnswers.filter(
+          (a) =>
+            a._id !== editableAnswer._id && a.answer === editableAnswer.answer,
+        ).length > 0)
+    );
+  };
+
   return (
     <li key={answer._id} className="answer">
       <span id="answerLabel" style={getCorrectStyle()}>
@@ -94,14 +105,7 @@ function Answer({
         id="editAnswerBtn"
         onClick={onEditToggle}
         style={getCorrectStyle()}
-        disabled={
-          isEditingTitle &&
-          editableAnswers.filter(
-            (a) =>
-              a._id !== editableAnswer._id &&
-              a.answer === editableAnswer.answer,
-          ).length > 0
-        }
+        disabled={isSaveDisabled()}
       >
         {isEditingTitle ? <FaCheck /> : <FaEdit />}
       </button>

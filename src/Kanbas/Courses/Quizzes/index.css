@@ -549,6 +549,10 @@
   margin-bottom: 10px;
 }
 
+#editQuestionQuestionText {
+  padding: 10px;
+}
+
 .edit-question-answers {
   margin-top: 20px;
   display: flex;

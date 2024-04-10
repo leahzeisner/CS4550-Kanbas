@@ -126,7 +126,7 @@ function EditQuestion({
       q._id === editableQuestion._id
         ? {
             ...editableQuestion,
-            answers: editableAnswers,
+            answers: editableAnswers.filter((a) => a.answer !== ""),
           }
         : q,
     );
