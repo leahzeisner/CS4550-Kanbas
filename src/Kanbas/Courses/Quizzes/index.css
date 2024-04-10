@@ -473,10 +473,16 @@
   margin-left: 20px;
 }
 
-.edit-question-button {
+#editQuestionButton {
   border: none;
   background-color: transparent;
   color: #3d454c;
+}
+
+#deleteQuestionButton {
+  border: none;
+  background-color: transparent;
+  color: red;
 }
 
 .edit-question {

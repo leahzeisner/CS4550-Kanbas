@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
+import { FaX } from "react-icons/fa6";
 import { Question as QuestionType, Quiz } from "../../../../../types";
 import EditQuestion from "./EditQuestion";
 
@@ -19,6 +20,13 @@ function Question({
   useEffect(() => {
     setIsEditing(newQuestion?._id === question._id);
   }, []);
+
+  const onDeleteQuestion = () => {
+    setEditableQuiz({
+      ...editableQuiz,
+      questions: editableQuiz.questions.filter((q) => q._id !== question._id),
+    });
+  };
 
   return (
     <>
@@ -46,10 +54,17 @@ function Question({
           <div className="question-right">
             <button
               type="button"
-              className="edit-question-button"
+              id="editQuestionButton"
               onClick={() => setIsEditing(true)}
             >
               <FaEdit />
+            </button>
+            <button
+              type="button"
+              id="deleteQuestionButton"
+              onClick={onDeleteQuestion}
+            >
+              <FaX />
             </button>
           </div>
         </li>
