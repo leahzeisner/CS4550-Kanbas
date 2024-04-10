@@ -8,8 +8,8 @@ const HeaderMain = () => {
   const course: Course = useSelector(
     (state: KanbasState) => state.coursesReducer.course,
   );
-  const page: string = useSelector(
-    (state: KanbasState) => state.coursesReducer.page,
+  const pageList: string[] = useSelector(
+    (state: KanbasState) => state.coursesReducer.pageList,
   );
 
   const toggleCourseNav = () => {
@@ -51,13 +51,21 @@ const HeaderMain = () => {
             {course?.number}
           </Link>
 
-          <div className="sticky-header-subsec">
-            <FaArrowRight
-              size={18}
-              className="sticky-header-subsec-icon"
-            ></FaArrowRight>
-            <span>{page}</span>
-          </div>
+          {pageList.map((page, index) => (
+            <div className="sticky-header-subsec">
+              <FaArrowRight
+                size={18}
+                className="sticky-header-subsec-icon"
+              ></FaArrowRight>
+              <span
+                style={{
+                  color: index === pageList.length - 1 ? "#3d454c" : "red",
+                }}
+              >
+                {page}
+              </span>
+            </div>
+          ))}
         </div>
 
         <div className="sticky-header-right">

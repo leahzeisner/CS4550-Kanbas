@@ -32,7 +32,7 @@ export interface KanbasState {
   coursesReducer: {
     courses: Courses;
     course: Course;
-    page: string;
+    pageList: string[];
   };
   quizzesReducer: {
     quizzes: Quizzes;

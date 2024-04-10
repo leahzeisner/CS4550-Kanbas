@@ -18,8 +18,16 @@ const HeaderSmall = ({
   const course: Course = useSelector(
     (state: KanbasState) => state.coursesReducer.course,
   );
-  const page: string = useSelector(
-    (state: KanbasState) => state.coursesReducer.page,
+  const pageList: string[] = useSelector(
+    (state: KanbasState) => state.coursesReducer.pageList,
+  );
+
+  const getSpacer = () => (
+    <>
+      <span>&nbsp;&nbsp;</span>
+      <span>{">"}</span>
+      <span>&nbsp;&nbsp;</span>
+    </>
   );
 
   return (
@@ -40,7 +48,12 @@ const HeaderSmall = ({
         >
           {course?.number}
           <br />
-          <span>{page}</span>
+          {pageList.map((page, index) => (
+            <>
+              <span>{page}</span>
+              {index !== pageList.length - 1 && getSpacer()}
+            </>
+          ))}
         </button>
       </div>
 

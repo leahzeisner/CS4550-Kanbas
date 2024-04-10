@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getEmptyQuiz } from "..";
+import { setPageList } from "../../../Dashboard/coursesReducer";
 import { KanbasState } from "../../../store";
 import { Quiz } from "../../../types";
 import { formatDateTime } from "../../../utils";
@@ -10,6 +11,7 @@ import ToolBar from "./ToolBar";
 
 function QuizDetails() {
   const { quizId } = useParams();
+  const dispatch = useDispatch();
   const quizzes = useSelector(
     (state: KanbasState) => state.quizzesReducer.quizzes,
   );
@@ -20,6 +22,7 @@ function QuizDetails() {
     const quiz = quizzes.find((q) => q._id === quizId);
     if (quiz) {
       setQuiz(quiz);
+      dispatch(setPageList(["Quizzes", quiz.title]));
     }
   }, [quizId, quizzes]);
 

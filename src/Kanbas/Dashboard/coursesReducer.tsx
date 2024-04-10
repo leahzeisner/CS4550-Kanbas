@@ -4,7 +4,7 @@ import { Courses } from "../types";
 const initialState = {
   courses: [] as Courses,
   course: undefined,
-  page: "",
+  pageList: [] as string[],
 };
 
 const coursesSlice = createSlice({
@@ -29,8 +29,8 @@ const coursesSlice = createSlice({
     setCourse: (state, action) => {
       state.course = action.payload;
     },
-    setPage: (state, action) => {
-      state.page = action.payload;
+    setPageList: (state, action) => {
+      state.pageList = action.payload;
     },
   },
 });
@@ -41,6 +41,6 @@ export const {
   updateCourse,
   deleteCourse,
   setCourse,
-  setPage,
+  setPageList,
 } = coursesSlice.actions;
 export default coursesSlice.reducer;

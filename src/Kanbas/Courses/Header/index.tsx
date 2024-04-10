@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 import { courseNavLinks, getKanbasLinks } from "../../constants";
-import { setPage } from "../../Dashboard/coursesReducer";
+import { setPageList } from "../../Dashboard/coursesReducer";
 import "../../styles.css";
 import HeaderMain from "./HeaderMain";
 import CourseNavSmall from "./HeaderSmall/CourseNavSmall";
@@ -27,7 +27,8 @@ function Header() {
     const pagesList = courseNavLinks.filter((link) =>
       pathname.includes(link.label.replace(/\s/g, "")),
     );
-    dispatch(setPage(pagesList.length > 0 ? pagesList[0].label : ""));
+    let pageList = pagesList.length > 0 ? [pagesList[0].label] : [""];
+    dispatch(setPageList(pageList));
   }, [pathname]);
 
   const onKanbasSandwichClicked = () => {
