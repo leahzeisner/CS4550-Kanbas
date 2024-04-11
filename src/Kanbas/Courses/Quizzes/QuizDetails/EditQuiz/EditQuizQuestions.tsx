@@ -38,8 +38,8 @@ function EditQuizQuestions({
   return (
     <div className="questions-container">
       <div className="toolbar-buttons new-question">
-        <button type="button" onClick={onNewQuestion}>
-          <FaPlus className="ms-2" /> New Question
+        <button type="button" onClick={onNewQuestion} id="newQuestionBtn">
+          <FaPlus id="newQuestionPlusIcon" /> New Question
         </button>
       </div>
 

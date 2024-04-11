@@ -218,6 +218,17 @@
 
 #editQuizDetailTitle {
   width: 60%;
+  padding: 5px 10px;
+}
+
+#quizEditDescription {
+  padding: 10px;
+}
+
+#emptyQuizTitleWarning {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .quiz-type,
@@ -387,7 +398,11 @@
   color: white;
 }
 
-.edit-details-footer-right > button:last-child:hover {
+.edit-details-footer-right > button:disabled {
+  opacity: 0.5;
+}
+
+.edit-details-footer-right > button:last-child:enabled:hover {
   background-color: darkred;
 }
 
@@ -428,6 +443,14 @@
 
 .new-question {
   justify-content: flex-start !important;
+}
+
+#newQuestionBtn {
+  padding: 10px !important;
+}
+
+#newQuestionPlusIcon {
+  margin-right: 5px;
 }
 
 .quiz-questions {
@@ -503,6 +526,16 @@
   border-bottom: 2px solid lightgray;
 }
 
+.edit-question-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-question-top-left {
+  display: flex;
+  flex-direction: row;
+}
+
 #editQuestionTitle {
   width: 250px;
   padding: 5px;
@@ -511,6 +544,7 @@
 #editQuestionType {
   width: 175px;
   padding: 10px;
+  align-self: flex-start;
 }
 
 .edit-question-top-right {
@@ -625,6 +659,10 @@ input {
 #answerLabel {
   display: inline-block;
   width: 125px;
+}
+
+#answerInput {
+  padding: 5px;
 }
 
 #deleteAnswerBtn {

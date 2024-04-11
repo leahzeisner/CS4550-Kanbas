@@ -36,9 +36,14 @@ function EditQuizDetails({
         }
       ></input>
 
+      {editableQuiz.title === "" && (
+        <span id="emptyQuizTitleWarning">Quiz title cannot be empty</span>
+      )}
+
       {/* Description */}
       <span className="quiz-info-bold">Quiz Instructions:</span>
       <textarea
+        id="quizEditDescription"
         cols={50}
         rows={5}
         value={editableQuiz.description}

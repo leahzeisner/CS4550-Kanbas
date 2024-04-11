@@ -145,6 +145,8 @@ function EditQuestion({
   };
 
   const isQuestionValid = () => {
+    if (editableQuestion.title === "") return false;
+
     switch (editableQuestion.type) {
       case QuestionType.MULTIPLE_CHOICE:
         // only one correct answer
@@ -182,18 +184,25 @@ function EditQuestion({
     <li key={editableQuestion._id} className="edit-question">
       <div className="edit-question-top">
         <div className="edit-question-top-left">
-          <input
-            type="text"
-            id="editQuestionTitle"
-            placeholder="Question Title"
-            value={editableQuestion.title}
-            onChange={(e) =>
-              setEditableQuestion({
-                ...editableQuestion,
-                title: e.target.value,
-              })
-            }
-          />
+          <div className="edit-question-title">
+            <input
+              type="text"
+              id="editQuestionTitle"
+              placeholder="Question Title"
+              value={editableQuestion.title}
+              onChange={(e) =>
+                setEditableQuestion({
+                  ...editableQuestion,
+                  title: e.target.value,
+                })
+              }
+            />
+            {editableQuestion.title === "" && (
+              <span id="emptyQuizTitleWarning">
+                Question title cannot be empty
+              </span>
+            )}
+          </div>
 
           <select
             id="editQuestionType"

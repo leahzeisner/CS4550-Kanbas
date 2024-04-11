@@ -61,6 +61,10 @@ function EditQuiz({
     navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
   };
 
+  const disableSave = () => {
+    return editableQuiz.title === "";
+  };
+
   return (
     <>
       <ToolBar quiz={editableQuiz} setIsEditing={setIsEditing} />
@@ -123,10 +127,11 @@ function EditQuiz({
               setEditableQuiz({ ...editableQuiz, published: true });
               onSave();
             }}
+            disabled={disableSave()}
           >
             Save {"&"} Publish
           </button>
-          <button type="button" onClick={onSave}>
+          <button type="button" onClick={onSave} disabled={disableSave()}>
             Save
           </button>
         </div>

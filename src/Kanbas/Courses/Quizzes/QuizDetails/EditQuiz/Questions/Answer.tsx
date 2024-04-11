@@ -77,6 +77,7 @@ function Answer({
         {editableAnswer.isCorrect ? "Correct" : "Possible"} Answer:{" "}
       </span>
       <input
+        id="answerInput"
         type="text"
         placeholder="Answer"
         value={editableAnswer.answer}
