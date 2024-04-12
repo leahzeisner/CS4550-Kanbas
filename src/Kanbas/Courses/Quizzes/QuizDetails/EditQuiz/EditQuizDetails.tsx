@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Quiz } from "../../../../types";
+import EditableTextArea from "./EditableTextArea";
 
 function EditQuizDetails({
   editableQuiz,
@@ -41,20 +42,19 @@ function EditQuizDetails({
       )}
 
       {/* Description */}
-      <span className="quiz-info-bold">Quiz Instructions:</span>
-      <textarea
-        id="quizEditDescription"
-        cols={50}
-        rows={5}
-        value={editableQuiz.description}
+      <span id="quizInstructionsText">Quiz Instructions:</span>
+
+      <EditableTextArea
+        text={editableQuiz.description}
         placeholder="Quiz Description"
-        onChange={(e) =>
+        textareaId="quizEditDescription"
+        onTextChange={(e) =>
           setEditableQuiz({ ...editableQuiz, description: e.target.value })
         }
-      ></textarea>
+      />
 
       {/* Assignment */}
-      <div>
+      <div className="quiz-meta">
         <div className="quiz-type">
           <div>
             <label htmlFor="quizType">Quiz Type</label>
@@ -118,7 +118,7 @@ function EditQuizDetails({
 
       {/* More Options */}
       <div className="edit-quiz-options">
-        <span>Options</span>
+        <span style={{ marginTop: "30px" }}>Options</span>
 
         {/* Access Code */}
         <div className="access-code">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { Answers, Question, QuestionType, Quiz } from "../../../../../types";
 import { getFreshId } from "../../../../../utils";
+import EditableTextArea from "../EditableTextArea";
 import Answer from "./Answer";
 
 const questionTypeMap = {
@@ -237,12 +238,11 @@ function EditQuestion({
 
         <div className="edit-question-question">
           <span id="editQuestionQuestion">Question:</span>
-          <textarea
-            id="editQuestionQuestionText"
-            value={editableQuestion.question}
-            rows={4}
+          <EditableTextArea
+            text={editableQuestion.question}
             placeholder="Enter the Question"
-            onChange={(e) =>
+            textareaId="editQuestionQuestionText"
+            onTextChange={(e) =>
               setEditableQuestion({
                 ...editableQuestion,
                 question: e.target.value,
