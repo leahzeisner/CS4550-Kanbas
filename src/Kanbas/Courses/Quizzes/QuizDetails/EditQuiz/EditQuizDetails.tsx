@@ -305,9 +305,9 @@ function EditQuizDetails({
         </div>
 
         <div className="available-until-date">
-          <label htmlFor="available-until">Available until</label>
+          <label htmlFor="availableUntil">Available until</label>
           <input
-            id="available-until"
+            id="availableUntil"
             type="datetime-local"
             value={editableQuiz.availableUntilDate}
             onChange={(e) =>
@@ -322,69 +322,80 @@ function EditQuizDetails({
 
       {/* Show Correct Answers */}
       <div className="show-correct-answers">
-        <label htmlFor="showCorrectAnswers">Show Correct Answers</label>
+        <label htmlFor="showCorrectAnswers" id="showCorrectAnswersLabel">
+          Show Correct Answers
+        </label>
 
-        <input
-          type="radio"
-          name="showcorrectanswers"
-          id="never"
-          checked={editableQuiz.showCorrectAnswers === undefined}
-          onChange={(e) => {
-            if (e.target.checked) {
-              setEditableQuiz({
-                ...editableQuiz,
-                showCorrectAnswers: undefined,
-              });
-            }
-          }}
-        />
-        <label htmlFor="never">Never</label>
+        <div className="show-correct-answers-inputs">
+          <div className="show-correct-answers-input-container">
+            <input
+              type="radio"
+              name="showcorrectanswers"
+              id="never"
+              checked={editableQuiz.showCorrectAnswers === undefined}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setEditableQuiz({
+                    ...editableQuiz,
+                    showCorrectAnswers: undefined,
+                  });
+                }
+              }}
+            />
+            <label htmlFor="never">Never</label>
+          </div>
 
-        <input
-          type="radio"
-          name="showcorrectanswers"
-          id="immediately"
-          checked={editableQuiz.showCorrectAnswers === "Immediately"}
-          onChange={(e) => {
-            if (e.target.checked) {
-              setEditableQuiz({
-                ...editableQuiz,
-                showCorrectAnswers: "Immediately",
-              });
-            }
-          }}
-        />
-        <label htmlFor="immediately">Immediately</label>
+          <div className="show-correct-answers-input-container">
+            <input
+              type="radio"
+              name="showcorrectanswers"
+              id="immediately"
+              checked={editableQuiz.showCorrectAnswers === "Immediately"}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setEditableQuiz({
+                    ...editableQuiz,
+                    showCorrectAnswers: "Immediately",
+                  });
+                }
+              }}
+            />
+            <label htmlFor="immediately">Immediately</label>
+          </div>
+          <div className="show-correct-answers-input-container">
+            <div className="show-correct-answers-by">
+              <input
+                type="radio"
+                name="showcorrectanswers"
+                checked={showCorrectAnswersIsDateTime()}
+                id="byDateTime"
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setEditableQuiz({
+                      ...editableQuiz,
+                      showCorrectAnswers: "",
+                    });
+                  }
+                }}
+              />
+              <label htmlFor="by">By: </label>
+            </div>
 
-        <input
-          type="radio"
-          name="showcorrectanswers"
-          checked={showCorrectAnswersIsDateTime()}
-          id="byDateTime"
-          onChange={(e) => {
-            if (e.target.checked) {
-              setEditableQuiz({
-                ...editableQuiz,
-                showCorrectAnswers: "",
-              });
-            }
-          }}
-        />
-        <label htmlFor="by">By: </label>
-
-        {showCorrectAnswersIsDateTime() && (
-          <input
-            id="showCorrectAnswersBy"
-            type="datetime-local"
-            value={editableQuiz.showCorrectAnswers?.substring(0, 16)}
-            onChange={(e) =>
-              setEditableQuiz({
-                ...editableQuiz,
-                showCorrectAnswers: e.target.value,
-              })
-            }
-          />
-        )}
+            {showCorrectAnswersIsDateTime() && (
+              <input
+                id="showCorrectAnswersBy"
+                type="datetime-local"
+                value={editableQuiz.showCorrectAnswers?.substring(0, 16)}
+                onChange={(e) =>
+                  setEditableQuiz({
+                    ...editableQuiz,
+                    showCorrectAnswers: e.target.value,
+                  })
+                }
+              />
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

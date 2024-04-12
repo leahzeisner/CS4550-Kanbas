@@ -455,7 +455,7 @@ label {
 #quizType,
 #assignmentGroup,
 #assignTo {
-  width: 165px;
+  width: 213px;
   height: fit-content;
   margin-left: 20px;
 }
@@ -528,7 +528,7 @@ label {
 #accessCodeInput {
   margin-top: 0px;
   margin-left: 30px;
-  width: 125px;
+  width: 150px;
   height: fit-content;
   line-height: 1;
 }
@@ -582,6 +582,11 @@ label {
   margin-top: 0px;
 }
 
+.edit-details-footer-left {
+  display: flex;
+  align-items: center;
+}
+
 .edit-details-footer-left,
 .edit-details-footer-right {
   display: flex;
@@ -613,7 +618,7 @@ label {
 }
 
 #notifyUsersLabel {
-  line-height: 2;
+  line-height: 1;
 }
 
 .show-correct-answers {
@@ -623,17 +628,31 @@ label {
   margin-bottom: 40px;
 }
 
-.show-correct-answers > label {
+.show-correct-answers > label:first-child {
+  font-weight: bold;
   margin-right: 20px;
   line-height: 2;
 }
 
-.show-correct-answers > label:first-child {
-  font-weight: bold;
+.show-correct-answers-input-container > label,
+.show-correct-answers-by > label {
+  margin-right: 20px;
+  line-height: 2;
 }
 
-.show-correct-answers > input {
+.show-correct-answers-input-container > input,
+.show-correct-answers-by > input {
   margin-right: 5px;
+}
+
+.show-correct-answers-inputs,
+.show-correct-answers-input-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.show-correct-answers-by {
+  flex-direction: row;
 }
 
 /* Edit Quiz Questions */
@@ -1158,15 +1177,127 @@ input {
   margin-bottom: 1px;
 }
 
+@media (max-width: 553px) {
+  #showCorrectAnswersLabel {
+    min-width: 160px;
+    margin-right: 0px;
+  }
+
+  .quiz-details-left {
+    text-align: start;
+  }
+}
+
+@media (max-width: 650px) {
+  .edit-quiz-options {
+    margin-left: 10px;
+  }
+
+  .quiz-type > div,
+  .assignment-group > div,
+  .assign-to > div {
+    margin-left: 10px;
+    text-align: left;
+  }
+
+  #quizType,
+  #assignmentGroup,
+  #assignTo {
+    padding: 5px 10px;
+  }
+
+  #accessCodeLabel {
+    width: 155px;
+  }
+
+  #accessCodeInput {
+    margin-left: 18px;
+    width: 213px;
+    margin-right: 10px;
+  }
+
+  #timeLimitMinutes {
+    margin-left: 50px;
+  }
+
+  .due-date > label,
+  .available-date > label,
+  .available-until-date > label,
+  #showCorrectAnswersLabel {
+    margin-left: 10px;
+    text-align: left;
+  }
+
+  #showCorrectAnswersLabel {
+    margin-right: 20px;
+  }
+
+  .show-correct-answers-input-container:last-child {
+    flex-direction: column;
+  }
+
+  #due,
+  #available,
+  #availableUntil {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 661px) {
+  .edit-details-footer {
+    line-height: 1;
+  }
+
+  .edit-details-footer-right {
+    align-items: center;
+  }
+
+  .edit-details-footer-right > button:first-child,
+  .edit-details-footer-right > button:last-child {
+    line-height: 2;
+  }
+
+  #notifyUsersLabel {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 750px) {
+  .textarea-tools {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 758px) {
+  .show-correct-answers-inputs {
+    flex-direction: column;
+  }
+
+  .show-correct-answers-input-container:not(:first-child) > label,
+  .show-correct-answers-input-container:not(:first-child) > input,
+  .show-correct-answers-by > input,
+  .show-correct-answers-by > label {
+    margin-top: 10px;
+  }
+}
+
 @media (max-width: 991px) {
   .quiz-preview-item,
   .next-btn-container {
     width: 100%;
+  }
+
+  .quiz-details {
+    margin-right: 0px;
   }
 }
 
 @media (max-width: 1200px) {
   .question {
     width: 100%;
+  }
+
+  #showCorrectAnswersLabel {
+    min-width: 174.56px;
   }
 }

@@ -152,7 +152,7 @@ function EditQuestion({
       case QuestionType.MULTIPLE_CHOICE:
         // only one correct answer
         let numMultChoiceCorrect = 0;
-        editableAnswers.map((a) => {
+        editableAnswers.forEach((a) => {
           if (a.isCorrect) {
             numMultChoiceCorrect += 1;
           }
