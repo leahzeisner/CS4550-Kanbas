@@ -40,65 +40,73 @@ function QuizDetails() {
 
   return (
     <div className="main-content quiz-details">
-      {isEditing ? (
-        <EditQuiz quiz={quiz} setIsEditing={setIsEditing} />
-      ) : (
-        <>
-          <ToolBar quiz={quiz} setQuiz={setQuiz} setIsEditing={setIsEditing} />
+      <div className="quiz-details-container">
+        {isEditing ? (
+          <EditQuiz quiz={quiz} setIsEditing={setIsEditing} />
+        ) : (
+          <>
+            <ToolBar
+              quiz={quiz}
+              setQuiz={setQuiz}
+              setIsEditing={setIsEditing}
+            />
 
-          <h1 id="quizDetailsTitle">{quiz.title}</h1>
+            <h1 id="quizDetailsTitle">{quiz.title}</h1>
 
-          <div className="quiz-details-info">
-            <div className="quiz-details-left">
-              <span>Quiz Type</span>
-              <span>Points</span>
-              <span>Assignment Group</span>
-              <span>Shuffle Answers</span>
-              <span>Time Limit</span>
-              <span>Multiple Attempts</span>
-              <span>View Responses</span>
-              <span>Show Correct Answers</span>
-              <span>One Question at a Time</span>
-              <span>Require Respondus LockDown Browser</span>
-              <span>Required to View Quiz Results</span>
-              <span>Webcam Required</span>
-              <span>Lock Questions After Answering</span>
+            <div className="quiz-details-info">
+              <div className="quiz-details-left">
+                <span>Quiz Type</span>
+                <span>Points</span>
+                <span>Assignment Group</span>
+                <span>Shuffle Answers</span>
+                <span>Time Limit</span>
+                <span>Multiple Attempts</span>
+                <span>View Responses</span>
+                <span>Show Correct Answers</span>
+                <span>One Question at a Time</span>
+                <span>Require Respondus LockDown Browser</span>
+                <span>Required to View Quiz Results</span>
+                <span>Webcam Required</span>
+                <span>Lock Questions After Answering</span>
+              </div>
+              <div className="quiz-details-right">
+                <span>{quiz.quizType}</span>
+                <span>{quiz.points}</span>
+                <span>{quiz.assignmentGroup.toUpperCase()}</span>
+                <span>{getYesOrNo(quiz.shuffleAnswers)}</span>
+                <span>
+                  {quiz.timeLimit ? quiz.timeLimit + " Minutes" : "No"}
+                </span>
+                <span>{getYesOrNo(quiz.multipleAttempts)}</span>
+                <span>Always</span>
+                <span>{getShowCorrectAnswers()}</span>
+                <span>{getYesOrNo(quiz.oneQuestionAtATime)}</span>
+                <span>No</span>
+                <span>No</span>
+                <span>{getYesOrNo(quiz.webcamRequired)}</span>
+                <span>{getYesOrNo(quiz.lockQuestionsAfterAnswering)}</span>
+              </div>
             </div>
-            <div className="quiz-details-right">
-              <span>{quiz.quizType}</span>
-              <span>{quiz.points}</span>
-              <span>{quiz.assignmentGroup.toUpperCase()}</span>
-              <span>{getYesOrNo(quiz.shuffleAnswers)}</span>
-              <span>{quiz.timeLimit ? quiz.timeLimit + " Minutes" : "No"}</span>
-              <span>{getYesOrNo(quiz.multipleAttempts)}</span>
-              <span>Always</span>
-              <span>{getShowCorrectAnswers()}</span>
-              <span>{getYesOrNo(quiz.oneQuestionAtATime)}</span>
-              <span>No</span>
-              <span>No</span>
-              <span>{getYesOrNo(quiz.webcamRequired)}</span>
-              <span>{getYesOrNo(quiz.lockQuestionsAfterAnswering)}</span>
-            </div>
-          </div>
 
-          <div className="quiz-details-footer">
-            <div className="quiz-details-footer-headers">
-              <span>Due</span>
-              <span id="quizFor">For</span>
-              <span>Available from</span>
-              <span>Until</span>
+            <div className="quiz-details-footer">
+              <div className="quiz-details-footer-headers">
+                <span>Due</span>
+                <span id="quizFor">For</span>
+                <span>Available from</span>
+                <span>Until</span>
+              </div>
+              <hr />
+              <div className="quiz-details-footer-info">
+                <span>{formatDateTime(quiz.dueDate)}</span>
+                <span id="quizFor">Everyone</span>
+                <span>{formatDateTime(quiz.availableDate)}</span>
+                <span>{formatDateTime(quiz.availableUntilDate)}</span>
+              </div>
+              <hr />
             </div>
-            <hr />
-            <div className="quiz-details-footer-info">
-              <span>{formatDateTime(quiz.dueDate)}</span>
-              <span id="quizFor">Everyone</span>
-              <span>{formatDateTime(quiz.availableDate)}</span>
-              <span>{formatDateTime(quiz.availableUntilDate)}</span>
-            </div>
-            <hr />
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

@@ -72,120 +72,127 @@ function EditableTextArea({
         </div>
         <div className="textarea-tools-bottom">
           {/* FONT SIZE / STYLE */}
-          <select
-            className="textarea-tools-dropdown cursor-pointer"
-            onChange={(e) => setFontSize(e.target.value as FontSize)}
-          >
-            <option
-              selected={fontSize === FontSize.SMALL}
-              value={FontSize.SMALL}
+          <div className="textarea-tools-bottom-container">
+            <select
+              className="textarea-tools-dropdown cursor-pointer"
+              onChange={(e) => setFontSize(e.target.value as FontSize)}
             >
-              Font {FontSize.SMALL}
-            </option>
-            <option
-              selected={fontSize === FontSize.MEDIUM}
-              value={FontSize.MEDIUM}
+              <option
+                selected={fontSize === FontSize.SMALL}
+                value={FontSize.SMALL}
+              >
+                Font {FontSize.SMALL}
+              </option>
+              <option
+                selected={fontSize === FontSize.MEDIUM}
+                value={FontSize.MEDIUM}
+              >
+                Font {FontSize.MEDIUM}
+              </option>
+              <option
+                selected={fontSize === FontSize.LARGE}
+                value={FontSize.LARGE}
+              >
+                Font {FontSize.LARGE}
+              </option>
+              <option
+                selected={fontSize === FontSize.X_LARGE}
+                value={FontSize.X_LARGE}
+              >
+                Font {FontSize.X_LARGE}
+              </option>
+              <option
+                selected={fontSize === FontSize.XX_LARGE}
+                value={FontSize.XX_LARGE}
+              >
+                Font {FontSize.XX_LARGE}
+              </option>
+            </select>
+            <select
+              className="textarea-tools-dropdown cursor-pointer"
+              id="selectParagraph"
             >
-              Font {FontSize.MEDIUM}
-            </option>
-            <option
-              selected={fontSize === FontSize.LARGE}
-              value={FontSize.LARGE}
-            >
-              Font {FontSize.LARGE}
-            </option>
-            <option
-              selected={fontSize === FontSize.X_LARGE}
-              value={FontSize.X_LARGE}
-            >
-              Font {FontSize.X_LARGE}
-            </option>
-            <option
-              selected={fontSize === FontSize.XX_LARGE}
-              value={FontSize.XX_LARGE}
-            >
-              Font {FontSize.XX_LARGE}
-            </option>
-          </select>
-          <select
-            className="textarea-tools-dropdown cursor-pointer"
-            id="selectParagraph"
-          >
-            <option>Paragraph</option>
-          </select>
-          {getVerticalLine()}
+              <option>Paragraph</option>
+            </select>
+            {getVerticalLine()}
+          </div>
 
           {/* BOLD / ITALIC / UNDERLINED */}
-          <span
-            id="selectBold"
-            className="textarea-tool-items cursor-pointer"
-            onClick={() => setIsBold(!isBold)}
-          >
-            B
-          </span>
-          <span
-            id="selectItalic"
-            className="textarea-tool-items cursor-pointer"
-            onClick={() => setIsItalic(!isItalic)}
-          >
-            I
-          </span>
-          <span
-            id="selectUnderline"
-            className="textarea-tool-items cursor-pointer"
-            onClick={() => setIsUnderlined(!isUnderlined)}
-          >
-            U
-          </span>
+          <div className="textarea-tools-bottom-container">
+            <span
+              id="selectBold"
+              className="textarea-tool-items cursor-pointer"
+              onClick={() => setIsBold(!isBold)}
+            >
+              B
+            </span>
+            <span
+              id="selectItalic"
+              className="textarea-tool-items cursor-pointer"
+              onClick={() => setIsItalic(!isItalic)}
+            >
+              I
+            </span>
+            <span
+              id="selectUnderline"
+              className="textarea-tool-items cursor-pointer"
+              onClick={() => setIsUnderlined(!isUnderlined)}
+            >
+              U
+            </span>
 
-          {/* FONT / HIGHLIGHT COLOR */}
-          <label
-            htmlFor="selectFontColor"
-            id="selectFontColorLabel"
-            className="cursor-pointer"
-            style={{ color: fontColor, borderBottom: `4px solid ${fontColor}` }}
-          >
-            A
-          </label>
-          <input
-            type="color"
-            value={fontColor}
-            id="selectFontColor"
-            className="cursor-pointer"
-            onChange={(e) => setFontColor(e.target.value)}
-          />
+            {/* FONT / HIGHLIGHT COLOR */}
+            <label
+              htmlFor="selectFontColor"
+              id="selectFontColorLabel"
+              className="cursor-pointer"
+              style={{
+                color: fontColor,
+                borderBottom: `4px solid ${fontColor}`,
+              }}
+            >
+              A
+            </label>
+            <input
+              type="color"
+              value={fontColor}
+              id="selectFontColor"
+              className="cursor-pointer"
+              onChange={(e) => setFontColor(e.target.value)}
+            />
 
-          <label
-            htmlFor="selectHighlightColor"
-            id="selectHighlightColorLabel"
-            className="cursor-pointer"
-            style={{
-              color: highlightColor !== "white" ? highlightColor : "3d454c",
-              borderBottom: `4px solid ${highlightColor !== "white" ? highlightColor : "3d454c"}`,
-            }}
-          >
-            <FaEyeDropper className="fs-6" id="highlightColorDropper" />
-          </label>
-          <input
-            type="color"
-            value={highlightColor}
-            id="selectHighlightColor"
-            className="cursor-pointer"
-            onChange={(e) => setHighlightColor(e.target.value)}
-          />
+            <label
+              htmlFor="selectHighlightColor"
+              id="selectHighlightColorLabel"
+              className="cursor-pointer"
+              style={{
+                color: highlightColor !== "white" ? highlightColor : "3d454c",
+                borderBottom: `4px solid ${highlightColor !== "white" ? highlightColor : "3d454c"}`,
+              }}
+            >
+              <FaEyeDropper className="fs-6" id="highlightColorDropper" />
+            </label>
+            <input
+              type="color"
+              value={highlightColor}
+              id="selectHighlightColor"
+              className="cursor-pointer"
+              onChange={(e) => setHighlightColor(e.target.value)}
+            />
 
-          <div className="superscript cursor-pointer">
-            <span id="superscriptT">T</span>
-            <sup>2</sup>
+            <div className="superscript cursor-pointer">
+              <span id="superscriptT">T</span>
+              <sup>2</sup>
+            </div>
+
+            <div className="subscript cursor-pointer">
+              <span id="subscriptT">T</span>
+              <sub>2</sub>
+            </div>
+
+            {getVerticalLine()}
+            <FaEllipsisVertical id="finalEllipsis" className="cursor-pointer" />
           </div>
-
-          <div className="subscript cursor-pointer">
-            <span id="subscriptT">T</span>
-            <sub>2</sub>
-          </div>
-
-          {getVerticalLine()}
-          <FaEllipsisVertical id="finalEllipsis" className="cursor-pointer" />
         </div>
       </div>
 

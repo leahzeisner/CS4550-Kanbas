@@ -73,9 +73,25 @@ function Answer({
 
   return (
     <li key={answer._id} className="answer">
-      <span id="answerLabel" style={getCorrectStyle()}>
-        {editableAnswer.isCorrect ? "Correct" : "Possible"} Answer:{" "}
-      </span>
+      <div className="answer-label">
+        <span id="answerLabel" style={getCorrectStyle()}>
+          {editableAnswer.isCorrect ? "Correct" : "Possible"} Answer:{" "}
+        </span>
+        {editableQuestion.type === QuestionType.MULTIPLE_CHOICE && (
+          <div className="is-correct">
+            <label htmlFor="isCorrect" style={getCorrectStyle()}>
+              Is Correct?
+            </label>
+            <input
+              type="checkbox"
+              id="isCorrect"
+              checked={editableAnswer.isCorrect}
+              onChange={onChangeIsCorrect}
+            />
+          </div>
+        )}
+      </div>
+
       <input
         id="answerInput"
         type="text"
@@ -86,20 +102,6 @@ function Answer({
         }
         disabled={!isEditingTitle}
       />
-
-      {editableQuestion.type === QuestionType.MULTIPLE_CHOICE && (
-        <>
-          <label htmlFor="isCorrect" style={getCorrectStyle()}>
-            Is Correct?
-          </label>
-          <input
-            type="checkbox"
-            id="isCorrect"
-            checked={editableAnswer.isCorrect}
-            onChange={onChangeIsCorrect}
-          />
-        </>
-      )}
 
       <button
         type="button"
