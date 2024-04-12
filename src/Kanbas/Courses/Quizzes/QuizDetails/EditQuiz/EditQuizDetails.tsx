@@ -15,13 +15,29 @@ function EditQuizDetails({
   useEffect(() => {
     setAccessCodeChecked(editableQuiz.accessCode !== "");
     setTimeLimitChecked(editableQuiz.timeLimit !== "");
-  }, [editableQuiz]);
+  }, []);
 
   const showCorrectAnswersIsDateTime = () => {
     return (
       editableQuiz.showCorrectAnswers !== undefined &&
       editableQuiz.showCorrectAnswers !== "Immediately"
     );
+  };
+
+  const onAccessCodeChange = (checked: boolean) => {
+    setEditableQuiz({
+      ...editableQuiz,
+      accessCode: checked ? editableQuiz.accessCode : "",
+    });
+    setAccessCodeChecked(checked);
+  };
+
+  const onTimeLimitChange = (checked: boolean) => {
+    setEditableQuiz({
+      ...editableQuiz,
+      timeLimit: checked ? editableQuiz.timeLimit : "",
+    });
+    setTimeLimitChecked(checked);
   };
 
   return (
@@ -128,7 +144,7 @@ function EditQuizDetails({
               value="ACCESS-CODE"
               id="accessCode"
               checked={accessCodeChecked}
-              onChange={(e) => setAccessCodeChecked(e.target.checked)}
+              onChange={(e) => onAccessCodeChange(e.target.checked)}
             />
             <label htmlFor="accessCode" id="accessCodeLabel">
               Access Code
@@ -159,7 +175,7 @@ function EditQuizDetails({
               value="TIME-LIMIT"
               id="timeLimit"
               checked={timeLimitChecked}
-              onChange={(e) => setTimeLimitChecked(e.target.checked)}
+              onChange={(e) => onTimeLimitChange(e.target.checked)}
             />
             <label htmlFor="timeLimit" id="timeLimitLabel">
               Time Limit
