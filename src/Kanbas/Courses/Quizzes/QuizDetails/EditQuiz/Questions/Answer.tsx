@@ -101,6 +101,9 @@ function Answer({
           setEditableAnswer({ ...editableAnswer, answer: e.target.value })
         }
         disabled={!isEditingTitle}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") onEditToggle();
+        }}
       />
 
       <button
