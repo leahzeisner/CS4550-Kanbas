@@ -47,6 +47,7 @@ function Quizzes() {
   useEffect(() => {
     // UPDATE ONCE BACKEND IS FINISHED
     const courseQuizzes = quizzes.filter((q) => q.courseId === courseId);
+    console.log(courseQuizzes);
     dispatch(setQuizzes(courseQuizzes));
   }, [courseId]);
 

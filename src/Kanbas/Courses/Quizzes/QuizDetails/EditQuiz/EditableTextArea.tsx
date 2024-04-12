@@ -22,6 +22,9 @@ enum FontSize {
   XX_LARGE = "XX-Large",
 }
 
+const WHITE = "#ffffff";
+const DEFAULT_COLOR = "#3d454c";
+
 function EditableTextArea({
   text,
   placeholder,
@@ -32,8 +35,8 @@ function EditableTextArea({
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderlined, setIsUnderlined] = useState(false);
-  const [fontColor, setFontColor] = useState("#3d454c");
-  const [highlightColor, setHighlightColor] = useState("white");
+  const [fontColor, setFontColor] = useState(DEFAULT_COLOR);
+  const [highlightColor, setHighlightColor] = useState(WHITE);
   const [numWords, setNumWords] = useState(0);
 
   useEffect(() => {
@@ -166,8 +169,9 @@ function EditableTextArea({
               id="selectHighlightColorLabel"
               className="cursor-pointer"
               style={{
-                color: highlightColor !== "white" ? highlightColor : "3d454c",
-                borderBottom: `4px solid ${highlightColor !== "white" ? highlightColor : "3d454c"}`,
+                color:
+                  highlightColor !== WHITE ? highlightColor : DEFAULT_COLOR,
+                borderBottom: `4px solid ${highlightColor !== WHITE ? highlightColor : DEFAULT_COLOR}`,
               }}
             >
               <FaEyeDropper className="fs-6" id="highlightColorDropper" />

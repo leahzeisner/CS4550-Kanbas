@@ -255,7 +255,7 @@
   margin-top: 0px;
 }
 
-.textarea-tools-top-left span:hover {
+.textarea-tools-top-left > span:hover {
   text-decoration: underline;
   cursor: pointer;
 }

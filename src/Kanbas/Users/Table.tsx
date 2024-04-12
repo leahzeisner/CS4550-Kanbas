@@ -145,6 +145,7 @@ export default function UserTable() {
               <input
                 value={user.username}
                 placeholder="Username"
+                className="user-table-inputs"
                 onChange={(e) => setUser({ ...user, username: e.target.value })}
               />
             </td>
@@ -152,6 +153,7 @@ export default function UserTable() {
               <input
                 value={user.password}
                 placeholder="Password"
+                className="user-table-inputs"
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </td>
@@ -159,6 +161,7 @@ export default function UserTable() {
               <input
                 value={user.firstName}
                 placeholder="First Name"
+                className="user-table-inputs"
                 onChange={(e) =>
                   setUser({ ...user, firstName: e.target.value })
                 }
@@ -168,6 +171,7 @@ export default function UserTable() {
               <input
                 value={user.lastName}
                 placeholder="Last Name"
+                className="user-table-inputs"
                 onChange={(e) => setUser({ ...user, lastName: e.target.value })}
               />
             </td>
@@ -175,7 +179,7 @@ export default function UserTable() {
               <select
                 value={user.role}
                 onChange={(e) => setUser({ ...user, role: e.target.value })}
-                className="add-user-role"
+                className="add-user-role user-table-inputs"
               >
                 <option value="USER">User</option>
                 <option value="ADMIN">Admin</option>

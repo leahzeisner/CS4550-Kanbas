@@ -47,6 +47,7 @@ export default function Signup() {
       {error && <div className="user-auth-error">{error}</div>}
       <input
         value={newUser.username}
+        className="user-auth-user-input"
         placeholder="Username"
         onChange={(e) =>
           setNewUser({
@@ -57,6 +58,7 @@ export default function Signup() {
       />
       <input
         value={newUser.password}
+        className="user-auth-pass-input"
         placeholder="Password"
         onChange={(e) =>
           setNewUser({

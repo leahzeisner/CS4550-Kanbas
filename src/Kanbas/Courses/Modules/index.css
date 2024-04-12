@@ -8,8 +8,9 @@
 
 /* Top Buttons */
 .module-buttons {
-  display: flex;
+  display: inline-flex;
   justify-content: flex-end;
+  align-items: center;
   padding-top: 20px;
   margin: 10px 0px 10px 0px;
 }
@@ -45,8 +46,12 @@ select {
   background-color: darkred;
 }
 
+#publishAllModules {
+  margin-top: 0px;
+}
+
 #top-ellipsis-btn {
-  padding: 0px;
+  padding: 10px 0px;
 }
 
 #top-ellipsis-btn * {

@@ -153,6 +153,7 @@ export default function Profile() {
             <div>
               <button
                 onClick={save}
+                id="saveProfileBtn"
                 className="user-auth-btn"
                 disabled={profileSaved()}
               >

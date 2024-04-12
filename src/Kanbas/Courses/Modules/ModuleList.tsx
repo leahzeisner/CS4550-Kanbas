@@ -97,7 +97,7 @@ function ModuleList() {
           {collapseAllText}
         </button>
         <button type="button">View Progress</button>
-        <select style={{ width: "fit-content" }}>
+        <select style={{ width: "fit-content" }} id="publishAllModules">
           <option value="PUBLISH-ALL"> Publish All</option>
         </select>
         <button type="button" id="module-button" onClick={onAddModule}>

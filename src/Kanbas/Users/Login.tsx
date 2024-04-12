@@ -50,6 +50,7 @@ export default function Login() {
       {error && <div className="user-auth-error">{error}</div>}
       <input
         value={credentials.username}
+        className="user-auth-user-input"
         placeholder="Username"
         onChange={(e) =>
           setCredentials({ ...credentials, username: e.target.value })
@@ -57,6 +58,7 @@ export default function Login() {
       />
       <input
         value={credentials.password}
+        className="user-auth-pass-input"
         placeholder="Password"
         onChange={(e) =>
           setCredentials({ ...credentials, password: e.target.value })
