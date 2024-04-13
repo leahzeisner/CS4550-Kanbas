@@ -1120,8 +1120,9 @@ input {
   font-weight: bold;
 }
 
-.quiz-preview-item-header > span:first-child {
-  font-size: large;
+.quiz-preview-item-header-left > span:first-child {
+  font-size: larger;
+  font-weight: bold;
 }
 
 .quiz-preview-item-body {
@@ -1137,6 +1138,10 @@ input {
 
 .quiz-preview-item-answers {
   margin-bottom: 10px;
+}
+
+#fillInBlankAnswerLabel {
+  margin-right: 10px;
 }
 
 #quizPreviewAnswerHr {

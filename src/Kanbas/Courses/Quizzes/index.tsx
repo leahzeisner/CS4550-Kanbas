@@ -3,7 +3,7 @@ import { FaArrowDown, FaArrowRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { KanbasState } from "../../store";
-import { Quizzes as QuizzesList } from "../../types";
+import { QuestionType, Quizzes as QuizzesList } from "../../types";
 import Quiz from "./Quiz";
 import { setQuizzes } from "./quizzesReducer";
 import ToolBar from "./ToolBar";
@@ -32,6 +32,17 @@ export const getEmptyQuiz = (courseId: string) => {
     webcamRequired: false,
     lockQuestionsAfterAnswering: false,
     showCorrectAnswers: "Immediately",
+  };
+};
+
+export const getEmptyQuestion = () => {
+  return {
+    _id: getFreshId(),
+    type: QuestionType.MULTIPLE_CHOICE,
+    title: "",
+    question: "",
+    answers: [],
+    points: "",
   };
 };
 

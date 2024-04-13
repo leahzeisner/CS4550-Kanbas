@@ -7,14 +7,24 @@ import {
 import { FaArrowRight, FaPencil } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { getEmptyQuiz } from "..";
+import { getEmptyQuestion, getEmptyQuiz } from "..";
 import { KanbasState } from "../../../store";
-import { Question, Quiz, Quizzes } from "../../../types";
+import { Question, QuestionType, Quiz, Quizzes } from "../../../types";
 import { formatDateTime } from "../../../utils";
 
 type SelectedAnswerList = {
   questionId: string;
   selectedAnswerId: string | undefined;
+}[];
+
+type FilledInBlanksAnswers = {
+  answerId: string;
+  value: string;
+}[];
+
+type FilledInBlanksAnswerList = {
+  questionId: string;
+  answers: FilledInBlanksAnswers;
 }[];
 
 function QuizPreview() {
@@ -26,14 +36,21 @@ function QuizPreview() {
   const [quiz, setQuiz] = useState<Quiz>(getEmptyQuiz(courseId || ""));
   const [date, setDate] = useState(new Date().toISOString());
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] =
+    useState<Question>(getEmptyQuestion());
   const [selectedAnswerList, setSelectedAnswerList] =
     useState<SelectedAnswerList>([]);
+  const [filledInBlanksAnswerList, setFilledInBlanksAnswerList] =
+    useState<FilledInBlanksAnswerList>([]);
 
   useEffect(() => {
     setDate(new Date().toISOString());
     const quiz = quizzes.find((q) => q._id === quizId);
     if (quiz) {
       setQuiz(quiz);
+      if (quiz.questions.length > 0) {
+        setCurrentQuestion(quiz.questions[0]);
+      }
 
       const defaultSelectedAnswers: SelectedAnswerList = [];
       quiz.questions.forEach((q) => {
@@ -43,8 +60,30 @@ function QuizPreview() {
         });
       });
       setSelectedAnswerList(defaultSelectedAnswers);
+
+      const defaultFilledInBlankAnswers: FilledInBlanksAnswerList = [];
+      quiz.questions.forEach((q) => {
+        const answers: FilledInBlanksAnswers = [];
+        q.answers.forEach((a) => answers.push({ answerId: a._id, value: "" }));
+        defaultFilledInBlankAnswers.push({
+          questionId: q._id,
+          answers,
+        });
+      });
+      setFilledInBlanksAnswerList(defaultFilledInBlankAnswers);
     }
   }, [quizId]);
+
+  const getQuizTypeLabel = () => {
+    switch (currentQuestion.type) {
+      case QuestionType.MULTIPLE_CHOICE:
+        return " - Multiple Choice";
+      case QuestionType.TRUE_FALSE:
+        return " - True or False";
+      case QuestionType.FILL_IN_BLANKS:
+        return " - Fill in the Blanks";
+    }
+  };
 
   const updateQuestionIndex = (question: Question) => {
     const questionIndex = quiz.questions.findIndex(
@@ -52,7 +91,13 @@ function QuizPreview() {
     );
     if (questionIndex !== -1) {
       setQuestionIndex(questionIndex);
+      setCurrentQuestion(quiz.questions[questionIndex]);
     }
+  };
+
+  const updateCurrentQuestion = (index: number) => {
+    setQuestionIndex(index);
+    setCurrentQuestion(quiz.questions[index]);
   };
 
   const onAnswerChanged = (answerId: string) => {
@@ -62,6 +107,30 @@ function QuizPreview() {
       selectedAnswerId: answerId,
     };
     setSelectedAnswerList(updatedList);
+  };
+
+  const onBlankChange = (e: any, answerId: string) => {
+    const value = e.target.value;
+    const updatedList = filledInBlanksAnswerList.map((answer) =>
+      answer.questionId === currentQuestion._id
+        ? {
+            ...answer,
+            answers: answer.answers.map((a) =>
+              a.answerId === answerId ? { ...a, value } : a,
+            ),
+          }
+        : answer,
+    );
+    setFilledInBlanksAnswerList(updatedList);
+  };
+
+  const getBlankValue = (answerId: string) => {
+    const questionAnswers = filledInBlanksAnswerList.find(
+      (answer) => answer.questionId === currentQuestion._id,
+    );
+    if (!questionAnswers) return "";
+    const answer = questionAnswers.answers.find((a) => a.answerId === answerId);
+    return answer ? answer.value : "";
   };
 
   return (
@@ -90,31 +159,53 @@ function QuizPreview() {
             <div className="quiz-preview-container">
               <div className="quiz-preview-item">
                 <div className="quiz-preview-item-header">
-                  <span>{quiz.questions[questionIndex].title}</span>
-                  <span>{quiz.questions[questionIndex].points || "0"} pts</span>
+                  <div className="quiz-preview-item-header-left">
+                    <span>{currentQuestion.title}</span>
+                    <span>{getQuizTypeLabel()}</span>
+                  </div>
+                  <span>{currentQuestion.points || "0"} pts</span>
                 </div>
 
                 <div className="quiz-preview-item-body">
                   <div className="quiz-preview-item-questions">
-                    <span>{quiz.questions[questionIndex].question}</span>
+                    <span>{currentQuestion.question}</span>
                   </div>
 
                   <div className="quiz-preview-item-answers">
-                    {quiz.questions[questionIndex].answers.map((a) => (
+                    {currentQuestion.answers.map((a, idx) => (
                       <div>
                         <hr id="quizPreviewAnswerHr" />
-                        <input
-                          type="radio"
-                          name="quiz-preview-answer"
-                          id={a._id}
-                          value={a.answer}
-                          checked={
-                            selectedAnswerList[questionIndex]
-                              .selectedAnswerId === a._id
-                          }
-                          onChange={() => onAnswerChanged(a._id)}
-                        />
-                        <label htmlFor={a._id}>{a.answer}</label>
+                        {currentQuestion.type ===
+                        QuestionType.FILL_IN_BLANKS ? (
+                          <>
+                            <label htmlFor={a._id} id="fillInBlankAnswerLabel">
+                              {idx + 1}.{" "}
+                            </label>
+                            <input
+                              type="text"
+                              name="quiz-preview-answer"
+                              id={a._id}
+                              value={getBlankValue(a._id)}
+                              placeholder="Answer"
+                              onChange={(e) => onBlankChange(e, a._id)}
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <input
+                              type="radio"
+                              name="quiz-preview-answer"
+                              id={a._id}
+                              value={a.answer}
+                              checked={
+                                selectedAnswerList[questionIndex]
+                                  .selectedAnswerId === a._id
+                              }
+                              onChange={() => onAnswerChanged(a._id)}
+                            />
+                            <label htmlFor={a._id}>{a.answer}</label>
+                          </>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -125,7 +216,7 @@ function QuizPreview() {
                 <button
                   type="button"
                   id="goBackBtn"
-                  onClick={() => setQuestionIndex(questionIndex - 1)}
+                  onClick={() => updateCurrentQuestion(questionIndex - 1)}
                   disabled={questionIndex === 0}
                 >
                   <FaArrowLeft id="goBackBtnArrow" />
@@ -134,7 +225,7 @@ function QuizPreview() {
                 <button
                   type="button"
                   id="nextBtn"
-                  onClick={() => setQuestionIndex(questionIndex + 1)}
+                  onClick={() => updateCurrentQuestion(questionIndex + 1)}
                   disabled={questionIndex === quiz.questions.length - 1}
                 >
                   Next <FaArrowRight id="nextBtnArrow" />
@@ -177,9 +268,7 @@ function QuizPreview() {
                   onClick={() => updateQuestionIndex(q)}
                   style={{
                     fontWeight:
-                      quiz.questions[questionIndex]._id === q._id
-                        ? "bold"
-                        : "normal",
+                      currentQuestion._id === q._id ? "bold" : "normal",
                   }}
                 >
                   {q.title}
