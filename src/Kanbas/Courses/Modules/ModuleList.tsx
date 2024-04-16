@@ -9,7 +9,7 @@ import { Modules } from "../../types";
 import { useParams } from "react-router";
 import { addModule, setModulesList } from "./modulesReducer";
 import { getFreshId } from "../../utils";
-import * as client from "./client";
+import { createModule, findCourseModules } from "./client";
 
 function ModuleList() {
   const dispatch = useDispatch();
@@ -26,12 +26,9 @@ function ModuleList() {
   >({});
 
   useEffect(() => {
-    client
-      .findCourseModules(courseId)
-      .then((modules) => dispatch(setModulesList(modules)));
-  }, []);
-
-  useEffect(() => {
+    findCourseModules(courseId).then((modules) =>
+      dispatch(setModulesList(modules)),
+    );
     createModuleVisibilityMap(courseModules);
     if (courseModules.length === 0) {
       setCollapseAllText(collapseAll);
@@ -78,7 +75,7 @@ function ModuleList() {
       title: "",
       sections: [],
     };
-    client.createModule(courseId, emptyModule).then((module) => {
+    createModule(courseId, emptyModule).then((module) => {
       dispatch(addModule(module));
     });
   };
@@ -97,7 +94,7 @@ function ModuleList() {
           {collapseAllText}
         </button>
         <button type="button">View Progress</button>
-        <select style={{ width: "fit-content" }}>
+        <select>
           <option value="PUBLISH-ALL"> Publish All</option>
         </select>
         <button type="button" id="module-button" onClick={onAddModule}>

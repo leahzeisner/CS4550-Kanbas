@@ -4,26 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { KanbasState } from "../../store";
 import "../../styles.css";
-import Assignment, { getEmptyAssignment } from "./Assignment";
+import Assignment from "./Assignment";
 import "./index.css";
 import ToolBar from "./ToolBar";
-import { Assignment as AssignmentType, AssignmentsList } from "../../types";
+import { AssignmentsList } from "../../types";
 import * as client from "./client";
 import { setAssignmentsList } from "./assignmentsReducer";
-import AddAssignment from "./AddAssignment";
-import EditAssignment from "./EditAssignment";
-
-export const validateAssignmentForm = (
-  assignment: AssignmentType,
-  time: string,
-) => {
-  return (
-    assignment.title !== "" &&
-    assignment.dueDate !== "" &&
-    assignment.points !== "" &&
-    time !== ""
-  );
-};
 
 function Assignments() {
   const dispatch = useDispatch();
@@ -34,13 +20,6 @@ function Assignments() {
   );
   const [searchAssignmentValue, setSearchAssignmentValue] = useState("");
   const [showAssignments, setShowAssignments] = useState(true);
-
-  const [renderAddAssignment, setRenderAddAssignment] = useState(true);
-  const [addingAssignment, setAddingAssignment] = useState(false);
-
-  const [editableAssignment, setEditableAssignment] = useState(
-    getEmptyAssignment(courseId),
-  );
 
   useEffect(() => {
     client
@@ -66,49 +45,10 @@ function Assignments() {
     );
   };
 
-  const onToolbarAddAssignment = () => {
-    toggleAddAssignment(true);
-    setEditableAssignment(getEmptyAssignment(courseId));
-  };
-
-  const onAssignmentEditToggle = (assignment: AssignmentType) => {
-    setEditableAssignment(assignment);
-    toggleAddAssignment(false);
-  };
-
-  const toggleAddAssignment = (value: boolean) => {
-    setRenderAddAssignment(value);
-    setAddingAssignment(value);
-  };
-
-  const checkEditableAssignment = (assignment: AssignmentType) => {
-    if (assignment._id === editableAssignment._id) {
-      setEditableAssignment(getEmptyAssignment(courseId));
-      setRenderAddAssignment(true);
-    }
-  };
-
   return (
     <div className="main-content">
       <div className="assignments">
-        <ToolBar
-          addingAssignment={addingAssignment}
-          onToolbarAddAssignment={onToolbarAddAssignment}
-          setSearchAssignmentValue={setSearchAssignmentValue}
-        />
-
-        {renderAddAssignment ? (
-          <AddAssignment
-            addingAssignment={addingAssignment}
-            setAddingAssignment={setAddingAssignment}
-          />
-        ) : (
-          <EditAssignment
-            editableAssignment={editableAssignment}
-            setEditableAssignment={setEditableAssignment}
-            setRenderAddAssignment={setRenderAddAssignment}
-          />
-        )}
+        <ToolBar setSearchAssignmentValue={setSearchAssignmentValue} />
 
         <ul className="list-group wd-assignments">
           <li className="assignment-title">
@@ -129,11 +69,7 @@ function Assignments() {
             </div>
 
             <div className="assignment-item-buttons assignment-buttons-right">
-              <button
-                type="button"
-                className="modules-btn"
-                onClick={onToolbarAddAssignment}
-              >
+              <button type="button" className="modules-btn">
                 <FaPlus></FaPlus>
               </button>
               <button type="button" className="modules-btn">
@@ -144,11 +80,7 @@ function Assignments() {
 
           {showAssignments &&
             getFilteredAssignments().map((assignment) => (
-              <Assignment
-                assignment={assignment}
-                onAssignmentEditToggle={onAssignmentEditToggle}
-                checkEditableAssignment={checkEditableAssignment}
-              />
+              <Assignment assignment={assignment} />
             ))}
         </ul>
       </div>

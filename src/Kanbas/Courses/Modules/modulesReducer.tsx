@@ -31,7 +31,7 @@ const modulesSlice = createSlice({
           ? {
               ...module,
               sections: module.sections.filter(
-                (sec) => sec._id !== action.payload.sectionId,
+                (sec) => sec._id !== action.payload.section._id,
               ),
             }
           : module,
@@ -61,7 +61,7 @@ const modulesSlice = createSlice({
                   ? {
                       ...sec,
                       lessons: sec.lessons.filter(
-                        (les) => les._id !== action.payload.lessonId,
+                        (les) => les._id !== action.payload.lesson._id,
                       ),
                     }
                   : sec,

@@ -3,16 +3,20 @@ import AddCourse from "./AddCourse";
 import Course from "./Course";
 import EditCourse from "./EditCourse";
 import "./index.css";
-import { Courses } from "../types";
+import { Course as CourseType, Courses } from "../types";
 import { useEffect, useState } from "react";
-import { fixCourseDob, fixCoursesDob, getEmptyCourse } from "./utils";
+import { getEmptyCourse } from "./utils";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../store";
-import { setCourses } from "./coursesReducer";
+import {
+  setCourses,
+  updateCourse as updateCourseAction,
+} from "./coursesReducer";
 import * as client from "./client";
 
 function Dashboard() {
   const dispatch = useDispatch();
+
   const courses: Courses = useSelector(
     (state: KanbasState) => state.coursesReducer.courses,
   );
@@ -22,15 +26,19 @@ function Dashboard() {
 
   useEffect(() => {
     client.getCourses().then((courses) => {
-      dispatch(setCourses(fixCoursesDob(courses)));
+      dispatch(setCourses(courses));
     });
   }, []);
 
+  const updateCourse = async (course: CourseType) => {
+    client
+      .updateCourse(course)
+      .then(() => dispatch(updateCourseAction(course)));
+  };
+
   const onEditCourse = async (courseId: string) => {
     setIsAdding(false);
-    client
-      .getCourse(courseId)
-      .then((course) => setEditableCourse(fixCourseDob(course)));
+    client.getCourse(courseId).then((course) => setEditableCourse(course));
   };
 
   return (
@@ -54,6 +62,7 @@ function Dashboard() {
             editableCourse={editableCourse}
             setEditableCourse={setEditableCourse}
             setIsAdding={setIsAdding}
+            updateCourse={updateCourse}
           />
         )}
 

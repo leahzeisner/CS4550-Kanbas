@@ -1,16 +1,10 @@
 import { FaEllipsisV, FaPlus } from "react-icons/fa";
 
 interface ToolBarProps {
-  addingAssignment: boolean;
   setSearchAssignmentValue: (value: string) => void;
-  onToolbarAddAssignment: () => void;
 }
 
-const ToolBar = ({
-  addingAssignment,
-  setSearchAssignmentValue,
-  onToolbarAddAssignment,
-}: ToolBarProps) => {
+const ToolBar = ({ setSearchAssignmentValue }: ToolBarProps) => {
   return (
     <>
       <div className="assignments-toolbar">
@@ -26,12 +20,7 @@ const ToolBar = ({
           <button type="button">
             <FaPlus className="assignments-buttons-icons"></FaPlus> Group
           </button>
-          <button
-            type="button"
-            id="assignment-btn"
-            onClick={() => onToolbarAddAssignment()}
-            disabled={addingAssignment}
-          >
+          <button type="button" id="assignment-btn">
             <FaPlus className="assignments-buttons-icons"></FaPlus> Assignment
           </button>
           <button type="button" id="assignments-button-ellipsis">
