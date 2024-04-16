@@ -1,0 +1,57 @@
+.sticky-kanbas-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 80px;
+  background-color: black;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.wd-kanbas-navigation {
+  background-color: black;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 80px;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.wd-kanbas-navigation li {
+  padding: 5px;
+  margin-bottom: 5px;
+  font-size: 0.8em;
+  text-align: center;
+}
+.nu-logo {
+  width: 80px;
+}
+#logo {
+  padding: 0px;
+}
+.wd-kanbas-navigation li.wd-active {
+  background-color: white;
+}
+.wd-kanbas-navigation li.wd-active a {
+  color: red;
+}
+.wd-kanbas-navigation a {
+  color: white;
+  text-decoration: none;
+}
+.kanbas-nav-icon {
+  color: red;
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+#account-icon {
+  color: white;
+}
+
+#account-icon-active {
+  color: gray;
+}
