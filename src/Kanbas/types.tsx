@@ -1,3 +1,12 @@
+export interface User {
+  _id: string;
+  username: string;
+  password: string;
+  role: string;
+  firstName: string;
+  lastName: string;
+}
+
 export type Course = {
   _id: string;
   name: string;
@@ -61,9 +70,8 @@ export type Assignment = {
   _id: string;
   courseId: string;
   title: string;
-  due_date: string;
+  dueDate: string;
   points: string;
-  url: string;
 };
 
 export type AssignmentsList = Assignment[];

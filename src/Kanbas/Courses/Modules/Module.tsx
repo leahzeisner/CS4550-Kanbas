@@ -10,9 +10,10 @@ import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Module as ModuleType } from "../../types";
 import { getFreshId, scrollToElementWithId } from "../../utils";
-import { deleteModule, updateModule } from "./modulesReducer";
+import { deleteModule, setModulesList, updateModule } from "./modulesReducer";
 import * as client from "./client";
 import Section from "./Section";
+import { useParams } from "react-router";
 
 interface ModuleProps {
   module: ModuleType;
@@ -26,6 +27,7 @@ const Module = ({
   toggleModuleVisibility,
 }: ModuleProps) => {
   const dispatch = useDispatch();
+  const { courseId } = useParams();
   const [editingTitle, setEditingTitle] = useState(module.title === "");
   const [editingTitleText, setEditingTitleText] = useState(module.title);
 
@@ -63,15 +65,15 @@ const Module = ({
     });
   };
 
-  const onAddSection = () => {
+  const onAddSection = async () => {
     const emptySection = { _id: getFreshId(), title: "", lessons: [] };
-    const newModule: ModuleType = {
-      ...module,
-      sections: [...module.sections, emptySection],
-    };
-    client
-      .updateModule(newModule)
-      .then(() => dispatch(updateModule(newModule)));
+    try {
+      await client.createSection(module, emptySection);
+      const newModules = await client.findCourseModules(courseId);
+      dispatch(setModulesList(newModules));
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   return (
@@ -97,9 +99,12 @@ const Module = ({
                 className="module-section module-section-textarea"
                 value={editingTitleText}
                 onChange={(e) => setEditingTitleText(e.target.value)}
-                onBlur={() => onEditToggle()}
                 placeholder="Enter Module Title"
                 disabled={!editingTitle}
+                onBlur={() => onEditToggle()}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") onEditToggle();
+                }}
               ></textarea>
             ) : (
               <span className="module-section">{module.title}</span>

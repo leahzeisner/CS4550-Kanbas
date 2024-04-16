@@ -4,9 +4,10 @@ import { FaX } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Module, Section as SectionType } from "../../types";
 import { getFreshId, scrollToElementWithId } from "../../utils";
-import { deleteSection, updateModule, updateSection } from "./modulesReducer";
+import { deleteSection, setModulesList, updateSection } from "./modulesReducer";
 import Lesson from "./Lesson";
 import * as client from "./client";
+import { useParams } from "react-router";
 
 interface SectionProps {
   module: Module;
@@ -15,6 +16,7 @@ interface SectionProps {
 
 const Section = ({ module, section }: SectionProps) => {
   const dispatch = useDispatch();
+  const { courseId } = useParams();
   const [editingTitle, setEditingTitle] = useState(section.title === "");
   const [editingTitleText, setEditingTitleText] = useState(section.title);
 
@@ -29,7 +31,7 @@ const Section = ({ module, section }: SectionProps) => {
   const onEditToggle = () => {
     if (editingTitle) {
       const newSection = { ...section, title: editingTitleText };
-      client.updateSection(module._id, newSection).then(() =>
+      client.updateSection(module, newSection).then(() =>
         dispatch(
           updateSection({
             moduleId: module._id,
@@ -42,30 +44,25 @@ const Section = ({ module, section }: SectionProps) => {
   };
 
   const onDeleteSection = () => {
-    client.deleteSection(module._id, section).then(() =>
+    client.deleteSection(module, section._id).then(() =>
       dispatch(
         deleteSection({
           moduleId: module._id,
-          section,
+          sectionId: section._id,
         }),
       ),
     );
   };
 
-  const onAddLesson = () => {
+  const onAddLesson = async () => {
     const emptyLesson = { _id: getFreshId(), title: "", url: "" };
-
-    const newModule: Module = {
-      ...module,
-      sections: module.sections.map((s) =>
-        s._id === section._id
-          ? { ...s, lessons: [...s.lessons, emptyLesson] }
-          : s,
-      ),
-    };
-    client
-      .updateModule(newModule)
-      .then(() => dispatch(updateModule(newModule)));
+    try {
+      await client.createLesson(module, section, emptyLesson);
+      const newModules = await client.findCourseModules(courseId);
+      dispatch(setModulesList(newModules));
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   return (
@@ -84,9 +81,12 @@ const Section = ({ module, section }: SectionProps) => {
               className="module-section module-section-textarea"
               value={editingTitleText}
               onChange={(e) => setEditingTitleText(e.target.value)}
-              onBlur={() => onEditToggle()}
               placeholder="Enter Section Title"
               disabled={!editingTitle}
+              onBlur={() => onEditToggle()}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") onEditToggle();
+              }}
             ></textarea>
           ) : (
             <span className="module-section">{section.title}</span>

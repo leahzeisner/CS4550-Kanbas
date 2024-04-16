@@ -30,12 +30,12 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
   const onEditToggle = () => {
     if (editingTitle) {
       const newLesson = { ...lesson, title: editingTitleText };
-      client.updateLesson(module._id, section._id, newLesson).then(() =>
+      client.updateLesson(module, section._id, newLesson).then(() =>
         dispatch(
           updateLesson({
             moduleId: module._id,
             sectionId: section._id,
-            lesson: { ...lesson, title: editingTitleText },
+            lesson: newLesson,
           }),
         ),
       );
@@ -44,12 +44,12 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
   };
 
   const onDeleteLesson = () => {
-    client.deleteLesson(module._id, section._id, lesson).then(() =>
+    client.deleteLesson(module, section._id, lesson._id).then(() =>
       dispatch(
         deleteLesson({
           moduleId: module._id,
           sectionId: section._id,
-          lesson: lesson,
+          lessonId: lesson._id,
         }),
       ),
     );
@@ -69,9 +69,12 @@ const Lesson = ({ module, section, lesson }: LessonProps) => {
             className="module-section-item-link module-section-textarea"
             value={editingTitleText}
             onChange={(e) => setEditingTitleText(e.target.value)}
-            onBlur={() => onEditToggle()}
             placeholder="Enter Lesson Title"
             disabled={!editingTitle}
+            onBlur={() => onEditToggle()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") onEditToggle();
+            }}
           ></textarea>
         ) : (
           <Link to={lesson.url} className="module-section-item-link">

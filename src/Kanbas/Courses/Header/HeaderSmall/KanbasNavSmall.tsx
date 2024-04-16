@@ -1,5 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { KanbasState } from "../../../store";
 
 interface KanbasNavSmallProps {
   kanbasNavClass: string;
@@ -15,6 +17,19 @@ const KanbasNavSmall = ({
   onKanbasSandwichClicked,
   kanbasNavLinks,
 }: KanbasNavSmallProps) => {
+  const user = useSelector((state: KanbasState) => state.userReducer.user);
+
+  const getPath = (label: string) => {
+    let path = "/Kanbas/";
+    if (label === "Courses") {
+      return path + "Dashboard";
+    } else if (label === "Account") {
+      return path + label + (user ? "/Profile" : "/Login");
+    } else {
+      return path + label;
+    }
+  };
+
   return (
     <div className={kanbasNavClass}>
       <div className="kanbas-nav-small">
@@ -31,7 +46,7 @@ const KanbasNavSmall = ({
             <li key={`${link.label}-${index}`}>
               {/* Courses link goes to Dashboard for now */}
               <Link
-                to={`/Kanbas/${link.label === "Courses" ? "Dashboard" : link.label}`}
+                to={getPath(link.label)}
                 className="kanbas-nav-list-link"
                 onClick={onKanbasSandwichClicked}
               >

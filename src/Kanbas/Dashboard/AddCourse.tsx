@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { getEmptyCourse, validateForm } from "./utils";
+import { getEmptyCourse, validateCourseForm } from "./utils";
 import { Course, Courses } from "../types";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../store";
-import { setCourses } from "./coursesReducer";
-import { addCourse } from "./client";
+import { addCourse } from "./coursesReducer";
+import * as client from "./client";
 
 function AddCourse() {
   const dispatch = useDispatch();
@@ -17,17 +17,30 @@ function AddCourse() {
   const [addingCourse, setAddingCourse] = useState(false);
 
   useEffect(() => {
-    setAddCourseEnabled(validateForm(course));
+    setAddCourseEnabled(validateCourseForm(course));
   }, [course]);
 
+  const getRandomImage = () => {
+    const images = [
+      "soft-dev.jpg",
+      "webdev.png",
+      "webdev2.webp",
+      "webdev3.jpg",
+      "webdev4.jpg",
+      "webdev4.webp",
+    ];
+    const random = Math.floor(Math.random() * images.length);
+    return "/" + images[random];
+  };
+
   const addNewCourse = async () => {
-    if (validateForm(course)) {
+    if (validateCourseForm(course)) {
       const newCourse = {
         ...course,
-        image: "/webdev2.webp", // TEMPORARY
+        image: getRandomImage(),
       };
       setCourse(getEmptyCourse());
-      addCourse(newCourse).then((c) => dispatch(setCourses([...courses, c])));
+      client.addCourse(newCourse).then((c) => dispatch(addCourse(c)));
       setAddingCourse(false);
     }
   };

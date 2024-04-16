@@ -1,0 +1,199 @@
+/* Common */
+.user-auth {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.user-auth * {
+  margin-bottom: 10px;
+}
+
+.user-auth-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-auth-header * {
+  margin: 0px !important;
+}
+
+.user-auth-header > button {
+  border: none;
+  height: fit-content;
+  background-color: #efefef;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 10px 5px 10px;
+}
+
+.user-auth-header > button:hover {
+  background-color: lightgray;
+}
+
+.user-auth-error {
+  color: red;
+}
+
+.user-auth-btn {
+  color: white;
+  border: none;
+  height: fit-content;
+  background-color: green;
+  box-shadow: 1px 1px darkgreen;
+  padding: 5px 0px 5px 0px;
+}
+
+.user-auth-btn:disabled {
+  opacity: 0.5;
+}
+
+.user-auth-btn:enabled:hover {
+  background-color: darkgreen;
+}
+
+/* Profile */
+.profile {
+  width: 500px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-item > label {
+  font-weight: bold;
+}
+
+.profile-item > input,
+select {
+  width: 70%;
+}
+
+.profile-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-footer > div {
+  padding-right: 0px !important;
+}
+
+.profile-footer * {
+  width: fit-content !important;
+  text-align: center;
+  padding: 5px 10px !important;
+}
+
+.users-link {
+  color: black;
+  border: none;
+  height: fit-content;
+  background-color: #ffc107;
+  box-shadow: 1px 1px lightgray;
+  padding: 5px 0px 5px 0px;
+  text-decoration: none;
+}
+
+.users-link:hover {
+  background-color: #ffa407;
+}
+
+#discard-profile-changes-btn {
+  background-color: red;
+  margin-right: 0px !important;
+  margin-left: 5px !important;
+}
+
+#discard-profile-changes-btn:enabled:hover {
+  background-color: darkred;
+}
+
+/* Users Table */
+.user-table {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin-left: 120px !important;
+  overflow-x: scroll;
+}
+
+.user-table > div:first-child {
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.user-table-dropdown {
+  width: 150px;
+  margin-right: 10px !important;
+}
+
+.goto-profile {
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+  margin-right: 20px !important;
+}
+
+.add-user-role {
+  margin-left: 0px !important;
+  width: fit-content;
+}
+
+.user-table-btns {
+  border: none;
+  background-color: transparent;
+}
+
+.user-table-btns:hover {
+  color: darkblue;
+}
+
+.update-user-btn:hover {
+  color: darkgreen !important;
+}
+
+.delete-user-btn:hover {
+  color: darkred !important;
+}
+
+@media (max-width: 1075px) {
+  .user-table {
+    width: 75%;
+  }
+
+  .profile-item > input,
+  select {
+    width: 60%;
+  }
+}
+
+@media (max-width: 991px) {
+  .user-auth {
+    margin-top: 40px !important;
+    margin-left: 100px !important;
+  }
+
+  .profile {
+    margin-left: 60px !important;
+    width: 400px;
+  }
+
+  .user-table {
+    width: 90%;
+    margin-top: 40px !important;
+    margin-left: 20px !important;
+    padding-right: 0px !important;
+  }
+
+  .goto-profile {
+    margin-right: 0px !important;
+  }
+}

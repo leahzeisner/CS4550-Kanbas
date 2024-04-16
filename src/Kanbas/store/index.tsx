@@ -11,8 +11,12 @@ import {
   Modules,
   TodoList,
 } from "../types";
+import userReducer from "../Users/userReducer";
 
 export interface KanbasState {
+  userReducer: {
+    user: any;
+  };
   modulesReducer: {
     modulesList: Modules;
   };
@@ -32,6 +36,7 @@ export interface KanbasState {
 
 const store = configureStore({
   reducer: {
+    userReducer,
     modulesReducer,
     statusReducer,
     assignmentsReducer,
