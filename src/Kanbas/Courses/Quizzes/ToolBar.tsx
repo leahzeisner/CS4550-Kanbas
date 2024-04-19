@@ -18,10 +18,10 @@ function ToolBar({ setSearchQuizValue }: ToolBarProps) {
   const onToolbarAddQuiz = () => {
     // create new empty quiz
     const emptyQuiz = getEmptyQuiz(courseId || "");
-    client
-      .createQuiz(courseId, emptyQuiz)
-      .then((quiz) => dispatch(addQuiz(quiz)));
-    navigate(`/Kanbas/Courses/${courseId}/Quizzes/${emptyQuiz._id}`);
+    client.createQuiz(courseId, emptyQuiz).then((quiz) => {
+      dispatch(addQuiz(quiz));
+      navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}`);
+    });
   };
   return (
     <>
