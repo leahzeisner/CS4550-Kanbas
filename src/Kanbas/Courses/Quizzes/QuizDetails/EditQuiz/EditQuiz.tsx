@@ -6,6 +6,7 @@ import { updateQuiz } from "../../quizzesReducer";
 import EditQuizDetails from "./EditQuizDetails";
 import EditQuizQuestions from "./EditQuizQuestions";
 import ToolBar from "./ToolBar";
+import * as client from "../../client";
 
 function EditQuiz({
   quiz,
@@ -22,6 +23,20 @@ function EditQuiz({
   const [isEditingDetails, setIsEditingDetails] = useState(true);
   const [notifyUsers, setNotifyUsers] = useState(false);
 
+  const trimDate = (date: string) => {
+    return date === null || date.length === 0 ? date : date.substring(0, 16);
+  };
+
+  const shouldTrimDates = () => {
+    return (
+      (editableQuiz.dueDate !== null && editableQuiz.dueDate.length > 16) ||
+      (editableQuiz.availableDate !== null &&
+        editableQuiz.availableDate.length > 16) ||
+      (editableQuiz.availableUntilDate !== null &&
+        editableQuiz.availableUntilDate.length > 16)
+    );
+  };
+
   useEffect(() => {
     let showCorrectAnswers = quiz.showCorrectAnswers;
     if (showCorrectAnswers && showCorrectAnswers !== "Immediately") {
@@ -30,34 +45,33 @@ function EditQuiz({
 
     setEditableQuiz({
       ...quiz,
-      dueDate: quiz.dueDate.substring(0, 16),
-      availableDate: quiz.availableDate.substring(0, 16),
-      availableUntilDate: quiz.availableUntilDate.substring(0, 16),
+      dueDate: trimDate(quiz.dueDate),
+      availableDate: trimDate(quiz.availableDate),
+      availableUntilDate: trimDate(quiz.availableUntilDate),
       showCorrectAnswers,
     });
   }, [quiz]);
 
   useEffect(() => {
-    if (
-      editableQuiz.dueDate.length > 16 ||
-      editableQuiz.availableDate.length > 16 ||
-      editableQuiz.availableUntilDate.length > 16
-    ) {
+    if (shouldTrimDates()) {
       setEditableQuiz({
         ...editableQuiz,
-        dueDate: quiz.dueDate.substring(0, 16),
-        availableDate: quiz.availableDate.substring(0, 16),
-        availableUntilDate: quiz.availableUntilDate.substring(0, 16),
+        dueDate: trimDate(quiz.dueDate),
+        availableDate: trimDate(quiz.availableDate),
+        availableUntilDate: trimDate(quiz.availableUntilDate),
       });
     }
   }, [editableQuiz]);
 
-  const onSave = () => {
+  const onSave = (quiz: Quiz) => {
     let points = 0;
-    editableQuiz.questions.map(
+    quiz.questions.map(
       (question) => (points += parseInt(question.points) || 0),
     );
-    dispatch(updateQuiz({ ...editableQuiz, points: points.toString() }));
+    const updatedQuiz = { ...quiz, points: points.toString() };
+    client
+      .updateQuiz(updatedQuiz)
+      .then(() => dispatch(updateQuiz(updatedQuiz)));
     navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
   };
 
@@ -123,15 +137,16 @@ function EditQuiz({
           </button>
           <button
             type="button"
-            onClick={() => {
-              setEditableQuiz({ ...editableQuiz, published: true });
-              onSave();
-            }}
+            onClick={() => onSave({ ...editableQuiz, published: true })}
             disabled={disableSave()}
           >
             Save {"&"} Publish
           </button>
-          <button type="button" onClick={onSave} disabled={disableSave()}>
+          <button
+            type="button"
+            onClick={() => onSave(editableQuiz)}
+            disabled={disableSave()}
+          >
             Save
           </button>
         </div>

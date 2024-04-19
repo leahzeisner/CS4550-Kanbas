@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { Quiz } from "../../../types";
 import { updateQuiz } from "../quizzesReducer";
+import * as client from "../client";
 
 function ToolBar({
   quiz,
@@ -21,7 +22,9 @@ function ToolBar({
   const onPublishToggle = () => {
     const updatedQuiz = { ...quiz, published: !quiz.published };
     setQuiz(updatedQuiz);
-    dispatch(updateQuiz(updatedQuiz));
+    client
+      .updateQuiz(updatedQuiz)
+      .then(() => dispatch(updateQuiz(updatedQuiz)));
   };
 
   return (

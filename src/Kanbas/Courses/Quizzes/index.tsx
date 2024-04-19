@@ -9,6 +9,7 @@ import { setQuizzes } from "./quizzesReducer";
 import ToolBar from "./ToolBar";
 import "./index.css";
 import { getFreshId } from "../../utils";
+import * as client from "./client";
 
 export const getEmptyQuiz = (courseId: string) => {
   return {
@@ -37,7 +38,7 @@ export const getEmptyQuiz = (courseId: string) => {
 
 export const getEmptyQuestion = () => {
   return {
-    _id: getFreshId(),
+    questionId: getFreshId(),
     type: QuestionType.MULTIPLE_CHOICE,
     title: "",
     question: "",
@@ -56,10 +57,9 @@ function Quizzes() {
   const [searchQuizValue, setSearchQuizValue] = useState("");
 
   useEffect(() => {
-    // UPDATE ONCE BACKEND IS FINISHED
-    const courseQuizzes = quizzes.filter((q) => q.courseId === courseId);
-    console.log(courseQuizzes);
-    dispatch(setQuizzes(courseQuizzes));
+    client
+      .findCourseQuizzes(courseId)
+      .then((quizzes) => dispatch(setQuizzes(quizzes)));
   }, [courseId]);
 
   const getTitleArrow = () => {

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { getEmptyQuiz } from ".";
 import "./index.css";
 import { addQuiz } from "./quizzesReducer";
+import * as client from "./client";
 
 interface ToolBarProps {
   setSearchQuizValue: (value: string) => void;
@@ -17,7 +18,9 @@ function ToolBar({ setSearchQuizValue }: ToolBarProps) {
   const onToolbarAddQuiz = () => {
     // create new empty quiz
     const emptyQuiz = getEmptyQuiz(courseId || "");
-    dispatch(addQuiz(emptyQuiz));
+    client
+      .createQuiz(courseId, emptyQuiz)
+      .then((quiz) => dispatch(addQuiz(quiz)));
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${emptyQuiz._id}`);
   };
   return (

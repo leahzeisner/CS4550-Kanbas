@@ -30,7 +30,7 @@ function Answer({
   const onEditToggle = () => {
     if (isEditingTitle) {
       const updatedAnswers = editableAnswers.map((a) =>
-        a._id === editableAnswer._id ? editableAnswer : a,
+        a.answerId === editableAnswer.answerId ? editableAnswer : a,
       );
       setEditableAnswers(updatedAnswers);
     }
@@ -55,7 +55,7 @@ function Answer({
     setEditableAnswer(updatedAnswer);
 
     const updatedAnswers = editableAnswers.map((a) =>
-      a._id === updatedAnswer._id ? updatedAnswer : a,
+      a.answerId === updatedAnswer.answerId ? updatedAnswer : a,
     );
     setEditableAnswers(updatedAnswers);
   };
@@ -66,13 +66,14 @@ function Answer({
       (editableAnswer.answer === "" ||
         editableAnswers.filter(
           (a) =>
-            a._id !== editableAnswer._id && a.answer === editableAnswer.answer,
+            a.answerId !== editableAnswer.answerId &&
+            a.answer === editableAnswer.answer,
         ).length > 0)
     );
   };
 
   return (
-    <li key={answer._id} className="answer">
+    <li key={answer.answerId} className="answer">
       <div className="answer-label">
         <span id="answerLabel" style={getCorrectStyle()}>
           {editableAnswer.isCorrect ? "Correct" : "Possible"} Answer:{" "}

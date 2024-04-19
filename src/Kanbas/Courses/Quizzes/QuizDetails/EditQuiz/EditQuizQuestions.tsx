@@ -21,7 +21,7 @@ function EditQuizQuestions({
 
   const onNewQuestion = () => {
     const emptyQuestion: Question_Type = {
-      _id: getFreshId(),
+      questionId: getFreshId(),
       type: QuestionType.MULTIPLE_CHOICE,
       title: "Unnamed Quiz Question",
       question: "",

@@ -55,7 +55,7 @@ function QuizPreview() {
       const defaultSelectedAnswers: SelectedAnswerList = [];
       quiz.questions.forEach((q) => {
         defaultSelectedAnswers.push({
-          questionId: q._id,
+          questionId: q.questionId,
           selectedAnswerId: undefined,
         });
       });
@@ -64,9 +64,11 @@ function QuizPreview() {
       const defaultFilledInBlankAnswers: FilledInBlanksAnswerList = [];
       quiz.questions.forEach((q) => {
         const answers: FilledInBlanksAnswers = [];
-        q.answers.forEach((a) => answers.push({ answerId: a._id, value: "" }));
+        q.answers.forEach((a) =>
+          answers.push({ answerId: a.answerId, value: "" }),
+        );
         defaultFilledInBlankAnswers.push({
-          questionId: q._id,
+          questionId: q.questionId,
           answers,
         });
       });
@@ -87,7 +89,7 @@ function QuizPreview() {
 
   const updateQuestionIndex = (question: Question) => {
     const questionIndex = quiz.questions.findIndex(
-      (q) => q._id === question._id,
+      (q) => q.questionId === question.questionId,
     );
     if (questionIndex !== -1) {
       setQuestionIndex(questionIndex);
@@ -112,7 +114,7 @@ function QuizPreview() {
   const onBlankChange = (e: any, answerId: string) => {
     const value = e.target.value;
     const updatedList = filledInBlanksAnswerList.map((answer) =>
-      answer.questionId === currentQuestion._id
+      answer.questionId === currentQuestion.questionId
         ? {
             ...answer,
             answers: answer.answers.map((a) =>
@@ -126,7 +128,7 @@ function QuizPreview() {
 
   const getBlankValue = (answerId: string) => {
     const questionAnswers = filledInBlanksAnswerList.find(
-      (answer) => answer.questionId === currentQuestion._id,
+      (answer) => answer.questionId === currentQuestion.questionId,
     );
     if (!questionAnswers) return "";
     const answer = questionAnswers.answers.find((a) => a.answerId === answerId);
@@ -178,16 +180,19 @@ function QuizPreview() {
                         {currentQuestion.type ===
                         QuestionType.FILL_IN_BLANKS ? (
                           <>
-                            <label htmlFor={a._id} id="fillInBlankAnswerLabel">
+                            <label
+                              htmlFor={a.answerId}
+                              id="fillInBlankAnswerLabel"
+                            >
                               {idx + 1}.{" "}
                             </label>
                             <input
                               type="text"
                               name="quiz-preview-answer"
-                              id={a._id}
-                              value={getBlankValue(a._id)}
+                              id={a.answerId}
+                              value={getBlankValue(a.answerId)}
                               placeholder="Answer"
-                              onChange={(e) => onBlankChange(e, a._id)}
+                              onChange={(e) => onBlankChange(e, a.answerId)}
                             />
                           </>
                         ) : (
@@ -195,15 +200,15 @@ function QuizPreview() {
                             <input
                               type="radio"
                               name="quiz-preview-answer"
-                              id={a._id}
+                              id={a.answerId}
                               value={a.answer}
                               checked={
                                 selectedAnswerList[questionIndex]
-                                  .selectedAnswerId === a._id
+                                  .selectedAnswerId === a.answerId
                               }
-                              onChange={() => onAnswerChanged(a._id)}
+                              onChange={() => onAnswerChanged(a.answerId)}
                             />
-                            <label htmlFor={a._id}>{a.answer}</label>
+                            <label htmlFor={a.answerId}>{a.answer}</label>
                           </>
                         )}
                       </div>
@@ -268,7 +273,9 @@ function QuizPreview() {
                   onClick={() => updateQuestionIndex(q)}
                   style={{
                     fontWeight:
-                      currentQuestion._id === q._id ? "bold" : "normal",
+                      currentQuestion.questionId === q.questionId
+                        ? "bold"
+                        : "normal",
                   }}
                 >
                   {q.title}

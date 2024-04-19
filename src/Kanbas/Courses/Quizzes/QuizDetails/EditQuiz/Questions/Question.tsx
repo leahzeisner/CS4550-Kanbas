@@ -18,13 +18,15 @@ function Question({
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    setIsEditing(newQuestion?._id === question._id);
+    setIsEditing(newQuestion?.questionId === question.questionId);
   }, [newQuestion]);
 
   const onDeleteQuestion = () => {
     setEditableQuiz({
       ...editableQuiz,
-      questions: editableQuiz.questions.filter((q) => q._id !== question._id),
+      questions: editableQuiz.questions.filter(
+        (q) => q.questionId !== question.questionId,
+      ),
     });
   };
 
@@ -38,7 +40,7 @@ function Question({
           setIsEditing={setIsEditing}
         />
       ) : (
-        <li key={question._id} className="question">
+        <li key={question.questionId} className="question">
           <div className="question-left">
             <div className="question-top">
               <span className="question-title">{question.title}</span>

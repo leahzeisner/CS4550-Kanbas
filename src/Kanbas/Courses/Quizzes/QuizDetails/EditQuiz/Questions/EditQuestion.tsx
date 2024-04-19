@@ -72,8 +72,8 @@ function EditQuestion({
     // If switching to True/False question, pre-load both answers
     else if (newQuestionType === QuestionType.TRUE_FALSE) {
       setEditableAnswers([
-        { _id: getFreshId() + "true", answer: TRUE, isCorrect: false },
-        { _id: getFreshId() + "false", answer: FALSE, isCorrect: false },
+        { answerId: getFreshId() + "true", answer: TRUE, isCorrect: false },
+        { answerId: getFreshId() + "false", answer: FALSE, isCorrect: false },
       ]);
     } else if (shouldSaveEditableAnswers(newQuestionType)) {
       // all fill in the blank answers are correct
@@ -115,7 +115,7 @@ function EditQuestion({
     setEditableAnswers([
       ...editableAnswers,
       {
-        _id: getFreshId(),
+        answerId: getFreshId(),
         answer: "",
         isCorrect: editableQuestion.type === QuestionType.FILL_IN_BLANKS, // all fill in blank answers are correct
       },
@@ -124,7 +124,7 @@ function EditQuestion({
 
   const onUpdateQuestion = () => {
     const updatedQuestions = editableQuiz.questions.map((q) =>
-      q._id === editableQuestion._id
+      q.questionId === editableQuestion.questionId
         ? {
             ...editableQuestion,
             answers: editableAnswers.filter((a) => a.answer !== ""),
@@ -182,7 +182,7 @@ function EditQuestion({
   };
 
   return (
-    <li key={editableQuestion._id} className="edit-question">
+    <li key={editableQuestion.questionId} className="edit-question">
       <div className="edit-question-top">
         <div className="edit-question-top-left">
           <div className="edit-question-title">

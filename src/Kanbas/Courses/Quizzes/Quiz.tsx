@@ -14,6 +14,7 @@ import {
   bindTrigger,
   bindMenu,
 } from "material-ui-popup-state/hooks";
+import * as client from "./client";
 
 interface QuizProps {
   quiz: QuizType;
@@ -74,7 +75,10 @@ function Quiz({ quiz }: QuizProps) {
   };
 
   const onPublishToggle = () => {
-    dispatch(updateQuiz({ ...quiz, published: !quiz.published }));
+    const updatedQuiz = { ...quiz, published: !quiz.published };
+    client
+      .updateQuiz(updatedQuiz)
+      .then(() => dispatch(updateQuiz(updatedQuiz)));
   };
 
   const getQuizDetailsPath = () => {
@@ -82,7 +86,9 @@ function Quiz({ quiz }: QuizProps) {
   };
 
   const onDeleteQuiz = () => {
-    dispatch(deleteQuiz(quiz));
+    client.deleteQuiz(quiz._id).then(() => {
+      dispatch(deleteQuiz(quiz));
+    });
     popupState.close();
   };
 

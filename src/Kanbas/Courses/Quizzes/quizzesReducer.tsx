@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Quizzes } from "../../types";
-import quizzes from "./quizzes.json";
 
 const initialState = {
-  quizzes: quizzes as unknown as Quizzes,
+  quizzes: [] as Quizzes,
 };
 
 const quizzesSlice = createSlice({

@@ -84,7 +84,7 @@ export enum QuestionType {
 }
 
 export type Answer = {
-  _id: string;
+  answerId: string;
   answer: string;
   isCorrect: boolean;
 };
@@ -92,7 +92,7 @@ export type Answer = {
 export type Answers = Answer[];
 
 export type Question = {
-  _id: string;
+  questionId: string;
   type: QuestionType;
   title: string;
   question: string;
