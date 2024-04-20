@@ -1,5 +1,9 @@
 export const getFreshId = () => {
-  return new Date().getTime().toString();
+  const max = 79228162514264337593543950335; // largest number that can be represented with 24 bit hex
+  const id = Math.floor(Math.random() * max).toString(16);
+  console.log(id);
+  return id;
+  // return new Date().getTime().toString();
 };
 
 export const scrollToElementWithId = (id: string) => {
