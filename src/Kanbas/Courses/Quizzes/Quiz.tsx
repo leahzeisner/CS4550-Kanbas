@@ -37,7 +37,7 @@ function Quiz({ quiz }: QuizProps) {
     let availableUntilText = "";
     if (currentDate < availableDate) {
       availability = "Not Available Until ";
-      availableUntilText = formatDateTime(quiz.availableUntilDate);
+      availableUntilText = formatDateTime(quiz.availableDate);
     } else if (currentDate < availableUntilDate) {
       availability = "Available";
     } else {
