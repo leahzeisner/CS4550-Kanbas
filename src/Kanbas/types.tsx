@@ -78,9 +78,9 @@ export type AssignmentsList = Assignment[];
 
 // TEMP - UPDATE LATER
 export enum QuestionType {
-  MULTIPLE_CHOICE,
-  TRUE_FALSE,
-  FILL_IN_BLANKS,
+  MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
+  TRUE_FALSE = "TRUE_FALSE",
+  FILL_IN_BLANKS = "FILL_IN_BLANKS",
 }
 
 export type Answer = {
