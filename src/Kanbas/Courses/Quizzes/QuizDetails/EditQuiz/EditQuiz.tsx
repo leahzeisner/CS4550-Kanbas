@@ -24,7 +24,17 @@ function EditQuiz({
   const [notifyUsers, setNotifyUsers] = useState(false);
 
   const trimDate = (date: string) => {
-    return date === null || date.length === 0 ? date : date.substring(0, 16);
+    if (date === null || date.length === 0) {
+      return date;
+    }
+    const dateObj = new Date(date);
+    const dateStr = date.substring(0, 10);
+
+    const hours = ("0" + dateObj.getHours()).slice(-2);
+    const minutes = ("0" + dateObj.getMinutes()).slice(-2);
+    const timeStr = `${hours}:${minutes}`;
+
+    return dateStr + "T" + timeStr;
   };
 
   const shouldTrimDates = () => {
@@ -33,14 +43,20 @@ function EditQuiz({
       (editableQuiz.availableDate !== null &&
         editableQuiz.availableDate.length > 16) ||
       (editableQuiz.availableUntilDate !== null &&
-        editableQuiz.availableUntilDate.length > 16)
+        editableQuiz.availableUntilDate.length > 16) ||
+      (editableQuiz.showCorrectAnswers !== undefined &&
+        editableQuiz.showCorrectAnswers !== "Immediately" &&
+        editableQuiz.showCorrectAnswers.length > 16)
     );
   };
 
-  useEffect(() => {
+  const trimDates = (quiz: Quiz) => {
     let showCorrectAnswers = quiz.showCorrectAnswers;
-    if (showCorrectAnswers && showCorrectAnswers !== "Immediately") {
-      showCorrectAnswers = showCorrectAnswers?.substring(0, 16);
+    if (
+      showCorrectAnswers !== undefined &&
+      showCorrectAnswers !== "Immediately"
+    ) {
+      showCorrectAnswers = trimDate(showCorrectAnswers);
     }
 
     setEditableQuiz({
@@ -50,16 +66,15 @@ function EditQuiz({
       availableUntilDate: trimDate(quiz.availableUntilDate),
       showCorrectAnswers,
     });
+  };
+
+  useEffect(() => {
+    trimDates(quiz);
   }, [quiz]);
 
   useEffect(() => {
     if (shouldTrimDates()) {
-      setEditableQuiz({
-        ...editableQuiz,
-        dueDate: trimDate(quiz.dueDate),
-        availableDate: trimDate(quiz.availableDate),
-        availableUntilDate: trimDate(quiz.availableUntilDate),
-      });
+      trimDates(editableQuiz);
     }
   }, [editableQuiz]);
 
