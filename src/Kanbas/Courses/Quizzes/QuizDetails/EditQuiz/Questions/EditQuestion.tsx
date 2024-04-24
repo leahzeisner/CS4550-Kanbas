@@ -226,7 +226,7 @@ function EditQuestion({
             onChange={(e) =>
               setEditableQuestion({
                 ...editableQuestion,
-                points: e.target.value,
+                points: e.target.value.includes("-") ? "0" : e.target.value,
               })
             }
           />
