@@ -22,11 +22,6 @@ type FilledInBlanksAnswers = {
   value: string;
 }[];
 
-type FilledInBlanksAnswerList = {
-  questionId: string;
-  answers: FilledInBlanksAnswers;
-}[];
-
 function QuizPreview() {
   const { courseId, quizId } = useParams();
   const navigate = useNavigate();
@@ -40,8 +35,7 @@ function QuizPreview() {
     useState<Question>(getEmptyQuestion());
   const [selectedAnswerList, setSelectedAnswerList] =
     useState<SelectedAnswerList>([]);
-  const [filledInBlanksAnswerList, setFilledInBlanksAnswerList] =
-    useState<FilledInBlanksAnswerList>([]);
+  const [fillInBlankValue, setFillInBlankValue] = useState("");
 
   useEffect(() => {
     setDate(new Date().toISOString());
@@ -60,19 +54,6 @@ function QuizPreview() {
         });
       });
       setSelectedAnswerList(defaultSelectedAnswers);
-
-      const defaultFilledInBlankAnswers: FilledInBlanksAnswerList = [];
-      quiz.questions.forEach((q) => {
-        const answers: FilledInBlanksAnswers = [];
-        q.answers.forEach((a) =>
-          answers.push({ answerId: a.answerId, value: "" }),
-        );
-        defaultFilledInBlankAnswers.push({
-          questionId: q.questionId,
-          answers,
-        });
-      });
-      setFilledInBlanksAnswerList(defaultFilledInBlankAnswers);
     }
   }, [quizId]);
 
@@ -109,30 +90,6 @@ function QuizPreview() {
       selectedAnswerId: answerId,
     };
     setSelectedAnswerList(updatedList);
-  };
-
-  const onBlankChange = (e: any, answerId: string) => {
-    const value = e.target.value;
-    const updatedList = filledInBlanksAnswerList.map((answer) =>
-      answer.questionId === currentQuestion.questionId
-        ? {
-            ...answer,
-            answers: answer.answers.map((a) =>
-              a.answerId === answerId ? { ...a, value } : a,
-            ),
-          }
-        : answer,
-    );
-    setFilledInBlanksAnswerList(updatedList);
-  };
-
-  const getBlankValue = (answerId: string) => {
-    const questionAnswers = filledInBlanksAnswerList.find(
-      (answer) => answer.questionId === currentQuestion.questionId,
-    );
-    if (!questionAnswers) return "";
-    const answer = questionAnswers.answers.find((a) => a.answerId === answerId);
-    return answer ? answer.value : "";
   };
 
   return (
@@ -174,29 +131,30 @@ function QuizPreview() {
                   </div>
 
                   <div className="quiz-preview-item-answers">
-                    {currentQuestion.answers.map((a, idx) => (
+                    {currentQuestion.type === QuestionType.FILL_IN_BLANKS ? (
                       <div>
                         <hr id="quizPreviewAnswerHr" />
-                        {currentQuestion.type ===
-                        QuestionType.FILL_IN_BLANKS ? (
-                          <>
-                            <label
-                              htmlFor={a.answerId}
-                              id="fillInBlankAnswerLabel"
-                            >
-                              {idx + 1}.{" "}
-                            </label>
-                            <input
-                              type="text"
-                              name="quiz-preview-answer"
-                              id={a.answerId}
-                              value={getBlankValue(a.answerId)}
-                              placeholder="Answer"
-                              onChange={(e) => onBlankChange(e, a.answerId)}
-                            />
-                          </>
-                        ) : (
-                          <>
+                        <label
+                          htmlFor="fillInBlanksAnswer"
+                          id="fillInBlankAnswerLabel"
+                        >
+                          {"1. "}
+                        </label>
+                        <input
+                          type="text"
+                          name="quiz-preview-answer"
+                          id="fillInBlanksAnswer"
+                          value={fillInBlankValue}
+                          placeholder="Answer"
+                          onChange={(e) => setFillInBlankValue(e.target.value)}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        {currentQuestion.answers.map((a) => (
+                          <div>
+                            <hr id="quizPreviewAnswerHr" />
+
                             <input
                               type="radio"
                               name="quiz-preview-answer"
@@ -209,10 +167,10 @@ function QuizPreview() {
                               onChange={() => onAnswerChanged(a.answerId)}
                             />
                             <label htmlFor={a.answerId}>{a.answer}</label>
-                          </>
-                        )}
-                      </div>
-                    ))}
+                          </div>
+                        ))}
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
