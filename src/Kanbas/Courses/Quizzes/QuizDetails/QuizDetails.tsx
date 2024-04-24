@@ -63,6 +63,7 @@ function QuizDetails() {
                 <span>Multiple Attempts</span>
                 <span>View Responses</span>
                 <span>Show Correct Answers</span>
+                <span>Access Code</span>
                 <span>One Question at a Time</span>
                 <span>Require Respondus LockDown Browser</span>
                 <span>Required to View Quiz Results</span>
@@ -80,6 +81,7 @@ function QuizDetails() {
                 <span>{getYesOrNo(quiz.multipleAttempts)}</span>
                 <span>Always</span>
                 <span>{getShowCorrectAnswers()}</span>
+                <span>{quiz.accessCode === "" ? "No" : quiz.accessCode}</span>
                 <span>{getYesOrNo(quiz.oneQuestionAtATime)}</span>
                 <span>No</span>
                 <span>No</span>

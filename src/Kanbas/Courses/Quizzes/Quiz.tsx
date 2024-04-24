@@ -65,9 +65,14 @@ function Quiz({ quiz }: QuizProps) {
         {quiz.published && (
           <>
             {getSpacer()}
-            <span>{quiz.points || "0"} pts</span>
+            <span>
+              {quiz.points || "0"} {quiz.points === "1" ? "pt" : "pts"}
+            </span>
             {getSpacer()}
-            <span>{quiz.questions.length} Questions</span>
+            <span>
+              {quiz.questions.length}{" "}
+              {quiz.questions.length === 1 ? "Question" : "Questions"}
+            </span>
           </>
         )}
       </>
