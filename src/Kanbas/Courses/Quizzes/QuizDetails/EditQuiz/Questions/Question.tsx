@@ -25,7 +25,7 @@ function Question({
     setEditableQuiz({
       ...editableQuiz,
       questions: editableQuiz.questions.filter(
-        (q) => q.questionId !== question.questionId,
+        (q) => q.questionId !== question.questionId
       ),
     });
   };
@@ -46,7 +46,8 @@ function Question({
               <span className="question-title">{question.title}</span>
               <span>&nbsp;&nbsp; | &nbsp;&nbsp;</span>
               <span className="question-points">
-                {question.points || "0"} pts
+                {question.points || "0"}{" "}
+                {question.points === "1" ? "pt" : "pts"}
               </span>
             </div>
 

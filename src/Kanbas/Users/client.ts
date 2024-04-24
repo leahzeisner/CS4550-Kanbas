@@ -9,7 +9,7 @@ const axiosWithCredentials = axios.create({
 export const login = async (credentials: User) => {
   const response = await axiosWithCredentials.post(
     `${USERS_API}/login`,
-    credentials,
+    credentials
   );
   return response.data;
 };
@@ -36,7 +36,7 @@ export const updateUser = async (user: any, isCurrentUser: boolean) => {
   };
   const response = await axiosWithCredentials.put(
     `${USERS_API}/${user._id}`,
-    data,
+    data
   );
   return response.data;
 };
@@ -63,7 +63,7 @@ export const createUser = async (user: any) => {
 
 export const deleteUser = async (user: any) => {
   const response = await axiosWithCredentials.delete(
-    `${USERS_API}/${user._id}`,
+    `${USERS_API}/${user._id}`
   );
   return response.data;
 };
